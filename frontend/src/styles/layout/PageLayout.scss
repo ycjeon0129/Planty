@@ -2,8 +2,9 @@
 @use '../mixins/responsive' as r;
 
 .container {
-	width: 100%;
-	background: #fff;
+	max-width: 500px;
+	margin: auto;
+	background: var.$white;
 	padding-left: var.$pd-lg;
 	padding-right: var.$pd-lg;
 
