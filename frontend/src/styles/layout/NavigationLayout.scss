@@ -1,0 +1,7 @@
+@use "../base/variable" as var;
+
+.navigation {
+    display: flex;
+    align-items: center;
+    height: var.$nav-height;
+}
