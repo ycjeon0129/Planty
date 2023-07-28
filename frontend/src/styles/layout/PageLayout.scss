@@ -1,6 +1,21 @@
-@import '../base/variable';
+@use '../base/variable' as var;
+@use '../mixins/responsive' as r;
 
 .container {
-  padding-left: $pd-lg;
-  padding-right: $pd-lg;
+	width: 100%;
+	background: #fff;
+	padding-left: var.$pd-lg;
+	padding-right: var.$pd-lg;
+
+	@include r.responsive(Phone) {
+		background: red;
+	}
+
+	@include r.responsive(Tablet) {
+		background: orange;
+	}
+
+	@include r.responsive(Desktop) {
+		background: yellow;
+	}
 }
