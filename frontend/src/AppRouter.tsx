@@ -3,7 +3,7 @@ import React from 'react';
 import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
 import './styles/index.scss';
 import NavigationLayout from 'components/layout/NavigationLayout/NavigationLayout';
-import Navigation from 'components/ui/Navigation';
+import Navigation from 'components/organisms/common/Navigation/Navigation';
 import Develop from 'pages/Develop';
 import PageLayout from './components/layout/PageLayout/PageLayout';
 
