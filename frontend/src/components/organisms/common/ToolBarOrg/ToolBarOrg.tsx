@@ -9,6 +9,9 @@ function ToolBarOrg() {
 	// 	'assets/icons/ToolBar/EmergencyImg.svg',
 	// 	'assets/icons/ToolBar/MypageImg.svg',
 	// ]
+
+	// const handleMenuBar: string[] = [0, 1, 2, 3];
+
 	const homeObject: { imgSrc: string; imgName: string } = {
 		imgSrc: 'assets/icons/ToolBar/HomeImg.svg',
 		imgName: '홈',
