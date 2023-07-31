@@ -1,0 +1,18 @@
+@use 'styles/base/variable' as var;
+@import "styles/mixins/common";
+
+.info-list-item {
+    @include flex-row;
+    
+    span {
+        font-size: var.$p0;
+    }
+    
+    span:nth-child(1){
+        min-width: 70px;
+        color: var.$black-400;
+    }
+    span:nth-child(2){
+        color: var.$black-300;
+    }
+}

@@ -1,3 +1,4 @@
+@use "sass:math";
 @use '../../../../styles/base/variable' as var;
 
 @mixin badgeColor($color) {
@@ -8,10 +9,11 @@
 
 .badge-container {
 	width: fit-content;
+	min-width: 60px;
 
 	span {
 		font-size: var.$p0;
-		padding: var.$pd-sm/2 var.$pd-sm;
+		padding: math.div(var.$pd-sm, 2) var.$pd-sm;
 	}
 
 	.primary {
