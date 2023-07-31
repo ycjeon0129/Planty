@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react';
-import '../../styles/layout/NavigationLayout.scss';
+import './NavigationLayout.scss';
 
 function NavigationLayout({ children }: { children: ReactNode }) {
 	return (

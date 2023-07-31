@@ -2,9 +2,9 @@ import HomePage from 'pages/Home/HomePage';
 import React from 'react';
 import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
 import './styles/index.scss';
-import NavigationLayout from 'components/layout/NavigationLayout';
+import NavigationLayout from 'components/layout/NavigationLayout/NavigationLayout';
 import Navigation from 'components/ui/Navigation';
-import PageLayout from './components/layout/PageLayout';
+import PageLayout from './components/layout/PageLayout/PageLayout';
 
 function AppRouter() {
 	return (
