@@ -1,0 +1,21 @@
+@use 'styles/base/variable' as var;
+
+.subscribe-list-item-layout {
+	border: 1px solid red;
+	overflow-x: hidden;
+	#top {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+	}
+
+	#bottom {
+		display: flex;
+
+		img {
+			border-radius: var.$rd-sm;
+			width: var.$img-size-md;
+			height: var.$img-size-md;
+		}
+	}
+}
