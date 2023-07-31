@@ -2,11 +2,7 @@ import SubscribeStateBadge from 'components/atoms/subscribe/SubscribeStateBadge/
 import React from 'react';
 
 function Develop() {
-	return (
-		<div>
-			<SubscribeStateBadge stateKey="wait" />
-		</div>
-	);
+	return <SubscribeStateBadge stateKey="wait" />;
 }
 
 export default Develop;
