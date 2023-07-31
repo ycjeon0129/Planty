@@ -10,9 +10,9 @@ import InfoList from 'components/organisms/common/ListItemInfoList/InfoList';
 function SubscribeListItem() {
 	// dumy
 	const testInfo = {
-		구독시작일: '2022-07-23',
-		menu1: 'ㅎㅇ1',
-		menu2: 'ㅎㅇ2',
+		구독시작일: '2023.07.07(금)',
+		컨설팅횟수: '총 5회 / 잔여 3회',
+		컨설팅일정: '2023.07.24(월) 14:00',
 	};
 
 	const testFunc = () => {
