@@ -9,22 +9,26 @@ import InfoList from 'components/organisms/common/ListItemInfoList/InfoList';
 
 function SubscribeListItem() {
 	// dumy
-	const test = {
+	const testInfo = {
 		구독시작일: '2022-07-23',
 		menu1: 'ㅎㅇ1',
 		menu2: 'ㅎㅇ2',
 	};
 
+	const testFunc = () => {
+		alert('클릭');
+	};
+
 	return (
 		<SubscribeItemLayout>
 			<ListItemHeader title="누구나 쉽게 키우는 몬스테라 클래스" url="url" />
-			<SubscribeStateBadge stateKey="done" />
+			<SubscribeStateBadge stateKey="wait" />
 			<img
 				src="https://i.ytimg.com/vi/xeCsFtwVozo/hqdefault.jpg?sqp=-oaymwE2CNACELwBSFXyq4qpAygIARUAAIhCGAFwAcABBvABAfgB_gmAAtAFigIMCAAQARhWIGAoZTAP&rs=AOn4CLDonoxD_GnPWvni23yD6jOIMWIKuQ"
 				alt=""
 			/>
-			<InfoList info={test} />
-			<Button isActive message="컨설팅 이용하기" />
+			<InfoList info={testInfo} />
+			<Button isActive={false} message="컨설팅 이용하기" onClick={testFunc} />
 		</SubscribeItemLayout>
 	);
 }
