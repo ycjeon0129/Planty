@@ -2,6 +2,9 @@
 $h1: 2rem; // h1
 $h2: 1.8rem; // h2
 $h3: 1.6rem; // h3
+$h4: 1.4rem; // h4
+$h5: 1.2rem; // h4
+$h6: 1rem; // h4
 
 $p0: 0.8rem; // paragraph
 $p1: 1rem; // paragraph
@@ -25,6 +28,7 @@ $danger: #ff4343;
 $success: #00c2ff;
 $navy: #42526e;
 $green: #00875a;
+$disabled: #7a7a7a;
 $light-green-500: #e8ffe0;
 
 $white: #ffffff;
@@ -76,4 +80,9 @@ $md-breakpoint: 768px;
 $lg-breakpoint: 1200px;
 
 // 네비게이션 높이
-$nav-height : 48px;
+$nav-height: 48px;
+
+// radius
+$rd-sm: 4px;
+$rd-md: 10px;
+$rd-lg: 99px;
