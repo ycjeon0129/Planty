@@ -3,7 +3,7 @@ import SubscribeItemLayout from 'components/layout/subscirbe/SubscribeListItemLa
 import ListItemHeader from 'components/atoms/common/ListItemHeader/ListItemHeader';
 import SubscribeStateBadge from 'components/atoms/subscribe/SubscribeStateBadge/SubscribeStateBadge';
 import Button from 'components/atoms/common/Button/Button';
-import InfoList from 'components/organisms/common/ListItemInfoList/InfoList';
+import InfoList from 'components/organisms/common/InfoList/InfoList';
 
 function SubscribeListItem() {
 	// dumy
