@@ -1,5 +1,3 @@
-import './SubscribeListItem.scss';
-
 import React from 'react';
 import SubscribeItemLayout from 'components/layout/subscirbe/SubscribeListItemLayout/SubscribeListItemLayout';
 import ListItemHeader from 'components/atoms/common/ListItemHeader/ListItemHeader';

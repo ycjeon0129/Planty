@@ -1,5 +1,5 @@
 import React from 'react';
-import './InfoList.scss';
+import InfoListItem from 'components/atoms/common/InfoListItem/InfoListItem';
 
 function InfoList({ info }: { info: object }) {
 	const keys = Object.keys(info);
@@ -7,11 +7,8 @@ function InfoList({ info }: { info: object }) {
 
 	return (
 		<div className="info-list-container">
-			{keys.map((el, idx) => (
-				<div className="info-list-item">
-					<span>{el}</span>
-					<span>{values[idx]} </span>
-				</div>
+			{keys.map((title, idx) => (
+				<InfoListItem title={title} idx={idx} values={values} />
 			))}
 		</div>
 	);
