@@ -1,15 +1,28 @@
-import React from 'react';
+// ToolMenuBar.tsx
+import React, { useState } from 'react';
 import './ToolMenuBar.scss';
-import homeImg from 'assets/icons/ToolBar/HomeImg.svg';
+// import { ReactComponent as Home } from '../../../../assets/icons/ToolBar/HomeImg.svg';
 
-function ToolMenuBar() {
+interface ToolMenuBarProps {
+	imgSrc: string;
+	imgName: string;
+}
+
+function ToolMenuBar(props: ToolMenuBarProps) {
+	const { imgSrc, imgName } = props;
+
+	const [homeToggle, setHomeToggle] = useState(false);
+	const isClicked = () => {
+		setHomeToggle(!homeToggle);
+	};
+
 	return (
-		<div className="menuBox">
+		<div className="menuBox" onClick={isClicked} aria-hidden="true">
 			<div>
 				<div className="iconBox">
-					<img src={homeImg} alt="홈" />
+					<img src={imgSrc} alt={imgName} />
 				</div>
-				<span>홈</span>
+				<span>{imgName}</span>
 			</div>
 		</div>
 	);

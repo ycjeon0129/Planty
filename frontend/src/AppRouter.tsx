@@ -5,6 +5,7 @@ import './styles/index.scss';
 import NavigationLayout from 'components/layout/NavigationLayout/NavigationLayout';
 import Navigation from 'components/ui/Navigation';
 import Develop from 'pages/Develop';
+import Test from 'pages/Test';
 import PageLayout from './components/layout/PageLayout/PageLayout';
 
 function AppRouter() {
@@ -19,6 +20,7 @@ function AppRouter() {
 					<Route path="/home" element={<HomePage />} />
 					{/* 컴포넌트 개발용 */}
 					<Route path="/develop" element={<Develop />} />
+					<Route path="/test" element={<Test />} />
 				</Routes>
 			</PageLayout>
 		</BrowserRouter>
