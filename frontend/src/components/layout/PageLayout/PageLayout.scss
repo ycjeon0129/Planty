@@ -1,5 +1,5 @@
-@use '../base/variable' as var;
-@use '../mixins/responsive' as r;
+@use '../../../styles/base/variable' as var;
+@use '../../../styles/mixins/responsive' as r;
 
 .container {
 	max-width: 500px;
