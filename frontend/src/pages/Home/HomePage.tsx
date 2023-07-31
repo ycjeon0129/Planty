@@ -1,7 +1,13 @@
 import React from 'react';
+import ToolBarLayout from 'components/layout/ToolBarLayout/ToolBarLayout';
 
 function HomePage() {
-	return <div>HomePage</div>;
+	return (
+		<div>
+			<div>HomePage</div>
+			<ToolBarLayout />
+		</div>
+	);
 }
 
 export default HomePage;
