@@ -1,16 +1,15 @@
 @use 'styles/base/variable' as var;
 
 .list-item-header {
-	width: fit-content;
-	max-width: var.$sm-breakpoint - (var.$pd-lg * 2);
+	max-width: 270px;
 	display: flex;
 
 	span {
+		overflow: hidden;
 		display: inline;
 		vertical-align: middle;
 		font-size: var.$h5;
 		white-space: nowrap;
-		overflow: hidden;
 		text-overflow: ellipsis;
 	}
 }
