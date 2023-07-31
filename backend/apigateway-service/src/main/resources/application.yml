@@ -1,0 +1,47 @@
+# application.yml :: (local) 현재 사용하는 로컬 환경
+
+server:
+  servlet:
+    context-path: /planty
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
+  port: 8000
+
+spring:
+  application:
+    name: apigateway-service
+  cloud:
+    gateway:
+      default-filters:
+        - name: GlobalFilter
+          args:
+            baseMessage: Hello Spring Cloud Gateway Global Filter
+            preLogger: true
+            postLogger: true
+  devtools:
+    livereload:
+      enabled: true
+  profiles:
+    include: oauth
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+
+logging:
+  file:
+    path: ./planty.log
+  level:
+    root: info
+    org:
+      springframework:
+        boot : info
+        security : info
+        web : info
+#jwt:
+#  secret: WjsDbsCJfSkaRlDnjsTmvmfldTlzbflxlXhzmsvmfhQkdlejTlzmfltZl
