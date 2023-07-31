@@ -5,14 +5,24 @@ body,
 button,
 input,
 textarea {
-  font-family: 'Noto Sans KR', sans-serif;
-  font-size: 10px;
-  font-weight: $fw-500;
-  color: $black-500; // #222222
-  line-height: 1.5;
-  font-feature-settings: 'tnum';
+	font-family: 'Noto Sans KR', sans-serif;
+	font-size: 10px;
+	font-weight: $fw-500;
+	color: $black-500; // #222222
+	line-height: 1.5;
+	font-feature-settings: 'tnum';
 }
 
 input[type='number'] {
-  font-feature-settings: 'tnum';
+	font-feature-settings: 'tnum';
+}
+
+.flex-row {
+	display: flex;
+	flex-direction: row;
+}
+
+.flex-col {
+	display: flex;
+	flex-direction: column;
 }
