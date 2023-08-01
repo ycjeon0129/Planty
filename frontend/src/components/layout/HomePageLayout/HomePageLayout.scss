@@ -1,0 +1,23 @@
+.home-page-layout-container {
+	display: flex;
+	flex-direction: column;
+
+	#banner {
+		flex-basis: 60px;
+	}
+
+	#my-subcribe {
+	}
+
+	#menu {
+		display: flex;
+
+		#booking {
+			flex-basis: 50%;
+		}
+
+		#emergency {
+			flex-basis: 50%;
+		}
+	}
+}

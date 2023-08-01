@@ -1,22 +1,19 @@
+import HomePageLayout from 'components/layout/HomePageLayout/HomePageLayout';
+import AreaTitle from 'components/atoms/common/AreaTitle/AreaTitle';
+import SubscribeSlider from 'components/organisms/subscribe/SubscribeSlider/SubscribeSlider';
 import React from 'react';
-import ContentsLayout from 'components/layout/ContentsLayout/ContentsLayout';
-import NavigationLayout from 'components/layout/NavigationLayout/NavigationLayout';
-import PageLayout from 'components/layout/PageLayout/PageLayout';
-import Navigation from 'components/organisms/common/Navigation/Navigation';
+import BannerSlider from 'components/organisms/common/BannerSlider/BannerSlider';
 
 function HomePage() {
 	return (
-		<PageLayout>
-			<NavigationLayout>
-				<Navigation />
-			</NavigationLayout>
-			<ContentsLayout>
-				<div>
-					<h2>콘텐츠 헤더</h2>
-					<div>콘텐츠</div>
-				</div>
-			</ContentsLayout>
-		</PageLayout>
+		<HomePageLayout>
+			<BannerSlider />
+			<AreaTitle title="내 구독 정보" url="subscribe" />
+			<SubscribeSlider />
+			<div>예약관리</div>
+			<div>채팅 응급실</div>
+			<div>화상 응급실</div>
+		</HomePageLayout>
 	);
 }
 

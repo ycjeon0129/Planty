@@ -8,7 +8,10 @@ function InfoList({ info }: { info: object }) {
 	return (
 		<div className="info-list-container">
 			{keys.map((title, idx) => (
-				<InfoListItem key={title} title={title} value={values[idx]} />
+				<InfoListItem key={title}>
+					<span>{title}</span>
+					<span>{values[idx]}</span>
+				</InfoListItem>
 			))}
 		</div>
 	);
