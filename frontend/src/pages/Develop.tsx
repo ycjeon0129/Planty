@@ -4,7 +4,14 @@ import SubscribeListItem from 'components/organisms/subscribe/SubscribeListItem/
 import React from 'react';
 
 function Develop() {
-	return <SubscribeListItem />;
+	return (
+		<>
+			<SubscribeListItem />
+			<SubscribeListItem />
+			<SubscribeListItem />
+			<SubscribeListItem />
+		</>
+	);
 }
 
 export default Develop;

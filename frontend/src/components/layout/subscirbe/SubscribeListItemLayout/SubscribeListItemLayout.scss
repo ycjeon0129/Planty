@@ -1,12 +1,17 @@
 @use 'styles/base/variable' as var;
+@import "styles/mixins/common";
 
 .subscribe-list-item-layout {
-	border: 1px solid red;
-	overflow-x: hidden;
+	@include border-gray;
+	padding: var.$pd-lg;
+	border-radius: var.$rd-sm;
+	background-color: var.$white;
+
 	#top {
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
+		padding-bottom: var.$pd-lg;
 	}
 
 	#bottom {
@@ -14,8 +19,15 @@
 
 		img {
 			border-radius: var.$rd-sm;
-			width: var.$img-size-md;
-			height: var.$img-size-md;
+			width: var.$img-size-sm;
+			height: var.$img-size-sm;
+		}
+
+		#right {
+			@include flex-column;
+			padding: 0 var.$pd-lg;
+			width: 100%;
+			justify-content: space-between;
 		}
 	}
 }

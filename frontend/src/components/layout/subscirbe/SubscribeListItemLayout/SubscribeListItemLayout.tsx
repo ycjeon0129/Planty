@@ -11,9 +11,12 @@ function SubscribeItemLayout({ children }: { children: ReactNode[] }) {
 				{children[1]}
 			</div>
 			<div id="bottom">
+				{/* 이미지 */}
 				{children[2]}
-				<div>
-					{children[3]}
+				<div id="right">
+					{/* 구독 정보 */}
+					<div>{children[3]}</div>
+					{/* 버튼 */}
 					{children[4]}
 				</div>
 			</div>
