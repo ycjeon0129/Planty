@@ -11,13 +11,15 @@
 
 	#menu {
 		display: flex;
+		justify-content: space-between;
 
 		#booking {
-			flex-basis: 50%;
+			position: relative;
+			flex-basis: 45%;
 		}
 
 		#emergency {
-			flex-basis: 50%;
+			flex-basis: 45%;
 		}
 	}
 }
