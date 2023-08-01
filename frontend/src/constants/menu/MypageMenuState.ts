@@ -9,6 +9,16 @@ interface IMenuList {
 	[key: string]: string;
 }
 
+interface ISubMenuDetailList {
+	[key: string]: IDetail[];
+}
+
+export interface IDetail {
+	text: string;
+	url?: string;
+	isToggle?: boolean;
+}
+
 export const MAIN_MENU_LIST: string[] = ['예약 관리', '구독 목록'];
 
 export const SUB_MENU_LIST: string[] = ['이용 내역', '결제 내역', '환경 설정', '서비스 정보'];
@@ -20,4 +30,55 @@ export const MENU_LIST: IMenuList = {
 	[SUB_MENU_LIST[1]]: ReceiptIcon,
 	[SUB_MENU_LIST[2]]: SettingIcon,
 	[SUB_MENU_LIST[3]]: InfoIcon,
+};
+
+export const SUB_MENU_DETAIL_LIST: ISubMenuDetailList = {
+	[SUB_MENU_LIST[0]]: [
+		{
+			text: '구독 컨설팅 이용 내역',
+			url: '/develop',
+		},
+		{
+			text: '응급실 이용 내역',
+			url: '/develop',
+		},
+	],
+	[SUB_MENU_LIST[1]]: [
+		{
+			text: '구독 상품 결제 내역',
+			url: '/',
+		},
+		{
+			text: '응급실 결제 내역',
+			url: '/',
+		},
+	],
+	[SUB_MENU_LIST[2]]: [
+		{
+			text: '다크 모드',
+			isToggle: true,
+		},
+		{
+			text: '알림 설정',
+			isToggle: true,
+		},
+	],
+	[SUB_MENU_LIST[4]]: [
+		{
+			text: '이용 약관',
+			url: '/',
+		},
+		{
+			text: '개인 정보 처리 방침',
+			url: '/',
+		},
+		{
+			text: '자주 묻는 질문',
+			url: '/',
+		},
+		{
+			text: '버전 정보',
+			url: '/',
+		},
+	],
 };
