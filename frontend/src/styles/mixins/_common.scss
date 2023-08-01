@@ -1,0 +1,17 @@
+@use "styles/base/variable" as var;
+
+// flex 
+@mixin flex-row {
+	display: flex;
+	flex-direction: row;
+}
+
+@mixin flex-column {
+	display: flex;
+	flex-direction: column;
+}
+
+// border
+@mixin border-gray {
+    border: 1px solid var.$border-100;
+}
