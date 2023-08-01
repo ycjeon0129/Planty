@@ -1,0 +1,25 @@
+@use 'styles/base/variable' as var;
+
+.square-shortcut-button-container {
+	width: 100%;
+	max-width: var.$btn-max-xl;
+	max-height: var.$btn-max-xl;
+
+	h3 {
+	}
+
+	&.booking {
+		background-image: url('https://via.placeholder.com/500');
+		background-size: cover;
+	}
+
+	&.consulting-chat {
+		background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ4XWuRfo3SD6IgnYFuMrWq0KoQARoyroniTg&usqp=CAU');
+		background-size: cover;
+	}
+
+	&.consulting-video {
+		background-image: url('https://previews.123rf.com/images/kchung/kchung1608/kchung160800719/62023631-%EC%9D%BC%EB%9F%AC%EC%8A%A4%ED%8A%B8-%EB%A0%88%EC%9D%B4%EC%85%98%EC%9D%84%EC%9C%84%ED%95%9C-%EA%B0%88%EC%83%89-%EA%B0%9C%EC%9A%94%EC%9D%98-%EB%B9%84%EB%94%94%EC%98%A4-%ED%94%8C%EB%A0%88%EC%9D%B4%EC%96%B4-%EC%95%84%EC%9D%B4%EC%BD%98.jpg');
+		background-size: cover;
+	}
+}
