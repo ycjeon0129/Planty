@@ -1,5 +1,5 @@
 import React from 'react';
-import './ReservationTime.scss';
+import './ReservationTimeItem.scss';
 
 // 시간과 isActivate를 props로 받는다
 interface Reserve {
@@ -7,7 +7,7 @@ interface Reserve {
 	isActivate: boolean;
 }
 
-function ReservationTime(props: Reserve) {
+function ReservationTimeItem(props: Reserve) {
 	// 구조분해해서 활용
 	const { time, isActivate } = props;
 	// isActivate가 True면 연두색 false면 회색
@@ -20,4 +20,4 @@ function ReservationTime(props: Reserve) {
 	);
 }
 
-export default ReservationTime;
+export default ReservationTimeItem;
