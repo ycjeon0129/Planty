@@ -5,7 +5,7 @@ import InfoIcon from '../../assets/icons/menu/Info.svg';
 import CalendarIcon from '../../assets/icons/menu/Calendar.svg';
 import BookmarkIcon from '../../assets/icons/menu/Bookmark.svg';
 
-interface IIconList {
+interface IMenuList {
 	[key: string]: string;
 }
 
@@ -13,7 +13,7 @@ export const MAIN_MENU_LIST: string[] = ['예약 관리', '구독 목록'];
 
 export const SUB_MENU_LIST: string[] = ['이용 내역', '결제 내역', '환경 설정', '서비스 정보'];
 
-export const MENU_LIST: IIconList = {
+export const MENU_LIST: IMenuList = {
 	[MAIN_MENU_LIST[0]]: CalendarIcon,
 	[MAIN_MENU_LIST[1]]: BookmarkIcon,
 	[SUB_MENU_LIST[0]]: HistoryIcon,
