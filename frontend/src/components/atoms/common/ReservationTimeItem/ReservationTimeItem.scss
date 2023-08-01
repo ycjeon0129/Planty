@@ -1,0 +1,19 @@
+@use '../../../../styles//base//variable' as var;
+
+.TimeBox {
+	border: solid var.$border-100 1px;
+	width: 50px;
+	height: 30px;
+	border-radius: 4px;
+	text-align: center;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+  cursor: pointer;
+}
+
+.ReservationGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 0.1fr);
+  gap: 2px;
+}
