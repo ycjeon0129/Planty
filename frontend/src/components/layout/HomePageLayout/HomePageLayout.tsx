@@ -3,6 +3,10 @@ import './HomePageLayout.scss';
 import ContentsLayout from '../ContentsLayout/ContentsLayout';
 import PageLayout from '../PageLayout/PageLayout';
 
+/**
+ * HomePage를 구성하는 레이아웃
+ * @param children 레이아웃을 구성하는 컴포넌트들 ( 배너 / AreaTitle / 구독Slider / AreaTitle / 예약버튼 / 응급실-채팅 버튼 / 응급실-화상 버튼 / AreaTitle )
+ */
 function HomePageLayout({ children }: { children: ReactNode[] }) {
 	return (
 		<PageLayout>

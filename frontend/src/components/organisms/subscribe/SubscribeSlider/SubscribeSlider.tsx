@@ -3,7 +3,9 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import dummySubscribe from 'dummy';
 import SubscribeListItem from '../SubscribeListItem/SubscribeListItem';
 
-// 구독 목록 슬라이더
+/**
+ * 구독 목록 슬라이더
+ */
 function SubscribeSlider() {
 	return (
 		<Swiper>

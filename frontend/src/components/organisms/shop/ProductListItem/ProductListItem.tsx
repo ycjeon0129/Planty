@@ -5,6 +5,10 @@ import Button from 'components/atoms/common/Button/Button';
 import InfoList from 'components/organisms/common/InfoList/InfoList';
 import { IProduct } from 'types/dummy';
 
+/**
+ * 구독샵 상품 목록 아이템의 모음
+ * @param product 상품 정보들을 담고 있는 객체
+ */
 function ProductListItem({ product }: { product: IProduct }) {
 	const testFunc = () => {
 		alert('클릭');
@@ -15,7 +19,7 @@ function ProductListItem({ product }: { product: IProduct }) {
 			<ListItemTitle title={product.title} url={`product/${product.pid}`} />
 			<img src={product.thumbnail} alt="" />
 			<InfoList info={product.info} />
-			<Button isActive={false} message="구매하기" onClick={testFunc} />
+			<Button isActive={false} text="구매하기" handleClick={testFunc} />
 		</ProductListItemLayout>
 	);
 }
