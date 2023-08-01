@@ -1,0 +1,57 @@
+@use 'styles/base/variable' as var;
+
+@mixin buttonColor($colorr) {
+	color: $colorr;
+	border: solid 1px $colorr;
+	background-color: var.$white;
+	cursor: pointer;
+	font-size: var.$h5;
+	padding: 2px 7px; //sm md lg 다 이상해서
+	border-radius: var.$rd-md;
+	text-align: center;
+}
+
+.chart-button {
+	&.disabled {
+		@include buttonColor(var.$black-200);
+	}
+
+	&.danger {
+		@include buttonColor(var.$danger);
+	}
+
+	&.success {
+		@include buttonColor(var.$success);
+	}
+}
+
+@mixin circle($background-color) {
+	position: relative;
+	padding-left: 9px;
+
+	&::before {
+		content: '';
+		width: 5px;
+		height: 5px;
+		background-color: $background-color;
+		border-radius: 50%;
+		position: absolute;
+		left: 0;
+		top: 50%;
+		transform: translateY(-50%);
+	}
+}
+
+.circle {
+	&.disabled {
+		@include circle(var.$black-200);
+	}
+
+	&.danger {
+		@include circle(var.$danger);
+	}
+
+	&.success {
+		@include circle(var.$success);
+	}
+}
