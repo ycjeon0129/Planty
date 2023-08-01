@@ -1,32 +1,23 @@
-
-
 .home-page-layout-container {
-    display: flex;
-    flex-direction: column;
+	display: flex;
+	flex-direction: column;
 
-    #banner {
-        border: 1px solid red;
-        flex-basis: 60px;
-    }
+	#banner {
+		flex-basis: 60px;
+	}
 
-    #my-subcribe {
-        border: 1px solid blue;
-    }
+	#my-subcribe {
+	}
 
-    #menu {
-        border: 1px solid pink;
-        display: flex;
+	#menu {
+		display: flex;
 
-        #booking {
-            flex-basis: 50%;
-        }
+		#booking {
+			flex-basis: 50%;
+		}
 
-        #emergency {
-            flex-basis: 50%;
-
-
-        }
-    }
-
-
+		#emergency {
+			flex-basis: 50%;
+		}
+	}
 }
