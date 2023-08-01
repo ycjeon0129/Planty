@@ -1,9 +1,8 @@
+@use '../../../../styles/mixins/common' as mixin;
+@use 'styles/base/variable' as var;
+
 .header-button {
-	display: flex;
-	flex-direction: row;
-	gap: 8px;
-	align-items: center;
-	justify-content: flex-start;
+	@include mixin.flex-row(var.$pd-md);
 
 	button {
 		padding-top: 3px;
