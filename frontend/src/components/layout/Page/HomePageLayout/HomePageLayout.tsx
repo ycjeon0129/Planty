@@ -1,5 +1,7 @@
 import React, { ReactNode } from 'react';
 import './HomePageLayout.scss';
+import NavigationLayout from 'components/layout/NavigationLayout/NavigationLayout';
+import Header from 'components/organisms/common/Header/Header';
 import ContentsLayout from '../../ContentsLayout/ContentsLayout';
 import PageLayout from '../../PageLayout/PageLayout';
 
@@ -10,6 +12,10 @@ import PageLayout from '../../PageLayout/PageLayout';
 function HomePageLayout({ children }: { children: ReactNode[] }) {
 	return (
 		<PageLayout>
+			<NavigationLayout>
+				<Header />
+			</NavigationLayout>
+
 			<div className="home-page-layout-container">
 				{/* 배너 */}
 				<ContentsLayout id="banner">{children[0]}</ContentsLayout>
