@@ -1,11 +1,19 @@
 @use 'styles/base/variable' as var;
 
 .square-shortcut-button-container {
+	display: flex;
+	justify-content: center;
 	width: 100%;
-	max-width: var.$btn-max-xl;
-	max-height: var.$btn-max-xl;
+	font-size: var.$h3;
 
+	&::after {
+		content: "";
+		display: block;
+		padding-bottom: 100%;
+	}
 	h3 {
+		padding-top: 10%;
+		font-size: 1.5em;
 	}
 
 	&.booking {
