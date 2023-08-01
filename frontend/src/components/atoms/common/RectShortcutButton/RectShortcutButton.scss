@@ -2,11 +2,19 @@
 @use 'sass:math';
 
 .rect-shortcut-button-container {
-	width: var.$btn-max-xl;
-	height: math.div(var.$btn-max-xl, 2);
+	display: flex;
+	justify-content: center;
+	width: 100%;
+	font-size: var.$h3;
 
+	&::after {
+		content: "";
+		display: block;
+		padding-bottom: calc(50% - var.$mr-md);
+	}
 	h3 {
-		margin-bottom: 50%;
+		padding-top: 10%;
+		font-size: 1.5em;
 	}
 
 	&.booking {
