@@ -1,6 +1,11 @@
 import { ISubscribe } from 'types/subscribe/subscribe';
 
-const dumySubscribe: ISubscribe[] = [
+interface IBanner {
+	id: number;
+	src: string;
+}
+
+const dummySubscribe: ISubscribe[] = [
 	{
 		sid: 0,
 		title: '누구나 쉽게 키우는 몬스테라 클래스',
@@ -25,4 +30,19 @@ const dumySubscribe: ISubscribe[] = [
 	},
 ];
 
-export default dumySubscribe;
+export const dummybanner: IBanner[] = [
+	{
+		id: 0,
+		src: 'https://file.miricanvas.com/template_thumb/2021/10/08/16/10/khqn744slrkwk3p3/thumb.jpg?size=350',
+	},
+	{
+		id: 1,
+		src: 'https://file.miricanvas.com/template_thumb/2021/09/09/16/40/k6pj046gvbbnp2bu/thumb.jpg?size=350',
+	},
+	{
+		id: 2,
+		src: '	https://file.miricanvas.com/template_thumb/2021/08/30/13/00/kiqlwkppz7hx4u8v/thumb.jpg?size=350',
+	},
+];
+
+export default dummySubscribe;
