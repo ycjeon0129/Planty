@@ -1,0 +1,15 @@
+.page-title {
+	display: flex;
+	flex-direction: row;
+	gap: 4px;
+	align-items: center;
+	justify-content: flex-start;
+
+	.icon-wrap {
+		padding-top: 3px;
+	}
+
+	h1 {
+		display: inline-block;
+	}
+}
