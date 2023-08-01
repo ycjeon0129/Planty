@@ -1,6 +1,13 @@
 @use '../base/variable' as var;
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700&display=swap');
 
+html,
+body {
+	font-family: 'Noto Sans KR', sans-serif;
+	font-size: 10px;
+	font-weight: $fw-500;
+}
+
 // font
 body,
 button,
