@@ -1,11 +1,11 @@
 @use '../../../../styles/mixins/common' as mixin;
 @use '../../../../styles/base/variable' as var;
 
-.icon-button {
+.icon-text-container {
 	@include mixin.flex-row(var.$pd-md);
 
-	button {
-		padding-top: var.$pd-xsm;
+	.img-wrap {
+		padding-top: var.$pd-sm;
 	}
 
 	.text {
