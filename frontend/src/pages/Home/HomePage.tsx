@@ -14,22 +14,22 @@ function HomePage() {
 			<SubscribeSlider />
 			<AreaTitle title="서비스 바로가기" url="#" />
 			<SquareShortcutButton
-				message="예약관리"
-				onClick={() => {
+				text="예약관리"
+				handleClick={() => {
 					alert('예약관리로 이동');
 				}}
 				type="booking"
 			/>
 			<RectShortcutButton
-				message="채팅 컨설팅"
-				onClick={() => {
+				text="채팅 컨설팅"
+				handleClick={() => {
 					alert('채팅상담');
 				}}
 				type="consulting-chat"
 			/>
 			<RectShortcutButton
-				message="화상 컨설팅"
-				onClick={() => {
+				text="화상 컨설팅"
+				handleClick={() => {
 					alert('화상상담');
 				}}
 				type="consulting-video"

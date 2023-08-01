@@ -47,6 +47,8 @@ h6 {
 // 애플리케이션 컨테이너
 .container {
 	max-width: 500px;
+	box-shadow: rgb(219, 219, 219) 0px 0px 10px;
+	height: 100vh;
 	margin: auto;
 	background-color: var.$white;
 }

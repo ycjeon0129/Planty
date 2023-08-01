@@ -3,6 +3,9 @@ import React from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import './BannerSlider.scss';
 
+/**
+ * 광고배너 슬라이드
+ */
 function BannerSlider() {
 	return (
 		<Swiper className="banner-slider-container" autoplay={{ delay: 2000, disableOnInteraction: false }}>
