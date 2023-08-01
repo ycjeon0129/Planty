@@ -1,9 +1,8 @@
 import React from 'react';
-// import ToolMenuBar from 'components/atoms/common/ToolBar/ToolMenuBar';
 import TabBarList from 'components/organisms/common/TabBarList/TabBarList';
-import 'components/layout/ToolBarLayout/ToolBarLayout.scss';
+import 'components/layout/TabBarLayout/TabBarLayout.scss';
 
-function ToolBarLayout() {
+function TabBarLayout() {
 	return (
 		<div>
 			<div className="ToolBarLayout">
@@ -13,4 +12,4 @@ function ToolBarLayout() {
 	);
 }
 
-export default ToolBarLayout;
+export default TabBarLayout;
