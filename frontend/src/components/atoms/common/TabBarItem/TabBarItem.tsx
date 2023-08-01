@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import './TabBarItem.scss';
 // import { ReactComponent as Home } from '../../../../assets/icons/ToolBar/HomeImg.svg';
-import TabBar from 'constants/TabBar/TabBar';
+import TabBar from 'constants/tabbar/TabBar';
 
 // interface ToolMenuBarProps {
 // 	imgSrc: string;
