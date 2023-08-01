@@ -1,9 +1,12 @@
-@use "styles/base/variable" as var;
+@use 'styles/base/variable' as var;
 
-// flex 
-@mixin flex-row {
+// flex
+@mixin flex-row($gap: 0) {
 	display: flex;
 	flex-direction: row;
+	justify-content: flex-start;
+	align-items: center;
+	gap: $gap;
 }
 
 @mixin flex-column {
@@ -13,5 +16,5 @@
 
 // border
 @mixin border-gray {
-    border: 1px solid var.$border-100;
+	border: 1px solid var.$border-100;
 }
