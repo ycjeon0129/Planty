@@ -1,12 +1,12 @@
 /* eslint-disable no-tabs */
 import AppRouter from 'AppRouter';
 import React from 'react';
-import SwiperCore, { Navigation } from 'swiper';
+import SwiperCore, { Navigation, Autoplay } from 'swiper';
 
 import 'swiper/swiper.min.css';
 import 'swiper/components/navigation/navigation.min.css';
 
-SwiperCore.use([Navigation]);
+SwiperCore.use([Navigation, Autoplay]);
 
 function App() {
 	return <AppRouter />;
