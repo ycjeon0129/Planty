@@ -2,6 +2,8 @@ import React from 'react';
 import ReservationTimeItem from 'components/atoms/common/ReservationTimeItem/ReservationTimeItem';
 import TabBarLayout from 'components/layout/TabBarLayout/TabBarLayout';
 import TabTest from 'components/organisms/common/TabBarList/TabTest';
+import Booking from 'components/atoms/common/Booking/Booking';
+import PlantyLogo from '../components/atoms/common/PlantyLogo/PlantyLogo';
 
 function Test() {
 	const Time = [
@@ -35,6 +37,11 @@ function Test() {
 				))}
 			</div>
 			<TabTest />
+			<Booking isActivate time="10:00" />
+			<br />
+			<Booking isActivate={false} time="10:00" />
+			<br />
+			<PlantyLogo />
 			<TabBarLayout />
 		</div>
 	);
