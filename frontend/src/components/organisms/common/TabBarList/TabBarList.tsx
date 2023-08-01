@@ -15,7 +15,7 @@ function TabBarList() {
 	// const ImgName: string = ['홈', '구독샵', '응급실', '마이페이지'];
 	return (
 		<div>
-			<div>ToolBarList</div>
+			<div>TabBarList</div>
 			<div className="ToolBarOrgBox">
 				{/* <img src={HomeImg} alt="왜안나와" /> */}
 				<TabBarItem MenuKey="Home" />

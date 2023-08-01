@@ -1,3 +1,8 @@
+import HomeIcon from '../../assets/icons/tabbar/HomeImg.svg';
+import SubscribeIcon from '../../assets/icons/tabbar/SubscribeImg.svg';
+import EmergecnyIcon from '../../assets/icons/tabbar/EmergencyImg.svg';
+import MypageIcon from '../../assets/icons/tabbar/MypageImg.svg';
+
 interface ToolMenuBarProps {
 	[key: string]: {
 		imgSrc: string;
@@ -7,19 +12,19 @@ interface ToolMenuBarProps {
 
 const ToolMenu: ToolMenuBarProps = {
 	Home: {
-		imgSrc: '../../../../assets/icons/tabbar/HomeImg.svg',
+		imgSrc: HomeIcon,
 		imgName: '홈',
 	},
 	Subscribe: {
-		imgSrc: '../../../../assets/icons/tabbar/SubscribeImg.svg',
+		imgSrc: SubscribeIcon,
 		imgName: '구독샵',
 	},
 	Emergency: {
-		imgSrc: '../../../../assets/icons/tabbar/EmergencyImg.svg',
+		imgSrc: EmergecnyIcon,
 		imgName: '응급실',
 	},
 	Mypage: {
-		imgSrc: '../../../../assets/icons/tabbar/MypageImg.svg',
+		imgSrc: MypageIcon,
 		imgName: '마이페이지',
 	},
 };
