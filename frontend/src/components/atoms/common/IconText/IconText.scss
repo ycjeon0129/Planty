@@ -1,14 +1,15 @@
-@use '../../../../styles/mixins/common' as mixin;
-@use '../../../../styles/base/variable' as var;
+@import 'styles/base/variable';
+@import 'styles/mixins/flex';
 
 .icon-text-container {
-	@include mixin.flex-row(var.$pd-md);
+	@include flex-row($pd-md);
+	@include flex-align;
 
 	.img-wrap {
-		padding-top: var.$pd-sm;
+		padding-top: $pd-sm;
 	}
 
 	.text {
-		font-size: var.$p4;
+		font-size: $p4;
 	}
 }
