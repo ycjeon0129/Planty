@@ -1,19 +1,23 @@
 @use '../../../../styles//base//variable' as var;
 
-.TimeBox {
-	border: solid var.$border-100 1px;
+@mixin TimeBox($color, $radius) {
+	border: solid $color 1px;
 	width: 50px;
 	height: 30px;
-	border-radius: 4px;
+	border-radius: $radius;
 	text-align: center;
 	display: flex;
 	justify-content: center;
 	align-items: center;
-  cursor: pointer;
+	cursor: pointer;
+}
+
+.box {
+	@include TimeBox(var.$border-100, var.$rd-sm);
 }
 
 .ReservationGrid {
-  display: grid;
-  grid-template-columns: repeat(4, 0.1fr);
-  gap: 2px;
+	display: grid;
+	grid-template-columns: repeat(4, 0.1fr);
+	gap: 2px;
 }

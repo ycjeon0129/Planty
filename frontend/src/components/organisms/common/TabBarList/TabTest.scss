@@ -1,6 +1,25 @@
+@import '../../../../styles/base/variable';
+
+.container {
+	padding-left: $pd-lg;
+	padding-right: $pd-lg;
+}
+
+.mainBox {
+	border: solid white 1px;
+	width: 100%;
+	height: 50px;
+	display: flex;
+	justify-content: space-evenly;
+	padding-left: $pd-lg;
+	padding-right: $pd-lg;
+	position: fixed;
+	bottom: 0;
+}
+
 .menuBox {
 	border: solid white 2px;
-	width: 60px;
+	width: 48px;
 	height: 48px;
 	text-align: center;
 	cursor: pointer;
@@ -24,6 +43,6 @@
 	margin-top: 2px;
 }
 
-.Green {
-	color: #03c75a;
+.GreenToolBar {
+	color: $primary;
 }
