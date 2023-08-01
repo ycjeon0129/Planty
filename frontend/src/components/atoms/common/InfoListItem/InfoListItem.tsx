@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import './InfoListItem.scss';
 
-function InfoListItem({ title, value }: { title: string; value: string }) {
+function InfoListItem({ children }: { children: ReactNode[] }) {
 	return (
 		<div className="info-list-item">
-			<span>{title}</span>
-			<span>{value}</span>
+			{children[0]}
+			{children[1]}
 		</div>
 	);
 }
