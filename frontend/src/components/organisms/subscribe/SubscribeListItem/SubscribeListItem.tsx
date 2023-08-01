@@ -4,7 +4,7 @@ import ListItemTitle from 'components/atoms/common/ListItemTitle/ListItemTitle';
 import SubscribeStateBadge from 'components/atoms/subscribe/SubscribeStateBadge/SubscribeStateBadge';
 import Button from 'components/atoms/common/Button/Button';
 import InfoList from 'components/organisms/common/InfoList/InfoList';
-import { ISubscribe } from 'types/subscribe/subscribe';
+import { ISubscribe } from 'types/dummy';
 
 function SubscribeListItem({ subscribe }: { subscribe: ISubscribe }) {
 	const testFunc = () => {
