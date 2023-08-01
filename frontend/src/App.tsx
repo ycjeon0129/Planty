@@ -1,5 +1,5 @@
 /* eslint-disable no-tabs */
-import AppRouter from 'AppRouter';
+import AppRouter from 'router/AppRouter';
 import React from 'react';
 import SwiperCore, { Navigation, Autoplay } from 'swiper';
 

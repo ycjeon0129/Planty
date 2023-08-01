@@ -1,0 +1,9 @@
+@use 'styles/base/variable' as var;
+
+.google-login-button-container {
+    button {
+        border-radius: var.$rd-sm!important;
+        justify-content: center;
+        width: 100%;
+    }
+}
