@@ -1,7 +1,7 @@
 import React, { ReactNode } from 'react';
 import './HomePageLayout.scss';
-import ContentsLayout from '../ContentsLayout/ContentsLayout';
-import PageLayout from '../PageLayout/PageLayout';
+import ContentsLayout from '../../ContentsLayout/ContentsLayout';
+import PageLayout from '../../PageLayout/PageLayout';
 
 /**
  * HomePage를 구성하는 레이아웃

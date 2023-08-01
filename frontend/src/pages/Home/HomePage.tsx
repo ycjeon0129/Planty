@@ -1,4 +1,4 @@
-import HomePageLayout from 'components/layout/HomePageLayout/HomePageLayout';
+import HomePageLayout from 'components/layout/Page/HomePageLayout/HomePageLayout';
 import AreaTitle from 'components/atoms/common/AreaTitle/AreaTitle';
 import SubscribeSlider from 'components/organisms/subscribe/SubscribeSlider/SubscribeSlider';
 import React from 'react';
