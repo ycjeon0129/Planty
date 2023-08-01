@@ -1,5 +1,6 @@
 import React from 'react';
-import ReservationTime from 'components/atoms/common/ReservationTime/ReservationTime';
+import ReservationTimeItem from 'components/atoms/common/ReservationTimeItem/ReservationTimeItem';
+import TabBarLayout from 'components/layout/TabBarLayout/TabBarLayout';
 
 function Test() {
 	const Time = [
@@ -29,9 +30,10 @@ function Test() {
 			<div className="ReservationGrid">
 				{Time.map((time, index) => (
 					// eslint-disable-next-line react/no-array-index-key
-					<ReservationTime key={index} time={time} isActivate={reservationInfo.isActivate} />
+					<ReservationTimeItem key={index} time={time} isActivate={reservationInfo.isActivate} />
 				))}
 			</div>
+			<TabBarLayout />
 		</div>
 	);
 }

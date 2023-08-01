@@ -1,6 +1,6 @@
 import React from 'react';
 import TabBarItem from 'components/atoms/common/TabBarItem/TabBarItem';
-import 'components/organisms/common/ToolBarOrg/ToolBarOrg.scss';
+import 'components/organisms/common/TabBarList/TabBarList.scss';
 // import HomeImg from '../../../../assets/icons/ToolBar/HomeImg.svg';
 
 function TabBarList() {
