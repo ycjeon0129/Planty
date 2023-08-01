@@ -1,0 +1,10 @@
+@use 'styles/base/variable' as var;
+
+.banner-slider-container {
+	.swiper-slide {
+		img {
+			width: 100%;
+			border-radius: var.$rd-sm;
+		}
+	}
+}

@@ -1,5 +1,5 @@
 @use 'styles/base/variable' as var;
-@import "styles/mixins/common";
+@import 'styles/mixins/common';
 
 .subscribe-list-item-layout {
 	@include border-gray;
@@ -19,7 +19,8 @@
 
 		img {
 			border-radius: var.$rd-sm;
-			width: var.$img-size-sm;
+			min-width: var.$img-size-sm;
+			max-width: var.$img-size-sm;
 			height: var.$img-size-sm;
 		}
 
