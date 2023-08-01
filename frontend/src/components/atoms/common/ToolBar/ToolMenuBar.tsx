@@ -1,7 +1,7 @@
 // ToolMenuBar.tsx
 import React, { useState } from 'react';
 import './ToolMenuBar.scss';
-import { ReactComponent as Home } from '../../../../assets/icons/ToolBar/HomeImg.svg';
+// import { ReactComponent as Home } from '../../../../assets/icons/ToolBar/HomeImg.svg';
 
 interface ToolMenuBarProps {
 	imgSrc: string;
@@ -24,7 +24,7 @@ function ToolMenuBar(props: ToolMenuBarProps) {
 					<img src={imgSrc} alt={imgName} />
 				</div>
 				<span>{imgName}</span>
-				<Home fill="blue" />
+				{/* <Home fill="blue" /> */}
 			</div>
 		</div>
 	);

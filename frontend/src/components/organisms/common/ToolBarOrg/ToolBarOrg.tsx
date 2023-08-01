@@ -1,6 +1,7 @@
 import React from 'react';
 import ToolMenuBar from 'components/atoms/common/ToolBar/ToolMenuBar';
 import 'components/organisms/common/ToolBarOrg/ToolBarOrg.scss';
+import HomeImg from '../../../../assets/icons/ToolBar/HomeImg.svg';
 
 function ToolBarOrg() {
 	// const ImgLst = [
@@ -33,6 +34,7 @@ function ToolBarOrg() {
 		<div>
 			<div>ToolBarorganism</div>
 			<div className="ToolBarOrgBox">
+				<img src={HomeImg} alt="왜안나와" />
 				<ToolMenuBar imgSrc={homeObject.imgSrc} imgName={homeObject.imgName} />
 				<ToolMenuBar imgSrc={SubscribeObject.imgSrc} imgName={SubscribeObject.imgName} />
 				<ToolMenuBar imgSrc={EmergencyObject.imgSrc} imgName={EmergencyObject.imgName} />
