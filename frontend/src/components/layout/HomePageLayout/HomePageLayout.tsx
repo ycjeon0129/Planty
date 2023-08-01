@@ -19,11 +19,15 @@ function HomePageLayout({ children }: { children: ReactNode[] }) {
 				<ContentsLayout id="menu">
 					<div id="booking">{children[4]}</div>
 					<div id="emergency">
-						{children[5]}
-						{children[6]}
+						<div>{children[5]}</div>
+						<div>{children[6]}</div>
 					</div>
 				</ContentsLayout>
 				{/* 추천 구독 상품 */}
+				{children[7]}
+				<ContentsLayout id="shop">
+					<div />
+				</ContentsLayout>
 			</div>
 		</PageLayout>
 	);
