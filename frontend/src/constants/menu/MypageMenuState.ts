@@ -9,13 +9,15 @@ interface IIconList {
 	[key: string]: string;
 }
 
-const ICON_LIST: IIconList = {
-	'이용 내역': HistoryIcon,
-	'결제 내역': ReceiptIcon,
-	'환경 설정': SettingIcon,
-	'서비스 정보': InfoIcon,
-	'예약 관리': CalendarIcon,
-	'구독 목록': BookmarkIcon,
-};
+export const MAIN_MENU_LIST: string[] = ['예약 관리', '구독 목록'];
 
-export default ICON_LIST;
+export const SUB_MENU_LIST: string[] = ['이용 내역', '결제 내역', '환경 설정', '서비스 정보'];
+
+export const MENU_LIST: IIconList = {
+	[MAIN_MENU_LIST[0]]: CalendarIcon,
+	[MAIN_MENU_LIST[1]]: BookmarkIcon,
+	[SUB_MENU_LIST[0]]: HistoryIcon,
+	[SUB_MENU_LIST[1]]: ReceiptIcon,
+	[SUB_MENU_LIST[2]]: SettingIcon,
+	[SUB_MENU_LIST[3]]: InfoIcon,
+};
