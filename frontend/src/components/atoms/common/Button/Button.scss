@@ -3,20 +3,20 @@
 @mixin buttonColor($color) {
 	background-color: $color;
 	border-radius: var.$rd-sm;
-    color : var.$white;
+	color: var.$white;
 }
 
 .button-container {
-    cursor: pointer;
-    padding: var.$pd-sm;
-    text-align: center;
-    font-size: var.$h5;
-}
+	cursor: pointer;
+	padding: var.$pd-sm;
+	text-align: center;
+	font-size: var.$h5;
 
-.button-container.primary {
-    @include buttonColor(var.$primary);
-}
+	&.primary {
+		@include buttonColor(var.$primary);
+	}
 
-.button-container.disabled {
-    @include buttonColor(var.$black-200);
+	&.disabled {
+		@include buttonColor(var.$black-200);
+	}
 }

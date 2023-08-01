@@ -1,3 +1,6 @@
+@use 'styles/base/variable' as var;
+@import "styles/mixins/common";
+
 .home-page-layout-container {
 	display: flex;
 	flex-direction: column;
@@ -11,13 +14,23 @@
 
 	#menu {
 		display: flex;
+		gap: var.$mr-lg;
+		justify-content: space-between;
 
 		#booking {
+			@include border-gray;
 			flex-basis: 50%;
 		}
 
 		#emergency {
 			flex-basis: 50%;
+			display: flex;
+			justify-content: space-between;
+			flex-direction: column;
+
+			div{
+				@include border-gray;
+			}
 		}
 	}
 }
