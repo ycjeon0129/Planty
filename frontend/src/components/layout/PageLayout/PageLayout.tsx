@@ -3,7 +3,7 @@ import './PageLayout.scss';
 
 function PageLayout({ children }: { children: ReactNode }) {
 	return (
-		<div className="container">
+		<div className="page-layout">
 			<div>{children}</div>
 		</div>
 	);
