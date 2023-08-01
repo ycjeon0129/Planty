@@ -1,6 +1,6 @@
 import React from 'react';
 
-function HeaderOrg() {
+function Header() {
 	return (
 		<div>
 			<div>hi</div>
@@ -8,4 +8,4 @@ function HeaderOrg() {
 	);
 }
 
-export default HeaderOrg;
+export default Header;
