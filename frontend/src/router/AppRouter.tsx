@@ -4,6 +4,7 @@ import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
 import LoadingPage from 'pages/Etc/LoadingPage';
 import LoginPage from 'pages/User/LoginPage';
 import Develop from 'pages/Develop';
+import ShopPage from 'pages/Shop/ShopPage';
 import PrivateRoute from './PrivateRoute';
 import 'styles/index.scss';
 
@@ -33,6 +34,7 @@ function AppRouter() {
 								</PrivateRoute>
 							}
 						/>
+						<Route path="/shop" element={<ShopPage />} />
 						<Route path="/login" element={<LoginPage />} />
 
 						{/* 컴포넌트 개발용 */}
