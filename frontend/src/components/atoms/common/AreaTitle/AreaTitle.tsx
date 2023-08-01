@@ -7,10 +7,14 @@ import './AreaTitle.scss';
 function AreaTitle({ title, url }: { title: string; url: string }) {
 	return (
 		<h2 className="area-title-container">
-			<Link to={url}>
-				{title}
-				<img src={NextIcon} alt={`${title} 메뉴로 이동.`} />
-			</Link>
+			{url === '#' ? (
+				<span>{title}</span>
+			) : (
+				<Link to={url}>
+					{title}
+					<img src={NextIcon} alt={`${title} 메뉴로 이동.`} />
+				</Link>
+			)}
 		</h2>
 	);
 }
