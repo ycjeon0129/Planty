@@ -1,0 +1,32 @@
+@use '../../../../styles/base/variable' as var;
+
+@mixin plantyBox($color) {
+	border: solid black 1px;
+	width: 100%;
+	height: 80px;
+	position: fixed;
+	max-width: 500px;
+	background: $color;
+	padding-left: var.$pd-lg;
+	padding-right: var.$pd-lg;
+	display: flex
+  
+}
+
+.normal {
+  @include plantyBox(var.$white)
+	
+}
+
+.darkMode {
+  @include plantyBox(var.$black-500);
+	margin-top: 100px;
+}
+
+.logoBox {
+	margin-left: var.$mb-header;
+	display: flex;
+	justify-self: center;
+	align-items: center;
+	// margin-top: 20px;
+}
