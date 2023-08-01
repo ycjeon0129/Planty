@@ -1,0 +1,14 @@
+@use '../../../../styles/mixins/common' as mixin;
+@use '../../../../styles/base/variable' as var;
+
+.icon-button {
+	@include mixin.flex-row(var.$pd-md);
+
+	button {
+		padding-top: var.$pd-xsm;
+	}
+
+	.text {
+		font-size: var.$p4;
+	}
+}
