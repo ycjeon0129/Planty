@@ -2,6 +2,8 @@ import React from 'react';
 import { ReactComponent as PlantyLogo } from '../../../../assets/icons/logo/PlantyLogo.svg';
 import './PlantyLogo.scss';
 
+// Planty 로고 다시 정할 것
+
 function Header() {
 	return (
 		<div>
