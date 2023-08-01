@@ -1,15 +1,25 @@
+@use 'styles/base/variable' as var;
+
 .login-page-layout-container {
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 100vh;
+    height: 100%;
     border: 1px solid red;
 
-    img {
-        margin-top: 30vh;
-        width: 150px;
+    #logo {
+        position: absolute;
+        margin-top: 40vh;
+        text-align: center;
+
+        img {
+            width: 150px;
+        }
     }
-    button{
-        margin-top: 30vh;
+    #social-button{
+        position: absolute;
+        width: 100%;
+        bottom: 10vh;
+        text-align: center;
     }
 }
