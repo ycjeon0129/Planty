@@ -1,23 +1,19 @@
 @use '../../../styles/base/variable' as var;
 @use '../../../styles/mixins/responsive' as r;
 
-.container {
-	position: relative;
-	max-width: 500px;
-	margin: auto;
-	background: var.$white;
+.page-layout {
 	padding-left: var.$pd-lg;
 	padding-right: var.$pd-lg;
 
 	@include r.responsive(Phone) {
-		background: red;
+		// background: red;
 	}
 
 	@include r.responsive(Tablet) {
-		background: orange;
+		// background: orange;
 	}
 
 	@include r.responsive(Desktop) {
-		background: yellow;
+		// background: yellow;
 	}
 }

@@ -7,12 +7,14 @@ import Develop from 'pages/Develop';
 function AppRouter() {
 	return (
 		<BrowserRouter>
-			<Routes>
-				<Route path="/" element={<Navigate replace to="/home" />} />
-				<Route path="/home" element={<HomePage />} />
-				{/* 컴포넌트 개발용 */}
-				<Route path="/develop" element={<Develop />} />
-			</Routes>
+			<div className="container">
+				<Routes>
+					<Route path="/" element={<Navigate replace to="/home" />} />
+					<Route path="/home" element={<HomePage />} />
+					{/* 컴포넌트 개발용 */}
+					<Route path="/develop" element={<Develop />} />
+				</Routes>
+			</div>
 		</BrowserRouter>
 	);
 }
