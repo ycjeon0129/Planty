@@ -4,6 +4,7 @@
 .page-layout {
 	padding-left: var.$pd-lg;
 	padding-right: var.$pd-lg;
+	padding-bottom: 70px;
 
 	@include r.responsive(Phone) {
 		// background: red;
