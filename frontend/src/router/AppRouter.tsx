@@ -6,6 +6,7 @@ import LoginPage from 'pages/User/LoginPage';
 import Develop from 'pages/Develop';
 import ShopPage from 'pages/Shop/ShopPage';
 import EmergencyPage from 'pages/Emergency/EmergencyPage';
+import MypagePage from 'pages/Mypage/MypagePage';
 import PrivateRoute from './PrivateRoute';
 import 'styles/index.scss';
 
@@ -32,6 +33,14 @@ function AppRouter() {
 							element={
 								<PrivateRoute>
 									<HomePage />
+								</PrivateRoute>
+							}
+						/>
+						<Route
+							path="/mypage"
+							element={
+								<PrivateRoute>
+									<MypagePage />
 								</PrivateRoute>
 							}
 						/>

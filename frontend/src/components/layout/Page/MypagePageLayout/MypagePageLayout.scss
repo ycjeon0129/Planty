@@ -1,0 +1,20 @@
+@import 'styles/base/variable';
+@import 'styles/mixins/common';
+@import 'styles/mixins/flex';
+
+.mypage-page-layout-container {
+	@include flex-column;
+	@include flex-align(center, center);
+	text-align: center;
+
+	#profile-info-container {
+	}
+
+	#main-menu-wrap {
+		@include flex-row(20px);
+		@include flex-align(center, center);
+	}
+
+	#sub-menu-wrap {
+	}
+}
