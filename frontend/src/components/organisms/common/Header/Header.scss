@@ -1,0 +1,13 @@
+@use '../../../../styles//base//variable' as var;
+
+.Header {
+	border: solid black 1px;
+	width: 100%;
+	height: 80px;
+	position: fixed;
+	top: 0;
+	max-width: 500px;
+	background: var.$white;
+	padding-left: var.$pd-lg;
+	padding-right: var.$pd-lg;
+}

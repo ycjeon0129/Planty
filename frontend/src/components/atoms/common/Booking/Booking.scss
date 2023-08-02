@@ -1,0 +1,37 @@
+// Booking.scss
+
+@use '../../../../styles/base/variable' as var;
+
+@mixin TimeBox($color, $radius) {
+	border: solid $color 1px;
+	width: 50px;
+	height: 30px;
+	border-radius: $radius;
+	text-align: center;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	cursor: pointer;
+}
+
+.box {
+	@include TimeBox(var.$border-100, var.$rd-sm);
+	background-color: var.$light-400;
+	color: var.$black-500;
+}
+
+.active {
+	@include TimeBox(var.$border-100, var.$rd-sm);
+	background-color: var.$light-green-500;
+	color: var.$black-500;
+}
+
+.select {
+	@include TimeBox(var.$border-100, var.$rd-sm);
+	background-color: var.$primary;
+	color: var.$white;
+}
+
+.inactive {
+	color: var.$black-500;
+}
