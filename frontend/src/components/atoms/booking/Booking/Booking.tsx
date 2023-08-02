@@ -2,15 +2,17 @@ import React, { useState } from 'react';
 import './Booking.scss';
 
 interface BookingProps {
-	isActivate: boolean;
-	time: string;
+	isActivate: boolean; // 비활성화(회색), 활성화(연두색)
+	time: string; // 시간 데이터
 }
 
 function Booking(props: BookingProps) {
 	const { isActivate, time } = props;
+	// isActive에 따라서  연두색 or 초록색 나누어짐
 	const [isActive, setIsActive] = useState(false);
 
 	const handleButtonClick = () => {
+		// 활성화(연두색)버튼이면
 		if (isActivate) {
 			setIsActive(!isActive);
 		}
