@@ -1,8 +1,8 @@
 import React, { ReactNode } from 'react';
 import './ShopPageLayout.scss';
-import PageLayout from 'components/layout/PageLayout/PageLayout';
-import NavigationLayout from 'components/layout/NavigationLayout/NavigationLayout';
-import ContentsLayout from 'components/layout/ContentsLayout/ContentsLayout';
+import PageLayout from 'components/layout/common/PageLayout/PageLayout';
+import NavigationLayout from 'components/layout/navigation/NavigationLayout/NavigationLayout';
+import ContentsLayout from 'components/layout/common/ContentsLayout/ContentsLayout';
 import ShopIcon from 'assets/icons/pageTitle/ShoppingBag.svg';
 import PageTitle from 'components/atoms/common/PageTitle/PageTitle';
 

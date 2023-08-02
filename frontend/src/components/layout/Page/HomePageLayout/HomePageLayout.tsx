@@ -1,9 +1,9 @@
 import React, { ReactNode } from 'react';
 import './HomePageLayout.scss';
-import NavigationLayout from 'components/layout/NavigationLayout/NavigationLayout';
+import NavigationLayout from 'components/layout/navigation/NavigationLayout/NavigationLayout';
 import Header from 'components/organisms/common/Header/Header';
-import ContentsLayout from '../../ContentsLayout/ContentsLayout';
-import PageLayout from '../../PageLayout/PageLayout';
+import ContentsLayout from '../../common/ContentsLayout/ContentsLayout';
+import PageLayout from '../../common/PageLayout/PageLayout';
 
 /**
  * HomePage를 구성하는 레이아웃

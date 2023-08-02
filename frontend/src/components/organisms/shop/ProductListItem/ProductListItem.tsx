@@ -1,5 +1,5 @@
 import React from 'react';
-import ProductListItemLayout from 'components/layout/shop/ProductListItemLayout';
+import ProductListItemLayout from 'components/layout/shop/ProductListItemLayout/ProductListItemLayout';
 import ListItemTitle from 'components/atoms/common/ListItemTitle/ListItemTitle';
 import Button from 'components/atoms/common/Button/Button';
 import InfoList from 'components/organisms/common/InfoList/InfoList';
