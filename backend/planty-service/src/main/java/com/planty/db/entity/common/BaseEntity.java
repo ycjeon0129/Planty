@@ -1,4 +1,4 @@
-package com.planty.db.entity;
+package com.planty.db.entity.common;
 
 import lombok.Getter;
 import lombok.Setter;

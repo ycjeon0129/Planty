@@ -1,21 +1,19 @@
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    #    username:
-    #    password:
     url: jdbc:mysql://localhost:3306/planty?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Seoul&zeroDateTimeBehavior=convertToNull&rewriteBatchedStatements=true
     hikari:
       idle-timeout: '600000'
       maximum-pool-size: '50'
       auto-commit: 'true'
-#      username:
-#      password:
       connection-init-sql: SELECT 1
       driver-class-name: com.mysql.cj.jdbc.Driver
       connection-timeout: '5000'
       pool-name: HikariPool
       max-lifetime: '1800000'
       minimum-idle: '50'
+      username : planty
+      password : 'planty202'
   jpa:
     properties:
       hibernate:
@@ -26,6 +24,23 @@ spring:
   devtools:
     livereload:
       enabled: 'true'
+  mvc:
+    pathmatch:
+      matching-strategy: ANT_PATH_MATCHER
+  profiles:
+    include:
+      - env
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            client-id: 625013070043-os579gab32fap56fg0afi2hj1hs2o733.apps.googleusercontent.com
+            client-secret: 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
+            scope: profile,email, openid
+    secretKey: "WqMLorKIcZ1hzVigYtdjjWDnsOzd7Js8cz0nwB9P6EyDUu4NcRWYw6zsGdOvhIfW"
+
+
 logging:
   level:
     root: info

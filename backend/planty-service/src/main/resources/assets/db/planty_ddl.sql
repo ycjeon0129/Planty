@@ -60,12 +60,15 @@ DROP TABLE IF EXISTS `planty`.`user_info` ;
 CREATE TABLE IF NOT EXISTS `planty`.`user_info` (
   `uid` INT UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '사용자 식별키',
   `nickname` VARCHAR(16) NOT NULL COMMENT '사용자 닉네임',
+  `email` VARCHAR(64) NOT NULL COMMENT '사용자 이메일',
   `auth` VARCHAR(1024) NULL DEFAULT NULL COMMENT '사용자 인증',
   `photo` VARCHAR(256) NULL DEFAULT NULL COMMENT '사용자 프로필 사진',
-  `join_time` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '사용자 가입일시',
+  `join_date` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '사용자 가입일시',
+  `modified_date` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '사용자 정보 수정일시',
   `emergency_count` INT UNSIGNED NOT NULL DEFAULT '1' COMMENT '사용자 응급실 이용권 개수. 최초 가입 시 1개 제공',
   `shipping_address` VARCHAR(256) NULL DEFAULT NULL COMMENT '사용자 배송지 정보',
-  PRIMARY KEY (`uid`))
+  PRIMARY KEY (`uid`),
+  UNIQUE INDEX `email` (`email` ASC) VISIBLE)
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_unicode_ci;
@@ -100,7 +103,7 @@ CREATE TABLE IF NOT EXISTS `planty`.`subscribe_product` (
   `GM_INFO_gid` INT UNSIGNED NOT NULL COMMENT 'GM 식별키(외래키)',
   `name` VARCHAR(128) NOT NULL COMMENT '구독 상품명',
   `period` INT NOT NULL COMMENT '구독 기간 (주)',
-  `counsulting_cnt` INT UNSIGNED NOT NULL DEFAULT '0' COMMENT '컨설팅 횟수',
+  `consulting_cnt` INT UNSIGNED NOT NULL DEFAULT '0' COMMENT '컨설팅 횟수',
   `description` VARCHAR(256) NULL DEFAULT NULL COMMENT '상세설명 : CDN 링크',
   `level` INT UNSIGNED NOT NULL COMMENT '구독 상품 난이도, level : 1,2,3',
   `price` INT NOT NULL COMMENT '구독 상품 가격',
