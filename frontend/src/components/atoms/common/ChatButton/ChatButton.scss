@@ -1,0 +1,28 @@
+// ChatButton.scss 파일
+@import 'styles/base/variable';
+@import 'styles/mixins/flex';
+@import 'styles/mixins/common';
+
+@mixin buttonColor($color) {
+	background-color: $color;
+	@include flex-row($pd-lg);
+	@include flex-align($jc: center, $ai: center);
+	border-radius: 50%;
+	height: $nav-height;
+	width: $nav-height;
+}
+
+.chat-button {
+	&.default {
+		@include buttonColor($navy);
+	}
+	&.danger {
+		@include buttonColor($danger);
+	}
+	&.primary {
+		@include buttonColor($primary);
+	}
+	&.success {
+		@include buttonColor($success);
+	}
+}

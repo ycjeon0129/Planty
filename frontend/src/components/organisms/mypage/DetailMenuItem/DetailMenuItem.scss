@@ -1,0 +1,20 @@
+@import 'styles/base/variable';
+@import 'styles/mixins/flex';
+
+.detail-menu-item-container {
+	@include flex-row;
+	@include flex-align(between);
+
+	p,
+	a {
+		font-size: 1.6rem;
+	}
+
+	a {
+		cursor: pointer;
+	}
+
+	.icon {
+		fill: $black-400;
+	}
+}

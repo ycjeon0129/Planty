@@ -1,0 +1,6 @@
+@use 'styles/base/variable' as var;
+
+// border
+@mixin border-gray {
+	border: 1px solid var.$border-100;
+}

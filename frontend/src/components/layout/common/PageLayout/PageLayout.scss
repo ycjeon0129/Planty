@@ -1,0 +1,19 @@
+@use 'styles/base/variable' as var;
+@use 'styles/mixins/responsive' as r;
+
+.page-layout {
+	padding-left: var.$pd-lg;
+	padding-right: var.$pd-lg;
+
+	@include r.responsive(Phone) {
+		// background: red;
+	}
+
+	@include r.responsive(Tablet) {
+		// background: orange;
+	}
+
+	@include r.responsive(Desktop) {
+		// background: yellow;
+	}
+}

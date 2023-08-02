@@ -1,0 +1,21 @@
+@use 'styles/base/variable' as var;
+
+@mixin buttonColor($color) {
+	background-color: $color;
+	border-radius: var.$rd-sm;
+	color: var.$white;
+}
+
+.button-container {
+	padding: var.$pd-sm;
+	text-align: center;
+	font-size: var.$h5;
+
+	&.primary {
+		@include buttonColor(var.$primary);
+	}
+
+	&.disabled {
+		@include buttonColor(var.$black-200);
+	}
+}
