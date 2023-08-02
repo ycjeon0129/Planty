@@ -32,7 +32,7 @@ function AppRouter() {
 						<Route path="/emergency" element={<EmergencyPage />} />
 						<Route path="/login" element={<LoginPage />} />
 
-						<Route path="/home" element={<PrivateRoute />}>
+						<Route path="/" element={<PrivateRoute />}>
 							<Route path="/home" element={<HomePage />} />
 							<Route path="/mypage" element={<MypagePage />} />
 						</Route>
