@@ -1,32 +1,32 @@
-import HomeIcon from '../../assets/icons/tabbar/HomeImg.svg';
-import SubscribeIcon from '../../assets/icons/tabbar/SubscribeImg.svg';
-import EmergecnyIcon from '../../assets/icons/tabbar/EmergencyImg.svg';
-import MypageIcon from '../../assets/icons/tabbar/MypageImg.svg';
+import HomeIcon from 'assets/icons/tabbar/HomeImg.svg';
+import SubscribeIcon from 'assets/icons/tabbar/SubscribeImg.svg';
+import EmergecnyIcon from 'assets/icons/tabbar/EmergencyImg.svg';
+import MypageIcon from 'assets/icons/tabbar/MypageImg.svg';
 
-interface ToolMenuBarProps {
+interface TabBarProps {
 	[key: string]: {
 		imgSrc: string;
 		imgName: string;
 	};
 }
 
-const ToolMenu: ToolMenuBarProps = {
-	Home: {
+const TabMenu: TabBarProps = {
+	home: {
 		imgSrc: HomeIcon,
 		imgName: '홈',
 	},
-	Subscribe: {
+	shop: {
 		imgSrc: SubscribeIcon,
 		imgName: '구독샵',
 	},
-	Emergency: {
+	emergency: {
 		imgSrc: EmergecnyIcon,
 		imgName: '응급실',
 	},
-	Mypage: {
+	mypage: {
 		imgSrc: MypageIcon,
 		imgName: '마이페이지',
 	},
 };
 
-export default ToolMenu;
+export default TabMenu;

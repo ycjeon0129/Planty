@@ -2,7 +2,8 @@ import React from 'react';
 import PageTitle from 'components/atoms/common/PageTitle/PageTitle';
 import MypagePageLayout from 'components/layout/Page/MypagePageLayout/MypagePageLayout';
 import LeafIcon from 'assets/icons/pageTitle/Leaf.svg';
-import MypageSubmenuList from '../../components/organisms/mypage/MypageSubmenuList/MypageSubmenuList';
+import TabBarList from 'components/organisms/common/TabBarList/TabBarList';
+import MypageSubmenuList from 'components/organisms/mypage/MypageSubmenuList/MypageSubmenuList';
 
 function MypagePage() {
 	return (
@@ -19,6 +20,7 @@ function MypagePage() {
 			<p>예약 관리</p>
 			{/* 서브 메뉴 */}
 			<MypageSubmenuList />
+			<TabBarList />
 		</MypagePageLayout>
 	);
 }

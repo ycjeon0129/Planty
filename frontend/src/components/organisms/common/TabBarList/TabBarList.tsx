@@ -1,17 +1,20 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import TabBarItem from 'components/atoms/common/TabBarItem/TabBarItem';
 import 'components/organisms/common/TabBarList/TabBarList.scss';
-// import HomeImg from '../../../../assets/icons/ToolBar/HomeImg.svg';
+import TabMenu from 'constants/tabbar/TabBar';
 
 function TabBarList() {
+	useEffect(() => {
+		console.log(TabMenu);
+	}, []);
+
 	return (
 		<div>
-			<div>TabBarList</div>
-			<div className="ToolBarOrgBox">
-				<TabBarItem MenuKey="Home" />
-				<TabBarItem MenuKey="Subscribe" />
-				<TabBarItem MenuKey="Emergency" />
-				<TabBarItem MenuKey="Mypage" />
+			<div className="tabbar-list">
+				<TabBarItem MenuKey="home" />
+				<TabBarItem MenuKey="shop" />
+				<TabBarItem MenuKey="emergency" />
+				<TabBarItem MenuKey="mypage" />
 			</div>
 		</div>
 	);
