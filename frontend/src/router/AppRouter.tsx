@@ -5,6 +5,7 @@ import LoadingPage from 'pages/Etc/LoadingPage';
 import LoginPage from 'pages/User/LoginPage';
 import Develop from 'pages/Develop';
 import ShopPage from 'pages/Shop/ShopPage';
+import EmergencyPage from 'pages/Emergency/EmergencyPage';
 import PrivateRoute from './PrivateRoute';
 import 'styles/index.scss';
 
@@ -35,6 +36,8 @@ function AppRouter() {
 							}
 						/>
 						<Route path="/shop" element={<ShopPage />} />
+						<Route path="/emergency" element={<EmergencyPage />} />
+
 						<Route path="/login" element={<LoginPage />} />
 
 						{/* 컴포넌트 개발용 */}
