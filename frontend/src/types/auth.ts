@@ -16,7 +16,7 @@ export type LoginBody = {
 export type IUser = {
 	nickname: string;
 	auth: string;
-	profilePhote: string;
+	profilePhoto: string;
 	joinDate: Date;
 	ticketCount: number;
 	address: string;
