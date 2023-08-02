@@ -1,0 +1,12 @@
+@import 'styles/mixins/flex';
+
+.mini-shortcut-button-container{
+    @include flex-column;
+    justify-content: center;
+    align-items: center;
+
+    img {
+        width: 28px;
+        height: 28px;
+    }
+}
