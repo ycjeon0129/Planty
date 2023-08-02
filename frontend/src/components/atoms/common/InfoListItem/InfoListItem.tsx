@@ -1,11 +1,16 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import './InfoListItem.scss';
 
-function InfoListItem({ title, value }: { title: string; value: string }) {
+/**
+ * 구독, 상품 등의 정보를 나타내는 아이템. ex) 가격 3,000원
+ * @param children 항목
+ * @param children 값
+ */
+function InfoListItem({ children }: { children: ReactNode[] }) {
 	return (
 		<div className="info-list-item">
-			<span>{title}</span>
-			<span>{value}</span>
+			{children[0]}
+			{children[1]}
 		</div>
 	);
 }

@@ -1,14 +1,17 @@
 @use 'styles/base/variable' as var;
 
-.list-item-header {
+.list-item-title {
 	max-width: 270px;
 	display: flex;
 
+	a {
+		display: flex;
+		align-items: center;
+	}
 	span {
 		overflow: hidden;
 		display: inline;
 		vertical-align: middle;
-		font-size: var.$h5;
 		white-space: nowrap;
 		text-overflow: ellipsis;
 	}

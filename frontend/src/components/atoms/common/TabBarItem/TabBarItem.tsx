@@ -1,7 +1,7 @@
 // ToolMenuBar.tsx
 import React, { useState } from 'react';
 import './TabBarItem.scss';
-import TabBar from 'constants/TabBar/TabBar'; // types 파일
+import TabBar from 'constants/tabbar/TabBar'; // types 파일
 // import { ReactComponent as Home } from '../../../../assets/icons/tabbar/HomeImg.svg';
 
 // import { ReactComponent as HomeLogo } from '../../../../assets/icons/tabbar/HomeImg.svg';
