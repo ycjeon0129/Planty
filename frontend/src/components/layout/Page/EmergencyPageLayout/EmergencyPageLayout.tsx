@@ -15,10 +15,8 @@ function EmergencyPageLayout({ children }: { children: ReactNode[] }) {
 				<ContentsLayout id="connecting-info">{children[1]}</ContentsLayout>
 
 				{/* 이용권 정보 */}
-				<ContentsLayout id="ticket-info">
-					{children[2]}
-					{children[3]}
-				</ContentsLayout>
+				{children[2]}
+				<ContentsLayout id="ticket-info">{children[3]}</ContentsLayout>
 
 				{/* 응급실 이용하기 */}
 				<ContentsLayout id="emergency-container">
@@ -27,6 +25,12 @@ function EmergencyPageLayout({ children }: { children: ReactNode[] }) {
 						{children[5]}
 						{children[6]}
 					</div>
+				</ContentsLayout>
+
+				{/* 응급실 이용내역 */}
+				<ContentsLayout id="">
+					{children[7]}
+					{children[8]}
 				</ContentsLayout>
 			</div>
 			{/* TabBar */}
