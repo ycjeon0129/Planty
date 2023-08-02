@@ -6,6 +6,7 @@ body {
 	font-family: 'Noto Sans KR', sans-serif;
 	font-size: 10px;
 	font-weight: $fw-500;
+	overflow-y: scroll;
 }
 
 // font
@@ -56,8 +57,4 @@ h6 {
 	box-shadow: rgb(219, 219, 219) 0px 0px 10px;
 	max-width: 500px;
 	max-height: 1200px;
-	overflow: scroll;
-	&::-webkit-scrollbar {
-		display: none;
-	}
 }
