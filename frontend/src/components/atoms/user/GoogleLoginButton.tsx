@@ -5,8 +5,9 @@ import './GoogleLoginButton.scss';
 function GoogleLoginButton() {
 	const clientId = process.env.REACT_APP_GOOGLE_CLIENT_ID as string;
 
-	const onSuccess = () => {
+	const onSuccess = (credentialResponse: object) => {
 		alert('success');
+		console.log(credentialResponse);
 	};
 
 	const onError = () => {
@@ -15,7 +16,7 @@ function GoogleLoginButton() {
 
 	return (
 		<GoogleOAuthProvider clientId={clientId}>
-			<GoogleLogin onSuccess={onSuccess} onError={onError} />
+			<GoogleLogin width="400px" logo_alignment="center" onSuccess={onSuccess} onError={onError} />
 		</GoogleOAuthProvider>
 	);
 }
