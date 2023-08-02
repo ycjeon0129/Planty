@@ -1,0 +1,31 @@
+@use 'styles/base/variable' as var;
+@import 'styles/mixins/flex';
+
+.ticket-info-container {
+    @include flex-row;
+    padding: 10px;
+
+    div{
+        flex-basis: 50%;
+        @include flex-column(var.$mb-content-md);
+        align-items: center;
+        justify-content: center;
+
+        img {
+            width: 120px;
+        }
+
+        button {
+            width: 100%;
+        }
+       
+        .ticket-info-msg {
+            font-size: 1.2em;
+            text-align: center;
+
+            span{
+                color:var.$primary
+            }
+        }
+    }
+}
