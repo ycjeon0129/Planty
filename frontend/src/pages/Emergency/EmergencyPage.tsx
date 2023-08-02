@@ -3,6 +3,7 @@ import EmergencyPageLayout from 'components/layout/Page/EmergencyPageLayout/Emer
 import PageTitle from 'components/atoms/common/PageTitle/PageTitle';
 import Capsule from 'assets/icons/pageTitle/Capsule.svg';
 import AreaTitle from 'components/atoms/common/AreaTitle/AreaTitle';
+import TabBarList from 'components/organisms/common/TabBarList/TabBarList';
 
 function EmergencyPage() {
 	return (
@@ -21,6 +22,7 @@ function EmergencyPage() {
 			<AreaTitle title="응급실 이용하기" url="#" />
 			<div>채팅 응급실</div>
 			<div>화상 응급실</div>
+			<TabBarList />
 		</EmergencyPageLayout>
 	);
 }
