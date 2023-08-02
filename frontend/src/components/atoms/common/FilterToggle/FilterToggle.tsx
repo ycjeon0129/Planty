@@ -4,7 +4,7 @@ import classnames from 'classnames';
 
 /**
  * 원형의 채팅 버튼
- * @param isActive 활성화상태[초록/회색]
+ * @param isActive 활성화상태[초록or회색]
  * @param text 버튼내부 text
  * @param handleClick 클릭함수
  */
