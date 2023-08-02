@@ -22,7 +22,7 @@
 			@include flex-row($mr-lg);
 			@include flex-align(between, center);
 
-			div {
+			button {
 				flex-basis: 50%;
 				border: 1px solid $border-100;
 				border-radius: 4px;

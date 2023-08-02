@@ -28,6 +28,12 @@ function EmergencyPageLayout({ children }: { children: ReactNode[] }) {
 						{children[6]}
 					</div>
 				</ContentsLayout>
+
+				{/* 응급실 이용내역 */}
+				<ContentsLayout id="">
+					{children[7]}
+					{children[8]}
+				</ContentsLayout>
 			</div>
 		</PageLayout>
 	);

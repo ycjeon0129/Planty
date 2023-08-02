@@ -3,6 +3,7 @@ import EmergencyPageLayout from 'components/layout/Page/EmergencyPageLayout/Emer
 import PageTitle from 'components/atoms/common/PageTitle/PageTitle';
 import Capsule from 'assets/icons/pageTitle/Capsule.svg';
 import AreaTitle from 'components/atoms/common/AreaTitle/AreaTitle';
+import SquareShortcutButton from 'components/atoms/common/SquareShortcutButton/SquareShortcutButton';
 
 function EmergencyPage() {
 	return (
@@ -19,8 +20,11 @@ function EmergencyPage() {
 
 			{/* 응급실 이용하기 */}
 			<AreaTitle title="응급실 이용하기" url="#" />
-			<div>채팅 응급실</div>
-			<div>화상 응급실</div>
+			<SquareShortcutButton type="consulting-chat" text="채팅 응급실" handleClick={() => {}} />
+			<SquareShortcutButton type="consulting-video" text="화상 응급실" handleClick={() => {}} />
+
+			{/* 응급실 이용 내역 */}
+			<AreaTitle title="응급실 이용 내역" url="#" />
 		</EmergencyPageLayout>
 	);
 }
