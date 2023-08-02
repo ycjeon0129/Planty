@@ -7,6 +7,9 @@ import Develop from 'pages/Develop';
 import ShopPage from 'pages/Shop/ShopPage';
 import EmergencyPage from 'pages/Emergency/EmergencyPage';
 import MypagePage from 'pages/Mypage/MypagePage';
+import SubscribeListPage from 'pages/subscribe/SubscribeList/SubscribeListPage';
+import SubscribeDetailPage from 'pages/subscribe/SubscribeDetail/SubscribeDetailPage';
+import SubscribePage from 'pages/subscribe/Subscribe/SubscribePage';
 import PrivateRoute from './PrivateRoute';
 import 'styles/index.scss';
 
@@ -35,6 +38,10 @@ function AppRouter() {
 						<Route path="/" element={<PrivateRoute />}>
 							<Route path="/home" element={<HomePage />} />
 							<Route path="/mypage" element={<MypagePage />} />
+							<Route path="/subscribe" element={<SubscribePage />}>
+								<Route index element={<SubscribeListPage />} />
+								<Route path=":sid" element={<SubscribeDetailPage />} />
+							</Route>
 						</Route>
 
 						{/* 컴포넌트 개발용 */}
