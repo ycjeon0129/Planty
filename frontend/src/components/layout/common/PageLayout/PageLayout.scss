@@ -1,5 +1,5 @@
-@use '../../../styles/base/variable' as var;
-@use '../../../styles/mixins/responsive' as r;
+@use 'styles/base/variable' as var;
+@use 'styles/mixins/responsive' as r;
 
 .page-layout {
 	padding-left: var.$pd-lg;
