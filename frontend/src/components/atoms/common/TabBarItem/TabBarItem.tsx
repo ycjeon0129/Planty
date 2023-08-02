@@ -1,19 +1,34 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './TabBarItem.scss';
 import TabMenu from 'constants/tabbar/TabBar';
 
-function TabBarItem({ MenuKey }: { MenuKey: string }) {
+interface TabBarItemProps {
+	MenuKey: string;
+}
+
+function TabBarItem({ MenuKey }: TabBarItemProps) {
 	const Menu = TabMenu[MenuKey];
+	const [isActive, setIsActive] = useState(true);
+
+	const handleLinkClick = () => {
+		if (isActive) {
+			setIsActive(false);
+		}
+	};
+
+	const imageSource = isActive ? Menu.imgSrc.isActive : Menu.imgSrc.unActive;
+
 	return (
-		<Link to={`/${MenuKey}`} className="menuBox">
+		<Link to={`/${MenuKey}`} className="menuBox" onClick={handleLinkClick}>
 			<div>
 				<div className="iconBox">
-					<img src={Menu.imgSrc} alt={Menu.imgName} />
+					<img src={imageSource} alt={Menu.imgName} />
 					<span>{Menu.imgName}</span>
 				</div>
 			</div>
 		</Link>
 	);
 }
+
 export default TabBarItem;
