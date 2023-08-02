@@ -1,0 +1,13 @@
+@import 'styles/base/variable';
+@import 'styles/mixins/flex';
+
+.shop-page-layout-container {
+	@include flex-column(30px);
+
+	#product-list-container {
+		#product-list {
+			@include flex-column($mr-lg);
+			@include flex-align(center, start);
+		}
+	}
+}

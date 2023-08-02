@@ -1,0 +1,24 @@
+@use 'styles/base/variable' as var;
+
+.login-page-layout-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+
+    #logo {
+        position: absolute;
+        margin-top: 40vh;
+        text-align: center;
+
+        img {
+            width: 150px;
+        }
+    }
+    #social-button{
+        position: absolute;
+        width: 80%;
+        bottom: 10vh;
+        text-align: center;
+    }
+}

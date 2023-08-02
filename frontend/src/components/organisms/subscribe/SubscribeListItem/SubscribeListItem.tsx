@@ -1,32 +1,27 @@
 import React from 'react';
 import SubscribeItemLayout from 'components/layout/subscirbe/SubscribeListItemLayout/SubscribeListItemLayout';
-import ListItemHeader from 'components/atoms/common/ListItemHeader/ListItemHeader';
+import ListItemTitle from 'components/atoms/common/ListItemTitle/ListItemTitle';
 import SubscribeStateBadge from 'components/atoms/subscribe/SubscribeStateBadge/SubscribeStateBadge';
 import Button from 'components/atoms/common/Button/Button';
 import InfoList from 'components/organisms/common/InfoList/InfoList';
+import { ISubscribe } from 'types/dummy';
 
-function SubscribeListItem() {
-	// dumy
-	const testInfo = {
-		구독시작일: '2023.07.07(금)',
-		컨설팅횟수: '총 5회 / 잔여 3회',
-		컨설팅일정: '2023.07.24(월) 14:00',
-	};
-
+/**
+ * 구독 목록 아이템의 모음
+ * @param subscribe 구독 정보들을 담고 있는 객체
+ */
+function SubscribeListItem({ subscribe }: { subscribe: ISubscribe }) {
 	const testFunc = () => {
 		alert('클릭');
 	};
 
 	return (
 		<SubscribeItemLayout>
-			<ListItemHeader title="누구나 쉽게 키우는 몬스테라 클래스" url="url" />
+			<ListItemTitle title={subscribe.title} url={`subscribe/${subscribe.sid}`} />
 			<SubscribeStateBadge stateKey="wait" />
-			<img
-				src="https://i.ytimg.com/vi/xeCsFtwVozo/hqdefault.jpg?sqp=-oaymwE2CNACELwBSFXyq4qpAygIARUAAIhCGAFwAcABBvABAfgB_gmAAtAFigIMCAAQARhWIGAoZTAP&rs=AOn4CLDonoxD_GnPWvni23yD6jOIMWIKuQ"
-				alt=""
-			/>
-			<InfoList info={testInfo} />
-			<Button isActive={false} message="컨설팅 이용하기" onClick={testFunc} />
+			<img src={subscribe.thumbnail} alt="" />
+			<InfoList info={subscribe.info} />
+			<Button isActive={false} text="컨설팅 이용하기" handleClick={testFunc} />
 		</SubscribeItemLayout>
 	);
 }

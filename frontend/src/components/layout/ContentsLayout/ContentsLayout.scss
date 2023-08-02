@@ -1,4 +1,6 @@
+@use 'styles/base/variable' as var;
+
 .contentslayout-container {
 	width: 100%;
-	background-color: blue;
+	margin-bottom: var.$mb-content-lg;
 }
