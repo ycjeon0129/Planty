@@ -12,7 +12,7 @@
 
 	#main-menu-wrap {
 		@include flex-row(20px);
-		@include flex-align(center, center);
+		justify-content: space-evenly;
 	}
 
 	#sub-menu-wrap {
