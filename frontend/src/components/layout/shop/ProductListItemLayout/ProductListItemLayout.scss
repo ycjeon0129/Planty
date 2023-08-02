@@ -1,11 +1,14 @@
 @use 'styles/base/variable' as var;
-@import 'styles/mixins/common';
+@import 'styles/base/_common.scss';
+@import 'styles/mixins/flex';
+@import 'styles/mixins/_common.scss';
 
 .product-list-item-layout {
 	@include border-gray;
 	padding: var.$pd-lg;
 	border-radius: var.$rd-sm;
 	background-color: var.$white;
+	width: 100%;
 
 	#top {
 		display: flex;

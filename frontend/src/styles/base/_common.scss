@@ -5,7 +5,7 @@ html,
 body {
 	font-family: 'Noto Sans KR', sans-serif;
 	font-size: 10px;
-	font-weight: $fw-500;
+	font-weight: var.$fw-500;
 	overflow-y: scroll;
 }
 
@@ -16,8 +16,8 @@ input,
 textarea {
 	font-family: 'Noto Sans KR', sans-serif;
 	font-size: 10px;
-	font-weight: $fw-500;
-	color: $black-500; // #222222
+	font-weight: var.$fw-500;
+	color: var.$black-500; // #222222
 	line-height: 1.5;
 	font-feature-settings: 'tnum';
 }
