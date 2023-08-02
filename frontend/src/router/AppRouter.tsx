@@ -32,10 +32,10 @@ function AppRouter() {
 						<Route path="/emergency" element={<EmergencyPage />} />
 						<Route path="/login" element={<LoginPage />} />
 
-						<PrivateRoute>
+						<Route path="/home" element={<PrivateRoute />}>
 							<Route path="/home" element={<HomePage />} />
 							<Route path="/mypage" element={<MypagePage />} />
-						</PrivateRoute>
+						</Route>
 
 						{/* 컴포넌트 개발용 */}
 						<Route path="/develop" element={<Develop />} />
