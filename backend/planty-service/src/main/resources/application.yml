@@ -8,8 +8,8 @@ spring:
       idle-timeout: '600000'
       maximum-pool-size: '50'
       auto-commit: 'true'
-      username: planty
-      password: 'planty202'
+#      username:
+#      password:
       connection-init-sql: SELECT 1
       driver-class-name: com.mysql.cj.jdbc.Driver
       connection-timeout: '5000'
