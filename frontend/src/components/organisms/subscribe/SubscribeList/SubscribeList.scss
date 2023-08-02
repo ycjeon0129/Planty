@@ -1,0 +1,8 @@
+@import 'styles/base/variable';
+@import 'styles/mixins/common';
+@import 'styles/mixins/flex';
+
+.subscribe-list-container {
+	@include flex-column($mb-content-sm);
+	@include flex-align(center, center);
+}

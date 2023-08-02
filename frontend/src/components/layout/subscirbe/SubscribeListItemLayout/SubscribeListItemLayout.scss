@@ -4,15 +4,15 @@
 
 .subscribe-list-item-layout {
 	@include border-gray;
-	padding: var.$pd-lg;
+	width: 100%;
+	padding: 15px;
 	border-radius: var.$rd-sm;
 	background-color: var.$white;
 
 	#top {
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
-		padding-bottom: var.$pd-lg;
+		@include flex-row;
+		@include flex-align(between, center);
+		margin-bottom: 10px;
 	}
 
 	#bottom {
