@@ -1,4 +1,4 @@
-import CustomCalendar from 'components/atoms/booking/CustomCalendar';
+import CustomCalendar from 'components/atoms/booking/CustomCalendar/CustomCalendar';
 import 'react-calendar/dist/Calendar.css';
 import React from 'react';
 
