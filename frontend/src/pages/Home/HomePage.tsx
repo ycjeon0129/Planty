@@ -6,6 +6,7 @@ import BannerSlider from 'components/organisms/common/BannerSlider/BannerSlider'
 import SquareShortcutButton from 'components/atoms/common/SquareShortcutButton/SquareShortcutButton';
 import RectShortcutButton from 'components/atoms/common/RectShortcutButton/RectShortcutButton';
 import Header from 'components/organisms/common/Header/Header';
+import TabBarList from 'components/organisms/common/TabBarList/TabBarList';
 
 function HomePage() {
 	return (
@@ -37,6 +38,7 @@ function HomePage() {
 				type="consulting-video"
 			/>
 			<AreaTitle title="구독샵" url="/shop" />
+			<TabBarList />
 		</HomePageLayout>
 	);
 }

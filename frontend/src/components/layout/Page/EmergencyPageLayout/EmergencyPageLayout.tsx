@@ -29,6 +29,8 @@ function EmergencyPageLayout({ children }: { children: ReactNode[] }) {
 					</div>
 				</ContentsLayout>
 			</div>
+			{/* TabBar */}
+			{children[7]}
 		</PageLayout>
 	);
 }
