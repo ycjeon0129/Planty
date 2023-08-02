@@ -33,8 +33,6 @@ function EmergencyPageLayout({ children }: { children: ReactNode[] }) {
 					{children[8]}
 				</ContentsLayout>
 			</div>
-			{/* TabBar */}
-			{children[7]}
 		</PageLayout>
 	);
 }
