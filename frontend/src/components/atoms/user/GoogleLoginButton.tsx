@@ -1,27 +1,22 @@
 import React from 'react';
-import { GoogleLogin } from 'react-google-login';
+import { GoogleOAuthProvider, GoogleLogin } from '@react-oauth/google';
 import './GoogleLoginButton.scss';
 
 function GoogleLoginButton() {
-	const clientId = `539118426337-eb63e74i3d00iltcmtcftu7qdc71r175.apps.googleusercontent.com`;
+	const clientId = process.env.REACT_APP_GOOGLE_CLIENT_ID as string;
 
 	const onSuccess = () => {
 		alert('success');
 	};
 
-	const onFailure = () => {
+	const onError = () => {
 		alert('failure');
 	};
 
 	return (
-		<div className="google-login-button-container">
-			<GoogleLogin
-				clientId={clientId}
-				buttonText="Google 계정으로 시작하기"
-				onSuccess={onSuccess}
-				onFailure={onFailure}
-			/>
-		</div>
+		<GoogleOAuthProvider clientId={clientId}>
+			<GoogleLogin onSuccess={onSuccess} onError={onError} />
+		</GoogleOAuthProvider>
 	);
 }
 
