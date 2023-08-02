@@ -1,0 +1,9 @@
+@import 'styles/mixins/flex';
+
+.user-profile-container{
+    @include flex-column(10px);
+
+    span {
+        font-size: 2em;
+    }
+}

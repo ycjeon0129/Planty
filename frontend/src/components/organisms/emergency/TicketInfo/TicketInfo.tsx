@@ -20,7 +20,7 @@ function TicketInfo() {
 			<div>
 				{user?.ticketCount ? (
 					<span className="ticket-info-msg">
-						현재 <span>{3}개의 이용권</span>을 <br />
+						현재 <span>{user?.ticketCount}개의 이용권</span>을 <br />
 						보유하고 있습니다.
 					</span>
 				) : (
