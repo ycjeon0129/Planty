@@ -1,4 +1,4 @@
-package com.planty.db.entity;
+package com.planty.db.entity.common;
 
 import jakarta.persistence.EntityListeners;
 import jakarta.persistence.MappedSuperclass;
