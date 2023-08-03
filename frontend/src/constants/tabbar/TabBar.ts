@@ -36,6 +36,6 @@ const TabMenu: TabBarProps = {
 	},
 };
 
-export const NOT_ARROWED_PATH = ['/error'];
+export const NOT_ARROWED_PATH = ['/error', '/mypage/booking'];
 
 export default TabMenu;
