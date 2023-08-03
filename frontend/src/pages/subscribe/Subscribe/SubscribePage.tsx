@@ -3,7 +3,7 @@ import SubscribePageLayout from 'components/layout/subscirbe/SubscribePageLayout
 import SubscribeList from 'components/organisms/subscribe/SubscribeList/SubscribeList';
 import BadgeDescription from 'components/organisms/common/BadgeDescription/BadgeDescription';
 import SubscribeStateBadge from 'components/atoms/subscribe/SubscribeStateBadge/SubscribeStateBadge';
-import CONSULTING_STATUS_DESC_LIST from 'constants/common/BadgeDescriptionList';
+import { CONSULTING_STATUS_DESC_LIST } from 'constants/common/StatusDescList';
 import PageTitleButton from 'components/atoms/common/PageTitleButton/PageTitleButton';
 
 function SubscribePage() {
