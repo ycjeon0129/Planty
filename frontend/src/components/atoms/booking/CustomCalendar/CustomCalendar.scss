@@ -1,8 +1,28 @@
+@use 'styles/base/variable' as var;
+@import 'styles/mixins/common';
+
 .custom-calendar-container {
+	.react-calendar__navigation__label__labelText {
+		font-size: 1.5em;
+	}
 	.react-calendar__navigation__prev2-button {
 		display: none;
 	}
+
 	.react-calendar__navigation__next2-button {
 		display: none;
+	}
+
+	.react-calendar {
+		@include border-gray;
+		border-radius: var.$rd-sm;
+		width: 100%;
+	}
+
+	.react-calendar__month-view__weekdays__weekday {
+		line-height: 30px;
+	}
+	.react-calendar__tile {
+		height: 50px;
 	}
 }
