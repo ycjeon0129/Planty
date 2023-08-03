@@ -1,6 +1,6 @@
 import React from 'react';
 import TabBarItem from 'components/atoms/common/TabBarItem/TabBarItem';
-import 'components/organisms/common/TabBarList/TabBarList.scss';
+import 'components/organisms/common/TabBar/TabBar.scss';
 
 function TabBarList() {
 	return (

@@ -20,9 +20,9 @@ function TabBarItem({ MenuKey }: TabBarItemProps) {
 	const imageSource = isActive ? Menu.imgSrc.isActive : Menu.imgSrc.unActive;
 
 	return (
-		<Link to={`/${MenuKey}`} className="menuBox" onClick={handleLinkClick}>
+		<Link to={`/${MenuKey}`} className="menu-box" onClick={handleLinkClick}>
 			<div>
-				<div className="iconBox">
+				<div className="icon-box">
 					<img src={imageSource} alt={Menu.imgName} />
 					<span>{Menu.imgName}</span>
 				</div>

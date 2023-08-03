@@ -1,5 +1,5 @@
 import React from 'react';
-import TabBarList from 'components/organisms/common/TabBarList/TabBarList';
+import TabBarList from 'components/organisms/common/TabBar/TabBar';
 import 'components/layout/TabBarLayout/TabBarLayout.scss';
 
 function TabBarLayout() {
