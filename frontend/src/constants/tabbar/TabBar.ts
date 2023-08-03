@@ -19,19 +19,19 @@ interface TabBarProps {
 
 const TabMenu: TabBarProps = {
 	home: {
-		imgSrc: { isActive: HomeIcon, unActive: GreenHomeIcon },
+		imgSrc: { unActive: HomeIcon, isActive: GreenHomeIcon },
 		imgName: '홈',
 	},
 	shop: {
-		imgSrc: { isActive: SubscribeIcon, unActive: GreenSubscribeIcon },
+		imgSrc: { unActive: SubscribeIcon, isActive: GreenSubscribeIcon },
 		imgName: '구독샵',
 	},
 	emergency: {
-		imgSrc: { isActive: EmergecnyIcon, unActive: GreenEmergecnyIcon },
+		imgSrc: { unActive: EmergecnyIcon, isActive: GreenEmergecnyIcon },
 		imgName: '응급실',
 	},
 	mypage: {
-		imgSrc: { isActive: MypageIcon, unActive: GreenMypageIcon },
+		imgSrc: { unActive: MypageIcon, isActive: GreenMypageIcon },
 		imgName: '마이페이지',
 	},
 };
