@@ -6,7 +6,7 @@ import useMovePage from 'hooks/useMovePage';
 
 /**
  * 뒤로가기, 닫기 버튼이 있는 헤더 컴포넌트
- * @param icon string, 아이콘 url
+ * @param type string, back | close
  * @param text string, 버튼 옆에 있는 텍스트
  */
 function PageTitleButton({ type, text }: { type: string; text: string }) {
