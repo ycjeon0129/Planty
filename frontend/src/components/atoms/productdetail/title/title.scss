@@ -1,3 +1,5 @@
+@use 'styles/base/variable' as var;
+
 .big-box {
     display: flex;
     gap: 10px
@@ -6,4 +8,17 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    font-size: large;
+    color: var.$black-300
+}
+
+.img-box {
+    width: 40px;
+    height: 40px;
+}
+
+.title-font {
+    font-size: var.$h2;
+    margin-bottom: var.$mb-content-sm;
+    font-weight: bold;
 }
