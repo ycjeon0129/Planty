@@ -1,4 +1,61 @@
-import { ISubscribe, IProduct, IBanner } from 'types/dummy';
+import { ISubscribe, IProduct, IBanner, IConsulting } from 'types/dummy';
+
+export const dummyBookings: IConsulting[] = [
+	{
+		cid: 1,
+		user: '김인혁',
+		greenmate: '전인혁',
+		subscribe: '스투키 클래스',
+		date: new Date('2023-08-02'),
+		thumbnail: 'https://gardening.godohosting.com/2018/mfset/redcherrytomato_01.jpg',
+		cancel: false,
+		active: true,
+		log: {
+			times: 4,
+			startTime: new Date(),
+			endTime: new Date(),
+			recommendStartDate: new Date(),
+			recommendEndDate: new Date(),
+			content: 'ㅎㅇ',
+		},
+	},
+	{
+		cid: 2,
+		user: '양시온',
+		greenmate: '전윤철',
+		subscribe: '강낭콩 클래스',
+		date: new Date('2023-08-05'),
+		thumbnail: 'https://www.flowerrepublic.co.kr/shopimages/sungmo9160/0090010004832.jpg?1665473103',
+		cancel: false,
+		active: false,
+		log: {
+			times: 3,
+			startTime: new Date(),
+			endTime: new Date(),
+			recommendStartDate: new Date(),
+			recommendEndDate: new Date(),
+			content: 'ㅎㅇ',
+		},
+	},
+	{
+		cid: 3,
+		user: '누구냐',
+		greenmate: '이금규띠',
+		subscribe: '너와 나의 선인장 클래스',
+		date: new Date('2023-08-15'),
+		thumbnail: 'https://www.flowerrepublic.co.kr/shopimages/sungmo9160/0090010004832.jpg?1665473103',
+		cancel: false,
+		active: false,
+		log: {
+			times: 4,
+			startTime: new Date(),
+			endTime: new Date(),
+			recommendStartDate: new Date(),
+			recommendEndDate: new Date(),
+			content: 'ㅎㅇ',
+		},
+	},
+];
 
 const dummySubscribe: ISubscribe[] = [
 	{
