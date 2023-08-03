@@ -1,0 +1,8 @@
+@import 'styles/base/variable';
+@import 'styles/mixins/flex';
+
+.consulting-sticker-list-container {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr); // Two items per row with equal width
+	grid-gap: 15px;
+}
