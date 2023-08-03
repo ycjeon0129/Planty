@@ -11,7 +11,7 @@ import SubscribeListPage from 'pages/subscribe/SubscribeList/SubscribeListPage';
 import SubscribeDetailPage from 'pages/subscribe/SubscribeDetail/SubscribeDetailPage';
 import SubscribePage from 'pages/subscribe/Subscribe/SubscribePage';
 import TabBarLayout from 'components/layout/common/TabBarLayout/TabBarLayout';
-import TabBarList from 'components/organisms/common/TabBarList/TabBarList';
+import TabBarList from 'components/organisms/common/TabBar/TabBar';
 import PrivateRoute from './PrivateRoute';
 import 'styles/index.scss';
 

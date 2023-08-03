@@ -1,13 +1,8 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import TabBarItem from 'components/atoms/common/TabBarItem/TabBarItem';
-import 'components/organisms/common/TabBarList/TabBarList.scss';
-import TabMenu from 'constants/tabbar/TabBar';
+import 'components/organisms/common/TabBar/TabBar.scss';
 
 function TabBarList() {
-	useEffect(() => {
-		console.log(TabMenu);
-	}, []);
-
 	return (
 		<div className="tabbar-list">
 			<TabBarItem MenuKey="home" />
