@@ -8,15 +8,12 @@ import BookingList from 'components/organisms/booking/BookingList';
 import SubscribeStateBadge from 'components/atoms/subscribe/SubscribeStateBadge/SubscribeStateBadge';
 import BadgeDescription from 'components/organisms/common/BadgeDescription/BadgeDescription';
 import { BOOKING_STATUS_DESC_LIST } from 'constants/common/StatusDescList';
-import ChartButton from 'components/atoms/common/ChartButton/ChartButton';
 
 function BookingPage() {
 	const [date, setDate, formatDate] = useSelectedDate();
 
 	const badgeList = [
-		<ChartButton color="success" isActive message="온도" onClick={() => {}} />,
-
-		// <SubscribeStateBadge stateKey="done" />,
+		<SubscribeStateBadge stateKey="done" />,
 		<SubscribeStateBadge stateKey="join" />,
 		<SubscribeStateBadge stateKey="notJoin" />,
 	];
