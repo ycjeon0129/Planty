@@ -1,22 +1,35 @@
 import React from 'react';
+// Import Swiper React components
 import { Swiper, SwiperSlide } from 'swiper/react';
-import dummySubscribe from 'dummy';
-import SubscribeListItem from 'components/organisms/subscribe/SubscribeListItem/SubscribeListItem';
-// import './SubscribeSlider.scss';
 
-/**
- * 구독 목록 슬라이더
- */
-function ProductImg() {
+// Import Swiper styles
+import 'swiper/swiper.min.css';
+import 'swiper/components/pagination/pagination.min.css';
+import 'swiper/components/navigation/navigation.min.css';
+
+// import required modules
+import SwiperCore, { Pagination, Navigation } from 'swiper';
+
+SwiperCore.use([Pagination, Navigation]);
+
+export default function ProductImg({ imgUrls }: { imgUrls: string[] }) {
 	return (
-		<Swiper spaceBetween={10} slidesPerView="auto" className="subscribe-slider">
-			{dummySubscribe.map((subscribe) => (
-				<SwiperSlide key={subscribe.sid}>
-					<SubscribeListItem subscribe={subscribe} />
-				</SwiperSlide>
-			))}
-		</Swiper>
+		<div className="product-detail-photo">
+			<Swiper
+				spaceBetween={30}
+				pagination={{
+					clickable: true,
+				}}
+				className="mySwiper"
+			>
+				{imgUrls.map((url) => (
+					<SwiperSlide key={url}>
+						<img src={url} alt="사진" style={{ height: '300px' }} />
+					</SwiperSlide>
+				))}
+				<br />
+				<br />
+			</Swiper>
+		</div>
 	);
 }
-
-export default ProductImg;

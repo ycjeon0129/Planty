@@ -30,20 +30,41 @@ export const dummyProduct: IProduct[] = [
 		pid: 0,
 		title: '누구나 쉽게 키우는 몬스테라 클래스',
 		thumbnail: 'https://www.flowerrepublic.co.kr/shopimages/sungmo9160/0090010004832.jpg?1665473103',
-		info: { period: 3, level: 3, price: 8000 },
+		info: {
+			period: 3,
+			level: 3,
+			price: 8000,
+			target: '초심자',
+			consultCount: '총 5회 / 잔여 3회',
+			startDate: '2023/07/23',
+		},
 	},
 	{
 		pid: 1,
 		title: '스투키 일주일 클래스',
 		thumbnail:
 			'https://mblogthumb-phinf.pstatic.net/20160820_73/oneflora_1471684049417Ko98B_JPEG/image_9540627681471684031922.jpg?type=w800',
-		info: { period: 2, level: 2, price: 12000 },
+		info: {
+			period: 2,
+			level: 2,
+			price: 12000,
+			target: '중급자',
+			consultCount: '총 7회 / 잔여 2회',
+			startDate: '2023/07/23',
+		},
 	},
 	{
 		pid: 2,
 		title: '싸피 방울토마토 짱짱 클래스',
 		thumbnail: 'https://gardening.godohosting.com/2018/mfset/redcherrytomato_01.jpg',
-		info: { period: 1, level: 4, price: 12000 },
+		info: {
+			period: 1,
+			level: 4,
+			price: 12000,
+			target: '고수',
+			consultCount: '총 5회 / 잔여 1회',
+			startDate: '2023/07/23',
+		},
 	},
 ];
 

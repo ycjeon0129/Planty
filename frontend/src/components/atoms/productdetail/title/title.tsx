@@ -1,7 +1,12 @@
 import React from 'react';
 
-const title = () => {
-	return <div />;
-};
+function Title() {
+	return (
+		<div>
+			<div>사진 + GM이름</div>
+			<div>타이틀 이름</div>
+		</div>
+	);
+}
 
-export default title;
+export default Title;
