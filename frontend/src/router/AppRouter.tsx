@@ -10,7 +10,7 @@ import MypagePage from 'pages/Mypage/MypagePage';
 import SubscribePage from 'pages/subscribe/Subscribe/SubscribePage';
 import SubscribeListPage from 'pages/subscribe/SubscribeList/SubscribeListPage';
 import SubscribeDetailPage from 'pages/subscribe/SubscribeDetail/SubscribeDetailPage';
-import BookingPage from 'pages/BookingPage/BookingPage';
+import BookingPage from 'pages/Booking/BookingPage';
 import LoadingPage from 'pages/Etc/LoadingPage';
 import ErrorPage from 'pages/Etc/ErrorPage';
 import Develop from 'pages/Develop';

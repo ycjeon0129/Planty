@@ -4,7 +4,7 @@ import BookingPageLayout from 'components/layout/Page/BookingPageLayout/BookingP
 import PageTitleButton from 'components/atoms/common/PageTitleButton/PageTitleButton';
 import CustomCalendar from 'components/atoms/booking/CustomCalendar/CustomCalendar';
 import useSelectedDate from 'hooks/useSelectedDate';
-import ContentsLayout from 'components/layout/common/ContentsLayout/ContentsLayout';
+import BookingList from 'components/organisms/booking/BookingList';
 
 function BookingPage() {
 	const [date, setDate, formatDate] = useSelectedDate();
@@ -13,18 +13,13 @@ function BookingPage() {
 		<BookingPageLayout>
 			{/* 페이지 헤더 */}
 			<PageTitleButton type="back" text="예약 관리" />
-
-			{/* 전체 예약 일정 */}
+			{/* 전체 예약일정 영역 헤더 */}
 			<AreaTitle title="전체 예약 일정" url="#" />
-
 			{/* 캘린더 */}
-			<ContentsLayout id="calendar">
-				<CustomCalendar selectedDate={date} setSelectedDate={setDate} />
-			</ContentsLayout>
-
+			<CustomCalendar selectedDate={date} setSelectedDate={setDate} />
 			{/* 지정일 예약목록 */}
 			<AreaTitle title={`${formatDate as string}  예약 목록`} url="#" />
-			<ContentsLayout id="booking-list"> gd</ContentsLayout>
+			<BookingList />
 		</BookingPageLayout>
 	);
 }
