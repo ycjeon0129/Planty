@@ -1,5 +1,5 @@
 import React from 'react';
-import './HeaderButton.scss';
+import './PageTitleButton.scss';
 import BackIcon from 'assets/icons/Back.svg';
 import CloseIcon from 'assets/icons/Close.svg';
 import useMovePage from 'hooks/useMovePage';
@@ -9,7 +9,7 @@ import useMovePage from 'hooks/useMovePage';
  * @param icon string, 아이콘 url
  * @param text string, 버튼 옆에 있는 텍스트
  */
-function HeaderButton({ type, text }: { type: string; text: string }) {
+function PageTitleButton({ type, text }: { type: string; text: string }) {
 	const { goBack } = useMovePage();
 
 	const icon = type === 'back' ? BackIcon : CloseIcon;
@@ -31,4 +31,4 @@ function HeaderButton({ type, text }: { type: string; text: string }) {
 	);
 }
 
-export default HeaderButton;
+export default PageTitleButton;
