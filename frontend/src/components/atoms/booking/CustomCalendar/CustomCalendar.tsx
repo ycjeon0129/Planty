@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import moment from 'moment';
 import Calendar from 'react-calendar';
 import './CustomCalendar.scss';
@@ -6,13 +6,16 @@ import './CustomCalendar.scss';
 type ValuePiece = Date | null;
 type Value = ValuePiece | [ValuePiece, ValuePiece];
 
-function CustomCalendar() {
-	const [value, setValue] = useState<Value>(new Date());
-
+function CustomCalendar({
+	selectedDate,
+	setSelectedDate,
+}: {
+	selectedDate: Value;
+	setSelectedDate: React.Dispatch<React.SetStateAction<Value>>;
+}) {
 	return (
 		<div className="custom-calendar-container">
-			<Calendar onChange={setValue} value={value} formatDay={(_, date) => moment(date).format('DD')} />
-			<span>{value?.toString()}</span>
+			<Calendar onChange={setSelectedDate} value={selectedDate} formatDay={(_, date) => moment(date).format('DD')} />
 		</div>
 	);
 }
