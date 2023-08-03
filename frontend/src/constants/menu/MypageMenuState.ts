@@ -23,7 +23,7 @@ export const MAIN_MENU_LIST: string[] = ['예약 관리', '구독 목록'];
 
 export const SUB_MENU_LIST: string[] = ['이용 내역', '결제 내역', '환경 설정', '서비스 정보'];
 
-export const MENU_LIST: IMenuList = {
+export const MENU_ICON_LIST: IMenuList = {
 	[MAIN_MENU_LIST[0]]: CalendarIcon,
 	[MAIN_MENU_LIST[1]]: BookmarkIcon,
 	[SUB_MENU_LIST[0]]: HistoryIcon,
@@ -32,14 +32,23 @@ export const MENU_LIST: IMenuList = {
 	[SUB_MENU_LIST[3]]: InfoIcon,
 };
 
+export const MENU_URL_LIST: IMenuList = {
+	[MAIN_MENU_LIST[0]]: '/booking',
+	[MAIN_MENU_LIST[1]]: '/subscribe',
+	[SUB_MENU_LIST[0]]: '/service-history',
+	[SUB_MENU_LIST[1]]: '/pay-history',
+	[SUB_MENU_LIST[2]]: '/setting',
+	[SUB_MENU_LIST[3]]: '/service-info',
+};
+
 export const SUB_MENU_DETAIL_LIST: ISubMenuDetailList = {
 	[SUB_MENU_LIST[0]]: [
 		{
-			text: '구독 컨설팅 이용 내역',
+			text: '응급실 이용 내역',
 			url: '/develop',
 		},
 		{
-			text: '응급실 이용 내역',
+			text: '구독 컨설팅 이용 내역',
 			url: '/develop',
 		},
 	],

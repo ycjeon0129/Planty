@@ -10,7 +10,7 @@ function PageTitle({ icon, text }: { icon: string; text: string }) {
 	return (
 		<div className="page-title-container">
 			<div className="icon-wrap">
-				<img src={icon} alt={text} height={14} width={14} />
+				<img src={icon} alt={text} height={20} width={20} />
 			</div>
 			<h1>{text}</h1>
 		</div>
