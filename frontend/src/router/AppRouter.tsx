@@ -1,17 +1,18 @@
-import HomePage from 'pages/Home/HomePage';
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
-import LoadingPage from 'pages/Etc/LoadingPage';
+import TabBarLayout from 'components/layout/common/TabBarLayout/TabBarLayout';
+import TabBarList from 'components/organisms/common/TabBarList/TabBarList';
 import LoginPage from 'pages/User/LoginPage';
-import Develop from 'pages/Develop';
+import HomePage from 'pages/Home/HomePage';
 import ShopPage from 'pages/Shop/ShopPage';
 import EmergencyPage from 'pages/Emergency/EmergencyPage';
 import MypagePage from 'pages/Mypage/MypagePage';
+import SubscribePage from 'pages/subscribe/Subscribe/SubscribePage';
 import SubscribeListPage from 'pages/subscribe/SubscribeList/SubscribeListPage';
 import SubscribeDetailPage from 'pages/subscribe/SubscribeDetail/SubscribeDetailPage';
-import SubscribePage from 'pages/subscribe/Subscribe/SubscribePage';
-import TabBarLayout from 'components/layout/common/TabBarLayout/TabBarLayout';
-import TabBarList from 'components/organisms/common/TabBarList/TabBarList';
+import LoadingPage from 'pages/Etc/LoadingPage';
+import ErrorPage from 'pages/Etc/ErrorPage';
+import Develop from 'pages/Develop';
 import PrivateRoute from './PrivateRoute';
 import 'styles/index.scss';
 
@@ -36,11 +37,11 @@ function AppRouter() {
 			<BrowserRouter>
 				<Routes>
 					<Route path="/" element={<Navigate replace to="/home" />} />
+					<Route path="/login" element={<LoginPage />} />
 					<Route path="/" element={<PrivateRoute />}>
 						<Route path="/home" element={<HomePage />} />
 						<Route path="/shop" element={<ShopPage />} />
 						<Route path="/emergency" element={<EmergencyPage />} />
-						<Route path="/login" element={<LoginPage />} />
 						<Route path="/mypage" element={<MypagePage />} />
 						<Route path="/subscribe" element={<SubscribePage />}>
 							<Route index element={<SubscribeListPage />} />
@@ -49,6 +50,7 @@ function AppRouter() {
 					</Route>
 
 					{/* 컴포넌트 개발용 */}
+					<Route path="/error" element={<ErrorPage />} />
 					<Route path="/develop" element={<Develop />} />
 				</Routes>
 
