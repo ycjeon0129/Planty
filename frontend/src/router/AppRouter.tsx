@@ -14,6 +14,7 @@ import SubscribeDetailPage from 'pages/subscribe/SubscribeDetail/SubscribeDetail
 import LoadingPage from 'pages/Etc/LoadingPage';
 import ErrorPage from 'pages/Etc/ErrorPage';
 import Develop from 'pages/Develop';
+import MypageSubMenuDetailPage from 'pages/Mypage/MypageSubMenuDetailPage';
 import PrivateRoute from './PrivateRoute';
 import 'styles/index.scss';
 
@@ -45,6 +46,7 @@ function AppRouter() {
 						<Route path="/shop/detail/:pid" element={<ShopDetail />} />
 						<Route path="/emergency" element={<EmergencyPage />} />
 						<Route path="/mypage" element={<MypagePage />} />
+						<Route path="/mypage/:menu" element={<MypageSubMenuDetailPage />} />
 						<Route path="/subscribe" element={<SubscribePage />}>
 							<Route index element={<SubscribeListPage />} />
 							<Route path=":sid" element={<SubscribeDetailPage />} />
