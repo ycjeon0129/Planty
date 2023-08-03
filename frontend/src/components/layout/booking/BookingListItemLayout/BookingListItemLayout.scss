@@ -1,0 +1,35 @@
+@use 'styles/base/variable' as var;
+@import 'styles/mixins/common';
+@import 'styles/mixins/flex';
+
+.booking-list-item-layout {
+	@include border-gray;
+	width: 100%;
+	padding: 15px;
+	border-radius: var.$rd-sm;
+	background-color: var.$white;
+
+	#top {
+		@include flex-row;
+		@include flex-align(between, center);
+		margin-bottom: 10px;
+	}
+
+	#bottom {
+		display: flex;
+
+		img {
+			border-radius: var.$rd-sm;
+			min-width: var.$img-size-sm;
+			max-width: var.$img-size-sm;
+			height: var.$img-size-sm;
+		}
+
+		#right {
+			@include flex-column;
+			padding: 0 var.$pd-lg;
+			width: 100%;
+			justify-content: space-between;
+		}
+	}
+}
