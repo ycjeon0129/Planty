@@ -1,6 +1,6 @@
 package com.planty.db.entity;
 
-import jakarta.persistence.*;
+import javax.persistence.*;
 import lombok.*;
 
 @ToString

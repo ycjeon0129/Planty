@@ -1,7 +1,7 @@
 package com.planty.api.subscribe.response;
 
-import jakarta.persistence.Column;
-import jakarta.validation.constraints.NotNull;
+import javax.persistence.Column;
+import javax.validation.constraints.NotNull;
 import lombok.*;
 
 import java.time.LocalDateTime;
