@@ -5,8 +5,11 @@ import LeafIcon from 'assets/icons/pageTitle/Leaf.svg';
 import MypageSubmenuList from 'components/organisms/mypage/MypageSubmenuList/MypageSubmenuList';
 import UserProfile from 'components/organisms/mypage/UserProfile/UserProfile';
 import MiniShortcutButton from 'components/atoms/common/MiniShortcutButton/MiniShortcutButton';
+import useMovePage from 'utils/useMovePage';
 
 function MypagePage() {
+	const { movePage } = useMovePage();
+
 	return (
 		<MypagePageLayout>
 			{/* 페이지 헤더 */}
@@ -17,8 +20,8 @@ function MypagePage() {
 
 			{/* 마이페이지 메뉴 목록 */}
 			{/* 메인 메뉴 */}
-			<MiniShortcutButton handleClick={() => {}} text="구독목록" type="subscribeList" />
-			<MiniShortcutButton handleClick={() => {}} text="예약관리" type="booking" />
+			<MiniShortcutButton handleClick={() => movePage('/subscribe')} text="구독목록" type="subscribeList" />
+			<MiniShortcutButton handleClick={() => movePage('/')} text="예약관리" type="booking" />
 
 			{/* 서브 메뉴 */}
 			<MypageSubmenuList />

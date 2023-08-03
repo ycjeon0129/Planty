@@ -1,4 +1,4 @@
-import React, { ReactNode, useEffect, useState } from 'react';
+import React, { ReactNode, useCallback, useEffect, useState } from 'react';
 import './MiniShortcutButton.scss';
 import SubscribeListIcon from 'assets/icons/Bookmark.svg';
 import BookingIcon from 'assets/icons/Calendar.svg';
@@ -12,7 +12,7 @@ import BookingIcon from 'assets/icons/Calendar.svg';
 function MiniShortcutButton({ type, text, handleClick }: { type: string; text: string; handleClick: () => void }) {
 	const [iconElement, setIconElement] = useState<ReactNode>();
 
-	const setIcon = () => {
+	const setIcon = useCallback(() => {
 		switch (type) {
 			case 'subscribeList':
 				setIconElement(<img src={SubscribeListIcon} alt="구독목록 바로가기 아이콘" />);
@@ -23,11 +23,11 @@ function MiniShortcutButton({ type, text, handleClick }: { type: string; text: s
 			default:
 				break;
 		}
-	};
+	}, [type]);
 
 	useEffect(() => {
 		setIcon();
-	});
+	}, [setIcon]);
 
 	return (
 		<div className="mini-shortcut-button-container">
