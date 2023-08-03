@@ -15,7 +15,7 @@ function UserProfilePhoto() {
 	}
 	return (
 		<div className="user-profile-photo-container">
-			<DefaultProfilePhoto className="default" width={120} />
+			<DefaultProfilePhoto className="default" width={120} height={120} />
 		</div>
 	);
 }
