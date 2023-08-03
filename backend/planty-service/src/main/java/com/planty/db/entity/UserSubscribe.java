@@ -25,31 +25,33 @@ public class UserSubscribe {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "sid", nullable = false) // 식별키
-    private Long sid;
+    private Integer sid;
 
-    @NonNull
-    @Column(name ="arduino_id", length = 128, unique = true, nullable = false) // 이름
+    @Column(name ="arduino_id", unique = true) // 아두이노 id
     private Integer arduinoId;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(referencedColumnName = "uid", name = "USER_INFO_uid")
-    private User uId;
+    @JoinColumn(referencedColumnName = "uid", name = "USER_INFO_uid") // 사용자 식별키
+    private UserInfo uId;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(referencedColumnName = "spid", name = "SUBSCRIBE_PRODUCT_spid")
+    @JoinColumn(referencedColumnName = "spid", name = "SUBSCRIBE_PRODUCT_spid") // 구독상품 식별키
     private SubscribeProduct subscribeProductSpid;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(referencedColumnName = "gid", name = "GM_INFO_gid")
+    @JoinColumn(referencedColumnName = "gid", name = "GM_INFO_gid") // GM 식별키
     private GmInfo GMInfoGid;
 
     @NonNull
-    @Column(name = "consulting_remain_cnt", length = 128, nullable = false)
+    @Column(name = "consulting_remain_cnt", nullable = false) // 남은 컨설팅 횟수
     @ColumnDefault("0")
     private Integer consultingRemainCnt;
 
-    @Column(name = "start_date")
+    @Column(name = "start_date") // 구독 시작일
     @CreationTimestamp
     private LocalDate startDate;
+
+    @Column(name = "end_date", nullable = true) // 구독 종료일
+    private LocalDate endDate;
 
 }

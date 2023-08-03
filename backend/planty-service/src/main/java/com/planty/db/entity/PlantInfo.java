@@ -18,24 +18,24 @@ import org.hibernate.annotations.DynamicInsert;
 public class PlantInfo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "idx", nullable = false) // 식별키
+    @Column(name = "idx", nullable = false) // 식물 식별키
     private Integer idx;
 
     @NonNull
-    @Column(name ="id", length = 128, nullable = false) // 이름
-    private String id;
+    @Column(name ="name", length = 128, nullable = false) // 식물 이름
+    private String name;
 
     @NonNull
-    @Column(name ="tonic_period", nullable = true) //비밀번호
+    @Column(name ="tonic_period", nullable = true) // 식물 영양제 제공 주기 (주)
     private Integer tonicPeriod;
 
-    @Column(name = "size", length = 16, nullable = true)
+    @Column(name = "size", length = 16, nullable = true) // 크기
     private String size;
 
-    @Column(name = "place", length = 16, nullable = true)
+    @Column(name = "place", length = 16, nullable = true) // 생육 장소
     private String place;
 
     @Column(name = "edible")
     @ColumnDefault("0")
-    private Integer edible;
+    private Integer edible; // 식용 여부. 식용(1), 비식용(0)
 }

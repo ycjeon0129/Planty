@@ -6,6 +6,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.http.ResponseEntity;
+
+import java.util.Arrays;
 import java.util.List;
 
 import com.planty.api.subscribe.response.FindSubscribeResponse;
@@ -17,15 +19,16 @@ import static com.planty.common.util.LogCurrent.*;
 @RequestMapping("/subscribes")
 @RequiredArgsConstructor
 public class SubscribeController {
-    private final SubscribeService SubscribeServiceImpl;
+    private final SubscribeService subscribeServiceImpl;
     @GetMapping
     public ResponseEntity<?> getAccusedReviewList() {
 
         log.info(logCurrent(getClassName(), getMethodName(), START));
-        List<FindSubscribeResponse> subscribeList = SubscribeServiceImpl.findAllSubscribe(Long.valueOf(1));
+        List<FindSubscribeResponse> subscribeList = subscribeServiceImpl.getUserSubscribe(2);
 
         if (!subscribeList.isEmpty()) {
             log.info(logCurrent(getClassName(), getMethodName(), END));
+            System.out.println(subscribeList.toString());
             return ResponseEntity.ok().body(subscribeList);
         }
         log.info(logCurrent(getClassName(), getMethodName(), END));

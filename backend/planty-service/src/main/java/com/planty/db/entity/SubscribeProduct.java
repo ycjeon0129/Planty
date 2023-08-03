@@ -23,33 +23,33 @@ public class SubscribeProduct {
     private Integer spid;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(referencedColumnName = "idx", name = "PLANT_INFO_idx")
+    @JoinColumn(referencedColumnName = "idx", name = "PLANT_INFO_idx") // 식물 식별키
     private PlantInfo plantInfoIdx;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(referencedColumnName = "gid", name = "GM_INFO_gid")
+    @JoinColumn(referencedColumnName = "gid", name = "GM_INFO_gid") // GM 식별키
     private GmInfo GMInfoGid;
 
     @NonNull
-    @Column(name = "name", length = 128, nullable = false)
+    @Column(name = "name", length = 128, nullable = false) // 구독 상품명
     private String name;
 
     @NonNull
-    @Column(name = "period", nullable = false)
+    @Column(name = "period", nullable = false) // 구독 기간 (주)
     private Integer period;
 
     @NonNull
-    @Column(name = "consulting_cnt", nullable = false)
+    @Column(name = "consulting_cnt", nullable = false) // 컨설팅 횟수
     private Integer consultingCnt;
 
-    @Column(name = "description")
+    @Column(name = "description") // 상세설명 : CDN 링크
     private String description;
 
     @NonNull
-    @Column(name = "level", nullable = false)
+    @Column(name = "level", nullable = false) // 구독 상품 난이도, level : 1,2,3
     private Integer level;
 
     @NonNull
-    @Column(name = "price", nullable = false)
+    @Column(name = "price", nullable = false) // 독 상품 가격
     private Integer price;
 }
