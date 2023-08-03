@@ -1,6 +1,6 @@
 package com.planty.api.subscribe.service;
 
-import com.planty.api.subscribe.repository.SubscribeRepository;
+import com.planty.db.repository.SubscribeRepository;
 import com.planty.api.subscribe.response.FindSubscribeResponse;
 import java.util.*;
 
