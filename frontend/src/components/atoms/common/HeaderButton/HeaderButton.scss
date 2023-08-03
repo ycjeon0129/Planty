@@ -3,11 +3,12 @@
 @import 'styles/mixins/common';
 
 .header-button {
-	@include flex-row($pd-lg);
+	@include flex-row();
 	@include flex-align;
 
 	button {
 		padding-top: $pd-xmd;
+		width: 25px;
 	}
 
 	h1 {
