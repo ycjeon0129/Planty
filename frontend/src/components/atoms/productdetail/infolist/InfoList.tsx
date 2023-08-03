@@ -1,12 +1,28 @@
 import React from 'react';
-import { IProduct } from 'types/dummy';
+import { IProductDetail } from 'types/dummy';
+import './InfoList.scss';
 
-function InfoList({ product }: { product: IProduct }) {
+function InfoList({ product }: { product: IProductDetail }) {
 	return (
-		<div>
-			<div>{product.title}</div>
-			{/* <div>{product.otherPhoto}</div> */}
-			<div>{product.title}</div>
+		<div className="infolist-box">
+			<div className="text-box">
+				<div className="price-box">
+					<span>가격 :</span>
+					<span>{product.info.price}원</span>
+				</div>
+				<div className="price-box ">
+					<span>대상자 :</span>
+					<span>{product.info.target}</span>
+				</div>
+				<div className="price-box ">
+					<span>컨설팅 가능 횟수 : </span>
+					<span>{product.info.consultCount}</span>
+				</div>
+				<div className="price-box ">
+					<span>키트 구성품 :</span>
+					<span>{product.info.kitTool}</span>
+				</div>
+			</div>
 		</div>
 	);
 }

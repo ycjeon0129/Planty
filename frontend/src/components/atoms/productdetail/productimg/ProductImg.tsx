@@ -24,7 +24,7 @@ export default function ProductImg({ imgUrls }: { imgUrls: string[] }) {
 			>
 				{imgUrls.map((url) => (
 					<SwiperSlide key={url}>
-						<img src={url} alt="사진" style={{ height: '300px' }} />
+						<img src={url} alt="사진" style={{ height: '300px', width: '100%' }} />
 					</SwiperSlide>
 				))}
 				<br />
