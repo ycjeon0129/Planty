@@ -5,6 +5,7 @@ import TabBar from 'components/organisms/common/TabBar/TabBar';
 import LoginPage from 'pages/User/LoginPage';
 import HomePage from 'pages/Home/HomePage';
 import ShopPage from 'pages/Shop/ShopPage';
+import ShopDetail from 'pages/Shop/ShopDetail';
 import EmergencyPage from 'pages/Emergency/EmergencyPage';
 import MypagePage from 'pages/Mypage/MypagePage';
 import SubscribePage from 'pages/subscribe/Subscribe/SubscribePage';
@@ -41,6 +42,7 @@ function AppRouter() {
 					<Route path="/" element={<PrivateRoute />}>
 						<Route path="/home" element={<HomePage />} />
 						<Route path="/shop" element={<ShopPage />} />
+						<Route path="/shop/detail/:pid" element={<ShopDetail />} />
 						<Route path="/emergency" element={<EmergencyPage />} />
 						<Route path="/mypage" element={<MypagePage />} />
 						<Route path="/subscribe" element={<SubscribePage />}>
