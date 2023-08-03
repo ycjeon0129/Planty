@@ -18,6 +18,7 @@ function BookingPageLayout({ children }: { children: ReactNode[] }) {
 				<ContentsLayout id="booking-list">
 					{children[3]}
 					{children[4]}
+					{children[5]}
 				</ContentsLayout>
 			</div>
 		</PageLayout>

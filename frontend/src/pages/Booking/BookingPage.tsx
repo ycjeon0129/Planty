@@ -5,9 +5,21 @@ import PageTitleButton from 'components/atoms/common/PageTitleButton/PageTitleBu
 import CustomCalendar from 'components/atoms/booking/CustomCalendar/CustomCalendar';
 import useSelectedDate from 'hooks/useSelectedDate';
 import BookingList from 'components/organisms/booking/BookingList';
+import SubscribeStateBadge from 'components/atoms/subscribe/SubscribeStateBadge/SubscribeStateBadge';
+import BadgeDescription from 'components/organisms/common/BadgeDescription/BadgeDescription';
+import { BOOKING_STATUS_DESC_LIST } from 'constants/common/StatusDescList';
+import ChartButton from 'components/atoms/common/ChartButton/ChartButton';
 
 function BookingPage() {
 	const [date, setDate, formatDate] = useSelectedDate();
+
+	const badgeList = [
+		<ChartButton color="success" isActive message="온도" onClick={() => {}} />,
+
+		// <SubscribeStateBadge stateKey="done" />,
+		<SubscribeStateBadge stateKey="join" />,
+		<SubscribeStateBadge stateKey="notJoin" />,
+	];
 
 	return (
 		<BookingPageLayout>
@@ -19,6 +31,7 @@ function BookingPage() {
 			<CustomCalendar selectedDate={date} setSelectedDate={setDate} />
 			{/* 지정일 예약목록 */}
 			<AreaTitle title={`${formatDate as string}  예약 목록`} url="#" />
+			<BadgeDescription title="예약 상태" descriptionList={BOOKING_STATUS_DESC_LIST} badgeList={badgeList} />
 			<BookingList />
 		</BookingPageLayout>
 	);
