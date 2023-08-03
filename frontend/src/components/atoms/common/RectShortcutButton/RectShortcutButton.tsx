@@ -13,7 +13,7 @@ function RectShortcutButton({ type, text, handleClick }: { type: string; text: s
 
 	return (
 		<button type="button" className={buttonClasses} onClick={handleClick}>
-			<h3>{text}</h3>
+			<h4>{text}</h4>
 		</button>
 	);
 }

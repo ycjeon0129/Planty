@@ -2,13 +2,12 @@
 @import 'styles/mixins/common';
 @import 'styles/mixins/flex';
 
-.subscribe-list-item-layout {
+.booking-list-item-layout {
 	@include border-gray;
 	width: 100%;
 	padding: 15px;
 	border-radius: var.$rd-sm;
 	background-color: var.$white;
-	background-color: var.$light-400;
 
 	#top {
 		@include flex-row;

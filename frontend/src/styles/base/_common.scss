@@ -3,6 +3,7 @@
 
 html,
 body {
+	background-color: var.$light-500;
 	font-family: 'Noto Sans KR', sans-serif;
 	font-size: 10px;
 	font-weight: var.$fw-500;
@@ -52,4 +53,5 @@ h6 {
 	margin: auto;
 	background-color: var.$white;
 	box-shadow: rgb(219, 219, 219) 0px 0px 10px;
+
 }

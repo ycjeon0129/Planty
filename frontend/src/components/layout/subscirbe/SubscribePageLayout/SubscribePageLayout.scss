@@ -10,18 +10,6 @@
 		ul {
 			color: $black-200;
 			font-weight: 400;
-
-			li {
-			}
-		}
-
-		#subscribe-badge-list-container {
-			ul {
-				@include flex-row($mr-md);
-
-				li {
-				}
-			}
 		}
 	}
 
