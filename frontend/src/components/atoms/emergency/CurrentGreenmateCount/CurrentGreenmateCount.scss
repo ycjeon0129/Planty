@@ -13,5 +13,10 @@
 		width: 10px;
 		height: 10px;
         margin-right: var.$mr-sm;
+
 	}
+    
+    &.red:before { 
+        background-color: var.$danger;
+    }
 }
