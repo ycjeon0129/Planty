@@ -19,13 +19,9 @@ export interface IProduct {
 	pid: number;
 	title: string;
 	thumbnail: string;
-	otherPhoto?: string[];
 	info: {
 		period: number;
 		level: number;
 		price: number;
-		target: string;
-		consultCount: string;
-		startDate: string;
 	};
 }

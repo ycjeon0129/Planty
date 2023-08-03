@@ -34,9 +34,6 @@ export const dummyProduct: IProduct[] = [
 			period: 3,
 			level: 3,
 			price: 8000,
-			target: '초심자',
-			consultCount: '총 5회 / 잔여 3회',
-			startDate: '2023/07/23',
 		},
 	},
 	{
@@ -48,23 +45,13 @@ export const dummyProduct: IProduct[] = [
 			period: 2,
 			level: 2,
 			price: 12000,
-			target: '중급자',
-			consultCount: '총 7회 / 잔여 2회',
-			startDate: '2023/07/23',
 		},
 	},
 	{
 		pid: 2,
 		title: '싸피 방울토마토 짱짱 클래스',
 		thumbnail: 'https://gardening.godohosting.com/2018/mfset/redcherrytomato_01.jpg',
-		info: {
-			period: 1,
-			level: 4,
-			price: 12000,
-			target: '고수',
-			consultCount: '총 5회 / 잔여 1회',
-			startDate: '2023/07/23',
-		},
+		info: { period: 1, level: 4, price: 12000 },
 	},
 ];
 
