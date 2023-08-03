@@ -8,7 +8,6 @@ import ShopPage from 'pages/Shop/ShopPage';
 import EmergencyPage from 'pages/Emergency/EmergencyPage';
 import MypagePage from 'pages/Mypage/MypagePage';
 import SubscribePage from 'pages/subscribe/Subscribe/SubscribePage';
-import SubscribeListPage from 'pages/subscribe/SubscribeList/SubscribeListPage';
 import SubscribeDetailPage from 'pages/subscribe/SubscribeDetail/SubscribeDetailPage';
 import LoadingPage from 'pages/Etc/LoadingPage';
 import ErrorPage from 'pages/Etc/ErrorPage';
@@ -45,10 +44,8 @@ function AppRouter() {
 						<Route path="/emergency" element={<EmergencyPage />} />
 						<Route path="/mypage" element={<MypagePage />} />
 						<Route path="/mypage/:menu" element={<MypageSubMenuDetailPage />} />
-						<Route path="/subscribe" element={<SubscribePage />}>
-							<Route index element={<SubscribeListPage />} />
-							<Route path=":sid" element={<SubscribeDetailPage />} />
-						</Route>
+						<Route path="/subscribe" element={<SubscribePage />} />
+						<Route path="/subscribe/:sid" element={<SubscribeDetailPage />} />
 					</Route>
 
 					{/* 컴포넌트 개발용 */}
