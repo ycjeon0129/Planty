@@ -12,8 +12,6 @@ spring:
       pool-name: HikariPool
       max-lifetime: '1800000'
       minimum-idle: '50'
-      username : planty
-      password : 'planty202'
   jpa:
     properties:
       hibernate:
@@ -28,17 +26,8 @@ spring:
     pathmatch:
       matching-strategy: ANT_PATH_MATCHER
   profiles:
-    include:
-      - env
-  security:
-    oauth2:
-      client:
-        registration:
-          google:
-            client-id: 625013070043-os579gab32fap56fg0afi2hj1hs2o733.apps.googleusercontent.com
-            client-secret: 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
-            scope: profile,email, openid
-    secretKey: "WqMLorKIcZ1hzVigYtdjjWDnsOzd7Js8cz0nwB9P6EyDUu4NcRWYw6zsGdOvhIfW"
+    include: env
+
 
 
 logging:
