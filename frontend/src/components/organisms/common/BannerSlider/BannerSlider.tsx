@@ -8,7 +8,7 @@ import './BannerSlider.scss';
  */
 function BannerSlider() {
 	return (
-		<Swiper className="banner-slider-container" autoplay={{ delay: 2000, disableOnInteraction: false }}>
+		<Swiper className="banner-slider-container" autoplay={{ delay: 3000, disableOnInteraction: false }}>
 			{dummybanner.map((banner) => (
 				<SwiperSlide key={banner.id}>
 					<img src={banner.src} alt="" />
