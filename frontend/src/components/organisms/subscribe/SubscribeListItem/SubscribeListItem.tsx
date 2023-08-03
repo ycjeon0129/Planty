@@ -17,7 +17,7 @@ function SubscribeListItem({ subscribe }: { subscribe: ISubscribe }) {
 
 	return (
 		<SubscribeItemLayout>
-			<ListItemTitle title={subscribe.title} url={`subscribe/${subscribe.sid}`} />
+			<ListItemTitle title={subscribe.title} url={`/subscribe/${subscribe.sid}`} />
 			<SubscribeStateBadge stateKey="wait" />
 			<img src={subscribe.thumbnail} alt="" />
 			<InfoList info={subscribe.info} />
