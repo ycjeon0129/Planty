@@ -1,0 +1,23 @@
+@import 'styles/base/variable';
+@import 'styles/mixins/flex';
+
+.badge-description-layout-container {
+	@include flex-column(10px);
+
+	ul {
+		color: $black-200;
+		font-weight: 400;
+
+		li {
+		}
+	}
+
+	#subscribe-badge-list-container {
+		ul {
+			@include flex-row($mr-md);
+
+			li {
+			}
+		}
+	}
+}

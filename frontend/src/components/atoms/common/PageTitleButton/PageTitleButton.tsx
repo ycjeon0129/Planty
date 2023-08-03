@@ -22,7 +22,7 @@ function PageTitleButton({ type, text }: { type: string; text: string }) {
 	};
 
 	return (
-		<div className="header-button">
+		<div className="page-title-button">
 			<button type="button" onClick={handleClick}>
 				<img src={icon} alt={text} height={14} width={14} />
 			</button>
