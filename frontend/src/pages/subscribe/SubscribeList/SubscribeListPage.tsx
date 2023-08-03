@@ -2,13 +2,13 @@ import React from 'react';
 import SubscribeListPageLayout from 'components/layout/subscirbe/SubscribeListPageLayout/SubscribeListPageLayout';
 import SubscribeList from 'components/organisms/subscribe/SubscribeList/SubscribeList';
 import SubscribeStateBadge from 'components/atoms/subscribe/SubscribeStateBadge/SubscribeStateBadge';
-import HeaderButton from '../../../components/atoms/common/HeaderButton/HeaderButton';
+import PageTitleButton from '../../../components/atoms/common/PageTitleButton/PageTitleButton';
 
 function SubscribeListPage() {
 	return (
 		<SubscribeListPageLayout>
 			{/* 페이지 헤더 */}
-			<HeaderButton type="back" text="구독 목록" />
+			<PageTitleButton type="back" text="구독 목록" />
 
 			{/* 컨설팅 상태 뱃지 설명 */}
 			<h3>컨설팅 상태</h3>

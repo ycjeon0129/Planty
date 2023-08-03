@@ -3,7 +3,7 @@ import { useParams } from 'react-router';
 import { SUB_MENU_LIST } from 'constants/menu/MypageMenuState';
 import MypageSubMenuDetailPageLayout from 'components/layout/mypage/MypageSubMenuDetailPageLayout/MypageSubMenuDetailPageLayout';
 import DetailMenuList from '../../components/organisms/mypage/DetailMenuList/DetailMenuList';
-import HeaderButton from '../../components/atoms/common/HeaderButton/HeaderButton';
+import PageTitleButton from '../../components/atoms/common/PageTitleButton/PageTitleButton';
 
 function MypageSubMenuDetailPage() {
 	const { menu } = useParams();
@@ -27,7 +27,7 @@ function MypageSubMenuDetailPage() {
 
 	return (
 		<MypageSubMenuDetailPageLayout>
-			<HeaderButton type="back" text={key} />
+			<PageTitleButton type="back" text={key} />
 			<DetailMenuList menu={key} />
 		</MypageSubMenuDetailPageLayout>
 	);
