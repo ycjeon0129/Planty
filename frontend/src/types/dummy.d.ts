@@ -1,14 +1,17 @@
 // 사용자 구독정보
+
 export interface ISubscribe {
 	sid: number;
 	title: string;
 	state: string;
 	thumbnail: string;
-	info: {
-		startDate: string;
-		consultCount: string;
-		consultDate: string;
-	};
+	info: IConsultingSummary;
+}
+
+export interface IConsultingSummary {
+	startDate: string;
+	consultCount: string;
+	consultDate: string;
 }
 
 export interface ISubscribeDetail extends ISubscribe {
