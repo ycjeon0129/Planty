@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
 import TabBarLayout from 'components/layout/common/TabBarLayout/TabBarLayout';
-import TabBarList from 'components/organisms/common/TabBarList/TabBarList';
+import TabBar from 'components/organisms/common/TabBar/TabBar';
 import LoginPage from 'pages/User/LoginPage';
 import HomePage from 'pages/Home/HomePage';
 import ShopPage from 'pages/Shop/ShopPage';
@@ -55,7 +55,7 @@ function AppRouter() {
 				</Routes>
 
 				<TabBarLayout>
-					<TabBarList />
+					<TabBar />
 				</TabBarLayout>
 			</BrowserRouter>
 		</div>
