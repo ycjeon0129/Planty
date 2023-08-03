@@ -25,3 +25,13 @@ export interface IProduct {
 		price: number;
 	};
 }
+
+export interface IProductDetail {
+	pid: number;
+	info: {
+		price: number;
+		target: string;
+		consultCount: string;
+		kitTool: string;
+	};
+}

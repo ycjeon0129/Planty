@@ -1,4 +1,4 @@
-import { ISubscribe, IProduct, IBanner } from 'types/dummy';
+import { ISubscribe, IProduct, IBanner, IProductDetail } from 'types/dummy';
 
 const dummySubscribe: ISubscribe[] = [
 	{
@@ -22,6 +22,21 @@ const dummySubscribe: ISubscribe[] = [
 		state: 'wait',
 		thumbnail: 'https://gardening.godohosting.com/2018/mfset/redcherrytomato_01.jpg',
 		info: { startDate: '2023/07/23', consultCount: '총 5회 / 잔여 3회', consultDate: '2023/07/23 14:00' },
+	},
+];
+
+export const dummybanner: IBanner[] = [
+	{
+		id: 0,
+		src: 'https://file.miricanvas.com/template_thumb/2021/10/08/16/10/khqn744slrkwk3p3/thumb.jpg?size=350',
+	},
+	{
+		id: 1,
+		src: 'https://file.miricanvas.com/template_thumb/2021/09/09/16/40/k6pj046gvbbnp2bu/thumb.jpg?size=350',
+	},
+	{
+		id: 2,
+		src: '	https://file.miricanvas.com/template_thumb/2021/08/30/13/00/kiqlwkppz7hx4u8v/thumb.jpg?size=350',
 	},
 ];
 
@@ -55,19 +70,33 @@ export const dummyProduct: IProduct[] = [
 	},
 ];
 
-export const dummybanner: IBanner[] = [
+export const ProductDetail: IProductDetail[] = [
 	{
-		id: 0,
-		src: 'https://file.miricanvas.com/template_thumb/2021/10/08/16/10/khqn744slrkwk3p3/thumb.jpg?size=350',
+		pid: 0,
+		info: {
+			price: 20000,
+			target: '초심자',
+			consultCount: '총 5회 / 잔여 3회',
+			kitTool: '토양 영양제 허브 삽',
+		},
 	},
 	{
-		id: 1,
-		src: 'https://file.miricanvas.com/template_thumb/2021/09/09/16/40/k6pj046gvbbnp2bu/thumb.jpg?size=350',
+		pid: 1,
+		info: {
+			price: 12000,
+			target: '중급자',
+			consultCount: '총 5회 / 잔여 4회',
+			kitTool: '토양 영양제 허브 삽',
+		},
 	},
 	{
-		id: 2,
-		src: '	https://file.miricanvas.com/template_thumb/2021/08/30/13/00/kiqlwkppz7hx4u8v/thumb.jpg?size=350',
+		pid: 2,
+		info: {
+			price: 8000,
+			target: '왕초보',
+			consultCount: '총 8회 / 잔여 4회',
+			kitTool: '토양 영양제 허브 삽',
+		},
 	},
 ];
-
 export default dummySubscribe;
