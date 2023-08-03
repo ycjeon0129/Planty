@@ -7,8 +7,8 @@ import InfoList from 'components/organisms/common/InfoList/InfoList';
 import { ISubscribe } from 'types/dummy';
 
 /**
- * 구독 목록 아이템의 모음
- * @param subscribe 구독 정보들을 담고 있는 객체
+ * 구독 목록 아이템
+ * @param subscribe 구독 정보 1건
  */
 function SubscribeListItem({ subscribe }: { subscribe: ISubscribe }) {
 	const testFunc = () => {
