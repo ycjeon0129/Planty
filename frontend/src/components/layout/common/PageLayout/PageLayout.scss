@@ -5,6 +5,7 @@
 	padding-left: var.$pd-lg;
 	padding-right: var.$pd-lg;
 	padding-bottom: 70px;
+	min-height: 100vh;
 
 	@include r.responsive(Phone) {
 		// background: red;
