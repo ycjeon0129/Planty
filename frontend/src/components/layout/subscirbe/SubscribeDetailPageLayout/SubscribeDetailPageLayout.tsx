@@ -1,10 +1,12 @@
 import React, { ReactNode } from 'react';
 import NavigationLayout from 'components/layout/navigation/NavigationLayout/NavigationLayout';
 import ContentsLayout from 'components/layout/common/ContentsLayout/ContentsLayout';
+import PageLayout from 'components/layout/common/PageLayout/PageLayout';
 
 function SubscribeDetailPageLayout({ children }: { children: ReactNode[] }) {
 	return (
-		<>
+		<PageLayout>
+			{/* 페이지 헤더 */}
 			<NavigationLayout>{children[0]}</NavigationLayout>
 
 			<div className="subscribe-detail-page-layout-container">
@@ -26,7 +28,7 @@ function SubscribeDetailPageLayout({ children }: { children: ReactNode[] }) {
 					{children[2]}
 				</ContentsLayout>
 			</div>
-		</>
+		</PageLayout>
 	);
 }
 
