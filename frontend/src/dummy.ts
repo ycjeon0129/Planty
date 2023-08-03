@@ -107,15 +107,19 @@ export const dummyProduct: IProduct[] = [
 export const dummybanner: IBanner[] = [
 	{
 		id: 0,
-		src: 'https://file.miricanvas.com/template_thumb/2021/10/08/16/10/khqn744slrkwk3p3/thumb.jpg?size=350',
+		src: 'https://firebasestorage.googleapis.com/v0/b/localsharing-6682b.appspot.com/o/001.png?alt=media&token=c00247ae-eaf9-4287-8190-5ca10424314b',
 	},
 	{
 		id: 1,
-		src: 'https://file.miricanvas.com/template_thumb/2021/09/09/16/40/k6pj046gvbbnp2bu/thumb.jpg?size=350',
+		src: 'https://firebasestorage.googleapis.com/v0/b/localsharing-6682b.appspot.com/o/002.png?alt=media&token=592440be-59f7-41fe-afa7-bf0d1e22815d',
 	},
 	{
-		id: 2,
-		src: '	https://file.miricanvas.com/template_thumb/2021/08/30/13/00/kiqlwkppz7hx4u8v/thumb.jpg?size=350',
+		id: 3,
+		src: 'https://firebasestorage.googleapis.com/v0/b/localsharing-6682b.appspot.com/o/003.png?alt=media&token=a0193154-cbf8-443f-9535-e170f0e9224d',
+	},
+	{
+		id: 4,
+		src: 'https://firebasestorage.googleapis.com/v0/b/localsharing-6682b.appspot.com/o/004.png?alt=media&token=0ad16aa8-5954-4f60-8185-e7f19ddaeaac',
 	},
 ];
 
