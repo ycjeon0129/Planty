@@ -18,7 +18,7 @@ function TabBarItem({ MenuKey }: TabBarItemProps) {
 	}, [location.pathname, MenuKey]);
 
 	const handleLinkClick = () => {
-		setIsActive(true); // Always set isActive to true when the link is clicked to make the image active
+		setIsActive(true);
 	};
 
 	const imageSource = isActive ? Menu.imgSrc.isActive : Menu.imgSrc.unActive;
