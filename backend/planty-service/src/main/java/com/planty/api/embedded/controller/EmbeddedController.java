@@ -1,7 +1,6 @@
 package com.planty.api.embedded.controller;
 
-import lombok.RequiredArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.RestController;
@@ -21,13 +20,15 @@ import static com.planty.common.util.LogCurrent.*;
 @RequestMapping("/embedded")
 public class EmbeddedController {
     @PostMapping
-    public ResponseEntity<?> psRegister(@RequestBody String student) {
+    public ResponseEntity<?> psRegister(Student student) {
         System.out.println(student);
-        ResponseEntity res = ResponseEntity.ok().body(student);
-        return res;
+        return ResponseEntity.ok().body(student);
     }
 
     @ToString
+    @Getter
+    @Setter
+    @AllArgsConstructor
     public static class Student{
         String name;
         int age;
