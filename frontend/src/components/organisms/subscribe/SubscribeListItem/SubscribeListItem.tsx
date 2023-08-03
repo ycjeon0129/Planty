@@ -18,7 +18,7 @@ function SubscribeListItem({ subscribe }: { subscribe: ISubscribe }) {
 	return (
 		<SubscribeItemLayout>
 			<ListItemTitle title={subscribe.title} url={`/subscribe/${subscribe.sid}`} />
-			<SubscribeStateBadge stateKey="wait" />
+			<SubscribeStateBadge stateKey={subscribe.state} />
 			<img src={subscribe.thumbnail} alt="" />
 			<InfoList info={subscribe.info} />
 			<Button isActive={false} text="컨설팅 이용하기" handleClick={testFunc} />
