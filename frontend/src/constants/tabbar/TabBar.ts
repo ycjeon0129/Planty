@@ -36,4 +36,6 @@ const TabMenu: TabBarProps = {
 	},
 };
 
+export const NOT_ARROWED_PATH = ['/error'];
+
 export default TabMenu;
