@@ -33,12 +33,12 @@ export const MENU_ICON_LIST: IMenuList = {
 };
 
 export const MENU_URL_LIST: IMenuList = {
-	[MAIN_MENU_LIST[0]]: '/booking',
-	[MAIN_MENU_LIST[1]]: '/subscribe',
-	[SUB_MENU_LIST[0]]: '/service-history',
-	[SUB_MENU_LIST[1]]: '/pay-history',
-	[SUB_MENU_LIST[2]]: '/setting',
-	[SUB_MENU_LIST[3]]: '/service-info',
+	[MAIN_MENU_LIST[0]]: '/mypage/booking',
+	[MAIN_MENU_LIST[1]]: '/mypage/subscribe',
+	[SUB_MENU_LIST[0]]: '/mypage/service-history',
+	[SUB_MENU_LIST[1]]: '/mypage/pay-history',
+	[SUB_MENU_LIST[2]]: '/mypage/setting',
+	[SUB_MENU_LIST[3]]: '/mypage/service-info',
 };
 
 export const SUB_MENU_DETAIL_LIST: ISubMenuDetailList = {
@@ -72,7 +72,7 @@ export const SUB_MENU_DETAIL_LIST: ISubMenuDetailList = {
 			isToggle: true,
 		},
 	],
-	[SUB_MENU_LIST[4]]: [
+	[SUB_MENU_LIST[3]]: [
 		{
 			text: '이용 약관',
 			url: '/',
