@@ -1,4 +1,4 @@
-import { ISubscribe, IProduct, IBanner, IConsulting } from 'types/dummy';
+import { ISubscribe, IProduct, IBanner, IConsulting, ISubscribeDetail } from 'types/dummy';
 
 export const dummyBookings: IConsulting[] = [
 	{
@@ -122,5 +122,63 @@ export const dummybanner: IBanner[] = [
 		src: 'https://firebasestorage.googleapis.com/v0/b/localsharing-6682b.appspot.com/o/004.png?alt=media&token=0ad16aa8-5954-4f60-8185-e7f19ddaeaac',
 	},
 ];
+
+export const dummySubscribeDetail: ISubscribeDetail = {
+	sid: 0,
+	title: '누구나 쉽게 키우는 몬스테라 클래스',
+	state: 'wait',
+	thumbnail: 'https://www.flowerrepublic.co.kr/shopimages/sungmo9160/0090010004832.jpg?1665473103',
+	info: { startDate: '2023/07/23', consultCount: '총 5회 / 잔여 3회', consultDate: '2023/07/23 14:00' },
+	detailInfo: {
+		subscribeStartDate: '2023/07/23',
+		subscribeEndDate: '2023/12/23',
+		GMNickname: '김싸피', // 담당 그린메이트
+		supplementsCount: 3, // 영양제 개수
+	},
+	embeddedData: [
+		{
+			date: '2023/07/17',
+			temperature: 26,
+			humidity: 36,
+			soilHumidity: 17,
+		},
+		{
+			date: '2023/07/18',
+			temperature: 22,
+			humidity: 40,
+			soilHumidity: 18,
+		},
+		{
+			date: '2023/07/19',
+			temperature: 24,
+			humidity: 53,
+			soilHumidity: 13,
+		},
+		{
+			date: '2023/07/20',
+			temperature: 24,
+			humidity: 26,
+			soilHumidity: 20,
+		},
+		{
+			date: '2023/07/21',
+			temperature: 25,
+			humidity: 33,
+			soilHumidity: 10,
+		},
+		{
+			date: '2023/07/22',
+			temperature: 23,
+			humidity: 30,
+			soilHumidity: 12,
+		},
+		{
+			date: '2023/07/23',
+			temperature: 26,
+			humidity: 27,
+			soilHumidity: 15,
+		},
+	],
+};
 
 export default dummySubscribe;
