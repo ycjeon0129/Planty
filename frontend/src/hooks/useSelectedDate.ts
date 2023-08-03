@@ -1,8 +1,6 @@
 import { useState, useEffect } from 'react';
+import { Value } from 'types/global';
 import formatDate from 'utils/formatDate';
-
-type ValuePiece = Date | null;
-type Value = ValuePiece | [ValuePiece, ValuePiece];
 
 /**
  * 캘린더에서, 현재 선택된 날짜를 업데이트해주는 커스텀 훅.
