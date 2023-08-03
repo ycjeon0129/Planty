@@ -11,7 +11,7 @@ import { ReactComponent as NextIcon } from 'assets/icons/Next.svg';
 function MypageSubmenuItem({ text }: { text: string }) {
 	return (
 		<li className="mypage-submenu-item-container">
-			<IconText url={MENU_LIST[text]} text={text} />
+			<IconText imgUrl={MENU_LIST[text]} text={text} />
 			<NextIcon className="icon" />
 		</li>
 	);

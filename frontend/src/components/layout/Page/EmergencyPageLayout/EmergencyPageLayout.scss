@@ -6,14 +6,14 @@
 	@include flex-column;
 
 	#connecting-info {
-		border: 1px solid $border-100;
-		border-radius: 4px;
+		@include border-gray;
+		border-radius : $rd-sm;
 	}
 
 	#ticket-info {
+		@include border-gray;
 		div {
-			border: 1px solid $border-100;
-			border-radius: 4px;
+			border-radius : $rd-sm;
 		}
 	}
 
@@ -22,10 +22,10 @@
 			@include flex-row($mr-lg);
 			@include flex-align(between, center);
 
-			div {
+			button {
 				flex-basis: 50%;
-				border: 1px solid $border-100;
-				border-radius: 4px;
+				@include border-gray;
+				border-radius : $rd-sm;
 			}
 		}
 	}

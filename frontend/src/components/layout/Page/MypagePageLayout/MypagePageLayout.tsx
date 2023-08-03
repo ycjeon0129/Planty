@@ -23,8 +23,6 @@ function MypagePageLayout({ children }: { children: ReactNode[] }) {
 				{/* 서브 메뉴 */}
 				<ContentsLayout id="sub-menu-wrap">{children[4]}</ContentsLayout>
 			</div>
-			{/* TabBar */}
-			{children[5]}
 		</PageLayout>
 	);
 }

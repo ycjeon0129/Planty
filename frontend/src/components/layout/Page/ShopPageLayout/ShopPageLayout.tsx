@@ -19,7 +19,6 @@ function ShopPageLayout({ children }: { children: ReactNode[] }) {
 					</div>
 				</ContentsLayout>
 			</div>
-			{children[4]}
 		</PageLayout>
 	);
 }
