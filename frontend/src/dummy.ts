@@ -77,7 +77,7 @@ export const ProductDetail: IProductDetail[] = [
 			price: 20000,
 			target: '초심자',
 			consultCount: '총 5회 / 잔여 3회',
-			kitTool: '토양 영양제 허브 삽',
+			kitTool: '토양, 영양제, 허브, 삽',
 		},
 	},
 	{
@@ -86,7 +86,7 @@ export const ProductDetail: IProductDetail[] = [
 			price: 12000,
 			target: '중급자',
 			consultCount: '총 5회 / 잔여 4회',
-			kitTool: '토양 영양제 허브 삽',
+			kitTool: '토양, 영양제, 허브, 삽',
 		},
 	},
 	{
@@ -95,7 +95,7 @@ export const ProductDetail: IProductDetail[] = [
 			price: 8000,
 			target: '왕초보',
 			consultCount: '총 8회 / 잔여 4회',
-			kitTool: '토양 영양제 허브 삽',
+			kitTool: '토양, 영양제, 허브, 삽',
 		},
 	},
 ];
