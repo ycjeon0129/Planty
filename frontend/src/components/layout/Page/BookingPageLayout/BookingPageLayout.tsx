@@ -15,8 +15,8 @@ function BookingPageLayout({ children }: { children: ReactNode[] }) {
 					{children[1]}
 					{children[2]}
 				</ContentsLayout>
+				{children[3]}
 				<ContentsLayout id="booking-list">
-					{children[3]}
 					{children[4]}
 					{children[5]}
 				</ContentsLayout>

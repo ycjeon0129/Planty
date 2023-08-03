@@ -1,2 +1,8 @@
+@use 'styles/base/variable' as var;
+@import 'styles/mixins/flex';
+
 .booking-page-layout {
+    #booking-list {
+        @include flex-column(var.$mb-content-sm);
+    }
 }
