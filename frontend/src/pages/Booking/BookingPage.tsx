@@ -28,8 +28,10 @@ function BookingPage() {
 			<CustomCalendar selectedDate={date} setSelectedDate={setDate} />
 			{/* 지정일 예약목록 */}
 			<AreaTitle title={`${formatDate as string}  예약 목록`} url="#" />
+			{/* 예약 상태 설명 */}
 			<BadgeDescription title="예약 상태" descriptionList={BOOKING_STATUS_DESC_LIST} badgeList={badgeList} />
-			<BookingList />
+			{/* 지정일의 예약 목록 */}
+			<BookingList date={date} />
 		</BookingPageLayout>
 	);
 }
