@@ -8,6 +8,7 @@
 	padding: 15px;
 	border-radius: var.$rd-sm;
 	background-color: var.$white;
+	background-color: var.$light-400;
 
 	#top {
 		@include flex-row;
