@@ -18,6 +18,7 @@ function ShopDetailPageLayout({ children }: { children: ReactNode[] }) {
 					{children[3]}
 				</div>
 			</ContentsLayout>
+			{children[4]}
 			{/* 위와 30px 상품 디테일 정보 */}
 			{/* 위와 10PX 추가적인 상품 소개 더보기 */}
 			{/* 가격과 구매하기 버튼 */}

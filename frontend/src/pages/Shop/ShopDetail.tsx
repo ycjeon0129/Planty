@@ -8,6 +8,7 @@ import { ProductDetail } from 'dummy';
 import Title from 'components/atoms/productdetail/title/title';
 import InfoList from 'components/atoms/productdetail/infolist/InfoList';
 // import { IProduct } from 'types/dummy';
+import ImgDetail from 'components/atoms/productdetail/imgdetail/ImgDetail';
 
 function ShopDetail() {
 	// 이미지 리스트 가져와서
@@ -18,7 +19,7 @@ function ShopDetail() {
 			<ProductImg imgUrls={[ProductIcon, ProductIcon2]} />
 			<Title />
 			<InfoList product={ProductDetail[0]} />
-			<div>4</div>
+			<ImgDetail />
 		</ShopDetailPageLayout>
 	);
 }
