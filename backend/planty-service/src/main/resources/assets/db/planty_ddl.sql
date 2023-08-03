@@ -134,6 +134,7 @@ CREATE TABLE IF NOT EXISTS `planty`.`user_subscribe` (
   `GM_INFO_gid` INT UNSIGNED NOT NULL COMMENT 'GM 식별키(외래키)',
   `consulting_remain_cnt` INT NOT NULL DEFAULT '0' COMMENT '남은 컨설팅 횟수',
   `start_date` DATE NOT NULL DEFAULT (CURRENT_DATE) COMMENT '구독 시작일',
+  `end_date` DATE DEFAULT NULL COMMENT '구독 종료일',
   PRIMARY KEY (`sid`),
   UNIQUE INDEX `arduino_id` (`arduino_id` ASC) VISIBLE,
   INDEX `USER_SUBSCRIBE_TO_USER_INFO_FK_uid` (`USER_INFO_uid` ASC) VISIBLE,

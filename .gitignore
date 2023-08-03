@@ -362,7 +362,7 @@ $RECYCLE.BIN/
 ### Spring Boot ###
 # OAuth info
 **/application-oauth.yml
-**/env.yml
+**/application-env.yml
 
 ### Intellij made it ###
 HELP.md
@@ -371,6 +371,9 @@ build/
 !gradle/wrapper/gradle-wrapper.jar
 !**/src/main/**/build/
 !**/src/test/**/build/
+
+### log files ###
+**/*.gz
 
 ### STS ###
 .apt_generated

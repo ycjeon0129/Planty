@@ -1,7 +1,7 @@
 package com.planty.api.user.controller;
 
-import com.planty.common.auth.JwtProvider;
-import com.planty.common.auth.MemberJwtContextHolder;
+//import com.planty.common.auth.JwtProvider;
+//import com.planty.common.auth.UserInfoJwtContextHolder;
 import com.planty.db.entity.UserInfo;
 import com.planty.db.repository.UserInfoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,21 +23,26 @@ public class UserInfoController {
     @Autowired
     UserInfoRepository userInfoRepository;
 
-    private final JwtProvider jwtProvider;
+//    private final JwtProvider jwtProvider;
+//
+//    public UserInfoController(JwtProvider jwtProvider) {
+//        this.jwtProvider = jwtProvider;
+//    }
 
-    public UserInfoController(JwtProvider jwtProvider) {
-        this.jwtProvider = jwtProvider;
+    @GetMapping("google-login")
+    public String googleLogIn() {
+        return new String("Hi");
     }
 
-    @GetMapping("/auth/check")
-    public Long check() {
-        return MemberJwtContextHolder.getMemberJwtToken().getMemberId();
-    }
-
-    @GetMapping("/token")
-    public String generateToken() throws Exception {
-        return jwtProvider.generateAccessToken(Collections.singletonMap("member_id", "1"), Duration.ofMinutes(5));
-    }
+//    @GetMapping("/auth/check")
+//    public Long check() {
+//        return UserInfoJwtContextHolder.getMemberJwtToken().getUserInfoId();
+//    }
+//
+//    @GetMapping("/token")
+//    public String generateToken() throws Exception {
+//        return jwtProvider.generateAccessToken(Collections.singletonMap("member_id", "1"), Duration.ofMinutes(5));
+//    }
 
 
     @GetMapping("/{nickname}/{auth}")

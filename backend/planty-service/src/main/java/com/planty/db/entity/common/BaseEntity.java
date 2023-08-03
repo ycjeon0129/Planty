@@ -3,10 +3,7 @@ package com.planty.db.entity.common;
 import lombok.Getter;
 import lombok.Setter;
 
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.MappedSuperclass;
+import javax.persistence.*;
 
 /**
  * 모델 간 공통 사항 정의.
