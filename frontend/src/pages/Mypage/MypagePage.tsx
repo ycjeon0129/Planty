@@ -1,7 +1,7 @@
 import React from 'react';
 import PageTitle from 'components/atoms/common/PageTitle/PageTitle';
 import MypagePageLayout from 'components/layout/Page/MypagePageLayout/MypagePageLayout';
-import LeafIcon from 'assets/icons/pageTitle/Leaf.svg';
+import MypageIcon from 'assets/icons/tabbar/MypageImg.svg';
 import MypageSubmenuList from 'components/organisms/mypage/MypageSubmenuList/MypageSubmenuList';
 import UserProfile from 'components/organisms/mypage/UserProfile/UserProfile';
 import MiniShortcutButton from 'components/atoms/common/MiniShortcutButton/MiniShortcutButton';
@@ -13,7 +13,7 @@ function MypagePage() {
 	return (
 		<MypagePageLayout>
 			{/* 페이지 헤더 */}
-			<PageTitle icon={LeafIcon} text="마이페이지" />
+			<PageTitle icon={MypageIcon} text="마이페이지" />
 
 			{/* 내 정보(img, 닉네임) */}
 			<UserProfile />
