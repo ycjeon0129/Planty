@@ -50,6 +50,7 @@ public class SecurityConfig {
 
         //요청에 대한 권한 설정
         http.authorizeRequests()
+                .antMatchers(("/**")).permitAll()
                 .antMatchers("/oauth2/**").permitAll()
                 .anyRequest().authenticated();
 
