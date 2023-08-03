@@ -11,6 +11,7 @@ import MypagePage from 'pages/Mypage/MypagePage';
 import SubscribePage from 'pages/subscribe/Subscribe/SubscribePage';
 import SubscribeListPage from 'pages/subscribe/SubscribeList/SubscribeListPage';
 import SubscribeDetailPage from 'pages/subscribe/SubscribeDetail/SubscribeDetailPage';
+import BookingPage from 'pages/BookingPage/BookingPage';
 import LoadingPage from 'pages/Etc/LoadingPage';
 import ErrorPage from 'pages/Etc/ErrorPage';
 import Develop from 'pages/Develop';
@@ -46,10 +47,12 @@ function AppRouter() {
 						<Route path="/shop/detail/:pid" element={<ShopDetail />} />
 						<Route path="/emergency" element={<EmergencyPage />} />
 						<Route path="/mypage" element={<MypagePage />} />
+						<Route path="/mypage/booking" element={<BookingPage />} />
 						<Route path="/mypage/:menu" element={<MypageSubMenuDetailPage />} />
 						<Route path="/subscribe" element={<SubscribePage />}>
 							<Route index element={<SubscribeListPage />} />
 							<Route path=":sid" element={<SubscribeDetailPage />} />
+							<Route path=":sid/booking" element={<div />} />
 						</Route>
 					</Route>
 
