@@ -1,4 +1,4 @@
-import { ISubscribe, IProduct, IBanner, IConsulting } from 'types/dummy';
+import { ISubscribe, IProduct, IBanner, IConsulting, IProductDetail } from 'types/dummy';
 
 export const dummyBookings: IConsulting[] = [
 	{
