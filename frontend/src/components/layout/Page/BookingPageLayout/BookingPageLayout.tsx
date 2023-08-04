@@ -1,10 +1,10 @@
 import React, { ReactNode } from 'react';
-import './BookingManagementPageLayout.scss';
+import './BookingPageLayout.scss';
 import PageLayout from 'components/layout/common/PageLayout/PageLayout';
 import NavigationLayout from 'components/layout/navigation/NavigationLayout/NavigationLayout';
 import ContentsLayout from 'components/layout/common/ContentsLayout/ContentsLayout';
 
-function BookingManagementPageLayout({ children }: { children: ReactNode[] }) {
+function BookingPageLayout({ children }: { children: ReactNode[] }) {
 	return (
 		<PageLayout>
 			{/* 페이지 헤더 */}
@@ -25,4 +25,4 @@ function BookingManagementPageLayout({ children }: { children: ReactNode[] }) {
 	);
 }
 
-export default BookingManagementPageLayout;
+export default BookingPageLayout;

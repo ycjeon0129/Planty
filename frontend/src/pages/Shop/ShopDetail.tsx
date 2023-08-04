@@ -15,7 +15,7 @@ function ShopDetail() {
 	// imgUrls에 넣기
 	return (
 		<ShopDetailPageLayout>
-			<PageTitleButton type="back" text="이전으로" />
+			<PageTitleButton type="back" text="구독 상품 상세정보" />
 			<ProductImg imgUrls={[ProductIcon, ProductIcon2]} />
 			<Title />
 			<InfoList product={ProductDetail[0]} />

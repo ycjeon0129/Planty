@@ -1,6 +1,6 @@
 import React from 'react';
 import AreaTitle from 'components/atoms/common/AreaTitle/AreaTitle';
-import BookingPageLayout from 'components/layout/Page/BookingPageLayout/BookingManagementPage';
+import BookingManagementLayout from 'components/layout/Page/BookingManagementLayout/BookingManagementLayout';
 import PageTitleButton from 'components/atoms/common/PageTitleButton/PageTitleButton';
 import CustomCalendar from 'components/atoms/booking/FullScheduleCalendar/FullScheduleCalendar';
 import useSelectedDate from 'hooks/useSelectedDate';
@@ -9,7 +9,7 @@ import SubscribeStateBadge from 'components/atoms/subscribe/SubscribeStateBadge/
 import BadgeDescription from 'components/organisms/common/BadgeDescription/BadgeDescription';
 import { BOOKING_STATUS_DESC_LIST } from 'constants/common/StatusDescList';
 
-function BookingPage() {
+function BookingManagement() {
 	const [date, setDate, formatDate] = useSelectedDate();
 
 	const badgeList = [
@@ -19,7 +19,7 @@ function BookingPage() {
 	];
 
 	return (
-		<BookingPageLayout>
+		<BookingManagementLayout>
 			{/* 페이지 헤더 */}
 			<PageTitleButton type="back" text="예약 관리" />
 			{/* 전체 예약일정 영역 헤더 */}
@@ -32,8 +32,8 @@ function BookingPage() {
 			<BadgeDescription title="예약 상태" descriptionList={BOOKING_STATUS_DESC_LIST} badgeList={badgeList} />
 			{/* 지정일의 예약 목록 */}
 			<BookingList date={date} />
-		</BookingPageLayout>
+		</BookingManagementLayout>
 	);
 }
 
-export default BookingPage;
+export default BookingManagement;

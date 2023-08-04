@@ -17,7 +17,7 @@ function SubscribePage() {
 	return (
 		<SubscribePageLayout>
 			{/* 페이지 헤더 */}
-			<PageTitleButton type="back" text="구독 목록" />
+			<PageTitleButton type="back" text="내 구독 목록" />
 
 			{/* 상태 설명 */}
 			<BadgeDescription title="컨설팅 상태" descriptionList={CONSULTING_STATUS_DESC_LIST} badgeList={badgeList} />
