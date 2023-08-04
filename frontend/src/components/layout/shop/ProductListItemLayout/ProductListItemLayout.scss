@@ -5,7 +5,7 @@
 
 .product-list-item-layout {
 	@include border-gray;
-	padding: var.$pd-lg;
+	padding: 15px;
 	border-radius: var.$rd-sm;
 	background-color: var.$white;
 	width: 100%;
@@ -15,6 +15,10 @@
 		align-items: center;
 		justify-content: space-between;
 		padding-bottom: var.$pd-lg;
+		font-weight: bold;
+		span:first-child {
+			font-size: 1.25rem;
+		}
 	}
 
 	#bottom {
@@ -36,6 +40,10 @@
 
 			span {
 				font-size: var.$p2;
+
+				&:first-child {
+					font-weight: bold;
+				}
 			}
 		}
 	}
