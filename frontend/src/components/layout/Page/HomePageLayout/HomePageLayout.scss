@@ -1,5 +1,5 @@
 @use 'styles/base/variable' as var;
-@import "styles/mixins/common";
+@import 'styles/mixins/common';
 
 .home-page-layout-container {
 	display: flex;
@@ -10,6 +10,15 @@
 	}
 
 	#my-subcribe {
+		#bottom {
+			#right {
+				.info-list-item {
+					span {
+						font-size: 1rem;
+					}
+				}
+			}
+		}
 	}
 
 	#menu {
@@ -28,7 +37,7 @@
 			justify-content: space-between;
 			flex-direction: column;
 
-			div{
+			div {
 				@include border-gray;
 			}
 		}
