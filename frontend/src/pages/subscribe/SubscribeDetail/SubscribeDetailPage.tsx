@@ -6,6 +6,8 @@ import SubscribeListItem from 'components/organisms/subscribe/SubscribeListItem/
 import { dummySubscribeDetail } from 'dummy';
 import ConsultingInfo from 'components/organisms/subscribe/ConsultingInfo/ConsultingInfo';
 
+const sid = 0;
+
 function SubscribeDetailPage() {
 	return (
 		<SubscribeDetailPageLayout>
@@ -18,7 +20,7 @@ function SubscribeDetailPage() {
 
 			{/* 컨설팅 정보 */}
 			<AreaTitle title="컨설팅 정보" url="#" />
-			<ConsultingInfo consulting={dummySubscribeDetail.info} />
+			<ConsultingInfo sid={sid} consulting={dummySubscribeDetail.info} />
 
 			{/* 온습도 정보 */}
 			<AreaTitle title="온습도 정보" url="#" />
