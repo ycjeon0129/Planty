@@ -12,6 +12,7 @@
 	font-size: $h5;
 	padding-right: $pd-md;
 	padding-left: $pd-md;
+	font-weight: normal;
 }
 
 .filter-button {
@@ -19,6 +20,6 @@
 		@include buttonColor($primary);
 	}
 	&.disabled {
-		@include buttonColor($black-200);
+		@include buttonColor($black-300);
 	}
 }
