@@ -8,7 +8,6 @@
 	padding: 15px;
 	border-radius: var.$rd-sm;
 	background-color: var.$white;
-	background-color: var.$light-400;
 
 	#top {
 		@include flex-row;
@@ -21,9 +20,10 @@
 
 		img {
 			border-radius: var.$rd-sm;
-			min-width: var.$img-size-sm;
-			max-width: var.$img-size-sm;
-			height: var.$img-size-sm;
+			min-width: var.$img-size-xs;
+			max-width: var.$img-size-xs;
+			height: var.$img-size-xs;
+			object-fit: cover;
 		}
 
 		#right {
@@ -31,6 +31,14 @@
 			padding: 0 var.$pd-lg;
 			width: 100%;
 			justify-content: space-between;
+
+			.info-list-item {
+				gap: 10px;
+
+				span {
+					font-size: var.$p2;
+				}
+			}
 		}
 	}
 }

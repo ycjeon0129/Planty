@@ -1,6 +1,6 @@
 import React from 'react';
 import AreaTitle from 'components/atoms/common/AreaTitle/AreaTitle';
-import BookingPageLayout from 'components/layout/Page/BookingPageLayout/BookingPageLayout';
+import BookingPageLayout from 'components/layout/Page/BookingPageLayout/BookingManagementPage';
 import PageTitleButton from 'components/atoms/common/PageTitleButton/PageTitleButton';
 import CustomCalendar from 'components/atoms/booking/FullScheduleCalendar/FullScheduleCalendar';
 import useSelectedDate from 'hooks/useSelectedDate';

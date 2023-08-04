@@ -10,7 +10,7 @@ import EmergencyPage from 'pages/Emergency/EmergencyPage';
 import MypagePage from 'pages/Mypage/MypagePage';
 import SubscribePage from 'pages/subscribe/Subscribe/SubscribePage';
 import SubscribeDetailPage from 'pages/subscribe/SubscribeDetail/SubscribeDetailPage';
-import BookingPage from 'pages/Booking/BookingPage';
+import BookingManagementPage from 'pages/BookingManagement/BookingManagementPage';
 import LoadingPage from 'pages/Etc/LoadingPage';
 import ErrorPage from 'pages/Etc/ErrorPage';
 import Develop from 'pages/Develop';
@@ -46,7 +46,7 @@ function AppRouter() {
 						<Route path="/shop/detail/:pid" element={<ShopDetail />} />
 						<Route path="/emergency" element={<EmergencyPage />} />
 						<Route path="/mypage" element={<MypagePage />} />
-						<Route path="/mypage/booking" element={<BookingPage />} />
+						<Route path="/mypage/booking" element={<BookingManagementPage />} />
 						<Route path="/mypage/:menu" element={<MypageSubMenuDetailPage />} />
 						<Route path="/subscribe" element={<SubscribePage />} />
 						<Route path="/subscribe/:sid" element={<SubscribeDetailPage />} />
