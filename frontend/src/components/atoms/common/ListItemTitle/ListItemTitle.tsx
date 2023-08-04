@@ -2,6 +2,7 @@ import React from 'react';
 import NextIcon from 'assets/icons/Next.svg';
 import { Link } from 'react-router-dom';
 import './ListItemTitle.scss';
+import sliceText from 'utils/formatText';
 
 /**
  * 구독, 상품 등의 리스트를 구성하는 아이템
@@ -12,7 +13,7 @@ function ListItemTitle({ title, url }: { title: string; url: string }) {
 	return (
 		<h5 className="list-item-title">
 			<Link to={url}>
-				<span>{title}</span>
+				<span>{sliceText(title)}</span>
 				<img src={NextIcon} alt="" />
 			</Link>
 		</h5>

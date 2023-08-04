@@ -7,7 +7,7 @@ function ConsultingDetailList({ list }: { list: IConsultingHistory[] }) {
 	return (
 		<ul className="consultin-detail-list-container">
 			{list.map((v) => (
-				<ConsultingDetail data={v} />
+				<ConsultingDetail key={v.consultingDate} data={v} />
 			))}
 		</ul>
 	);

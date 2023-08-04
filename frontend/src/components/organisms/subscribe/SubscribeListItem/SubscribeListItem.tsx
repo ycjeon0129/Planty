@@ -5,6 +5,7 @@ import SubscribeStateBadge from 'components/atoms/subscribe/SubscribeStateBadge/
 import Button from 'components/atoms/common/Button/Button';
 import InfoList from 'components/organisms/common/InfoList/InfoList';
 import { ISubscribe } from 'types/dummy';
+import { SUBSCRIBE_LIST_ITEM_LABELS } from 'constants/common/Labels';
 
 /**
  * 구독 목록 아이템
@@ -20,7 +21,7 @@ function SubscribeListItem({ subscribe }: { subscribe: ISubscribe }) {
 			<ListItemTitle title={subscribe.title} url={`/subscribe/${subscribe.sid}`} />
 			<SubscribeStateBadge stateKey={subscribe.state} />
 			<img src={subscribe.thumbnail} alt="" />
-			<InfoList info={subscribe.info} />
+			<InfoList info={subscribe.info} labels={SUBSCRIBE_LIST_ITEM_LABELS} />
 			<Button isActive={false} text="컨설팅 이용하기" handleClick={testFunc} />
 		</SubscribeItemLayout>
 	);

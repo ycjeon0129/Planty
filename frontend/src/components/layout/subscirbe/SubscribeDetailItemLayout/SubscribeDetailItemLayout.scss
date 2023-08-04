@@ -2,7 +2,7 @@
 @import 'styles/mixins/common';
 @import 'styles/mixins/flex';
 
-.subscribe-list-item-layout {
+.subscribe-detail-item-layout {
 	@include border-gray;
 	width: 100%;
 	padding: 15px;
@@ -10,7 +10,7 @@
 	background-color: var.$white;
 
 	#top {
-		@include flex-row(5px);
+		@include flex-row;
 		@include flex-align(between, center);
 		margin-bottom: 10px;
 	}
@@ -20,17 +20,16 @@
 
 		img {
 			border-radius: var.$rd-sm;
-			min-width: var.$img-size-xs;
-			max-width: var.$img-size-xs;
-			height: var.$img-size-xs;
+			width: 40%;
+			height: 100%;
 			object-fit: cover;
 		}
 
 		#right {
-			@include flex-column;
+			@include flex-column(var.$mb-content-sm);
+			@include flex-align(start, start);
 			padding: 0 var.$pd-lg;
 			width: 100%;
-			justify-content: space-between;
 
 			.info-list-item {
 				gap: 10px;

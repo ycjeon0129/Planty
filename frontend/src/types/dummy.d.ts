@@ -15,6 +15,7 @@ export interface IConsultingSummary {
 }
 
 export interface ISubscribeDetail extends ISubscribe {
+	plantName: string;
 	detailInfo: {
 		subscribeStartDate: string;
 		subscribeEndDate: string;
