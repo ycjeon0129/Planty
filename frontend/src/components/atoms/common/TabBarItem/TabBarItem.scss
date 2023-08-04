@@ -1,19 +1,26 @@
+@use 'styles/base/variable' as var;
+@import 'styles/mixins/flex';
+
 .menu-box {
 	width: 100%;
 	cursor: pointer;
 }
 
 .icon-box {
-	display: flex;
-	gap: 2px;
-	justify-content: center;
-	flex-direction: column;
-	align-items: center;
-	img {
-		display: block;
-	}
-}
+	@include flex-column(2px);
+	@include flex-align(center, center);
 
-.green {
-	color: #03c75a;
+	&:hover {
+		svg path {
+			fill: var.$primary;
+		}
+
+		color: var.$primary;
+	}
+
+	&.active {
+		svg path {
+			fill: var.$primary;
+		}
+	}
 }
