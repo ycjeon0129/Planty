@@ -11,8 +11,17 @@ function useTabbarRender() {
 	const location = useLocation();
 
 	useEffect(() => {
-		if (NOT_ARROWED_PATH.includes(location.pathname)) setIsTabbarRender(false);
-		else setIsTabbarRender(true);
+		const isPathExcluded = NOT_ARROWED_PATH.some((path) => {
+			if (typeof path === 'string') {
+				return path === location.pathname;
+			}
+			if (path instanceof RegExp) {
+				return path.test(location.pathname);
+			}
+			return false;
+		});
+
+		setIsTabbarRender(!isPathExcluded);
 	}, [location]);
 
 	return isTabbarRender;
