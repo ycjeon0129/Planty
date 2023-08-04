@@ -1,32 +1,26 @@
 package com.planty.db.entity.common;
 
-import lombok.Getter;
-import lombok.Setter;
-
-import javax.persistence.*;
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-
-import java.time.LocalDateTime;
-import lombok.NoArgsConstructor;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedDate;
-import org.springframework.data.jpa.domain.support.AuditingEntityListener;
-
 /**
  * 모델 간 공통 사항 정의.
  */
-@Getter
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
-@AllArgsConstructor
-@MappedSuperclass
-@EntityListeners(AuditingEntityListener.class)
-public abstract class BaseEntity {
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
 
+import javax.persistence.MappedSuperclass;
+import java.time.LocalDateTime;
+
+@MappedSuperclass
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+public class BaseEntity {
     @CreatedDate
-    private LocalDateTime created_at; //생성일자
+    private LocalDateTime joinDate;
 
     @LastModifiedDate
-    private LocalDateTime updated_date; //수정일자
+    private LocalDateTime modifiedDate;
 }

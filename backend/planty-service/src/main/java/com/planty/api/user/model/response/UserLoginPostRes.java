@@ -1,4 +1,4 @@
-package com.planty.api.user.model.response;
-
-public class UserLoginPostRes {
-}
+//package com.planty.api.user.model.response;
+//
+//public class UserLoginPostRes {
+//}

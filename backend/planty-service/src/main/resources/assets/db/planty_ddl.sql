@@ -67,6 +67,7 @@ CREATE TABLE IF NOT EXISTS `planty`.`user_info` (
   `modified_date` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '사용자 정보 수정일시',
   `emergency_count` INT UNSIGNED NOT NULL DEFAULT '1' COMMENT '사용자 응급실 이용권 개수. 최초 가입 시 1개 제공',
   `shipping_address` VARCHAR(256) NULL DEFAULT NULL COMMENT '사용자 배송지 정보',
+  `user_type` VARCHAR(32) NULL DEFAULT 'NORMAL' COMMENT '사용자 소셜 로그인 타입',
   PRIMARY KEY (`uid`),
   UNIQUE INDEX `email` (`email` ASC) VISIBLE)
 ENGINE = InnoDB
