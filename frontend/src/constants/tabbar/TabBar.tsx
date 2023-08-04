@@ -31,4 +31,4 @@ export const MENUS: TabBarProps = {
 	},
 };
 
-export const NOT_ARROWED_PATH = ['/error', '/mypage/booking', '/subscribe/:sid/booking'];
+export const NOT_ARROWED_PATH = ['/error', '/mypage/booking', '/subscribe/:sid/booking', '/login'];

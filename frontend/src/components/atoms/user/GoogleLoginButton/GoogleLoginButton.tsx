@@ -1,23 +1,26 @@
 import React from 'react';
-import { GoogleOAuthProvider, GoogleLogin } from '@react-oauth/google';
+import { useGoogleLogin } from '@react-oauth/google';
+import axios from 'axios';
+import { ReactComponent as GoogleIcon } from 'assets/icons/Google.svg';
 import './GoogleLoginButton.scss';
 
 function GoogleLoginButton() {
-	const clientId = process.env.REACT_APP_GOOGLE_CLIENT_ID as string;
-
-	const onSuccess = (credentialResponse: object) => {
-		alert('success');
-		console.log(credentialResponse);
-	};
-
-	const onError = () => {
-		alert('failure');
-	};
+	const login = useGoogleLogin({
+		onSuccess: (tokenResponse) => {
+			axios
+				.post(`http://localhost:8080/api/users/social-local`, { code: tokenResponse.code })
+				.then((res) => console.log(res));
+		},
+		flow: 'auth-code',
+	});
 
 	return (
-		<GoogleOAuthProvider clientId={clientId}>
-			<GoogleLogin width="400px" logo_alignment="center" onSuccess={onSuccess} onError={onError} />
-		</GoogleOAuthProvider>
+		<div className="google-login-button-container">
+			<GoogleIcon />
+			<button type="button" onClick={() => login()}>
+				Google 계정으로 로그인 하기
+			</button>
+		</div>
 	);
 }
 

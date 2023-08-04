@@ -4,5 +4,9 @@
 .consulting-history-page-layout {
 	#subscribe-name {
 		margin-bottom: var.$mb-content-sm;
+
+		h2 {
+			font-weight: bold;
+		}
 	}
 }

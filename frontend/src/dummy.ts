@@ -3,6 +3,7 @@ import { ISubscribe, IProduct, IBanner, IConsulting, ISubscribeDetail, IProductD
 
 export const dummyBookings: IConsulting[] = [
 	{
+		sid: 0,
 		cid: 1,
 		user: '김인혁',
 		greenmate: '전인혁',
@@ -21,6 +22,7 @@ export const dummyBookings: IConsulting[] = [
 		},
 	},
 	{
+		sid: 1,
 		cid: 2,
 		user: '양시온',
 		greenmate: '전윤철',
@@ -39,6 +41,7 @@ export const dummyBookings: IConsulting[] = [
 		},
 	},
 	{
+		sid: 2,
 		cid: 3,
 		user: '누구냐',
 		greenmate: '이금규띠',

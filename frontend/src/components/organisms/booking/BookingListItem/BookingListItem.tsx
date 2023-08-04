@@ -30,7 +30,7 @@ function BookingListItem({ booking }: { booking: IConsulting }) {
 
 	return (
 		<BookingListItemLayout>
-			<ListItemTitle title={booking.subscribe} url={`/booking/${booking.cid}`} />
+			<ListItemTitle title={booking.subscribe} url={`/subscribe/${booking.sid}`} />
 			<SubscribeStateBadge stateKey={state} />
 			<img src={booking.thumbnail} alt="" />
 			<InfoList info={{ consultingDate: moment(booking.date).format('YYYY-MM-DD') }} />
