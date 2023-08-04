@@ -15,6 +15,7 @@ import LoadingPage from 'pages/Etc/LoadingPage';
 import ErrorPage from 'pages/Etc/ErrorPage';
 import Develop from 'pages/Develop';
 import MypageSubMenuDetailPage from 'pages/Mypage/MypageSubMenuDetailPage';
+import ConsultingHistoryPage from 'pages/subscribe/ConsultingHistory/ConsultingHistoryPage';
 import PrivateRoute from './PrivateRoute';
 import 'styles/index.scss';
 
@@ -50,7 +51,7 @@ function AppRouter() {
 						<Route path="/mypage/:menu" element={<MypageSubMenuDetailPage />} />
 						<Route path="/subscribe" element={<SubscribePage />} />
 						<Route path="/subscribe/:sid" element={<SubscribeDetailPage />} />
-						<Route path="/subscribe/:sid/booking" element={<div />} />
+						<Route path="/subscribe/:sid/booking" element={<ConsultingHistoryPage />} />
 					</Route>
 
 					{/* 컴포넌트 개발용 */}
