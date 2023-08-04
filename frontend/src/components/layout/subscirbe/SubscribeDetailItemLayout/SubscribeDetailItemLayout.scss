@@ -1,0 +1,43 @@
+@use 'styles/base/variable' as var;
+@import 'styles/mixins/common';
+@import 'styles/mixins/flex';
+
+.subscribe-detail-item-layout {
+	@include border-gray;
+	width: 100%;
+	padding: 15px;
+	border-radius: var.$rd-sm;
+	background-color: var.$white;
+
+	#top {
+		@include flex-row;
+		@include flex-align(between, center);
+		margin-bottom: 10px;
+	}
+
+	#bottom {
+		display: flex;
+
+		img {
+			border-radius: var.$rd-sm;
+			width: 40%;
+			height: 100%;
+			object-fit: cover;
+		}
+
+		#right {
+			@include flex-column(var.$mb-content-sm);
+			@include flex-align(start, start);
+			padding: 0 var.$pd-lg;
+			width: 100%;
+
+			.info-list-item {
+				gap: 10px;
+
+				span {
+					font-size: var.$p2;
+				}
+			}
+		}
+	}
+}

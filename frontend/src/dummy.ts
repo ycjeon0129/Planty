@@ -168,6 +168,7 @@ export const ProductDetail: IProductDetail[] = [
 export const dummySubscribeDetail: ISubscribeDetail = {
 	sid: 0,
 	title: '누구나 쉽게 키우는 몬스테라 클래스',
+	plantName: '몬스테라',
 	state: 'wait',
 	thumbnail: 'https://www.flowerrepublic.co.kr/shopimages/sungmo9160/0090010004832.jpg?1665473103',
 	info: { startDate: '2023/07/23', consultCount: '총 5회 / 잔여 3회', consultDate: '2023/07/23 14:00' },
