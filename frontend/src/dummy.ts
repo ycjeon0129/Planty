@@ -1,3 +1,4 @@
+import IConsultingHistory from 'types/consulting';
 import { ISubscribe, IProduct, IBanner, IConsulting, ISubscribeDetail, IProductDetail } from 'types/dummy';
 
 export const dummyBookings: IConsulting[] = [
@@ -218,5 +219,31 @@ export const dummySubscribeDetail: ISubscribeDetail = {
 		},
 	],
 };
+
+export const CONSULTING_HISTORY_LIST: IConsultingHistory[] = [
+	{
+		consultingDate: '2023-07-04 (월) 14:00',
+		endDate: '2023-07-04 (월) 14:30',
+		bookingState: 'join',
+		recommendDate: '2023-07-24 ~ 2023-07-31',
+		consultingComment:
+			'지금 물을 너무 안 주고 계세요.\n물은 하루에 2번 종이컵 반 만큼 주시고 가급적이면 주기적인 시간에 주세요.',
+	},
+	{
+		consultingDate: '2023-07-04 (월) 14:00',
+		endDate: '',
+		bookingState: 'notJoin',
+		recommendDate: '',
+		consultingComment: '',
+	},
+	{
+		consultingDate: '2023-07-04 (월) 14:00',
+		endDate: '2023-07-04 (월) 14:30',
+		bookingState: 'join',
+		recommendDate: '2023-07-24 ~ 2023-07-31',
+		consultingComment:
+			'지금 물을 너무 안 주고 계세요.\n물은 하루에 2번 종이컵 반 만큼 주시고 가급적이면 주기적인 시간에 주세요.',
+	},
+];
 
 export default dummySubscribe;
