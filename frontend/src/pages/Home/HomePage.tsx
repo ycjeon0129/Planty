@@ -15,7 +15,7 @@ function HomePage() {
 		<HomePageLayout>
 			<Header />
 			<BannerSlider />
-			<AreaTitle title="내 구독 정보" url="subscribe" />
+			<AreaTitle title="내 구독 정보" url="/subscribe" />
 			<SubscribeSlider />
 			<AreaTitle title="서비스 바로가기" url="#" />
 			<SquareShortcutButton
