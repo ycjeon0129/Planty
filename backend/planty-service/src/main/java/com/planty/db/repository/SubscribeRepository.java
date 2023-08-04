@@ -1,4 +1,4 @@
-package com.planty.api.subscribe.repository;
+package com.planty.db.repository;
 
 
 import com.planty.api.subscribe.response.FindSubscribeResponse;

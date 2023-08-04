@@ -13,12 +13,11 @@ spring:
       max-lifetime: '1800000'
       minimum-idle: '50'
   jpa:
-    properties:
-      hibernate:
-        format_sql: 'true'
-    show-sql: 'true'
     hibernate:
       ddl-auto: update
+    properties:
+      show_sql: true
+      format_sql: true
   devtools:
     livereload:
       enabled: 'true'
