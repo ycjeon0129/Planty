@@ -13,8 +13,8 @@ function TabBarItem({ MenuKey }: TabBarItemProps) {
 	const [isActive, setIsActive] = useState<boolean>(false);
 
 	useEffect(() => {
-		// Check if the current URL matches the MenuKey
-		setIsActive(location.pathname === `/${MenuKey}`);
+		// Check if the current URL contains the MenuKey
+		setIsActive(location.pathname.includes(`/${MenuKey}`));
 	}, [location.pathname, MenuKey]);
 
 	const handleLinkClick = () => {
