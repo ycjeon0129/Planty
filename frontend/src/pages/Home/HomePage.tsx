@@ -6,8 +6,11 @@ import BannerSlider from 'components/organisms/common/BannerSlider/BannerSlider'
 import SquareShortcutButton from 'components/atoms/common/SquareShortcutButton/SquareShortcutButton';
 import RectShortcutButton from 'components/atoms/common/RectShortcutButton/RectShortcutButton';
 import Header from 'components/organisms/common/Header/Header';
+import useMovePage from 'hooks/useMovePage';
 
 function HomePage() {
+	const { movePage } = useMovePage();
+
 	return (
 		<HomePageLayout>
 			<Header />
@@ -18,7 +21,7 @@ function HomePage() {
 			<SquareShortcutButton
 				text="예약관리"
 				handleClick={() => {
-					alert('예약관리로 이동');
+					movePage('/mypage/booking');
 				}}
 				type="booking"
 			/>
