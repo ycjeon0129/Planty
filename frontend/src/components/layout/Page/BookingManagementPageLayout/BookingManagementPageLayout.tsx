@@ -2,7 +2,7 @@ import React, { ReactNode } from 'react';
 import PageLayout from 'components/layout/common/PageLayout/PageLayout';
 import NavigationLayout from 'components/layout/navigation/NavigationLayout/NavigationLayout';
 import ContentsLayout from 'components/layout/common/ContentsLayout/ContentsLayout';
-import './BookingManagementLayout.scss';
+import './BookingManagementPageLayout.scss';
 
 function BookingManagementPageLayout({ children }: { children: ReactNode[] }) {
 	return (

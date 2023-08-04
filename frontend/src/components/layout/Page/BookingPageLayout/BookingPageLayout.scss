@@ -2,7 +2,4 @@
 @import 'styles/mixins/flex';
 
 .booking-page-layout {
-	#booking-list {
-		@include flex-column(var.$mb-content-sm);
-	}
 }
