@@ -6,6 +6,7 @@ import InfoList from 'components/organisms/common/InfoList/InfoList';
 import { IConsulting } from 'types/dummy';
 import BookingListItemLayout from 'components/layout/booking/BookingListItemLayout/BookingListItemLayout';
 import moment from 'moment';
+import BOOKING_LIST_ITEM_LABELS from 'constants/common/Labels';
 
 /**
  * 예약 목록 아이템
@@ -33,7 +34,10 @@ function BookingListItem({ booking }: { booking: IConsulting }) {
 			<ListItemTitle title={booking.subscribe} url={`/subscribe/${booking.sid}`} />
 			<SubscribeStateBadge stateKey={state} />
 			<img src={booking.thumbnail} alt="" />
-			<InfoList info={{ consultingDate: moment(booking.date).format('YYYY-MM-DD') }} />
+			<InfoList
+				info={{ consultingDate: moment(booking.date).format('YYYY-MM-DD') }}
+				labels={BOOKING_LIST_ITEM_LABELS}
+			/>
 			<Button isActive={false} text="컨설팅 이용하기" handleClick={testFunc} />
 		</BookingListItemLayout>
 	);

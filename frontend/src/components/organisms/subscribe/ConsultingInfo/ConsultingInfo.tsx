@@ -4,6 +4,7 @@ import InfoList from 'components/organisms/common/InfoList/InfoList';
 import Button from 'components/atoms/common/Button/Button';
 import { IConsultingSummary } from 'types/dummy';
 import useMovePage from 'hooks/useMovePage';
+import { CONSULTING_INFO_LABELS } from 'constants/common/Labels';
 import ConsultingStickerList from '../ConsultingStickerList/ConsultingStickerList';
 
 function ConsultingInfo({ sid, consulting }: { sid: number; consulting: IConsultingSummary }) {
@@ -18,7 +19,7 @@ function ConsultingInfo({ sid, consulting }: { sid: number; consulting: IConsult
 	return (
 		<ConsultingInfoLayout>
 			<ConsultingStickerList consultingStatus={[0, 1, 0, 0, 2, 2]} />
-			<InfoList info={info} />
+			<InfoList info={info} labels={CONSULTING_INFO_LABELS} />
 			<Button isActive text="예약하기" handleClick={() => movePage('booking')} />
 			<Button isActive={false} text="컨설팅 내역보기" handleClick={() => movePage(`/subscribe/${sid}/consulting`)} />
 		</ConsultingInfoLayout>
