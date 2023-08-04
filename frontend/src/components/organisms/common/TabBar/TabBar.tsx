@@ -5,10 +5,10 @@ import 'components/organisms/common/TabBar/TabBar.scss';
 function TabBar() {
 	return (
 		<div className="tabbar-list">
-			<TabBarItem MenuKey="home" />
-			<TabBarItem MenuKey="shop" />
-			<TabBarItem MenuKey="emergency" />
-			<TabBarItem MenuKey="mypage" />
+			<TabBarItem menuKey="home" />
+			<TabBarItem menuKey="shop" />
+			<TabBarItem menuKey="emergency" />
+			<TabBarItem menuKey="mypage" />
 		</div>
 	);
 }
