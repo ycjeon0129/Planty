@@ -1,0 +1,6 @@
+@import 'styles/base/variable';
+@import 'styles/mixins/flex';
+
+.consultin-detail-list-container {
+	@include flex-column($mb-content-sm);
+}
