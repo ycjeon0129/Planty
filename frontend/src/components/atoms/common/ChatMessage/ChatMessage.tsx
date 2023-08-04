@@ -35,5 +35,5 @@ function ChatMessage({ text, time, person }: { text: string; time: string; perso
 
 	return <div>사용자가 Me나 You가 아님!!</div>;
 }
-//
+
 export default ChatMessage;
