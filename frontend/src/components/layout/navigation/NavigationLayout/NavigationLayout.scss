@@ -5,4 +5,8 @@
 	align-items: center;
 	height: var.$nav-height;
 	margin-bottom: var.$mb-content-sm;
+
+	h1 {
+		font-weight: bold;
+	}
 }
