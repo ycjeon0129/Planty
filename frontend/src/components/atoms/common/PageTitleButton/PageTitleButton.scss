@@ -2,7 +2,7 @@
 @import 'styles/mixins/flex';
 @import 'styles/mixins/common';
 
-.header-button {
+.page-title-button {
 	@include flex-row();
 	@include flex-align;
 

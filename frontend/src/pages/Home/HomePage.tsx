@@ -6,19 +6,22 @@ import BannerSlider from 'components/organisms/common/BannerSlider/BannerSlider'
 import SquareShortcutButton from 'components/atoms/common/SquareShortcutButton/SquareShortcutButton';
 import RectShortcutButton from 'components/atoms/common/RectShortcutButton/RectShortcutButton';
 import Header from 'components/organisms/common/Header/Header';
+import useMovePage from 'hooks/useMovePage';
 
 function HomePage() {
+	const { movePage } = useMovePage();
+
 	return (
 		<HomePageLayout>
 			<Header />
 			<BannerSlider />
-			<AreaTitle title="내 구독 정보" url="subscribe" />
+			<AreaTitle title="내 구독 목록" url="/subscribe" />
 			<SubscribeSlider />
 			<AreaTitle title="서비스 바로가기" url="#" />
 			<SquareShortcutButton
-				text="예약관리"
+				text="예약 관리"
 				handleClick={() => {
-					alert('예약관리로 이동');
+					movePage('/mypage/booking');
 				}}
 				type="booking"
 			/>

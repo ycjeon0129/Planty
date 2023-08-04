@@ -1,34 +1,24 @@
 import React, { useState, useEffect } from 'react';
+import { MENUS } from 'constants/tabbar/TabBar';
 import { Link, useLocation } from 'react-router-dom';
 import './TabBarItem.scss';
-import TabMenu from 'constants/tabbar/TabBar';
+import classNames from 'classnames';
 
-interface TabBarItemProps {
-	MenuKey: string;
-}
-
-function TabBarItem({ MenuKey }: TabBarItemProps) {
-	const Menu = TabMenu[MenuKey];
-	const location = useLocation();
+function TabBarItem({ menuKey }: { menuKey: string }) {
 	const [isActive, setIsActive] = useState<boolean>(false);
+	const location = useLocation();
+	const className = classNames('icon-box', { active: isActive });
 
 	useEffect(() => {
-		// Check if the current URL matches the MenuKey
-		setIsActive(location.pathname === `/${MenuKey}`);
-	}, [location.pathname, MenuKey]);
-
-	const handleLinkClick = () => {
-		setIsActive(true);
-	};
-
-	const imageSource = isActive ? Menu.imgSrc.isActive : Menu.imgSrc.unActive;
+		setIsActive(location.pathname.includes(`/${menuKey}`));
+	}, [location.pathname, menuKey]);
 
 	return (
-		<Link to={`/${MenuKey}`} className="menu-box" onClick={handleLinkClick}>
+		<Link to={`/${menuKey}`} className="menu-box" onClick={() => setIsActive(true)}>
 			<div>
-				<div className="icon-box">
-					<img src={imageSource} alt={Menu.imgName} />
-					{isActive ? <span className="green">{Menu.imgName}</span> : <span>{Menu.imgName}</span>}
+				<div className={className}>
+					{MENUS[menuKey].icon}
+					{isActive ? <span className="green">{MENUS[menuKey].menu}</span> : <span>{MENUS[menuKey].menu}</span>}
 				</div>
 			</div>
 		</Link>
