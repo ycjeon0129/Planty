@@ -25,6 +25,7 @@
 			min-width: var.$img-size-sm;
 			max-width: var.$img-size-sm;
 			height: var.$img-size-sm;
+			object-fit: cover;
 		}
 
 		#right {
@@ -32,6 +33,10 @@
 			padding: 0 var.$pd-lg;
 			width: 100%;
 			justify-content: space-between;
+
+			span {
+				font-size: var.$p2;
+			}
 		}
 	}
 }

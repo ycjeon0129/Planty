@@ -1,4 +1,61 @@
-import { ISubscribe, IProduct, IBanner } from 'types/dummy';
+import { ISubscribe, IProduct, IBanner, IConsulting, ISubscribeDetail } from 'types/dummy';
+
+export const dummyBookings: IConsulting[] = [
+	{
+		cid: 1,
+		user: '김인혁',
+		greenmate: '전인혁',
+		subscribe: '스투키 클래스',
+		date: new Date('2023-08-02'),
+		thumbnail: 'https://gardening.godohosting.com/2018/mfset/redcherrytomato_01.jpg',
+		cancel: false,
+		active: true,
+		log: {
+			times: 4,
+			startTime: new Date(),
+			endTime: new Date(),
+			recommendStartDate: new Date(),
+			recommendEndDate: new Date(),
+			content: 'ㅎㅇ',
+		},
+	},
+	{
+		cid: 2,
+		user: '양시온',
+		greenmate: '전윤철',
+		subscribe: '강낭콩 클래스',
+		date: new Date('2023-08-05'),
+		thumbnail: 'https://www.flowerrepublic.co.kr/shopimages/sungmo9160/0090010004832.jpg?1665473103',
+		cancel: false,
+		active: false,
+		log: {
+			times: 3,
+			startTime: new Date(),
+			endTime: new Date(),
+			recommendStartDate: new Date(),
+			recommendEndDate: new Date(),
+			content: 'ㅎㅇ',
+		},
+	},
+	{
+		cid: 3,
+		user: '누구냐',
+		greenmate: '이금규띠',
+		subscribe: '너와 나의 선인장 클래스',
+		date: new Date('2023-08-15'),
+		thumbnail: 'https://www.flowerrepublic.co.kr/shopimages/sungmo9160/0090010004832.jpg?1665473103',
+		cancel: false,
+		active: false,
+		log: {
+			times: 4,
+			startTime: new Date(),
+			endTime: new Date(),
+			recommendStartDate: new Date(),
+			recommendEndDate: new Date(),
+			content: 'ㅎㅇ',
+		},
+	},
+];
 
 const dummySubscribe: ISubscribe[] = [
 	{
@@ -50,16 +107,78 @@ export const dummyProduct: IProduct[] = [
 export const dummybanner: IBanner[] = [
 	{
 		id: 0,
-		src: 'https://file.miricanvas.com/template_thumb/2021/10/08/16/10/khqn744slrkwk3p3/thumb.jpg?size=350',
+		src: 'https://firebasestorage.googleapis.com/v0/b/localsharing-6682b.appspot.com/o/001.png?alt=media&token=c00247ae-eaf9-4287-8190-5ca10424314b',
 	},
 	{
 		id: 1,
-		src: 'https://file.miricanvas.com/template_thumb/2021/09/09/16/40/k6pj046gvbbnp2bu/thumb.jpg?size=350',
+		src: 'https://firebasestorage.googleapis.com/v0/b/localsharing-6682b.appspot.com/o/002.png?alt=media&token=592440be-59f7-41fe-afa7-bf0d1e22815d',
 	},
 	{
-		id: 2,
-		src: '	https://file.miricanvas.com/template_thumb/2021/08/30/13/00/kiqlwkppz7hx4u8v/thumb.jpg?size=350',
+		id: 3,
+		src: 'https://firebasestorage.googleapis.com/v0/b/localsharing-6682b.appspot.com/o/003.png?alt=media&token=a0193154-cbf8-443f-9535-e170f0e9224d',
+	},
+	{
+		id: 4,
+		src: 'https://firebasestorage.googleapis.com/v0/b/localsharing-6682b.appspot.com/o/004.png?alt=media&token=0ad16aa8-5954-4f60-8185-e7f19ddaeaac',
 	},
 ];
+
+export const dummySubscribeDetail: ISubscribeDetail = {
+	sid: 0,
+	title: '누구나 쉽게 키우는 몬스테라 클래스',
+	state: 'wait',
+	thumbnail: 'https://www.flowerrepublic.co.kr/shopimages/sungmo9160/0090010004832.jpg?1665473103',
+	info: { startDate: '2023/07/23', consultCount: '총 5회 / 잔여 3회', consultDate: '2023/07/23 14:00' },
+	detailInfo: {
+		subscribeStartDate: '2023/07/23',
+		subscribeEndDate: '2023/12/23',
+		GMNickname: '김싸피', // 담당 그린메이트
+		supplementsCount: 3, // 영양제 개수
+	},
+	embeddedData: [
+		{
+			date: '2023/07/17',
+			temperature: 26,
+			humidity: 36,
+			soilHumidity: 17,
+		},
+		{
+			date: '2023/07/18',
+			temperature: 22,
+			humidity: 40,
+			soilHumidity: 18,
+		},
+		{
+			date: '2023/07/19',
+			temperature: 24,
+			humidity: 53,
+			soilHumidity: 13,
+		},
+		{
+			date: '2023/07/20',
+			temperature: 24,
+			humidity: 26,
+			soilHumidity: 20,
+		},
+		{
+			date: '2023/07/21',
+			temperature: 25,
+			humidity: 33,
+			soilHumidity: 10,
+		},
+		{
+			date: '2023/07/22',
+			temperature: 23,
+			humidity: 30,
+			soilHumidity: 12,
+		},
+		{
+			date: '2023/07/23',
+			temperature: 26,
+			humidity: 27,
+			soilHumidity: 15,
+		},
+	],
+};
 
 export default dummySubscribe;
