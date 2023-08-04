@@ -1,28 +1,19 @@
 package com.planty.db.entity;
 
-import com.planty.common.oauth2.OAuth2UserInfo;
-import com.planty.db.entity.common.UserTimeEntity;
+import com.planty.common.enums.UserType;
+import com.planty.db.entity.common.BaseEntity;
 import javax.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.ColumnDefault;
-import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.DynamicInsert;
-import org.springframework.data.annotation.CreatedDate;
-
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-
-@ToString
 @Getter
-//
-@Setter
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @DynamicInsert
 @Table(name = "user_info")
 @Entity
-public class UserInfo extends UserTimeEntity {
+public class UserInfo extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) // MySQL의 AUTO_INCREMENT를 사용
@@ -33,7 +24,7 @@ public class UserInfo extends UserTimeEntity {
 //    private String oAuth2Id;
 
     @Column(name = "nickname", length = 16, nullable = false)
-    private String nickname;
+    private String id;
 
     @Column(name = "email", length = 64, unique = true, nullable = false)
     private String email;
@@ -56,12 +47,16 @@ public class UserInfo extends UserTimeEntity {
     @Column(name = "shipping_address", length = 256, nullable = true)
     private String shippingAddress;
 
-    public UserInfo update(OAuth2UserInfo oAuth2UserInfo) {
-        this.nickname = oAuth2UserInfo.getNickname();
-        this.auth = oAuth2UserInfo.getOAuth2Id();
+    @Column(columnDefinition = "ENUM('KAKAO', 'NAVER', 'FACEBOOK', 'GOOGLE', 'PAYCO', 'NORMAL') DEFAULT 'NORMAL'")
+    @Enumerated(EnumType.STRING)
+    private UserType userType;
 
-        return this;
-    }
+//    public UserInfo update(OAuth2UserInfo oAuth2UserInfo) {
+//        this.nickname = oAuth2UserInfo.getNickname();
+//        this.auth = oAuth2UserInfo.getOAuth2Id();
+//
+//        return this;
+//    }
 
 //    /* 회원정보 수정을 위한 set method*/
 //    public void modify(String nickname) {
