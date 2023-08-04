@@ -10,14 +10,14 @@ function SubscribeDetailPage() {
 	return (
 		<SubscribeDetailPageLayout>
 			{/* 페이지 헤더 */}
-			<PageTitleButton type="back" text="상세조회" />
+			<PageTitleButton type="back" text="구독 상세조회" />
 
 			{/* 구독 정보 */}
-			<AreaTitle title="구독 정보" url="/shop/product/0" />
+			<AreaTitle title="구독 정보" url="#" />
 			<SubscribeListItem subscribe={dummySubscribeDetail} />
 
 			{/* 컨설팅 정보 */}
-			<AreaTitle title="컨설팅 정보" url="/subscribe/0/booking" />
+			<AreaTitle title="컨설팅 정보" url="#" />
 			<ConsultingInfo consulting={dummySubscribeDetail.info} />
 
 			{/* 온습도 정보 */}

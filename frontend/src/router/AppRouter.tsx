@@ -10,11 +10,12 @@ import EmergencyPage from 'pages/Emergency/EmergencyPage';
 import MypagePage from 'pages/Mypage/MypagePage';
 import SubscribePage from 'pages/subscribe/Subscribe/SubscribePage';
 import SubscribeDetailPage from 'pages/subscribe/SubscribeDetail/SubscribeDetailPage';
-import BookingManagementPage from 'pages/BookingManagement/BookingManagementPage';
+import BookingManagementPage from 'pages/Mypage/BookingManagementPage';
 import LoadingPage from 'pages/Etc/LoadingPage';
 import ErrorPage from 'pages/Etc/ErrorPage';
 import Develop from 'pages/Develop';
 import MypageSubMenuDetailPage from 'pages/Mypage/MypageSubMenuDetailPage';
+import BookingPage from 'pages/subscribe/Booking/BookingPage';
 import ConsultingHistoryPage from 'pages/subscribe/ConsultingHistory/ConsultingHistoryPage';
 import PrivateRoute from './PrivateRoute';
 import 'styles/index.scss';
@@ -51,6 +52,8 @@ function AppRouter() {
 						<Route path="/mypage/:menu" element={<MypageSubMenuDetailPage />} />
 						<Route path="/subscribe" element={<SubscribePage />} />
 						<Route path="/subscribe/:sid" element={<SubscribeDetailPage />} />
+						<Route path="/subscribe/:sid/booking" element={<BookingPage />} />
+						<Route path="/subscribe/:sid/consulting" element={<BookingPage />} />
 						<Route path="/subscribe/:sid/booking" element={<ConsultingHistoryPage />} />
 					</Route>
 

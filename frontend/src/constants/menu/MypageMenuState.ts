@@ -19,7 +19,7 @@ export interface IDetail {
 	isToggle?: boolean;
 }
 
-export const MAIN_MENU_LIST: string[] = ['예약 관리', '구독 목록'];
+export const MAIN_MENU_LIST: string[] = ['예약 관리', '내 구독 목록'];
 
 export const SUB_MENU_LIST: string[] = ['이용 내역', '결제 내역', '환경 설정', '서비스 정보'];
 
