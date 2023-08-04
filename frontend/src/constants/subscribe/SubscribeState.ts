@@ -24,7 +24,7 @@ const SUBSCRIBE_STATES: ISubscribeStates = {
 	},
 	notJoin: {
 		color: 'danger',
-		message: '미 참여',
+		message: '미참여',
 	},
 };
 
