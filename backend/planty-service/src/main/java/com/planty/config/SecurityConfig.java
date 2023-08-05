@@ -19,6 +19,11 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+
+import java.util.Arrays;
 
 //import static org.springframework.security.config.Customizer.withDefaults;
 
@@ -39,21 +44,23 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 //    private final OAuth2AuthenticationFailureHandler oAuth2AuthenticationFailureHandler;
 
 
-    @Override
-    public void configure(WebSecurity web) throws Exception {
-//        web.ignoring().antMatchers("/css/**", "/js/**");
-        web.ignoring().antMatchers("/css/**");
-    }
+//    @Override
+//    public void configure(WebSecurity web) throws Exception {
+////        web.ignoring().antMatchers("/css/**", "/js/**");
+//        web.ignoring().antMatchers("/css/**");
+//    }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .csrf().disable()// 세션을 사용하지 않고 JWT 토큰을 활용하여 진행, csrf토큰검사를 비활성화
-                .cors().disable()
+                .cors()
+                .and()
                 .authorizeRequests() // 인증절차에 대한 설정을 진행
 //                .antMatchers("/", "/error/*", "/login", "/loginProc").permitAll() // 설정된 url은 인증되지 않더라도 누구든 접근 가능
                 .antMatchers("/**").permitAll()
-                .anyRequest().authenticated()// 위 페이지 외 인증이 되어야 접근가능(ROLE에 상관없이)
+                .antMatchers("/", "/user/*", "/subscribes/*", "/*").permitAll()
+//                .anyRequest().authenticated()// 위 페이지 외 인증이 되어야 접근가능(ROLE에 상관없이)
                 .and()
 //                .formLogin().loginPage("/login")  // 접근이 차단된 페이지 클릭시 이동할 url
 //                .loginProcessingUrl("/loginProc") // 로그인시 맵핑되는 url
@@ -68,6 +75,18 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .logoutSuccessUrl("/") // 로그아웃 성공시 리다이렉트 주소
                 .invalidateHttpSession(true); // 세션 clear
     }
+//
+//    @Bean
+//    CorsConfigurationSource corsConfigurationSource(){
+//        CorsConfiguration configuration = new CorsConfiguration();
+//        configuration.setAllowedOrigins(Arrays.asList("http://localhost:3000"));
+//        configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH"));
+//        configuration.setAllowedHeaders(Arrays.asList("AxiosHeaders"));
+//        configuration.setAllowCredentials(true);
+//        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+//        source.registerCorsConfiguration("/**", configuration);
+//        return source;
+//    }
 
 
 //    @Bean
