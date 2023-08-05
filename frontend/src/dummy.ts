@@ -250,4 +250,28 @@ export const CONSULTING_HISTORY_LIST: IConsultingHistory[] = [
 	},
 ];
 
+// 예약 가능/불가능 시간 데이터
+export const tempTimeStatusList = [
+	true,
+	false,
+	false,
+	true,
+	false,
+	false,
+	true,
+	true,
+	false,
+	true,
+	true,
+	false,
+	false,
+	true,
+	false,
+	true,
+	true,
+	true,
+	false,
+	true,
+];
+
 export default dummySubscribe;
