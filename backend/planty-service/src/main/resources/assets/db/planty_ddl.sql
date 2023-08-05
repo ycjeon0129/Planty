@@ -59,7 +59,8 @@ DROP TABLE IF EXISTS `planty`.`user_info` ;
 
 CREATE TABLE IF NOT EXISTS `planty`.`user_info` (
   `uid` INT UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '사용자 식별키',
-  `nickname` VARCHAR(16) NOT NULL COMMENT '사용자 닉네임',
+  `user_id` VARCHAR(32) NOT NULL COMMENT '사용자 id',
+  `user_name` VARCHAR(32) NOT NULL COMMENT '사용자 이름',
   `email` VARCHAR(64) NOT NULL COMMENT '사용자 이메일',
   `auth` VARCHAR(1024) NULL DEFAULT NULL COMMENT '사용자 인증',
   `photo` VARCHAR(256) NULL DEFAULT NULL COMMENT '사용자 프로필 사진',
