@@ -8,6 +8,6 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface SubscribeRepository extends JpaRepository<ViewUserSubscribe, Long> {
+public interface UserSubscribeRepository extends JpaRepository<ViewUserSubscribe, Long> {
     List<ViewUserSubscribe> findByUid(Integer uid);
 }

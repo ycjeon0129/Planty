@@ -1,6 +1,6 @@
 package com.planty.api.subscribe.service;
 
-import com.planty.db.repository.SubscribeRepository;
+import com.planty.db.repository.UserSubscribeRepository;
 import com.planty.api.subscribe.response.UserSubscribeResponse;
 import java.util.*;
 
@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 @Service
 @RequiredArgsConstructor
 public class SubscribeServiceImpl implements SubscribeService {
-    private final SubscribeRepository subscribeRepository;
+    private final UserSubscribeRepository subscribeRepository;
     @Override
     public List<UserSubscribeResponse> getUserSubscribe(Integer userId) {
         List<UserSubscribeResponse> subscribeList = new ArrayList<>();

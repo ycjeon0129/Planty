@@ -19,7 +19,7 @@ import static com.planty.common.util.LogCurrent.*;
 public class SubscribeController {
     private final SubscribeService subscribeServiceImpl;
     @GetMapping
-    public ResponseEntity<?> getAccusedReviewList() {
+    public ResponseEntity<?> getUserSubscribeList() {
 
         log.info(logCurrent(getClassName(), getMethodName(), START));
         List<UserSubscribeResponse> subscribeList = subscribeServiceImpl.getUserSubscribe(2);
