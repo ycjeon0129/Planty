@@ -14,4 +14,5 @@ import lombok.ToString;
 public class SocialUserResponse {
     private String id;
     private String email;
+    private String name;
 }
