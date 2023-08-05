@@ -27,12 +27,15 @@ import java.util.Optional;
 @RestController
 @RequestMapping(value = "/api/users")
 @RequiredArgsConstructor
+//@CrossOrigin("http://localhost:3000")
 public class UserInfoController {
 
     private final UserInfoServiceImpl userService;
 
     @PostMapping("/social-login")
     public ResponseEntity<LoginResponse> doSocialLogin(@RequestBody @Valid SocialLoginRequest request) {
+
+        System.out.println("userinfo controller :: doSocialLogin");
 
         return ResponseEntity.created(URI.create("/social-login"))
                 .body(userService.doSocialLogin(request));
