@@ -1,5 +1,4 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom'; // Import useNavigate from react-router-dom
 import ProductListItemLayout from 'components/layout/shop/ProductListItemLayout/ProductListItemLayout';
 import ListItemTitle from 'components/atoms/common/ListItemTitle/ListItemTitle';
 import Button from 'components/atoms/common/Button/Button';
@@ -12,10 +11,8 @@ import { PRODUCT_LIST_ITEM_LABELS } from 'constants/common/Labels';
  * @param product 상품 정보들을 담고 있는 객체
  */
 function ProductListItem({ product }: { product: IProduct }) {
-	const navigate = useNavigate(); // Get the navigate function from react-router-dom
-
-	const handlePurchaseClick = () => {
-		navigate('/shop/pay');
+	const testFunc = () => {
+		alert('클릭');
 	};
 
 	return (
@@ -23,7 +20,7 @@ function ProductListItem({ product }: { product: IProduct }) {
 			<ListItemTitle title={product.title} url={`detail/${product.pid}`} />
 			<img src={product.thumbnail} alt="" />
 			<InfoList info={product.info} labels={PRODUCT_LIST_ITEM_LABELS} />
-			<Button isActive={false} text="구매하기" handleClick={handlePurchaseClick} />
+			<Button isActive={false} text="구매하기" handleClick={testFunc} />
 		</ProductListItemLayout>
 	);
 }
