@@ -1,0 +1,22 @@
+@use 'styles/base/variable' as var;
+
+.current-greenmate-count-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+
+    &::before {
+		content: '';
+        border-radius: var.$rd-lg;
+        background-color: var.$primary;
+		width: 10px;
+		height: 10px;
+        margin-right: var.$mr-sm;
+
+	}
+    
+    &.red:before { 
+        background-color: var.$danger;
+    }
+}

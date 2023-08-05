@@ -1,0 +1,12 @@
+@use 'styles/base/variable' as var;
+
+.navigation {
+	display: flex;
+	align-items: center;
+	height: var.$nav-height;
+	margin-bottom: var.$mb-content-sm;
+
+	h1 {
+		font-weight: bold;
+	}
+}

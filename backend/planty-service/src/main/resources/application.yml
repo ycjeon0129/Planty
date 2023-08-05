@@ -35,7 +35,7 @@ logging:
     org:
       springframework:
         boot : info
-        security : info
+        security : DEBUG
         web : info
   file:
     name: ./planty.log

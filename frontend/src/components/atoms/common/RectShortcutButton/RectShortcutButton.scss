@@ -1,0 +1,43 @@
+@use 'styles/base/variable' as var;
+@use 'sass:math';
+
+.rect-shortcut-button-container {
+	display: flex;
+	justify-content: center;
+	width: 100%;
+	font-size: var.$h3;
+
+	&::after {
+		content: "";
+		display: block;
+		padding-bottom: calc(50% - var.$mr-md);
+	}
+	h4 {
+		padding-top: 10%;
+		font-size: 1.1em;
+	}
+	
+	&.booking {
+		background-color: var.$light-400;
+		background-image: url("/assets/icons/ColorCalendar.svg");
+		background-repeat: no-repeat;
+		background-size: 60% 60%;
+		background-position: center 80%;	
+	}
+
+	&.consulting-chat {
+		background-color: var.$light-400;
+		background-image: url("/assets/icons/Chat.svg");
+		background-repeat: no-repeat;
+		background-size: 40% 40%;
+		background-position: center 90%;
+	}
+
+	&.consulting-video {
+		background-color: var.$light-400;
+		background-image: url("/assets/icons/Monitor.svg");
+		background-repeat: no-repeat;
+		background-size: 40% 40%;
+		background-position: center 90%;
+	}
+}

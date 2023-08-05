@@ -1,0 +1,32 @@
+@import 'styles/base/variable';
+@import 'styles/mixins/common';
+@import 'styles/mixins/flex';
+
+.emergency-page-layout-container {
+	@include flex-column;
+
+	#connecting-info {
+		@include border-gray;
+		border-radius : $rd-sm;
+	}
+
+	#ticket-info {
+		@include border-gray;
+		div {
+			border-radius : $rd-sm;
+		}
+	}
+
+	#emergency-container {
+		#emergency-btn-group {
+			@include flex-row($mr-lg);
+			@include flex-align(between, center);
+
+			button {
+				flex-basis: 50%;
+				@include border-gray;
+				border-radius : $rd-sm;
+			}
+		}
+	}
+}

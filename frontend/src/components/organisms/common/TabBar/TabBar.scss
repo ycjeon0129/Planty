@@ -1,0 +1,12 @@
+.tabbar-list {
+	width: 100%;
+	height: 100%;
+	display: flex;
+	justify-content: space-evenly;
+	// gap: 17px;
+	align-items: center;
+	align-content: center;
+	.display-none {
+		display: none;
+	}
+}
