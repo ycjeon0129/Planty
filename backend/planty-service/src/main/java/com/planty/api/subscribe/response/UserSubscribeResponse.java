@@ -1,10 +1,7 @@
 package com.planty.api.subscribe.response;
 
-import javax.persistence.Column;
 import javax.validation.constraints.NotNull;
 import lombok.*;
-
-import java.time.LocalDateTime;
 
 //@NoArgsConstructor
 //@Data
@@ -13,7 +10,7 @@ import java.time.LocalDateTime;
 @Getter
 @Builder
 @ToString
-public class FindSubscribeResponse {
+public class UserSubscribeResponse {
     @NotNull
     private Integer sid;
     @NotNull
