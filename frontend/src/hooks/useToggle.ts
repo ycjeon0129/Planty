@@ -5,8 +5,8 @@ import { useState } from 'react';
  * @returns state : 토글버튼 상태 변수
  * @returns toggle : 토글함수 (토글 상태변수를 반대로 바꿔줌.)
  */
-const useToggle = (): [boolean, () => void] => {
-	const [state, setState] = useState(false);
+const useToggle = (init: boolean): [boolean, () => void] => {
+	const [state, setState] = useState(init);
 
 	const toggle = () => {
 		setState(!state);

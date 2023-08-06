@@ -5,7 +5,7 @@ import { IChartData, IPlantData, IPlantDatasets } from 'types/global';
 import { findPlantDataApi } from 'utils/api/subscribe';
 
 /**
- * #####수정 필요#####
+ * #####API 나오면 온/오프 수정 필요#####
  * 온/습도 검색 조건에 해당하는 차트 데이터셋을 불러와 리턴하는 커스텀 훅
  * @param temp 온도 버튼 true/false
  * @param hudi 습도 버튼 true/false
