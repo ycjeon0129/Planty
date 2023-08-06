@@ -8,7 +8,7 @@ function InfoList({ product }: { product: IProductDetail }) {
 			<div className="text-box">
 				<div className="price-box">
 					<span>가격 :</span>
-					<span>{product.info.price}원</span>
+					<span>{product.info.price.toLocaleString()}원</span>
 				</div>
 				<div className="price-box ">
 					<span>대상자 :</span>

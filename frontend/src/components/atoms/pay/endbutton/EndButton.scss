@@ -1,0 +1,21 @@
+@use 'styles/base/_variable.scss' as var;
+
+.btn-outer-container {
+  width: 100%;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.btn-inner-container {
+  border: solid var.$primary 1px;
+  background-color: var.$primary;
+  border-radius: var.$rd-sm;
+  width: 220px;
+  height: 40px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

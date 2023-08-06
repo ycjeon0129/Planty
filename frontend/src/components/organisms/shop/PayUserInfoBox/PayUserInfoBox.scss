@@ -1,0 +1,16 @@
+@use 'styles/base/variable' as var;
+@import 'styles/base/_common.scss';
+@import 'styles/mixins/flex';
+@import 'styles/mixins/_common.scss';
+
+.info-box {
+	@include border-gray;
+  border-radius: var.$rd-sm;
+  margin-top: 20px;
+}
+
+.subject-text {
+	font-size: var.$h3;
+  margin-left: 10px;
+  margin-top: 5px;
+}
