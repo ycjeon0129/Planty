@@ -6,16 +6,15 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    // width: calc(50% - 20px); /* 화면 끝에서 화면 끝으로 width 설정 */
     height: 60px;
     border-radius: var.$rd-sm;
     background-color: var.$white;
     position: sticky;
     bottom: 56px;
-    left: 10px; /* 왼쪽 여백 설정 */
-    right: 10px; /* 오른쪽 여백 설정 */
-    padding: 0 10px; /* 내용과 border 사이 여백 설정 */
-    @include border-gray; /* border 설정 */
+    left: 10px;
+    right: 10px;
+    padding: 0 10px;
+    @include border-gray;
 }
 
 .price {
