@@ -5,10 +5,10 @@ import instance from './instance';
  * @url /greenmate/connection
  * @returns response
  */
-const getGreenmateCountApi = async () => {
+const findGreenmateCountApi = async () => {
 	const response = await instance.get('/greenmate/connection');
 
 	return response;
 };
 
-export default getGreenmateCountApi;
+export default findGreenmateCountApi;

@@ -5,6 +5,7 @@ import AreaTitle from 'components/atoms/common/AreaTitle/AreaTitle';
 import { dummySubscribeDetail } from 'dummy';
 import ConsultingInfo from 'components/organisms/subscribe/ConsultingInfo/ConsultingInfo';
 import SubscribeDetailItem from 'components/organisms/subscribe/SubscribeDetailItem/SubscribeDetailItem';
+import PlantChart from 'components/organisms/subscribe/PlantChart/PlantChart';
 
 const sid = 0;
 
@@ -24,7 +25,7 @@ function SubscribeDetailPage() {
 
 			{/* 온습도 정보 */}
 			<AreaTitle title="온습도 정보" url="#" />
-			<div>온습도 정보 내용</div>
+			<PlantChart />
 		</SubscribeDetailPageLayout>
 	);
 }
