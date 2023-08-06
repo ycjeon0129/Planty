@@ -59,7 +59,9 @@ function AppRouter() {
 					</Route>
 
 					{/* 컴포넌트 개발용 */}
+					<Route path="/*" element={<Navigate replace to="/error" />} />
 					<Route path="/error" element={<ErrorPage />} />
+
 					<Route path="/develop" element={<Develop />} />
 				</Routes>
 
