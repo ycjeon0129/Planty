@@ -14,8 +14,6 @@ public class UserSubscribeResponse {
     @NotNull
     private Integer sid;
 
-    private Integer arduinoId;
-
     @NotNull
     private String startDate;
 
@@ -29,5 +27,11 @@ public class UserSubscribeResponse {
 
     private String consultingDate;
 
-    private Integer consultingTime;
+    private Boolean consultingCancel;
+
+    private Boolean consultingActive;
+
+    private String consultingTime;
+
+    private Boolean consultingActivation;
 }

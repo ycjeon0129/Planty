@@ -22,7 +22,7 @@ public class SubscribeController {
     public ResponseEntity<?> getUserSubscribeList() {
 
         log.info(logCurrent(getClassName(), getMethodName(), START));
-        List<UserSubscribeResponse> subscribeList = subscribeServiceImpl.getUserSubscribe(2);
+        List<UserSubscribeResponse> subscribeList = subscribeServiceImpl.getUserSubscribe("ssafyDevelop");
 
         if (!subscribeList.isEmpty()) {
             log.info(logCurrent(getClassName(), getMethodName(), END));
