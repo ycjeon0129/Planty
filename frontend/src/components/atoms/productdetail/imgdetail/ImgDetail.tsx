@@ -13,7 +13,7 @@ function ImgDetail() {
 	return (
 		<div className="img-detail">
 			<div className="text-box">상품정보 이미지</div>
-			<hr />
+			{/* <hr /> */}
 			<div className={`img-add-box ${expanded ? 'expanded' : ''}`} onClick={toggleDescription} role="presentation">
 				<img src={Img1} alt="상품 이미지" className={`img-size ${expanded ? 'hide' : ''}`} />
 				<button className="button-box" type="button" onClick={toggleDescription}>
