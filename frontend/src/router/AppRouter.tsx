@@ -17,6 +17,7 @@ import Develop from 'pages/Develop';
 import MypageSubMenuDetailPage from 'pages/Mypage/MypageSubMenuDetailPage';
 import BookingPage from 'pages/subscribe/Booking/BookingPage';
 import ConsultingHistoryPage from 'pages/subscribe/ConsultingHistory/ConsultingHistoryPage';
+import ShopPay from 'pages/Shop/ShopPay';
 import VideoPage from 'pages/Consulting/Video/VideoPage';
 import PrivateRoute from './PrivateRoute';
 import 'styles/index.scss';
@@ -47,6 +48,7 @@ function AppRouter() {
 						<Route path="/home" element={<HomePage />} />
 						<Route path="/shop" element={<ShopPage />} />
 						<Route path="/shop/detail/:pid" element={<ShopDetail />} />
+						<Route path="/shop/pay/" element={<ShopPay />} />
 						<Route path="/emergency" element={<EmergencyPage />} />
 						<Route path="/mypage" element={<MypagePage />} />
 						<Route path="/mypage/booking" element={<BookingManagementPage />} />

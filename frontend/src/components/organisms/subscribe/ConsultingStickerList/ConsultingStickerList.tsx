@@ -1,5 +1,6 @@
 import React from 'react';
 import './ConsultingStickerList.scss';
+import uuid from 'react-uuid';
 import { ReactComponent as ConsultingIcon } from 'assets/icons/LeafFill.svg';
 
 const PRIMARY_COLOR = '#03C75A';
@@ -12,20 +13,20 @@ function ConsultingStickerList({ consultingStatus }: { consultingStatus: number[
 			{consultingStatus.map((v) => {
 				if (v === 0) {
 					return (
-						<li>
+						<li key={uuid()}>
 							<ConsultingIcon fill={PRIMARY_COLOR} />
 						</li>
 					);
 				}
 				if (v === 1) {
 					return (
-						<li>
+						<li key={uuid()}>
 							<ConsultingIcon fill={DANGER_COLOR} />
 						</li>
 					);
 				}
 				return (
-					<li>
+					<li key={uuid()}>
 						<ConsultingIcon fill={DISABLE_COLOR} />
 					</li>
 				);
