@@ -29,14 +29,14 @@ public class GoogleLoginServiceImpl implements SocialLoginService {
     private final GoogleAuthApi googleAuthApi;
     private final GoogleUserApi googleUserApi;
 
-    @Value("${spring.security.oauth2.client.registration.google.client-id}")
+    @Value("${social.client.google.rest-api-key}")
     private String googleAppKey;
-    @Value("${spring.security.oauth2.client.registration.google.client-secret}")
+    @Value("${social.client.google.secret-key}")
     private String googleAppSecret;
-    @Value("${spring.security.oauth2.client.registration.google.redirect-uri}")
+    @Value("${social.client.google.redirect-uri}")
     private String googleRedirectUri;
-//    @Value("${social.client.google.grant_type}")
-    private final String googleGrantType = "authorization_code";
+    @Value("${social.client.google.grant_type}")
+    private String googleGrantType;
 
     @Override
     public UserType getServiceName() {

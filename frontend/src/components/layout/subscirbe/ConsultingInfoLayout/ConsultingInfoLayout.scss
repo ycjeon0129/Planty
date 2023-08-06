@@ -1,0 +1,34 @@
+@import 'styles/base/variable';
+@import 'styles/base/_common.scss';
+@import 'styles/mixins/flex';
+@import 'styles/mixins/_common.scss';
+
+.consulting-info-layout {
+	@include border-gray;
+	@include flex-row(20px);
+	@include flex-align(start, center);
+	padding: 15px 20px;
+	border-radius: $rd-sm;
+	background-color: $white;
+	width: 100%;
+
+	#left {
+	}
+
+	#right {
+		@include flex-column($mb-content-sm);
+		@include flex-align(between, start);
+		width: 100%;
+
+		#right-top {
+			span {
+				font-size: $p2;
+			}
+		}
+
+		#right-bottom {
+			@include flex-column(4px);
+			width: 100%;
+		}
+	}
+}

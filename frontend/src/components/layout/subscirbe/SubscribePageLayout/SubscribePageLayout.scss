@@ -1,0 +1,18 @@
+@import 'styles/base/variable';
+@import 'styles/mixins/flex';
+
+.subscribe-list-page-layout-container {
+	@include flex-column;
+
+	#connecting-badge-info {
+		@include flex-column(10px);
+
+		ul {
+			color: $black-200;
+			font-weight: 400;
+		}
+	}
+
+	#subscribe-list {
+	}
+}

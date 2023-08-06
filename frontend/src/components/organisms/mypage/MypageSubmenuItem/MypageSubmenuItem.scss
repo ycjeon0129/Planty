@@ -1,0 +1,12 @@
+@import 'styles/base/variable';
+@import 'styles/mixins/flex';
+
+.mypage-submenu-item-container {
+	cursor: pointer;
+	@include flex-row;
+	@include flex-align(between);
+
+	.icon {
+		fill: $black-400;
+	}
+}

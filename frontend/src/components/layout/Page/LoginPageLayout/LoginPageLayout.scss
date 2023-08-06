@@ -1,0 +1,18 @@
+@use 'styles/base/variable' as var;
+@import 'styles/mixins/flex';
+
+.login-page-layout-container {
+	@include flex-column;
+	@include flex-align(center, center);
+
+	position: relative;
+	height: 100vh;
+
+	#logo {
+		text-align: center;
+
+		img {
+			width: 150px;
+		}
+	}
+}

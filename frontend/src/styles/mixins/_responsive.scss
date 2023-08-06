@@ -1,0 +1,19 @@
+@use '../base/variable' as var;
+
+@mixin responsive($screen) {
+	@if ($screen == 'Phone') {
+		@media screen and (min-width: var.$sm-breakpoint) {
+			@content;
+		}
+	}
+	@if ($screen == 'Tablet') {
+		@media screen and (min-width: var.$md-breakpoint) {
+			@content;
+		}
+	}
+	@if ($screen == 'Desktop') {
+		@media screen and (min-width: var.$lg-breakpoint) {
+			@content;
+		}
+	}
+}

@@ -1,0 +1,15 @@
+@import 'styles/base/variable';
+@import 'styles/mixins/flex';
+
+.icon-text-container {
+	@include flex-row($pd-md);
+	@include flex-align;
+
+	.img-wrap {
+		padding-top: $pd-sm;
+	}
+
+	.text {
+		font-size: $p4;
+	}
+}

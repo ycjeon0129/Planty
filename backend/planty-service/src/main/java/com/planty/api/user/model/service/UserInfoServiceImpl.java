@@ -28,17 +28,18 @@ public class UserInfoServiceImpl implements UserInfoService {
         SocialUserResponse socialUserResponse = loginService.getUserInfo(socialAuthResponse.getAccess_token());
         log.info("socialUserResponse {} ", socialUserResponse.toString());
 
-        if (userRepository.findByEmail(socialUserResponse.getEmail()).isEmpty()) {
+        if (userRepository.findByUserEmail(socialUserResponse.getEmail()).isEmpty()) {
             this.joinUser(
                     UserJoinRequest.builder()
-                            .id(socialUserResponse.getId())
-                            .email(socialUserResponse.getEmail())
+                            .userId(socialUserResponse.getId())
+                            .userEmail(socialUserResponse.getEmail())
+                            .userName(socialUserResponse.getName())
                             .userType(request.getUserType())
                             .build()
             );
         }
 
-        UserInfo user = userRepository.findByEmail(socialUserResponse.getEmail())
+        UserInfo user = userRepository.findByUserEmail(socialUserResponse.getEmail())
                 .orElseThrow(() -> new NotFoundException("ERROR_001", "유저 정보를 찾을 수 없습니다."));
 
         return LoginResponse.builder()
@@ -46,12 +47,14 @@ public class UserInfoServiceImpl implements UserInfoService {
                 .build();
     }
 
-    private UserJoinResponse joinUser(UserJoinRequest userJoinRequest) {
+    // 제대로 구현하면 private 이 되어야 함
+    public UserJoinResponse joinUser(UserJoinRequest userJoinRequest) {
         UserInfo user = userRepository.save(
                 UserInfo.builder()
-                        .id(userJoinRequest.getId())
-                        .email(userJoinRequest.getEmail())
+                        .userId(userJoinRequest.getUserId())
                         .userType(userJoinRequest.getUserType())
+                        .userEmail(userJoinRequest.getUserEmail())
+                        .userName(userJoinRequest.getUserName())
                         .build()
         );
 
@@ -76,8 +79,9 @@ public class UserInfoServiceImpl implements UserInfoService {
 
         return UserResponse.builder()
                 .id(user.getUid())
-                .email(user.getEmail())
-                .userId(user.getId())
+                .userId(user.getUserId())
+                .userEmail(user.getUserEmail())
+                .userName(user.getUserName())
                 .build();
     }
 

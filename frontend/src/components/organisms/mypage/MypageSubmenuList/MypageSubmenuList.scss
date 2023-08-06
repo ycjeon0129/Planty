@@ -1,0 +1,29 @@
+@import 'styles/base/variable';
+@import 'styles/mixins/flex';
+
+.mypage-submenu-list-container {
+	@include flex-column($pd-lg);
+	@include flex-align(center, stretch);
+	// width: 100%;
+	max-width: 400px;
+	margin: auto;
+	color: $black-400;
+
+	a {
+		position: relative;
+		padding: 5px 10px;
+
+		&::after {
+			content: '';
+			width: 100%;
+			height: 0.3px;
+			position: absolute;
+			left: 0;
+			bottom: -5px;
+			background-color: $border-100;
+		}
+		&:last-child::after {
+			display: none;
+		}
+	}
+}

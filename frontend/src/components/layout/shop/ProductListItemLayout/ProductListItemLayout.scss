@@ -1,0 +1,42 @@
+@use 'styles/base/variable' as var;
+@import 'styles/base/_common.scss';
+@import 'styles/mixins/flex';
+@import 'styles/mixins/_common.scss';
+
+.product-list-item-layout {
+	@include border-gray;
+	padding: var.$pd-lg;
+	border-radius: var.$rd-sm;
+	background-color: var.$white;
+	width: 100%;
+
+	#top {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		padding-bottom: var.$pd-lg;
+	}
+
+	#bottom {
+		display: flex;
+
+		img {
+			border-radius: var.$rd-sm;
+			min-width: var.$img-size-sm;
+			max-width: var.$img-size-sm;
+			height: var.$img-size-sm;
+			object-fit: cover;
+		}
+
+		#right {
+			@include flex-column;
+			padding: 0 var.$pd-lg;
+			width: 100%;
+			justify-content: space-between;
+
+			span {
+				font-size: var.$p2;
+			}
+		}
+	}
+}
