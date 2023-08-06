@@ -2,50 +2,26 @@ import IConsultingHistory from 'types/consulting';
 import { ISubscribe, IProduct, IBanner, IConsulting, ISubscribeDetail, IProductDetail } from 'types/dummy';
 import { IPlantData } from 'types/global';
 
-export const plantData: IPlantData[] = [
+export const dummyPlantData: IPlantData[] = [
 	{
 		date: '2023-07-18',
 		temperature: 22,
-		humidity: 40,
+		humidity: 18,
 		soilHumidity: 23,
 	},
 	{
 		date: '2023-07-19',
 		temperature: 14,
-		humidity: 40,
+		humidity: 36,
 		soilHumidity: 18,
 	},
 	{
 		date: '2023-07-20',
 		temperature: 22.5,
-		humidity: 40,
+		humidity: 20,
 		soilHumidity: 19,
 	},
 ];
-
-export const dummyChartDatasets = {
-	labels: plantData.map((d) => d.date),
-	datasets: [
-		{
-			label: '온도',
-			fill: false,
-			tension: 0.1,
-			data: plantData.map((d) => d.temperature),
-			borderColor: 'rgb(255, 99, 132)',
-			backgroundColor: 'rgba(255, 99, 132, 0.5)',
-			pointRadius: 8,
-		},
-		{
-			label: '습도',
-			fill: false,
-			tension: 0.1,
-			data: plantData.map((d) => d.soilHumidity),
-			borderColor: 'blue',
-			backgroundColor: 'blue',
-			pointRadius: 8,
-		},
-	],
-};
 
 export const dummyBookings: IConsulting[] = [
 	{
