@@ -1,4 +1,4 @@
-import instance from './instance';
+import { instance } from './instance';
 
 /**
  * 현재 활동 중인 그린메이트의 수를 요청
