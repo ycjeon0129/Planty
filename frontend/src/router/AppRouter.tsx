@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
 import TabBarLayout from 'components/layout/common/TabBarLayout/TabBarLayout';
 import TabBar from 'components/organisms/common/TabBar/TabBar';
+import ScrollToTop from 'components/atoms/common/ScrollToTop/ScrollToTop';
 import LoginPage from 'pages/User/LoginPage';
 import HomePage from 'pages/Home/HomePage';
 import ShopPage from 'pages/Shop/ShopPage';
@@ -68,6 +69,7 @@ function AppRouter() {
 				<TabBarLayout>
 					<TabBar />
 				</TabBarLayout>
+				<ScrollToTop />
 			</BrowserRouter>
 		</div>
 	);
