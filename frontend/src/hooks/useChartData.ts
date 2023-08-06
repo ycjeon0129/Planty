@@ -2,7 +2,7 @@ import { dummyChartDatasets } from 'dummy';
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { IChartData, IPlantData, IPlantDatasets } from 'types/global';
-import { findChartDatasetApi } from 'utils/api/subscribe';
+import { findPlantDataApi } from 'utils/api/subscribe';
 
 /**
  * #####수정 필요#####
@@ -22,7 +22,7 @@ const useChartData = (temp: boolean, hudi: boolean): IChartData => {
 	 */
 	const fetchData = async () => {
 		try {
-			const response = await findChartDatasetApi(sid);
+			const response = await findPlantDataApi(sid);
 			const responsePlantData = response.data.datasets;
 			setPlantData(responsePlantData);
 
