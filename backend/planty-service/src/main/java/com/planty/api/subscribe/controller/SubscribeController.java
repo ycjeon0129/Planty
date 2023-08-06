@@ -14,7 +14,7 @@ import static com.planty.common.util.LogCurrent.*;
 
 @RestController
 @Slf4j
-@RequestMapping("/subscribes")
+@RequestMapping("/api/subscribes")
 @RequiredArgsConstructor
 public class SubscribeController {
     private final SubscribeService subscribeServiceImpl;
