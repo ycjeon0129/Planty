@@ -1,5 +1,6 @@
 package com.planty.api.subscribe.service;
 
+import com.planty.db.repository.UserConsultingRepository;
 import com.planty.db.repository.UserSubscribeRepository;
 import com.planty.api.subscribe.response.UserSubscribeResponse;
 import java.util.*;
@@ -14,24 +15,21 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class SubscribeServiceImpl implements SubscribeService {
     private final UserSubscribeRepository subscribeRepository;
+    private final UserConsultingRepository userConsultingRepository;
     @Override
     public List<UserSubscribeResponse> getUserSubscribe(Integer userId) {
         List<UserSubscribeResponse> subscribeList = new ArrayList<>();
         List<ViewUserSubscribe> list = subscribeRepository.findByUid(userId);
         for(ViewUserSubscribe item : list) {
+            boolean end = item.getEndDate() != null;
             UserSubscribeResponse sub = UserSubscribeResponse.builder()
                     .sid(item.getSid())
                     .arduinoId(item.getArduinoId())
-                    .consultingRemainCnt(item.getConsultingRemainCnt())
                     .startDate(item.getStartDate())
-                    .endDate(item.getEndDate())
-                    .spName(item.getSpName())
-                    .period(item.getPeriod())
+                    .end(end)
+                    .subscribeProductName(item.getSpName())
                     .consultingCnt(item.getConsultingCnt())
-                    .description(item.getDescription())
-                    .piName(item.getPiName())
-                    .tonicPeriod(item.getTonicPeriod())
-                    .GMNickname(item.getGMNickname())
+                    .consultingRemainCnt(item.getConsultingRemainCnt())
                     .build();
             subscribeList.add(sub);
         }

@@ -13,27 +13,21 @@ import lombok.*;
 public class UserSubscribeResponse {
     @NotNull
     private Integer sid;
-    @NotNull
+
     private Integer arduinoId;
-    @NotNull
-    private Integer consultingRemainCnt;
+
     @NotNull
     private String startDate;
-    private String endDate;
+
+    private Boolean end;
     @NotNull
-    private String spName;
-    @NotNull
-    private Integer period;
+    private String subscribeProductName;
     @NotNull
     private Integer consultingCnt;
     @NotNull
-    private String description;
-    @NotNull
-    private String piName;
-    @NotNull
-    private Integer tonicPeriod;
-    @NotNull
-    private String GMNickname;
+    private Integer consultingRemainCnt;
 
-    private String cbDate;
+    private String consultingDate;
+
+    private Integer consultingTime;
 }
