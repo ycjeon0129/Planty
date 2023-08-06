@@ -12,16 +12,13 @@ function ShopPayPageLayout({ children }: { children: ReactNode[] }) {
 			{/* 주문/결제 글자 */}
 			<div className="product-detail-photo">{children[1]}</div>
 			{/* 주문자정보 */}
-			<ContentsLayout id="product-list-container">
-				<div id="product-list">{children[2]}</div>
-			</ContentsLayout>
+			<div id="product-list">{children[2]}</div>
 			{/* 배송지주소 */}
-			<ContentsLayout id="">{children[3]}</ContentsLayout>
+			<div id="product-list">{children[3]}</div>
 			{/* 주문 상품 정보  */}
-			<ContentsLayout id="">{children[4]}</ContentsLayout>
+			<div id="product-list">{children[4]}</div>
 			{/* 결제 금액 확인 */}
 			<ContentsLayout id="">{children[5]}</ContentsLayout>
-			{/* 결제버튼 */}
 			<ContentsLayout id="">{children[6]}</ContentsLayout>
 		</PageLayout>
 	);
