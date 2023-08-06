@@ -16,9 +16,9 @@ function ProductListItemLayout({ children }: { children: ReactNode[] }) {
 				{children[1]}
 				<div id="right">
 					{/* 구독 정보 */}
-					<div>{children[2]}</div>
+					<div id="leaf">{children[2]}</div>
 					{/* 버튼 */}
-					{children[3]}
+					<div id="button">{children[3]}</div>
 				</div>
 			</div>
 		</div>

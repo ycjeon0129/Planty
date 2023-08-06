@@ -1,0 +1,17 @@
+@use 'styles/base/_variable.scss' as var;
+
+.final-price-box {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px 10px 10px 10px;
+}
+
+.custom-hr {
+  border-color: solid var.$border-100 1px;
+  border-width: 1px; 
+}
+
+.black-font-color {
+  color: var.$black-500;
+  font-size: var.$h5
+}
