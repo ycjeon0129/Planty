@@ -1,1 +1,0 @@
-rootProject.name = "planty-service"
