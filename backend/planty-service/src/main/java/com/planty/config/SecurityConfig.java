@@ -58,8 +58,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .authorizeRequests() // 인증절차에 대한 설정을 진행
 //                .antMatchers("/", "/error/*", "/login", "/loginProc").permitAll() // 설정된 url은 인증되지 않더라도 누구든 접근 가능
-                .antMatchers("/**").permitAll()
-                .antMatchers("/", "/user/*", "/subscribes/*", "/*").permitAll()
+                .antMatchers("/*").permitAll()
+                .antMatchers("/subscribes/*").permitAll()
+                .antMatchers("/api/*").permitAll()
 //                .anyRequest().authenticated()// 위 페이지 외 인증이 되어야 접근가능(ROLE에 상관없이)
                 .and()
 //                .formLogin().loginPage("/login")  // 접근이 차단된 페이지 클릭시 이동할 url
