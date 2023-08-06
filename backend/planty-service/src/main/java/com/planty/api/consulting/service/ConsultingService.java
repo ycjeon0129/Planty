@@ -6,5 +6,5 @@ import java.util.List;
 
 public interface ConsultingService {
     List<UserConsultingResponse> getUserConsultingUid(Integer uid);
-    List<UserConsultingResponse> getUserConsultingSid(Integer sid);
+    List<UserConsultingResponse> getUserConsultingDetail(Integer sid);
 }

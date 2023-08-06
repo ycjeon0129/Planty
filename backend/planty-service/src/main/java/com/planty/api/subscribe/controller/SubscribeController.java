@@ -26,7 +26,6 @@ public class SubscribeController {
 
         if (!subscribeList.isEmpty()) {
             log.info(logCurrent(getClassName(), getMethodName(), END));
-            System.out.println(subscribeList.toString());
             return ResponseEntity.ok().body(subscribeList);
         }
         log.info(logCurrent(getClassName(), getMethodName(), END));

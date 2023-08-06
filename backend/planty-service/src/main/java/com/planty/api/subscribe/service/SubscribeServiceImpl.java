@@ -17,7 +17,6 @@ public class SubscribeServiceImpl implements SubscribeService {
     @Override
     public List<UserSubscribeResponse> getUserSubscribe(Integer userId) {
         List<UserSubscribeResponse> subscribeList = new ArrayList<>();
-
         List<ViewUserSubscribe> list = subscribeRepository.findByUid(userId);
         for(ViewUserSubscribe item : list) {
             UserSubscribeResponse sub = UserSubscribeResponse.builder()
