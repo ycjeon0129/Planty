@@ -14,7 +14,7 @@ import static com.planty.common.util.LogCurrent.END;
 
 @RestController
 @Slf4j
-@RequestMapping("/consultings")
+@RequestMapping("/api/consultings")
 @RequiredArgsConstructor
 public class ConsultingController {
     private final ConsultingService consultingServiceImpl;
