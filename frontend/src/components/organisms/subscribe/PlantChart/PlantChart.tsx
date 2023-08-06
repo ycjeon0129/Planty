@@ -7,13 +7,13 @@ import ChartButton from 'components/atoms/common/ChartButton/ChartButton';
 import useToggle from 'hooks/useToggle';
 
 function PlantChart() {
-	const [tempState, tempToggle] = useToggle();
-	const [hudiState, hudiToggle] = useToggle();
+	const [tempState, tempToggle] = useToggle(true);
+	const [hudiState, hudiToggle] = useToggle(true);
 	const data = useChartData(tempState, hudiState);
 
 	return (
 		<div className="plant-chart-container">
-			<div>
+			<div className="chart-buttons">
 				<ChartButton type="danger" isActive={tempState} message="온도" onClick={tempToggle} />
 				<ChartButton type="success" isActive={hudiState} message="습도" onClick={hudiToggle} />
 			</div>
