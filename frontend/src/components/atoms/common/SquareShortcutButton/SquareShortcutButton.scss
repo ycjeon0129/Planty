@@ -12,7 +12,7 @@
 		padding-bottom: 100%;
 	}
 	h3 {
-		padding-top: 10%;
+		padding-top: 15%;
 		font-size: 1.1em;
 	}
 
@@ -20,7 +20,7 @@
 		background-color: var.$light-400;
 		background-image: url('/assets/icons/ColorCalendar.svg');
 		background-repeat: no-repeat;
-		background-size: 60% 60%;
+		background-size: 50% 50%;
 		background-position: center 80%;
 	}
 
@@ -28,15 +28,15 @@
 		background-color: var.$light-400;
 		background-image: url('/assets/icons/Chat.svg');
 		background-repeat: no-repeat;
-		background-size: 60% 60%;
-		background-position: center 80%;
+		background-size: 40% 40%;
+		background-position: center 70%;
 	}
 
 	&.consulting-video {
 		background-color: var.$light-400;
 		background-image: url('/assets/icons/Monitor.svg');
 		background-repeat: no-repeat;
-		background-size: 55% 55%;
-		background-position: center 80%;
+		background-size: 38% 38%;
+		background-position: center 70%;
 	}
 }

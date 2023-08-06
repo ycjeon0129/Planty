@@ -1,9 +1,14 @@
 import React, { ReactNode } from 'react';
 import './ErrorPageLayout.scss';
-import PageLayout from '../../common/PageLayout/PageLayout';
 
-function ErrorPageLayout({ children }: { children: ReactNode }) {
-	return <PageLayout>{children}</PageLayout>;
+function ErrorPageLayout({ children }: { children: ReactNode[] }) {
+	return (
+		<div className="error-page-layout-container">
+			{children[0]}
+			{children[1]}
+			{children[2]}
+		</div>
+	);
 }
 
 export default ErrorPageLayout;

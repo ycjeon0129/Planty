@@ -3,6 +3,7 @@
 
 .rect-shortcut-button-container {
 	display: flex;
+	align-items: center;
 	justify-content: center;
 	width: 100%;
 	font-size: var.$h4;
@@ -13,7 +14,8 @@
 		padding-bottom: calc(50% - var.$mr-md);
 	}
 	h4 {
-		padding-top: 10%;
+		white-space: nowrap;
+		padding-left: 8%;
 		font-size: 1.1em;
 	}
 
@@ -29,15 +31,15 @@
 		background-color: var.$light-400;
 		background-image: url('/assets/icons/Chat.svg');
 		background-repeat: no-repeat;
-		background-size: 30% 30%;
-		background-position: center 80%;
+		background-size: 25% 25%;
+		background-position: 10% center;
 	}
 
 	&.consulting-video {
 		background-color: var.$light-400;
 		background-image: url('/assets/icons/Monitor.svg');
 		background-repeat: no-repeat;
-		background-size: 30% 30%;
-		background-position: center 80%;
+		background-size: 25% 25%;
+		background-position: 10% center;
 	}
 }
