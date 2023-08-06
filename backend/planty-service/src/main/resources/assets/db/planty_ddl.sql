@@ -325,6 +325,35 @@ ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_unicode_ci;
 
+-- -----------------------------------------------------
+-- View `planty`.`view_user_consulting`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `planty`.`view_user_consulting`;
+DROP VIEW IF EXISTS `planty`.`view_user_consulting` ;
+USE `planty`;
+CREATE  OR REPLACE ALGORITHM=UNDEFINED DEFINER=`planty`@`localhost`
+SQL SECURITY DEFINER VIEW `planty`.`view_user_consulting`
+AS select `cb`.`USER_INFO_uid` AS `uid`,`us`.`sid` AS `sid`,`cb`.`cid` AS `cid`,
+      `cb`.`TIME_TABLE_idx` AS `time`,`cb`.`date` AS `date`,`cb`.`cancel` AS `cancel`,
+      `cb`.`active` AS `active`,`sp`.`name` AS `name`,
+      `cl`.`RECOMMENDED_START_DATE` AS `RECOMMENDED_START_DATE`,`cl`.`RECOMMENDED_END_DATE` AS `RECOMMENDED_END_DATE`,
+      `cl`.`content` AS `content`,`cl`.`start_time` AS `start_time`,
+      `cl`.`end_time` AS `end_time` from (((`planty`.`consulting_booking` `cb` left join `planty`.`consulting_log` `cl` on((`cl`.`cid` = `cb`.`cid`))) join `planty`.`user_subscribe` `us` on((`cb`.`USER_SUBSCRIBE_sid` = `us`.`sid`))) join `planty`.`subscribe_product` `sp` on((`us`.`SUBSCRIBE_PRODUCT_spid` = `sp`.`spid`))) order by `cb`.`cid`;
+
+-- -----------------------------------------------------
+-- View `planty`.`view_user_subscribe`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `planty`.`view_user_subscribe`;
+DROP VIEW IF EXISTS `planty`.`view_user_subscribe` ;
+USE `planty`;
+CREATE  OR REPLACE ALGORITHM=UNDEFINED DEFINER=`planty`@`localhost`
+SQL SECURITY DEFINER VIEW `planty`.`view_user_subscribe`
+    AS select `us`.`sid` AS `sid`,
+   `us`.`USER_INFO_uid` AS `uid`,`us`.`arduino_id` AS `arduino_id`,`us`.`consulting_remain_cnt` AS `consulting_remain_cnt`,
+   `us`.`start_date` AS `start_date`,`us`.`end_date` AS `end_date`,`sp`.`name` AS `sp_name`,
+   `sp`.`period` AS `period`,`sp`.`consulting_cnt` AS `consulting_cnt`,`sp`.`description` AS `description`,
+   `pi`.`name` AS `pi_name`,`pi`.`tonic_period` AS `tonic_period`,`gm`.`nickname` AS `nickname` from (((`planty`.`subscribe_product` `sp` join `planty`.`gm_info` `gm` on((`gm`.`gid` = `sp`.`GM_INFO_gid`))) join `planty`.`user_subscribe` `us` on((`us`.`SUBSCRIBE_PRODUCT_spid` = `sp`.`spid`))) join `planty`.`plant_info` `pi` on((`pi`.`idx` = `sp`.`PLANT_INFO_idx`)));
+
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
