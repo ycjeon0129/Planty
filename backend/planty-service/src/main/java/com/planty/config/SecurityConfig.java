@@ -44,11 +44,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 //    private final OAuth2AuthenticationFailureHandler oAuth2AuthenticationFailureHandler;
 
 
-//    @Override
-//    public void configure(WebSecurity web) throws Exception {
-////        web.ignoring().antMatchers("/css/**", "/js/**");
-//        web.ignoring().antMatchers("/css/**");
-//    }
+    @Override
+    public void configure(WebSecurity web) throws Exception {
+//        web.ignoring().antMatchers("/css/**", "/js/**");
+        web.ignoring().antMatchers("/.well-known/*");   // SSL 발급을 위한 인증 파일 경로
+    }
+
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
