@@ -47,7 +47,8 @@ public class UserInfoServiceImpl implements UserInfoService {
                 .build();
     }
 
-    private UserJoinResponse joinUser(UserJoinRequest userJoinRequest) {
+    // 제대로 구현하면 private 이 되어야 함
+    public UserJoinResponse joinUser(UserJoinRequest userJoinRequest) {
         UserInfo user = userRepository.save(
                 UserInfo.builder()
                         .userId(userJoinRequest.getUserId())

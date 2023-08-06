@@ -10,6 +10,10 @@ public class WebConfig implements WebMvcConfigurer {
     public void addCorsMappings(CorsRegistry corsRegistry) {
         corsRegistry.addMapping("/**")
                 .allowedOrigins("http://localhost:3000")
+                .allowedOrigins("http://i9c202.p.ssafy.io")
+                .allowedOrigins("i9c202.p.ssafy.io")
+                .allowedOrigins("http://i9c202.p.ssafy.io:3000")
+                .allowedOrigins("i9c202.p.ssafy.io:3000")
                 .allowedMethods("GET", "POST", "PATCH", "PUT", "DELETE", "OPTIONS")
                 .allowCredentials(true)
                 .allowedHeaders("AxiosHeaders")
