@@ -3,13 +3,16 @@ package com.planty.api.user.controller;
 //import com.planty.common.auth.JwtProvider;
 //import com.planty.common.auth.UserInfoJwtContextHolder;
 import com.planty.api.user.model.request.SocialLoginRequest;
+import com.planty.api.user.model.request.UserJoinRequest;
 import com.planty.api.user.model.response.LoginResponse;
+import com.planty.api.user.model.response.UserJoinResponse;
 import com.planty.api.user.model.response.UserResponse;
 //import com.planty.api.user.model.service.CustomOAuth2UserService;
 import com.planty.api.user.model.service.UserInfoServiceImpl;
 import com.planty.db.entity.UserInfo;
 import com.planty.db.repository.UserInfoRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,6 +27,7 @@ import java.time.Duration;
 import java.util.Collections;
 import java.util.Optional;
 
+@Slf4j
 @RestController
 @RequestMapping(value = "/api/users")
 @RequiredArgsConstructor
@@ -39,6 +43,23 @@ public class UserInfoController {
 
         return ResponseEntity.created(URI.create("/social-login"))
                 .body(userService.doSocialLogin(request));
+    }
+
+    @GetMapping("/tmp/{id}/{name}/{email}")
+    public ResponseEntity<UserJoinResponse> regUser(@PathVariable("id") String id, @PathVariable("name") String name, @PathVariable("email") String email) {
+        log.info("UserInfoController::regUser() ->");
+        UserJoinRequest userJoinRequest = UserJoinRequest.builder()
+                .userId(id)
+                .userName(name)
+                .userEmail(email)
+                .build();
+        UserJoinResponse userJoinResponse = userService.joinUser(userJoinRequest);
+        return ResponseEntity.ok(userJoinResponse);
+    }
+
+    @GetMapping("/test")
+    public String testFunc() {
+        return "test";
     }
 
     @GetMapping("/{id}")

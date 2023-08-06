@@ -20,25 +20,20 @@ public class UserInfo extends BaseEntity {
     @Column(name = "uid")
     private Long uid;
 
-//    @Column(unique = true, nullable = false)
-//    private String oAuth2Id;
+    @Column(name = "user_id", length = 32, nullable = false)
+    private String userId;
 
-    @Column(name = "nickname", length = 16, nullable = false)
-    private String id;
+    @Column(name = "user_name", length = 32, nullable = false)
+    private String userName;
 
     @Column(name = "email", length = 64, unique = true, nullable = false)
-    private String email;
+    private String userEmail;
 
     @Column(name = "auth", length = 1024, nullable = true)
     private String auth;
 
     @Column(name = "photo", length = 256, nullable = true)
     private String photo;
-
-//    @Column(name = "join_time")
-////    @CreationTimestamp
-//    @CreatedDate
-//    private String joinTime;
 
     @Column(name = "emergency_count")
     @ColumnDefault("1")
