@@ -73,6 +73,7 @@ export interface IProduct {
 
 export interface IProductDetail {
 	pid: number;
+	title: string;
 	info: {
 		price: number;
 		target: string;

@@ -10,7 +10,7 @@ function Price({ product }: { product: IProductDetail }) {
 	return (
 		<div className="price-final-box">
 			<div className="price">{formattedPrice}원</div>
-			<PurchaseButton />
+			<PurchaseButton pid={product.pid} />
 		</div>
 	);
 }
