@@ -9,7 +9,7 @@
 
 	#greenmate-video {
 		height: calc(100vh - 68px);
-		border: 1px solid blue;
+		background-color: var.$black-400;
 	}
 
 	#user-video {
@@ -18,7 +18,8 @@
 		right: 12px;
 		width: 33%;
 		height: 25vh;
-		border: 3px solid gray;
+		border-radius: 4px;
+		background-color: var.$black-400;
 	}
 
 	#video-consulting-menu {
