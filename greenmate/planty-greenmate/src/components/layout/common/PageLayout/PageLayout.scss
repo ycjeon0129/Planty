@@ -4,13 +4,13 @@
 
 .page-layout {
 	@include flex-column;
-	width: calc(100vw - 240px);
 	flex-grow: 1;
 	border: 1px solid black;
 	padding: var.$pd-xl;
 	background-color: var.$border-bg;
 
-	&.full-page-layout {
+	&.full {
+		width: 100vw;
 		padding-bottom: 1px;
 	}
 
