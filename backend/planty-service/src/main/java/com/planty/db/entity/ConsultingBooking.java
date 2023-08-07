@@ -36,7 +36,7 @@ public class ConsultingBooking {
     private GmInfo GMInfoGid;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(referencedColumnName = "idx", name = "TIME_TABLE_idx") // GM 식별키
+    @JoinColumn(referencedColumnName = "idx", name = "TIME_TABLE_idx") // 시간 식별키
     private TimeTable timeIdx;
 
     @NonNull

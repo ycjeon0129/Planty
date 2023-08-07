@@ -1,5 +1,7 @@
 package com.planty.api.subscribe.controller;
 
+import com.planty.api.consulting.response.UserConsultingResponse;
+import com.planty.api.subscribe.response.UserSubscribeDatailResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.RestController;
@@ -32,5 +34,13 @@ public class SubscribeController {
         return ResponseEntity.noContent().build();
 
     }
+    @GetMapping("/{sid}")
+    public ResponseEntity<?> getUserSubscribeDetailList(@PathVariable("sid") int sid) {
+
+        log.info(logCurrent(getClassName(), getMethodName(), START));
+        UserSubscribeDatailResponse response = subscribeServiceImpl.getUserSubscribeDetail("ssafyDevelop", 2);
+        return ResponseEntity.ok(response);
+    }
+
 
 }
