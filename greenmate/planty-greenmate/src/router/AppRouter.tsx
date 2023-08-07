@@ -11,6 +11,10 @@ import VideoPage from 'pages/Consulting/VideoPage';
 import ListPage from 'pages/Subscribes/ListPage';
 import SubscribesPage from 'pages/Subscribes/SubscribesPage';
 import CalendarPage from 'pages/Subscribes/CalendarPage';
+import EmergencyPage from 'pages/History/EmergencyPage';
+import ConsultingPage from 'pages/History/ConsultingPage';
+import HistoryPage from 'pages/History/HistoryPage';
+import SettingPage from 'pages/Setting/SettingPage';
 import PrivateRoute from './PrivateRoute';
 
 function AppRouter() {
@@ -37,12 +41,12 @@ function AppRouter() {
 							<Route path="list" element={<ListPage />} />
 							<Route path="calendar" element={<CalendarPage />} />
 						</Route>
-						<Route path="/history" element={<Outlet />}>
+						<Route path="/history" element={<HistoryPage />}>
 							<Route path="" element={<Navigate to="emergency" />} />
-							<Route path="emergency" element={<div />} />
-							<Route path="consulting" element={<div />} />
+							<Route path="emergency" element={<EmergencyPage />} />
+							<Route path="consulting" element={<ConsultingPage />} />
 						</Route>
-						<Route path="/settings" element={<div />} />
+						<Route path="/settings" element={<SettingPage />} />
 					</Route>
 
 					{/* 에러페이지 처리 */}
