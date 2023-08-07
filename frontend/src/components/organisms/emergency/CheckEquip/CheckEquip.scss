@@ -1,0 +1,19 @@
+@use 'styles/base/variable' as var;
+@import 'styles/mixins/flex';
+
+.check-equip-container {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.first {
+	color: var.$black-200;
+	font-size: 14px;
+}
+
+.second {
+	color: var.$black-400;
+	font-size: 14px;
+}

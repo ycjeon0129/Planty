@@ -1,0 +1,102 @@
+// 폰트 사이즈
+$h1: 2rem; // h1
+$h2: 1.8rem; // h2
+$h3: 1.6rem; // h3
+$h4: 1.4rem; // h4
+$h5: 1.2rem; // h5
+$h6: 1rem; // h6
+
+$p0: 0.8rem; // paragraph
+$p1: 1rem; // paragraph
+$p2: 1.25rem; // paragraph
+$p3: 1.5rem; // paragraph
+$p4: 1.6rem; // paragraph
+$p5: 1.8rem; // paragraph
+$p6: 2rem; // paragraph
+
+// 폰트 두께
+$fw-400: 400; // body
+$fw-500: 500; // ranking price
+$fw-600: 600; // slider title
+
+// 폰트/배경 색상
+$border-100: #e3e5e8;
+$border-bg: #f5f5f5;
+
+$primary: #03c75a;
+$danger: #ff4343;
+$success: #00c2ff;
+$navy: #42526e;
+$green: #00875a;
+$disabled: #7a7a7a;
+$light-green-500: #e8ffe0;
+
+$white: #ffffff;
+$light-400: #f7f7f7;
+$light-500: #f3f3f3;
+$black-100: #d3d3d3;
+$black-200: #a7a7a7;
+$black-300: #7a7a7a;
+$black-400: #4e4e4e;
+$black-500: #222222;
+$black-600: #1b1b1b;
+$black-700: #141414;
+$black-800: #0e0e0e;
+$black-900: #070707;
+
+$ap-black-50: #222222 50%;
+$ap-light-40: #ffffff 40%;
+$ap-light-green-20: rgba(0, 135, 90, 0.2);
+
+// height
+$h-header-lg: 60px; // pc
+$h-header-md: 50px; // tablet
+$h-header-sm: 40px; // phone
+
+// margin
+$mb-header: 10px;
+$mb-h1: 20px;
+$mb-h2: 10px;
+$mb-content-lg: 30px;
+$mb-content-md: 20px;
+$mb-content-sm: 10px;
+
+$mr-lg: 10px;
+$mr-md: 6px;
+$mr-sm: 4px;
+
+$pd-lg: 10px;
+$pd-md: 8px;
+$pd-xmd: 6px;
+$pd-sm: 4px;
+$pd-xsm: 2px;
+
+// 레벨
+$l-video: 1000;
+$l-bg: 2000;
+$l-popup: 2001;
+
+// 브레이크 포인트
+$sm-breakpoint: 500px;
+$md-breakpoint: 768px;
+$lg-breakpoint: 1200px;
+
+// 네비게이션 높이
+$nav-height: 48px;
+
+// radius
+$rd-sm: 4px;
+$rd-md: 10px;
+$rd-lg: 99px;
+
+// img-size
+$img-size-xs: 90px;
+$img-size-sm: 120px;
+$img-size-md: 150px;
+$img-size-lg: 190px;
+
+// button max-width, max-height
+$btn-max-sm: 100px;
+$btn-max-md: 150px;
+$btn-max-lg: 200px;
+$btn-max-xl: 250px;

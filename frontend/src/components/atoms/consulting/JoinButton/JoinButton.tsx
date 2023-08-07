@@ -8,7 +8,7 @@ import classnames from 'classnames';
  * @param isActive [활성:primary/비활성:black-200]
  */
 function JoinButton({ isActive, handleClick }: { isActive: boolean; handleClick: () => void }) {
-	const className = classnames('button-box', { primary: isActive, default: !isActive });
+	const className = classnames('button-boxx', { primary: isActive, default: !isActive });
 	return (
 		<button type="button" className={className} onClick={handleClick}>
 			참여하기
