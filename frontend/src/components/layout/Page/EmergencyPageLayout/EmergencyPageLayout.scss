@@ -7,13 +7,13 @@
 
 	#connecting-info {
 		@include border-gray;
-		border-radius: $rd-sm;
+		border-radius : $rd-sm;
 	}
 
 	#ticket-info {
 		@include border-gray;
 		div {
-			border-radius: $rd-sm;
+			border-radius : $rd-sm;
 		}
 	}
 
@@ -25,7 +25,7 @@
 			button {
 				flex-basis: 50%;
 				@include border-gray;
-				border-radius: $rd-sm;
+				border-radius : $rd-sm;
 			}
 		}
 	}
