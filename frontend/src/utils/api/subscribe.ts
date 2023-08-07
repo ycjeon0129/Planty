@@ -1,4 +1,4 @@
-import instance from './instance';
+import { instance } from './instance';
 
 /**
  * 식물의 온/습도 데이터를 요청

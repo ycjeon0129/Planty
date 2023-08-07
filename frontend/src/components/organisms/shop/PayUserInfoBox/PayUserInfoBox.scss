@@ -5,12 +5,13 @@
 
 .info-box {
 	@include border-gray;
-  border-radius: var.$rd-sm;
-  margin-top: 20px;
+	border-radius: var.$rd-sm;
+	margin-top: 20px;
+	padding: 10px;
 }
 
 .subject-text {
 	font-size: var.$h3;
-  margin-left: 10px;
-  margin-top: 5px;
+	margin-left: 10px;
+	margin-top: 5px;
 }

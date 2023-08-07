@@ -1,5 +1,5 @@
 import { Value } from 'types/global';
-import instance from './instance';
+import { instance } from './instance';
 
 /**
  * 예약(컨설팅) 목록 전체조회 요청
