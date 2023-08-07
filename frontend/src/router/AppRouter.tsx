@@ -19,6 +19,7 @@ import MypageSubMenuDetailPage from 'pages/Mypage/MypageSubMenuDetailPage';
 import BookingPage from 'pages/subscribe/Booking/BookingPage';
 import ConsultingHistoryPage from 'pages/subscribe/ConsultingHistory/ConsultingHistoryPage';
 import ShopPay from 'pages/Shop/ShopPay';
+import ConsultingLoadingPageLayout from 'components/layout/Page/ConsultingLoadingPageLayout/ConsultingLoadingPageLayout';
 import VideoPage from 'pages/Consulting/Video/VideoPage';
 import PrivateRoute from './PrivateRoute';
 import 'styles/index.scss';
@@ -59,6 +60,7 @@ function AppRouter() {
 						<Route path="/subscribe/:sid/booking" element={<BookingPage />} />
 						<Route path="/subscribe/:sid/consulting" element={<ConsultingHistoryPage />} />
 						<Route path="/video" element={<VideoPage />} />
+						<Route path="consultingloading" element={<ConsultingLoadingPageLayout />} />
 					</Route>
 
 					{/* 컴포넌트 개발용 */}
