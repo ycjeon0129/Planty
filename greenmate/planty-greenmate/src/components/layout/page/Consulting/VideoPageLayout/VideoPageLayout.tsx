@@ -1,12 +1,12 @@
 import React, { ReactNode } from 'react';
-import './DashBoardPageLayout.scss';
+import './VideoPageLayout.scss';
 import PageLayout from 'components/layout/common/PageLayout/PageLayout';
 import ContentsLayout from 'components/layout/common/ContentsLayout/ContentsLayout';
 
-function DashBoardPageLayout({ children }: { children: ReactNode[] }) {
+function VideoPageLayout({ children }: { children: ReactNode[] }) {
 	return (
-		<PageLayout>
-			<div className="dashboard-page-layout-container">
+		<PageLayout isFullPage>
+			<div className="video-page-layout-container">
 				<div id="left">
 					<ContentsLayout id="now-consulting-area">{children[0]}</ContentsLayout>
 					<ContentsLayout id="my-subscribe-area">{children[1]}</ContentsLayout>
@@ -19,4 +19,4 @@ function DashBoardPageLayout({ children }: { children: ReactNode[] }) {
 	);
 }
 
-export default DashBoardPageLayout;
+export default VideoPageLayout;
