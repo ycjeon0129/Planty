@@ -2,7 +2,7 @@ import LocalStorage from 'constants/storage/LocalStorage';
 import jwt_decode from 'jwt-decode';
 import { AccessToken, LoginBody, SetUserBody } from 'types/auth';
 import SessionStorage from 'constants/storage/SessionStorage';
-import instance from './instance';
+import { instance } from './instance';
 
 /**
  * JWT AccessToken을 해석하여, uid를 추출하는 함수.

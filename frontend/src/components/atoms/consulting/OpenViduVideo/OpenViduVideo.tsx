@@ -1,8 +1,8 @@
 import React, { useRef, useEffect } from 'react';
 import { StreamManager } from 'openvidu-browser';
-import './OpenViduVideoComponent.scss';
+import './OpenViduVideo.scss';
 
-function OpenViduVideoComponent({ streamManager }: { streamManager: StreamManager }) {
+function OpenViduVideo({ streamManager }: { streamManager: StreamManager }) {
 	const videoRef = useRef<HTMLVideoElement>(null);
 
 	useEffect(() => {
@@ -15,4 +15,4 @@ function OpenViduVideoComponent({ streamManager }: { streamManager: StreamManage
 	return <video autoPlay ref={videoRef} />;
 }
 
-export default OpenViduVideoComponent;
+export default OpenViduVideo;

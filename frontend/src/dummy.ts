@@ -1,4 +1,4 @@
-import IConsultingHistory from 'types/consulting';
+import { IConsultingHistory } from 'types/consulting';
 import { ISubscribe, IProduct, IBanner, IConsulting, ISubscribeDetail, IProductDetail } from 'types/dummy';
 import { IPlantData } from 'types/global';
 
