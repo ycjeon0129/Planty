@@ -1,9 +1,9 @@
 import React from 'react';
-import { OpenVidu, StreamEvent, StreamManager } from 'openvidu-browser';
+import { OpenVidu, StreamEvent } from 'openvidu-browser';
 import { ISubscriber } from 'types/consulting';
 import { getToken } from 'utils/api/consulting';
 import useConsulting from 'hooks/useConsulting';
-import OpenViduVideo from 'components/atoms/consulting/OpenViduVideo/OpenViduVideo';
+// import OpenViduVideo from 'components/atoms/consulting/OpenViduVideo/OpenViduVideo';
 
 function WaitPage() {
 	const [, , , , consultingMainStreamManager] = useConsulting().values;
@@ -65,7 +65,7 @@ function WaitPage() {
 		<div>
 			{consultingMainStreamManager !== undefined ? (
 				<div id="main-video" className="col-md-6">
-					<OpenViduVideo streamManager={consultingMainStreamManager as StreamManager} />
+					{/* <OpenViduVideo streamManager={consultingMainStreamManager as StreamManager} /> */}
 				</div>
 			) : null}
 			<button type="button" onClick={createSession}>
