@@ -2,10 +2,10 @@
 @import 'styles/mixins/flex';
 @import 'styles/mixins/common';
 
-@mixin buttonColor($color) {
-	background-color: $color;
-	border-radius: var.$rd-sm;
-	color: var.$white;
+.center {
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
 .ticketremains-container {
