@@ -1,7 +1,7 @@
 import React, { ReactNode } from 'react';
 import PageLayout from 'components/layout/common/PageLayout/PageLayout';
 
-function SubscribesPageLayout({ children }: { children: ReactNode[] }) {
+function HistoryPageLayout({ children }: { children: ReactNode[] }) {
 	return (
 		<PageLayout>
 			{children[0]}
@@ -10,4 +10,4 @@ function SubscribesPageLayout({ children }: { children: ReactNode[] }) {
 	);
 }
 
-export default SubscribesPageLayout;
+export default HistoryPageLayout;
