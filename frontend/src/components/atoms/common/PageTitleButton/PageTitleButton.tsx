@@ -17,7 +17,7 @@ function PageTitleButton({ type, text }: { type: string; text: string }) {
 		if (type === 'back') {
 			goBack();
 		} else {
-			// Close Page
+			goBack();
 		}
 	};
 

@@ -18,7 +18,7 @@ function BadgeDescription({
 			{/* 설명 */}
 			<ul>
 				{descriptionList.map((v) => (
-					<li>{v}</li>
+					<li key={v}>{v}</li>
 				))}
 			</ul>
 

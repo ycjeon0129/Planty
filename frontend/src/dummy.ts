@@ -1,5 +1,27 @@
-import IConsultingHistory from 'types/consulting';
+import { IConsultingHistory } from 'types/consulting';
 import { ISubscribe, IProduct, IBanner, IConsulting, ISubscribeDetail, IProductDetail } from 'types/dummy';
+import { IPlantData } from 'types/global';
+
+export const dummyPlantData: IPlantData[] = [
+	{
+		date: '2023-07-18',
+		temperature: 22,
+		humidity: 18,
+		soilHumidity: 23,
+	},
+	{
+		date: '2023-07-19',
+		temperature: 14,
+		humidity: 36,
+		soilHumidity: 18,
+	},
+	{
+		date: '2023-07-20',
+		temperature: 22.5,
+		humidity: 20,
+		soilHumidity: 19,
+	},
+];
 
 export const dummyBookings: IConsulting[] = [
 	{
@@ -138,6 +160,7 @@ export const dummyProduct: IProduct[] = [
 export const ProductDetail: IProductDetail[] = [
 	{
 		pid: 0,
+		title: '누구나 쉽게 키우는 몬스테라 클래스',
 		info: {
 			price: 20000,
 			target: '초심자',
@@ -147,6 +170,7 @@ export const ProductDetail: IProductDetail[] = [
 	},
 	{
 		pid: 1,
+		title: '스투키 일주일 클래스',
 		info: {
 			price: 12000,
 			target: '중급자',
@@ -156,6 +180,7 @@ export const ProductDetail: IProductDetail[] = [
 	},
 	{
 		pid: 2,
+		title: '싸피 방울토마토 짱짱 클래스',
 		info: {
 			price: 8000,
 			target: '왕초보',
@@ -168,6 +193,7 @@ export const ProductDetail: IProductDetail[] = [
 export const dummySubscribeDetail: ISubscribeDetail = {
 	sid: 0,
 	title: '누구나 쉽게 키우는 몬스테라 클래스',
+	plantName: '몬스테라',
 	state: 'wait',
 	thumbnail: 'https://www.flowerrepublic.co.kr/shopimages/sungmo9160/0090010004832.jpg?1665473103',
 	info: { startDate: '2023/07/23', consultCount: '총 5회 / 잔여 3회', consultDate: '2023/07/23 14:00' },
@@ -247,6 +273,30 @@ export const CONSULTING_HISTORY_LIST: IConsultingHistory[] = [
 		consultingComment:
 			'지금 물을 너무 안 주고 계세요.\n물은 하루에 2번 종이컵 반 만큼 주시고 가급적이면 주기적인 시간에 주세요.',
 	},
+];
+
+// 예약 가능/불가능 시간 데이터
+export const tempTimeStatusList = [
+	true,
+	false,
+	false,
+	true,
+	false,
+	false,
+	true,
+	true,
+	false,
+	true,
+	true,
+	false,
+	false,
+	true,
+	false,
+	true,
+	true,
+	true,
+	false,
+	true,
 ];
 
 export default dummySubscribe;

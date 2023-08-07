@@ -9,13 +9,15 @@ import './SubscribeSlider.scss';
  */
 function SubscribeSlider() {
 	return (
-		<Swiper spaceBetween={10} slidesPerView="auto" className="subscribe-slider">
-			{dummySubscribe.map((subscribe) => (
-				<SwiperSlide key={subscribe.sid}>
-					<SubscribeListItem subscribe={subscribe} />
-				</SwiperSlide>
-			))}
-		</Swiper>
+		<div className="slider-container">
+			<Swiper spaceBetween={10} slidesPerView="auto" className="subscribe-slider">
+				{dummySubscribe.map((subscribe) => (
+					<SwiperSlide key={subscribe.sid}>
+						<SubscribeListItem subscribe={subscribe} />
+					</SwiperSlide>
+				))}
+			</Swiper>
+		</div>
 	);
 }
 

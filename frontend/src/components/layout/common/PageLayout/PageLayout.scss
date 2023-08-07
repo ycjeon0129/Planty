@@ -4,8 +4,12 @@
 .page-layout {
 	padding-left: var.$pd-lg;
 	padding-right: var.$pd-lg;
-	padding-bottom: 70px;
+	padding-bottom: 40px;
 	min-height: 100vh;
+
+	&.full-page-layout {
+		padding-bottom: 1px;
+	}
 
 	@include r.responsive(Phone) {
 		// background: red;

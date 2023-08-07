@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
 import TabBarLayout from 'components/layout/common/TabBarLayout/TabBarLayout';
 import TabBar from 'components/organisms/common/TabBar/TabBar';
+import ScrollToTop from 'components/atoms/common/ScrollToTop/ScrollToTop';
 import LoginPage from 'pages/User/LoginPage';
 import HomePage from 'pages/Home/HomePage';
 import ShopPage from 'pages/Shop/ShopPage';
@@ -17,6 +18,10 @@ import Develop from 'pages/Develop';
 import MypageSubMenuDetailPage from 'pages/Mypage/MypageSubMenuDetailPage';
 import BookingPage from 'pages/subscribe/Booking/BookingPage';
 import ConsultingHistoryPage from 'pages/subscribe/ConsultingHistory/ConsultingHistoryPage';
+import VideoConsultingPage from 'pages/Consulting/VideoConsulting/VideoConsultingPage';
+import ShopPay from 'pages/Shop/ShopPay';
+import VideoPage from 'pages/Consulting/Video/VideoPage';
+import ConsultingLoadingPageLayout from 'components/layout/Page/ConsultingLoadingPageLayout/ConsultingLoadingPageLayout';
 import PrivateRoute from './PrivateRoute';
 import 'styles/index.scss';
 
@@ -46,6 +51,7 @@ function AppRouter() {
 						<Route path="/home" element={<HomePage />} />
 						<Route path="/shop" element={<ShopPage />} />
 						<Route path="/shop/detail/:pid" element={<ShopDetail />} />
+						<Route path="/shop/pay/:pid" element={<ShopPay />} />
 						<Route path="/emergency" element={<EmergencyPage />} />
 						<Route path="/mypage" element={<MypagePage />} />
 						<Route path="/mypage/booking" element={<BookingManagementPage />} />
@@ -54,16 +60,22 @@ function AppRouter() {
 						<Route path="/subscribe/:sid" element={<SubscribeDetailPage />} />
 						<Route path="/subscribe/:sid/booking" element={<BookingPage />} />
 						<Route path="/subscribe/:sid/consulting" element={<ConsultingHistoryPage />} />
+						<Route path="/consulting/video" element={<VideoConsultingPage />} />
+						<Route path="/video" element={<VideoPage />} />
+						<Route path="consultingloading" element={<ConsultingLoadingPageLayout />} />
 					</Route>
 
 					{/* 컴포넌트 개발용 */}
+					<Route path="/*" element={<Navigate replace to="/error" />} />
 					<Route path="/error" element={<ErrorPage />} />
+
 					<Route path="/develop" element={<Develop />} />
 				</Routes>
 
 				<TabBarLayout>
 					<TabBar />
 				</TabBarLayout>
+				<ScrollToTop />
 			</BrowserRouter>
 		</div>
 	);

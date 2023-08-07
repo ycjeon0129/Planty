@@ -1,0 +1,25 @@
+@use 'styles/base/variable' as var;
+@import 'styles/base/_common.scss';
+@import 'styles/mixins/flex';
+@import 'styles/mixins/_common.scss';
+
+.pay-address-box {
+	@include border-gray;
+	border-radius: var.$rd-sm;
+	margin-top: 20px;
+	padding: 10px;
+}
+
+.pay-address-box-sm {
+	display: flex;
+	justify-content: space-between;
+	margin-left: 2px;
+	margin-right: 10px;
+}
+
+.black-text {
+	margin-left: 10px;
+	font-size: var.$h5;
+	margin-bottom: 10px;
+	color: var.$black-500;
+}

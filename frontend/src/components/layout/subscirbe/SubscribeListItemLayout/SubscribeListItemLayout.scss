@@ -10,7 +10,7 @@
 	background-color: var.$white;
 
 	#top {
-		@include flex-row;
+		@include flex-row(5px);
 		@include flex-align(between, center);
 		margin-bottom: 10px;
 	}

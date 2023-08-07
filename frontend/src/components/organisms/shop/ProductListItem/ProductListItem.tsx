@@ -4,6 +4,7 @@ import ListItemTitle from 'components/atoms/common/ListItemTitle/ListItemTitle';
 import Button from 'components/atoms/common/Button/Button';
 import InfoList from 'components/organisms/common/InfoList/InfoList';
 import { IProduct } from 'types/dummy';
+import { PRODUCT_LIST_ITEM_LABELS } from 'constants/common/Labels';
 
 /**
  * 구독샵 상품 목록 아이템의 모음
@@ -18,7 +19,7 @@ function ProductListItem({ product }: { product: IProduct }) {
 		<ProductListItemLayout>
 			<ListItemTitle title={product.title} url={`detail/${product.pid}`} />
 			<img src={product.thumbnail} alt="" />
-			<InfoList info={product.info} />
+			<InfoList info={product.info} labels={PRODUCT_LIST_ITEM_LABELS} />
 			<Button isActive={false} text="구매하기" handleClick={testFunc} />
 		</ProductListItemLayout>
 	);

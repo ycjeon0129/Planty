@@ -15,6 +15,7 @@ export interface IConsultingSummary {
 }
 
 export interface ISubscribeDetail extends ISubscribe {
+	plantName: string;
 	detailInfo: {
 		subscribeStartDate: string;
 		subscribeEndDate: string;
@@ -72,6 +73,7 @@ export interface IProduct {
 
 export interface IProductDetail {
 	pid: number;
+	title: string;
 	info: {
 		price: number;
 		target: string;

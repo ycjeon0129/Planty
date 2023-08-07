@@ -1,0 +1,72 @@
+@use 'styles/base/variable' as var;
+@import 'styles/mixins/common';
+
+#booking-calendar {
+	.react-calendar {
+		width: 100%;
+
+		.react-calendar__navigation {
+			// 캘린더 네비게이션 텍스트 (2023년 8월)
+			.react-calendar__navigation__label__labelText {
+				font-size: var.$p3;
+			}
+
+			// 캘린더 네비게이션 좌우 화살표 (월바꾸는 화살표)
+			.react-calendar__navigation__arrow {
+				font-size: 2rem;
+			}
+
+			// 비활성화된 네비게이션 좌
+			button:disabled {
+				background-color: var.$white;
+				color: var.$black-100;
+			}
+		}
+
+		// 요일 칸
+		.react-calendar__month-view__weekdays__weekday {
+			line-height: 30px;
+			font-size: 1.15rem;
+		}
+
+		// 날짜 칸
+		.react-calendar__tile {
+			border-radius: var.$rd-sm;
+			height: 50px;
+			font-size: 1.3rem;
+
+			// 비활성화된 칸
+			&:disabled {
+				background-color: var.$white;
+				color: var.$black-100;
+			}
+		}
+
+		// 오늘 날짜 칸
+		.react-calendar__tile--now {
+			background-color: var.$light-green-500;
+
+			&:enabled:hover {
+				background-color: #e6e6e6;
+			}
+
+			&:enabled:focus {
+				background-color: var.$primary;
+				color: white;
+			}
+		}
+
+		// 날짜 칸 활성화 (선택되었을 때)
+		.react-calendar__tile--active {
+			background-color: var.$primary;
+
+			&:enabled:hover {
+				background-color: var.$primary;
+			}
+
+			&:enabled:focus {
+				background-color: var.$primary;
+			}
+		}
+	}
+}

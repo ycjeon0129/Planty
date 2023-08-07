@@ -2,20 +2,25 @@ import React from 'react';
 import classnames from 'classnames';
 import './ChartButton.scss';
 
-function ChartButton({
+/**
+ * 차트 온/습도 토글 버튼
+ * @param type 온도(danger) / 습도(success)
+ * @param isActive 차트 버튼 활성화/비활성화
+ * @param message 차트 버튼에 들어갈 메시지
+ */
+function ChartToggleButton({
+	type,
 	isActive,
 	message,
-	color,
 	onClick,
 }: {
 	isActive: boolean;
 	message: string;
-	color: string;
+	type: string;
 	onClick: () => void;
 }) {
-	// color : danger(온도) / success(습도)
-	const className = classnames('chart-button', { [color]: isActive, disabled: !isActive });
-	const circleColor = classnames('circle', { [color]: isActive, disabled: !isActive });
+	const className = classnames('chart-button', { [type]: isActive, disabled: !isActive });
+	const circleColor = classnames('circle', { [type]: isActive, disabled: !isActive });
 	return (
 		<button type="button" className={className} onClick={onClick}>
 			<span className={circleColor}>{message}</span>
@@ -23,4 +28,4 @@ function ChartButton({
 	);
 }
 
-export default ChartButton;
+export default ChartToggleButton;
