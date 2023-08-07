@@ -3,11 +3,11 @@ import './PurchaseButton.scss';
 import { useNavigate } from 'react-router-dom';
 
 /** 현재 상품 pid와 데이터 + 주문자 데이터를 넣어서 url로 전송 */
-function PurchaseButton() {
+function PurchaseButton({ pid }: { pid: number }) {
 	const navigate = useNavigate(); // Get the navigate function from react-router-dom
 
 	const handlePurchaseClick = () => {
-		navigate('/shop/pay');
+		navigate(`/shop/pay/${pid}`);
 	};
 	return (
 		<div className="purchase-button">

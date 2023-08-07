@@ -47,7 +47,7 @@ function AppRouter() {
 						<Route path="/home" element={<HomePage />} />
 						<Route path="/shop" element={<ShopPage />} />
 						<Route path="/shop/detail/:pid" element={<ShopDetail />} />
-						<Route path="/shop/pay/" element={<ShopPay />} />
+						<Route path="/shop/pay/:pid" element={<ShopPay />} />
 						<Route path="/emergency" element={<EmergencyPage />} />
 						<Route path="/mypage" element={<MypagePage />} />
 						<Route path="/mypage/booking" element={<BookingManagementPage />} />
