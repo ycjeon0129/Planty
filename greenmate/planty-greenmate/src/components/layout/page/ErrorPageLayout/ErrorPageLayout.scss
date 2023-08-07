@@ -1,0 +1,17 @@
+@import 'styles/mixins/flex';
+
+.error-page-layout-container {
+    @include flex-column(10px);
+    @include flex-align(center, center);
+    padding-bottom: 0;
+    height: 100vh;
+
+    svg {
+        width: 200px;
+        height: 200px;
+    }
+
+    a {
+        font-size: 1.5em;
+    }
+}
