@@ -22,6 +22,7 @@ import VideoConsultingPage from 'pages/Consulting/VideoConsulting/VideoConsultin
 import ShopPay from 'pages/Shop/ShopPay';
 import VideoPage from 'pages/Consulting/Video/VideoPage';
 import ConsultingLoadingPageLayout from 'components/layout/Page/ConsultingLoadingPageLayout/ConsultingLoadingPageLayout';
+import EmergencyParticipatePage from 'pages/Emergency/EmergencyParticipatePage';
 import PrivateRoute from './PrivateRoute';
 import 'styles/index.scss';
 
@@ -53,6 +54,7 @@ function AppRouter() {
 						<Route path="/shop/detail/:pid" element={<ShopDetail />} />
 						<Route path="/shop/pay/:pid" element={<ShopPay />} />
 						<Route path="/emergency" element={<EmergencyPage />} />
+						<Route path="/emergency/participate" element={<EmergencyParticipatePage />} />
 						<Route path="/mypage" element={<MypagePage />} />
 						<Route path="/mypage/booking" element={<BookingManagementPage />} />
 						<Route path="/mypage/:menu" element={<MypageSubMenuDetailPage />} />
