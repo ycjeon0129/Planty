@@ -2,6 +2,7 @@ package com.planty.api.subscribe.controller;
 
 import com.planty.api.consulting.response.UserConsultingResponse;
 import com.planty.api.subscribe.response.UserSubscribeDatailResponse;
+import io.swagger.annotations.Api;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.RestController;
@@ -18,6 +19,7 @@ import static com.planty.common.util.LogCurrent.*;
 @Slf4j
 @RequestMapping("/api/subscribes")
 @RequiredArgsConstructor
+@Api
 public class SubscribeController {
     private final SubscribeService subscribeServiceImpl;
     @GetMapping
