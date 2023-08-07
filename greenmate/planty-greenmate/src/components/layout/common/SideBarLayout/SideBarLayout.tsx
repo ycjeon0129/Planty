@@ -1,12 +1,9 @@
 import React, { ReactNode } from 'react';
 import './SideBarLayout.scss';
-// import useTabbarRender from 'hooks/useTabbarRender';
 
+// 임시
 function SideBarLayout({ children }: { children: ReactNode }) {
-	// if (useTabbarRender()) {
 	return <div className="sidebar-layout-container">{children}</div>;
-	// }
-	// return <div />;
 }
 
 export default SideBarLayout;
