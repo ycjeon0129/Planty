@@ -1,4 +1,4 @@
-import DashBoardPageLayout from 'components/layout/page/DashBoardPageLayout/DashBoardPageLayout';
+import DashBoardPageLayout from 'components/layout/page/DashBoard/DashBoardPageLayout/DashBoardPageLayout';
 import React from 'react';
 
 function DashBoardPage() {

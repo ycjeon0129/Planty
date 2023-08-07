@@ -1,4 +1,4 @@
-import ErrorPageLayout from 'components/layout/page/ErrorPageLayout/ErrorPageLayout';
+import ErrorPageLayout from 'components/layout/page/Etc/ErrorPageLayout/ErrorPageLayout';
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { ReactComponent as Plant } from 'assets/images/SadPlant.svg';
