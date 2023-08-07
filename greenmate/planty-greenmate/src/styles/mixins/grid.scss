@@ -1,0 +1,9 @@
+// grid-template-columns: 200px 200px 500px;
+// grid-template-columns: 1fr 1fr 1fr;
+// row-gap: 10px;
+// column-gap: 20px;
+
+@mixin grid ($gap) {
+    display: grid;
+    gap: 20px;
+}
