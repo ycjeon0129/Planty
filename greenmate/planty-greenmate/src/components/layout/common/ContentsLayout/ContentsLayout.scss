@@ -1,0 +1,9 @@
+@use 'styles/base/variable' as var;
+
+.contentslayout-container {
+	width: 100%;
+	height: 100%;
+	background-color: var.$white;
+	padding: var.$pd-xl;
+	border-radius: var.$rd-sm;
+}
