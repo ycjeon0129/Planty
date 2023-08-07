@@ -3,7 +3,7 @@ import './ContentsLayout.scss';
 
 function ContentsLayout({ children, id }: { children: ReactNode; id: string }) {
 	return (
-		<div id={id} className="contentslayout-container">
+		<div id={id} className="contents-layout-container">
 			{children}
 		</div>
 	);
