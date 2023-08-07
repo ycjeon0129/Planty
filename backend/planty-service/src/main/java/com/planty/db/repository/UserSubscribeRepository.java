@@ -10,5 +10,6 @@ import java.util.List;
 
 @Repository
 public interface UserSubscribeRepository extends JpaRepository<ViewUserSubscribe, Long> {
-    List<ViewUserSubscribe> findByUidOrderBySid(Integer uid);
+    List<ViewUserSubscribe> findByUid(Integer uid);
+    ViewUserSubscribe findByUidAndSid(Integer uid, Integer sid);
 }

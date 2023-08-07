@@ -1,23 +1,24 @@
 package com.planty.api.subscribe.response;
 
-import javax.validation.constraints.NotNull;
-import lombok.*;
+import com.planty.api.embedded.response.UserSubscribeEmbeddedResponse;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.ToString;
 
-//@NoArgsConstructor
-//@Data
-//@AllArgsConstructor
-//@Builder
+import javax.validation.constraints.NotNull;
+import java.util.List;
+
 @Getter
 @Builder
 @ToString
-public class UserSubscribeResponse {
+public class UserSubscribeDatailResponse {
     @NotNull
     private Integer sid;
 
     @NotNull
     private String startDate;
 
-    private Boolean end;
+    private String endDate;
     @NotNull
     private String title;
     @NotNull
@@ -32,4 +33,6 @@ public class UserSubscribeResponse {
     private Boolean consultingActive;
 
     private Integer consultingTime;
+
+    private List<UserSubscribeEmbeddedResponse> embeddedInfo;
 }
