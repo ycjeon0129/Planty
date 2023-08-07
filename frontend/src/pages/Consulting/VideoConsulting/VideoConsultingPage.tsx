@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import OpenViduVideo from 'components/atoms/consulting/OpenViduVideo/OpenViduVideo';
 import VideoConsultingPageLayout from 'components/layout/Page/VideoConsultingPageLayout/VideoConsultingPageLayout';
 import VideoConsultingMenu from 'components/organisms/common/ChatButtonList/VideoConsultingMenu';
-import { OpenVidu, Session, Subscriber } from 'openvidu-browser';
+import { OpenVidu, Publisher, Session, Subscriber } from 'openvidu-browser';
 import { getToken } from 'utils/api/consulting';
 
 const mySessionId = 'TESTEST';
@@ -15,9 +15,14 @@ function VideoConsultingPage() {
 	// const [OV, setOV] = useState<OpenVidu | null>(null); // 오픈비두
 	const [session, setSession] = useState<Session | undefined>(undefined); // 가상 룸
 	const [subscribers, setSubscribers] = useState<Subscriber[]>([]);
-	// const [publisher, setPublisher] = useState<Publisher | undefined>(undefined);
+	const [publisher, setPublisher] = useState<Publisher | undefined>(undefined);
 	// const [mainStreamManager, setMainStreamManager] = useState<StreamManager | undefined>(undefined);
 	// const [currentVideoDevice, setCurrentVideoDevice] = useState<Device | undefined>();
+
+	const deleteSubscribers = (streamId: string) => {
+		const newSubscribers = subscribers.filter((sub) => sub.stream.streamId !== streamId);
+		setSubscribers(newSubscribers);
+	};
 
 	const joinSession = () => {
 		const OV = new OpenVidu();
@@ -32,6 +37,11 @@ function VideoConsultingPage() {
 			console.log('subscriber', subscriber);
 			console.log('=====================================');
 			setSubscribers((prev) => [...prev, subscriber]);
+		});
+
+		newSession.on('streamDestroyed', (event) => {
+			console.log('DELETE!!!', event.stream.streamId);
+			deleteSubscribers(event.stream.streamManager.stream.streamId);
 		});
 
 		getToken(mySessionId).then((token) => {
@@ -56,6 +66,8 @@ function VideoConsultingPage() {
 					// setCurrentVideoDevice(videoDevices.find((device) => device.deviceId === currentVideoDeviceId));
 					// setMainStreamManager(initPublisher);
 					// setPublisher(initPublisher);
+
+					setPublisher(initPublisher);
 				})
 				.catch((error) => {
 					console.log('There was an error connecting to the session:', error.code, error.message);
@@ -74,11 +86,12 @@ function VideoConsultingPage() {
 			{/* <OpenViduVideo streamManager={null} />
 			<OpenViduVideo streamManager={null} /> */}
 			{subscribers.map((sub) => (
-				<div key={sub.id}>
+				<div key={sub.stream.streamId}>
+					<h1>{sub.stream.streamId}</h1>
 					<OpenViduVideo streamManager={sub} />
 				</div>
 			))}
-
+			{publisher && <OpenViduVideo streamManager={publisher} />}
 			<VideoConsultingMenu />
 		</VideoConsultingPageLayout>
 	);
