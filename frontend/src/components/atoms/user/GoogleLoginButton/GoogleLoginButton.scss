@@ -20,7 +20,11 @@
 		justify-content: center;
 		font-weight: bold;
 		font-size: 1.4em;
-		color: gray;
+		color: var.$black-600;
+
+		&:hover {
+			background-color: var.$light-400;
+		}
 	}
 
 	svg {
