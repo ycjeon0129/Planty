@@ -1,0 +1,26 @@
+@use 'styles/base/variable' as var;
+@use 'styles/mixins/responsive' as r;
+
+.page-layout {
+	background-color: var.$border-bg;
+	width: 100%;
+	border: 1px solid black;
+	padding: var.$pd-xl;
+	min-height: 100vh;
+
+	&.full-page-layout {
+		padding-bottom: 1px;
+	}
+
+	@include r.responsive(Phone) {
+		// background: red;
+	}
+
+	@include r.responsive(Tablet) {
+		// background: orange;
+	}
+
+	@include r.responsive(Desktop) {
+		// background: yellow;
+	}
+}
