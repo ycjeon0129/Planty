@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
 import TabBarLayout from 'components/layout/common/TabBarLayout/TabBarLayout';
 import TabBar from 'components/organisms/common/TabBar/TabBar';
+import ScrollToTop from 'components/atoms/common/ScrollToTop/ScrollToTop';
 import LoginPage from 'pages/User/LoginPage';
 import HomePage from 'pages/Home/HomePage';
 import ShopPage from 'pages/Shop/ShopPage';
@@ -19,6 +20,7 @@ import BookingPage from 'pages/subscribe/Booking/BookingPage';
 import ConsultingHistoryPage from 'pages/subscribe/ConsultingHistory/ConsultingHistoryPage';
 import VideoConsultingPage from 'pages/Consulting/VideoConsulting/VideoConsultingPage';
 import ShopPay from 'pages/Shop/ShopPay';
+import VideoPage from 'pages/Consulting/Video/VideoPage';
 import PrivateRoute from './PrivateRoute';
 import 'styles/index.scss';
 
@@ -58,6 +60,7 @@ function AppRouter() {
 						<Route path="/subscribe/:sid/booking" element={<BookingPage />} />
 						<Route path="/subscribe/:sid/consulting" element={<ConsultingHistoryPage />} />
 						<Route path="/consulting/video" element={<VideoConsultingPage />} />
+						<Route path="/video" element={<VideoPage />} />
 					</Route>
 
 					{/* 컴포넌트 개발용 */}
@@ -70,6 +73,7 @@ function AppRouter() {
 				<TabBarLayout>
 					<TabBar />
 				</TabBarLayout>
+				<ScrollToTop />
 			</BrowserRouter>
 		</div>
 	);
