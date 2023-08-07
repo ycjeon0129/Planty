@@ -35,7 +35,7 @@ function HomePage() {
 			<RectShortcutButton
 				text="화상 컨설팅"
 				handleClick={() => {
-					alert('화상상담');
+					movePage('/video');
 				}}
 				type="consulting-video"
 			/>

@@ -40,4 +40,5 @@ export const NOT_ARROWED_PATH = [
 	/\/subscribe\/\d+\/consulting/,
 	'/error',
 	'/consultingloading',
+	'/video',
 ];

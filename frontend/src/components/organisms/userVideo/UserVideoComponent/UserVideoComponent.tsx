@@ -16,7 +16,7 @@ function UserVideoComponent({ streamManager }: { streamManager: StreamManager })
 		<div>
 			{streamManager !== undefined ? (
 				<div className="streamcomponent">
-					<OpenViduVideoComponent streamManager={streamManager} />
+					<OpenViduVideoComponent streamManager={streamManager} type="user" />
 					<div>
 						<p>{getNicknameTag()}</p>
 					</div>

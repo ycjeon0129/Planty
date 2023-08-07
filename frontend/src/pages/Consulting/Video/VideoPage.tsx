@@ -160,12 +160,9 @@ function VideoPage() {
 	};
 
 	return (
-		<div className="container">
+		<div>
 			{session === undefined ? (
 				<div id="join">
-					<div id="img-div">
-						<img src="resources/images/openvidu_grey_bg_transp_cropped.png" alt="OpenVidu logo" />
-					</div>
 					<div id="join-dialog" className="jumbotron vertical-center">
 						<h1> Join a video session </h1>
 						<form className="form-group" onSubmit={joinSession}>
@@ -201,9 +198,7 @@ function VideoPage() {
 						</form>
 					</div>
 				</div>
-			) : null}
-
-			{session !== undefined ? (
+			) : (
 				<div id="session">
 					<div id="session-header">
 						<h1 id="session-title">{mySessionId}</h1>
@@ -223,22 +218,25 @@ function VideoPage() {
 						/>
 					</div>
 
-					{mainStreamManager !== undefined ? (
-						<div id="main-video" className="col-md-6">
+					{mainStreamManager !== undefined && (
+						<div id="main-video">
+							<h2>메인 스트림 매니저</h2>
 							<UserVideoComponent streamManager={mainStreamManager} />
 						</div>
-					) : null}
-					<div id="video-container" className="col-md-6">
-						{publisher !== undefined ? (
+					)}
+					<div id="video-container">
+						{/* {publisher !== undefined && (
 							<div className="stream-container col-md-6 col-xs-6">
+								<h2>퍼블리셔</h2>
 								<UserVideoComponent streamManager={publisher} />
 								<button type="button" onClick={() => handleMainVideoStream(publisher)}>
 									유저비디오컴포넌트1
 								</button>
 							</div>
-						) : null}
+						)} */}
 						{subscribers.map((sub) => (
-							<div key={sub.id} className="stream-container col-md-6 col-xs-6">
+							<div key={sub.id} className="stream-container">
+								<h2>유저</h2>
 								<span>{sub.id}</span>
 								<UserVideoComponent streamManager={sub} />
 								<button type="button" onClick={() => handleMainVideoStream(sub)}>
@@ -248,7 +246,8 @@ function VideoPage() {
 						))}
 					</div>
 				</div>
-			) : null}
+			)}
+			<div>하단</div>
 		</div>
 	);
 }
