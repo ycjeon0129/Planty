@@ -1,4 +1,4 @@
-package com.planty.common.exception.handler;
+package com.planty.common.handler;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;

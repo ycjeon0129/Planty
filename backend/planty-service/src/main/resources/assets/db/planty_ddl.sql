@@ -62,7 +62,7 @@ CREATE TABLE IF NOT EXISTS `planty`.`user_info` (
   `user_id` VARCHAR(32) NOT NULL COMMENT '사용자 id',
   `user_name` VARCHAR(32) NOT NULL COMMENT '사용자 이름',
   `email` VARCHAR(64) NOT NULL COMMENT '사용자 이메일',
-  `auth` VARCHAR(1024) NULL DEFAULT NULL COMMENT '사용자 인증',
+  `token` VARCHAR(1024) NULL DEFAULT NULL COMMENT '사용자 인증 토큰',
   `photo` VARCHAR(256) NULL DEFAULT NULL COMMENT '사용자 프로필 사진',
   `join_date` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '사용자 가입일시',
   `modified_date` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '사용자 정보 수정일시',

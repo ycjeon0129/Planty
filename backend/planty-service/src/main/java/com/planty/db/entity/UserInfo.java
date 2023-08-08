@@ -7,7 +7,9 @@ import lombok.*;
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.DynamicInsert;
 @Getter
+@Setter
 @Builder
+@ToString
 @AllArgsConstructor
 @NoArgsConstructor
 @DynamicInsert
@@ -29,8 +31,8 @@ public class UserInfo extends BaseEntity {
     @Column(name = "email", length = 64, unique = true, nullable = false)
     private String userEmail;
 
-    @Column(name = "auth", length = 1024, nullable = true)
-    private String auth;
+    @Column(name = "token", length = 1024, nullable = true)
+    private String token;
 
     @Column(name = "photo", length = 256, nullable = true)
     private String photo;
