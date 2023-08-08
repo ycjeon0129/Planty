@@ -5,8 +5,8 @@ import moment from 'moment';
  * @param date Date 객체
  * @returns 0000-00-00 형태의 string 날짜
  */
-const formatDate = ({ date }: { date: Date | null }): string | null => {
-	return moment(date).format('YYYY-MM-DD');
+const formatDate = (date: string | Date | null): string | null => {
+	return moment(date).format('YYYY-MM-DD (dd)');
 };
 
 export default formatDate;
