@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 // import { OpenVidu, Session, Publisher, Device, Subscriber, StreamManager } from 'openvidu-browser';
 import OpenViduVideo from 'components/atoms/consulting/OpenViduVideo/OpenViduVideo';
 import VideoConsultingPageLayout from 'components/layout/Page/VideoConsultingPageLayout/VideoConsultingPageLayout';
-import VideoConsultingMenu from 'components/organisms/common/ChatButtonList/VideoConsultingMenu';
+import VideoConsultingMenu from 'components/organisms/consulting/VideoConsultingMenu/VideoConsultingMenu';
 import { OpenVidu, Publisher, Session, StreamEvent, Subscriber } from 'openvidu-browser';
 import { getToken } from 'utils/api/consulting';
 import ConsultingLoadingPageLayout from 'components/layout/Page/ConsultingLoadingPageLayout/ConsultingLoadingPageLayout';
@@ -22,6 +22,19 @@ function VideoConsultingPage() {
 	const [microphoneEnabled, setMicrophoneEnabled] = useState<boolean>(true);
 	const [isLoading, setLoading] = useState<boolean>(true);
 
+	const handleStreamCreated = (event: StreamEvent) => {
+		if (session) {
+			const newSubscriber = session.subscribe(event.stream, undefined);
+			setSubscriber(newSubscriber);
+		}
+	};
+
+	const handleStreamDestroyed = () => {
+		if (subscriber) {
+			setSubscriber(undefined);
+		}
+	};
+
 	const toggleMicrophone = () => {
 		if (publisher) {
 			const newMicrophoneState = !microphoneEnabled;
@@ -35,19 +48,6 @@ function VideoConsultingPage() {
 			const newWebcamState = !webcamEnabled;
 			publisher.publishVideo(newWebcamState);
 			setWebcamEnabled(newWebcamState);
-		}
-	};
-
-	const handleStreamCreated = (event: StreamEvent) => {
-		if (session) {
-			const newSubscriber = session.subscribe(event.stream, undefined);
-			setSubscriber(newSubscriber);
-		}
-	};
-
-	const handleStreamDestroyed = () => {
-		if (subscriber) {
-			setSubscriber(undefined);
 		}
 	};
 
