@@ -9,8 +9,9 @@ import ConsultingLoadingPageLayout from 'components/layout/Page/ConsultingLoadin
 import { ReactComponent as CamOffIcon } from 'assets/icons/consultingMenu/VideoOff.svg';
 import { ReactComponent as MicOffIcon } from 'assets/icons/consultingMenu/MicOff.svg';
 import useMovePage from 'hooks/useMovePage';
+import PlantChart from 'components/organisms/subscribe/PlantChart/PlantChart';
 
-const mySessionId = 'TESTEST';
+const mySessionId = 'TTTTT';
 const myName = 'Test1';
 
 function VideoConsultingPage() {
@@ -20,20 +21,8 @@ function VideoConsultingPage() {
 	const [publisher, setPublisher] = useState<Publisher | undefined>(undefined);
 	const [webcamEnabled, setWebcamEnabled] = useState<boolean>(true);
 	const [microphoneEnabled, setMicrophoneEnabled] = useState<boolean>(true);
+	const [chartDisplayOn, setChartDisplayOn] = useState<boolean>(false);
 	const [isLoading, setLoading] = useState<boolean>(true);
-
-	const handleStreamCreated = (event: StreamEvent) => {
-		if (session) {
-			const newSubscriber = session.subscribe(event.stream, undefined);
-			setSubscriber(newSubscriber);
-		}
-	};
-
-	const handleStreamDestroyed = () => {
-		if (subscriber) {
-			setSubscriber(undefined);
-		}
-	};
 
 	const toggleMicrophone = () => {
 		if (publisher) {
@@ -48,6 +37,23 @@ function VideoConsultingPage() {
 			const newWebcamState = !webcamEnabled;
 			publisher.publishVideo(newWebcamState);
 			setWebcamEnabled(newWebcamState);
+		}
+	};
+
+	const toggleChartDisplay = () => {
+		setChartDisplayOn(!chartDisplayOn);
+	};
+
+	const handleStreamCreated = (event: StreamEvent) => {
+		if (session) {
+			const newSubscriber = session.subscribe(event.stream, undefined);
+			setSubscriber(newSubscriber);
+		}
+	};
+
+	const handleStreamDestroyed = () => {
+		if (subscriber) {
+			setSubscriber(undefined);
 		}
 	};
 
@@ -124,8 +130,15 @@ function VideoConsultingPage() {
 			<VideoConsultingMenu
 				toggleWebcam={toggleWebcam}
 				toggleMicrophone={toggleMicrophone}
+				toggleChartDisplay={toggleChartDisplay}
 				exitConsulting={exitConsulting}
 			/>
+			{chartDisplayOn && (
+				<div className="chart-display-wrap">
+					<h3>온습도 정보</h3>
+					<PlantChart />
+				</div>
+			)}
 		</VideoConsultingPageLayout>
 	);
 }
