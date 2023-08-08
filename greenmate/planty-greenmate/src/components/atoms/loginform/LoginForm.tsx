@@ -30,7 +30,7 @@ function LoginForm() {
 		<div className="login-form-outer-box">
 			<Box sx={{ display: 'flex', flexWrap: 'wrap' }}>
 				<div>
-					<FormControl sx={{ m: 1, width: '35ch' }} variant="outlined">
+					<FormControl sx={{ m: 1, width: '53ch' }} variant="outlined">
 						<InputLabel htmlFor="outlined-adornment-password">ID</InputLabel>
 						<OutlinedInput
 							id="outlined-adornment-password"
@@ -55,7 +55,7 @@ function LoginForm() {
 					</FormControl>
 				</div>
 				<div>
-					<FormControl sx={{ m: 1, width: '35ch' }} variant="outlined">
+					<FormControl sx={{ m: 1, width: '53ch' }} variant="outlined">
 						<InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
 						<OutlinedInput
 							id="outlined-adornment-password"
