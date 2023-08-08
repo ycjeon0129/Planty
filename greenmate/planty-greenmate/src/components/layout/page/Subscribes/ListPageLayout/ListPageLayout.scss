@@ -1,0 +1,14 @@
+.list-page-layout-container {
+    display: flex;
+    flex-grow: 1;
+
+    #subscribe-list {
+        flex-basis: 50%;
+        display: flex;
+    }
+
+    #subscribe-detail {
+        flex-basis: 50%;
+        display: flex;
+    }
+}
