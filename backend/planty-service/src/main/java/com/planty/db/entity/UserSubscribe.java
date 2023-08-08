@@ -33,15 +33,15 @@ public class UserSubscribe{
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(referencedColumnName = "uid", name = "USER_INFO_uid") // 사용자 식별키
-    private UserInfo uId;
+    private UserInfo uid;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(referencedColumnName = "spid", name = "SUBSCRIBE_PRODUCT_spid") // 구독상품 식별키
-    private SubscribeProduct subscribeProductSpid;
+    private SubscribeProduct spid;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(referencedColumnName = "gid", name = "GM_INFO_gid") // GM 식별키
-    private GmInfo GMInfoGid;
+    private GmInfo gid;
 
     @NonNull
     @Column(name = "consulting_remain_cnt", nullable = false) // 남은 컨설팅 횟수

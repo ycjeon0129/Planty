@@ -1,11 +1,11 @@
 package com.planty.api.subscribe.request;
 
-import lombok.Builder;
-import lombok.Getter;
-import lombok.ToString;
+import lombok.*;
 
 import javax.validation.constraints.NotNull;
-@Getter
+@NoArgsConstructor
+@Data
+@AllArgsConstructor
 @Builder
 @ToString
 public class UserSubscribeRequest {

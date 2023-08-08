@@ -2,6 +2,7 @@ package com.planty.api.consulting.service;
 
 import com.planty.api.consulting.response.UserConsultingResponse;
 import com.planty.common.exception.handler.ExceptionHandler;
+import com.planty.common.util.SecurityUtil;
 import com.planty.db.entity.UserInfo;
 import com.planty.db.entity.ViewUserConsulting;
 import com.planty.db.repository.UserConsultingRepository;
@@ -20,8 +21,12 @@ public class ConsultingServiceImpl implements ConsultingService {
     private final UserConsultingRepository userConsultingRepository;
     private final UserInfoRepository userInfoRepository;
     @Override
-    public List<UserConsultingResponse> getUserConsultingUid(String userId) {
-        UserInfo user = userInfoRepository.findByUserId(userId)
+    public List<UserConsultingResponse> getUserConsultingUid() {
+//        String email = SecurityUtil.getCurrentUserEmail();
+//        UserInfo user = userInfoRepository.findByUserEmail(email)
+//                .orElseThrow(() -> new NullPointerException(ExceptionHandler.USER_NOT_FOUND));
+
+        UserInfo user = userInfoRepository.findByUserId("ssafyDevelop")
                 .orElseThrow(() -> new NullPointerException(ExceptionHandler.USER_NOT_FOUND));
 
         List<UserConsultingResponse> consultingList = new ArrayList<>();
@@ -47,8 +52,12 @@ public class ConsultingServiceImpl implements ConsultingService {
     }
 
     @Override
-    public List<UserConsultingResponse> getUserConsultingDetail(String userId, Long sid) {
-        UserInfo user = userInfoRepository.findByUserId(userId)
+    public List<UserConsultingResponse> getUserConsultingDetail(Long sid) {
+//        String email = SecurityUtil.getCurrentUserEmail();
+//        UserInfo user = userInfoRepository.findByUserEmail(email)
+//                .orElseThrow(() -> new NullPointerException(ExceptionHandler.USER_NOT_FOUND));
+
+        UserInfo user = userInfoRepository.findByUserId("ssafyDevelop")
                 .orElseThrow(() -> new NullPointerException(ExceptionHandler.USER_NOT_FOUND));
 
         List<UserConsultingResponse> consultingListDetail = new ArrayList<>();
