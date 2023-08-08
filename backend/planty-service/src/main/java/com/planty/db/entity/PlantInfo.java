@@ -19,7 +19,7 @@ public class PlantInfo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idx", nullable = false) // 식물 식별키
-    private Integer idx;
+    private Long idx;
 
     @NonNull
     @Column(name ="name", length = 128, nullable = false) // 식물 이름

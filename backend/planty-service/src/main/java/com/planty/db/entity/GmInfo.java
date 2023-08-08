@@ -21,7 +21,7 @@ public class GmInfo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "gid", nullable = false) // 식별키
-    private Integer gid;
+    private Long gid;
 
     @NonNull
     @Column(name ="id", length = 16, nullable = false) // 아이디

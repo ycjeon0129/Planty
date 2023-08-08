@@ -20,7 +20,7 @@ public class SubscribeProduct {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "spid", nullable = false) // 식별키
-    private Integer spid;
+    private Long spid;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(referencedColumnName = "idx", name = "PLANT_INFO_idx") // 식물 식별키

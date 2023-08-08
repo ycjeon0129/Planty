@@ -14,15 +14,15 @@ import lombok.*;
 public class ViewUserConsulting {
     @Id
     @Column(name = "cid", nullable = false) // 컨설팅 예약 식별키
-    private Integer cid;
+    private Long cid;
 
     @NonNull
     @Column(name = "uid")  // 사용자 식별키
-    private Integer uid;
+    private Long uid;
 
     @NonNull
     @Column(name = "sid")  // 사용자 구독정보 식별키
-    private Integer sid;
+    private Long sid;
 
     @NonNull
     @Column(name = "time") // 시간 식별기
