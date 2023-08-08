@@ -15,9 +15,9 @@ import Checkbox from '@mui/material/Checkbox';
 
 function LoginForm() {
 	// const [deleteId, SetDeleteId] = React.useState(true);
-	const [id, setId] = React.useState(''); // State to store ID input
+	const [id, setId] = React.useState('');
 	const handleClearId = () => {
-		setId(''); // Clear the ID input
+		setId('');
 	};
 
 	const [showPassword, setShowPassword] = React.useState(false);
@@ -35,23 +35,22 @@ function LoginForm() {
 						<OutlinedInput
 							id="outlined-adornment-password"
 							type="text"
-							value={id} // Set the value of ID input
-							onChange={(e) => setId(e.target.value)} // Update ID state on input change
+							value={id}
+							onChange={(e) => setId(e.target.value)}
 							endAdornment={
 								<InputAdornment position="end">
 									<IconButton
 										aria-label="toggle password visibility"
 										onClick={() => {
-											handleClearId(); // Call handleClearId on icon button click
+											handleClearId();
 										}}
 										onMouseDown={handleMouseDownPassword}
 										edge="end"
 									>
-										<ClearIcon /> {/* Change this line */}
+										<ClearIcon />
 									</IconButton>
 								</InputAdornment>
 							}
-							label="Password"
 						/>
 					</FormControl>
 				</div>
