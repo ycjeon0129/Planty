@@ -1,4 +1,4 @@
-import PageHeader from 'components/atoms/common/PageHeader/PageHeader';
+import PageHeader from 'components/organisms/common/PageHeader/PageHeader';
 import HistoryPageLayout from 'components/layout/page/History/HistoryPageLayout/HistoryPageLayout';
 import React from 'react';
 import { Outlet } from 'react-router-dom';

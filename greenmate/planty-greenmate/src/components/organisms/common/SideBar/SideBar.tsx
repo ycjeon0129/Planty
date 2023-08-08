@@ -11,7 +11,7 @@ function SideBar() {
 	if (useSidebarRender()) {
 		return (
 			<SideBarLayout>
-				<Link to={type === 'chat' ? '/consulting/chatting' : '/consulting/video'}>현재 진행중인 컨설팅</Link>
+				<Link to={type === 'chat' ? '/consulting/video' : '/consulting/video'}>현재 진행중인 컨설팅</Link>
 				<Link to="/dashboard">대시보드</Link>
 				<Link to="/subscribes/list">구독 관리(목록)</Link>
 				<Link to="/subscribes/calendar">구독 관리(캘린더)</Link>
