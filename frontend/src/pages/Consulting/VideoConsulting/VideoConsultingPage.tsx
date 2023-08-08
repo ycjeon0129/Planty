@@ -9,7 +9,7 @@ import ConsultingLoadingPageLayout from 'components/layout/Page/ConsultingLoadin
 import { ReactComponent as CamOffIcon } from 'assets/icons/consultingMenu/VideoOff.svg';
 import { ReactComponent as MicOffIcon } from 'assets/icons/consultingMenu/MicOff.svg';
 import useMovePage from 'hooks/useMovePage';
-import PlantChart from 'components/organisms/subscribe/PlantChart/PlantChart';
+// import PlantChart from 'components/organisms/subscribe/PlantChart/PlantChart';
 
 const mySessionId = 'TTTTT';
 const myName = 'Test1';
@@ -136,7 +136,8 @@ function VideoConsultingPage() {
 			{chartDisplayOn && (
 				<div className="chart-display-wrap">
 					<h3>온습도 정보</h3>
-					<PlantChart />
+					{/* TODO : 현재 Sid를 얻어올 수 없어서 차트 데이터 요청을 못날림. sid 추가해야 함. */}
+					{/* <PlantChart  /> */}
 				</div>
 			)}
 		</VideoConsultingPageLayout>
