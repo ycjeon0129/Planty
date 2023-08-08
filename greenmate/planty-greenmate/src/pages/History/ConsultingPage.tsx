@@ -2,7 +2,7 @@ import ConsultingPageLayout from 'components/layout/page/History/ConsultingPageL
 import React from 'react';
 
 function ConsultingPage() {
-	return <ConsultingPageLayout>구독 목록 페이지</ConsultingPageLayout>;
+	return <ConsultingPageLayout>컨설팅 내역 페이지</ConsultingPageLayout>;
 }
 
 export default ConsultingPage;
