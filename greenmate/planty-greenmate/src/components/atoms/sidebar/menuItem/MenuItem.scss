@@ -1,10 +1,11 @@
 @import 'styles/base/_variable.scss';
 .menu-bar-outer-box {
   display: flex;
-  margin-left: 10px;
+
   align-items: center;
   gap: 10px;
   margin-bottom: 5px;
+  padding-left: 20px;
 }
 
 .menu-list {
