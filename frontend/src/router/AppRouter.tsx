@@ -20,9 +20,10 @@ import BookingPage from 'pages/subscribe/Booking/BookingPage';
 import ConsultingHistoryPage from 'pages/subscribe/ConsultingHistory/ConsultingHistoryPage';
 import VideoConsultingPage from 'pages/Consulting/VideoConsulting/VideoConsultingPage';
 import ShopPay from 'pages/Shop/ShopPay';
-import VideoPage from 'pages/Consulting/Video/VideoPage';
 import ConsultingLoadingPageLayout from 'components/layout/Page/ConsultingLoadingPageLayout/ConsultingLoadingPageLayout';
 import EmergencyParticipatePage from 'pages/Emergency/EmergencyParticipatePage';
+import ConsultingParticipatePage from 'pages/Consulting/ConsultingParticipatePage';
+import { Toaster } from 'react-hot-toast';
 import PrivateRoute from './PrivateRoute';
 import 'styles/index.scss';
 
@@ -55,6 +56,7 @@ function AppRouter() {
 						<Route path="/shop/pay/:pid" element={<ShopPay />} />
 						<Route path="/emergency" element={<EmergencyPage />} />
 						<Route path="/emergency/participate" element={<EmergencyParticipatePage />} />
+						<Route path="/consulting/participate" element={<ConsultingParticipatePage />} />
 						<Route path="/mypage" element={<MypagePage />} />
 						<Route path="/mypage/booking" element={<BookingManagementPage />} />
 						<Route path="/mypage/:menu" element={<MypageSubMenuDetailPage />} />
@@ -63,8 +65,7 @@ function AppRouter() {
 						<Route path="/subscribe/:sid/booking" element={<BookingPage />} />
 						<Route path="/subscribe/:sid/consulting" element={<ConsultingHistoryPage />} />
 						<Route path="/consulting/video" element={<VideoConsultingPage />} />
-						<Route path="/video" element={<VideoPage />} />
-						<Route path="consultingloading" element={<ConsultingLoadingPageLayout />} />
+						<Route path="/consultingloading" element={<ConsultingLoadingPageLayout />} />
 					</Route>
 
 					{/* 컴포넌트 개발용 */}
@@ -78,6 +79,15 @@ function AppRouter() {
 					<TabBar />
 				</TabBarLayout>
 				<ScrollToTop />
+				<Toaster
+					containerStyle={{
+						top: 10,
+						fontSize: 14,
+					}}
+					toastOptions={{
+						duration: 1500,
+					}}
+				/>
 			</BrowserRouter>
 		</div>
 	);

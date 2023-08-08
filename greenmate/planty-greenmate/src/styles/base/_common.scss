@@ -1,5 +1,6 @@
 @use '../base/variable' as var;
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700&display=swap');
+@import 'styles/mixins/flex';
 
 html,
 body {
@@ -27,28 +28,33 @@ input[type='number'] {
 h1 {
 	font-size: var.$h1;
 }
+
 h2 {
 	font-size: var.$h2;
 }
+
 h3 {
 	font-size: var.$h3;
 }
+
 h4 {
 	font-size: var.$h4;
 }
+
 h5 {
 	font-size: var.$h5;
 }
+
 h6 {
 	font-size: var.$h6;
 }
 
 // 애플리케이션 컨테이너
 .container {
-	max-width: 500px;
+	@include flex-row;
+	justify-content: center;
 	max-height: 1200px;
-	min-height: 100vh;
+	height: 100vh;
 	margin: auto;
 	background-color: var.$white;
-	box-shadow: rgb(219, 219, 219) 0px 0px 10px;
 }

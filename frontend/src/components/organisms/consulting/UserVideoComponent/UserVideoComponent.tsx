@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { StreamManager } from 'openvidu-browser';
 import './UserVideoComponent.scss';
-import OpenViduVideo from '../../../atoms/consulting/OpenViduVideo/OpenViduVideo';
+// import OpenViduVideo from '../../../atoms/consulting/OpenViduVideo/OpenViduVideo';
 
 function UserVideoComponent({ streamManager }: { streamManager: StreamManager }) {
 	const getNicknameTag = () => {
@@ -16,7 +16,7 @@ function UserVideoComponent({ streamManager }: { streamManager: StreamManager })
 		<div>
 			{streamManager !== undefined ? (
 				<div className="streamcomponent">
-					<OpenViduVideo streamManager={streamManager} />
+					{/* <OpenViduVideo streamManager={streamManager} /> */}
 					<div>
 						<p>{getNicknameTag()}</p>
 					</div>

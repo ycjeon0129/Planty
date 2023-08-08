@@ -7,9 +7,23 @@
 	position: relative;
 	height: 100vh;
 
+	#greenmate-video,
+	#user-video {
+		@include flex-column;
+		@include flex-align(center, center);
+		justify-content: center;
+		align-items: center;
+
+		svg {
+			width: 60px;
+			height: 60px;
+			fill: var.$black-300;
+		}
+	}
+
 	#greenmate-video {
 		height: calc(100vh - 68px);
-		border: 1px solid blue;
+		background-color: var.$black-400;
 	}
 
 	#user-video {
@@ -18,12 +32,40 @@
 		right: 12px;
 		width: 33%;
 		height: 25vh;
-		border: 3px solid gray;
+		border-radius: 4px;
+		background-color: var.$black-400;
+
+		svg:nth-child(2) {
+			position: absolute;
+			bottom: 4px;
+			left: 4px;
+			width: 25px;
+			height: 25px;
+		}
 	}
 
 	#video-consulting-menu {
 		position: absolute;
 		width: 100%;
 		bottom: 0;
+	}
+
+	#chart-display-container {
+		background-color: var.$white;
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		border-radius: 4px;
+
+		.chart-display-wrap {
+			// padding: 15px;
+			margin: 15px;
+
+			h3 {
+				text-align: center;
+				margin-bottom: 10px;
+			}
+		}
 	}
 }
