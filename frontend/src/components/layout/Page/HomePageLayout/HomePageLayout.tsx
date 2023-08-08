@@ -30,11 +30,6 @@ function HomePageLayout({ children }: { children: ReactNode[] }) {
 						<div>{children[7]}</div>
 					</div>
 				</ContentsLayout>
-				{/* 추천 구독 상품 */}
-				{children[8]}
-				<ContentsLayout id="shop">
-					<div />
-				</ContentsLayout>
 			</div>
 		</PageLayout>
 	);
