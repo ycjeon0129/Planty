@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './CheckOnline.scss';
+import './CheckOnlineItem.scss';
 import { styled } from '@mui/material/styles';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Switch, { SwitchProps } from '@mui/material/Switch';
@@ -61,18 +61,21 @@ function CheckOnline() {
 	};
 
 	return (
-		<div className="check-online-box">
-			<div className="active-management">
-				<div className="bold-text">활동 관리</div>
-				<FormControlLabel control={<IOSSwitch sx={{ m: 1 }} defaultChecked />} label="" onClick={Click} />
-			</div>
-			<div>
-				{isActive ? <div className="gray-text">현재 활동 중입니다.</div> : <div>현재 활동 중이 아닙니다.</div>}
-				{isActive ? (
-					<div className="gray-text">모든 컨설팅 요청을 수신합니다.</div>
-				) : (
-					<div>모든 컨설팅 요청을 수신하지 않습니다.</div>
-				)}
+		<div className="check-online-outer-box">
+			<hr />
+			<div className="check-online-box">
+				<div className="active-management">
+					<div className="bold-text">활동 관리</div>
+					<FormControlLabel control={<IOSSwitch sx={{ m: 1 }} defaultChecked />} label="" onClick={Click} />
+				</div>
+				<div>
+					{isActive ? <div className="gray-text">현재 활동 중입니다.</div> : <div>현재 활동 중이 아닙니다.</div>}
+					{isActive ? (
+						<div className="gray-text">모든 컨설팅 요청을 수신합니다.</div>
+					) : (
+						<div>모든 컨설팅 요청을 수신하지 않습니다.</div>
+					)}
+				</div>
 			</div>
 		</div>
 	);

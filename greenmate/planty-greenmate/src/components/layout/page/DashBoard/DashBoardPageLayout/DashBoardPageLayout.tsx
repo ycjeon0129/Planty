@@ -10,10 +10,16 @@ function DashBoardPageLayout({ children }: { children: ReactNode[] }) {
 			<div className="dashboard-page-layout-container">
 				<div id="left">
 					<ContentsLayout id="now-consulting-area">{children[1]}</ContentsLayout>
-					<ContentsLayout id="my-subscribe-area">{children[2]}</ContentsLayout>
+					<ContentsLayout id="my-subscribe-area">
+						{children[2]}
+						{children[3]}
+					</ContentsLayout>
 				</div>
 				<div id="right">
-					<ContentsLayout id="soon-booking-area">{children[3]}</ContentsLayout>
+					<ContentsLayout id="soon-booking-area">
+						{children[4]}
+						{children[5]}
+					</ContentsLayout>
 				</div>
 			</div>
 		</PageLayout>

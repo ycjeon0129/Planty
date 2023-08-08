@@ -9,8 +9,10 @@ import classImg from 'assets/icons/greenmatesidebar/Class.svg';
 import dashboard from 'assets/icons/greenmatesidebar/Dashboard.svg';
 import profile from 'assets/icons/greenmatesidebar/Profile.svg';
 import counsulting from 'assets/icons/greenmatesidebar/Consulting.svg';
-import GreenmateInfo from 'components/atoms/sidebar/greenmateInfo/GreenmateInfo';
+import GreenmateInfo from 'components/atoms/sidebar/greenmateinfo/GreenmateInfo';
 import greenmateImg from 'assets/icons/Greenmate.svg';
+import CheckOnline from 'components/atoms/sidebar/checkOnline/CheckOnlineItem';
+import RequestItem from 'components/atoms/sidebar/requestItem/RequestItem';
 
 function SideBar() {
 	// 컨설팅 종류가 채팅이면 /chatting
@@ -20,7 +22,8 @@ function SideBar() {
 	if (useSidebarRender()) {
 		return (
 			<SideBarLayout>
-				<GreenmateInfo img={greenmateImg} text="그린메이트" />
+				<GreenmateInfo img={greenmateImg} text="영국남자" />
+				<hr />
 				<Link to={type === 'chat' ? '/consulting/video' : '/consulting/video'}>
 					<MenuItem img={Ing} text="현재 진행중인 컨설팅" />
 				</Link>
@@ -33,15 +36,14 @@ function SideBar() {
 				<Link to="/subscribes/calendar">
 					<MenuItem img={classImg} text="구독 관리" />
 				</Link>
-				{/* <Link to="/history/emergency">
-					<MenuItem img={counsulting} text="응급실 이용내역 조회" />
-				</Link> */}
 				<Link to="/history/consulting">
 					<MenuItem img={counsulting} text="컨설팅 이용내역 조회" />
 				</Link>
 				<Link to="/settings">
 					<MenuItem img={setting} text="설정" />
 				</Link>
+				<CheckOnline />
+				<RequestItem type="채팅" greenmate="영국여자" service="응급실" />
 			</SideBarLayout>
 		);
 	}
