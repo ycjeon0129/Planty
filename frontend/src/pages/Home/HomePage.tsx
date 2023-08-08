@@ -2,6 +2,7 @@ import HomePageLayout from 'components/layout/Page/HomePageLayout/HomePageLayout
 import AreaTitle from 'components/atoms/common/AreaTitle/AreaTitle';
 import SubscribeSlider from 'components/organisms/subscribe/SubscribeSlider/SubscribeSlider';
 import React from 'react';
+import toast from 'react-hot-toast';
 import BannerSlider from 'components/organisms/common/BannerSlider/BannerSlider';
 import SquareShortcutButton from 'components/atoms/common/SquareShortcutButton/SquareShortcutButton';
 import RectShortcutButton from 'components/atoms/common/RectShortcutButton/RectShortcutButton';
@@ -28,7 +29,7 @@ function HomePage() {
 			<RectShortcutButton
 				text="채팅 컨설팅"
 				handleClick={() => {
-					movePage('/consulting/chat');
+					toast.success('채팅 컨설팅 입니다');
 				}}
 				type="consulting-chat"
 			/>

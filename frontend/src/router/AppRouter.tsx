@@ -23,6 +23,7 @@ import ShopPay from 'pages/Shop/ShopPay';
 import ConsultingLoadingPageLayout from 'components/layout/Page/ConsultingLoadingPageLayout/ConsultingLoadingPageLayout';
 import EmergencyParticipatePage from 'pages/Emergency/EmergencyParticipatePage';
 import ConsultingParticipatePage from 'pages/Consulting/ConsultingParticipatePage';
+import { Toaster } from 'react-hot-toast';
 import PrivateRoute from './PrivateRoute';
 import 'styles/index.scss';
 
@@ -78,6 +79,15 @@ function AppRouter() {
 					<TabBar />
 				</TabBarLayout>
 				<ScrollToTop />
+				<Toaster
+					containerStyle={{
+						top: 10,
+						fontSize: 14,
+					}}
+					toastOptions={{
+						duration: 1500,
+					}}
+				/>
 			</BrowserRouter>
 		</div>
 	);
