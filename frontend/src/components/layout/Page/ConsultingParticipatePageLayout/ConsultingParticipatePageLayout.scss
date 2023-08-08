@@ -1,0 +1,12 @@
+@import 'styles/base/variable';
+@import 'styles/mixins/common';
+@import 'styles/mixins/flex';
+
+#participate-btn {
+	display: flex;
+	justify-content: center;
+}
+
+#participate-detail-box {
+	// width: 100%;
+}
