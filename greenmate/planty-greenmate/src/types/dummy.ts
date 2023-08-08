@@ -1,5 +1,4 @@
 // 사용자 구독정보
-
 export interface ISubscribe {
 	sid: number;
 	title: string;
