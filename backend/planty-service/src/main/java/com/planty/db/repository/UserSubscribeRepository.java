@@ -7,9 +7,10 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface UserSubscribeRepository extends JpaRepository<ViewUserSubscribe, Long> {
-    List<ViewUserSubscribe> findByUid(Integer uid);
-    ViewUserSubscribe findByUidAndSid(Integer uid, Integer sid);
+    List<ViewUserSubscribe> findByUid(Long uid);
+    Optional<ViewUserSubscribe> findByUidAndSid(Long uid, Long sid);
 }

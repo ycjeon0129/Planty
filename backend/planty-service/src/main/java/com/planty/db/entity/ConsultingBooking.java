@@ -21,7 +21,7 @@ public class ConsultingBooking {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "cid", nullable = false) // 컨설팅 예약 식별키
-    private Integer cid;
+    private Long cid;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(referencedColumnName = "sid", name = "USER_SUBSCRIBE_sid") // 사용자 구독정보 식별키

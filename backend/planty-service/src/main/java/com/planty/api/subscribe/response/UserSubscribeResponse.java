@@ -12,7 +12,7 @@ import lombok.*;
 @ToString
 public class UserSubscribeResponse {
     @NotNull
-    private Integer sid;
+    private Long sid;
 
     @NotNull
     private String startDate;

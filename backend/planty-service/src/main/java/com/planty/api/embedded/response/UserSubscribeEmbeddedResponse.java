@@ -14,6 +14,9 @@ public class UserSubscribeEmbeddedResponse {
     private String date;
 
     @NotNull
+    private String time;
+
+    @NotNull
     private float temp;
 
     @NotNull

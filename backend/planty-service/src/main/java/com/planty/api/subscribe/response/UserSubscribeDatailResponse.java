@@ -13,7 +13,7 @@ import java.util.List;
 @ToString
 public class UserSubscribeDatailResponse {
     @NotNull
-    private Integer sid;
+    private Long sid;
 
     @NotNull
     private String startDate;

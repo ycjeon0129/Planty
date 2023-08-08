@@ -37,12 +37,21 @@ public class SubscribeController {
 
     }
     @GetMapping("/{sid}")
-    public ResponseEntity<?> getUserSubscribeDetailList(@PathVariable("sid") int sid) {
+    public ResponseEntity<?> getUserSubscribeDetailList(@PathVariable("sid") Long sid) {
 
         log.info(logCurrent(getClassName(), getMethodName(), START));
-        UserSubscribeDatailResponse response = subscribeServiceImpl.getUserSubscribeDetail("ssafyDevelop", 2);
+        UserSubscribeDatailResponse response = subscribeServiceImpl.getUserSubscribeDetail("ssafyDevelop", sid);
         return ResponseEntity.ok(response);
     }
+
+    @PostMapping()
+    public ResponseEntity<?> postUserSubscribe(Long spid) {
+
+        log.info(logCurrent(getClassName(), getMethodName(), START));
+        UserSubscribeDatailResponse response = subscribeServiceImpl.getUserSubscribeDetail("ssafyDevelop", spid);
+        return ResponseEntity.ok(response);
+    }
+
 
 
 }
