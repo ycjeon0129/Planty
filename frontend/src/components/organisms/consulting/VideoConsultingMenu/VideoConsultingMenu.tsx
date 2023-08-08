@@ -1,6 +1,6 @@
 import React from 'react';
 import './VideoConsultingMenu.scss';
-import VideoConsultingMenuItem from 'components/atoms/common/ChatButton/VideoConsultingMenuItem';
+import VideoConsultingMenuItem from 'components/atoms/consulting/VideoConsultingMenuItem/VideoConsultingMenuItem';
 import useToggle from 'hooks/useToggle';
 import uuid from 'react-uuid';
 import MENU from 'constants/menu/VideoConsultingMenu';
