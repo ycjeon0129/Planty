@@ -1,27 +1,6 @@
 import { IConsultingHistory } from 'types/consulting';
-import { ISubscribe, IProduct, IBanner, IConsulting, ISubscribeDetail, IProductDetail } from 'types/dummy';
-import { IPlantData } from 'types/global';
-
-export const dummyPlantData: IPlantData[] = [
-	{
-		date: '2023-07-18',
-		temperature: 22,
-		humidity: 18,
-		soilHumidity: 23,
-	},
-	{
-		date: '2023-07-19',
-		temperature: 14,
-		humidity: 36,
-		soilHumidity: 18,
-	},
-	{
-		date: '2023-07-20',
-		temperature: 22.5,
-		humidity: 20,
-		soilHumidity: 19,
-	},
-];
+import { IProduct, IBanner, IConsulting, IProductDetail } from 'types/dummy';
+import { ISubscribeDetail } from 'types/subscribe';
 
 export const dummyBookings: IConsulting[] = [
 	{
@@ -80,31 +59,6 @@ export const dummyBookings: IConsulting[] = [
 			recommendEndDate: new Date(),
 			content: 'ㅎㅇ',
 		},
-	},
-];
-
-const dummySubscribe: ISubscribe[] = [
-	{
-		sid: 0,
-		title: '누구나 쉽게 키우는 몬스테라 클래스',
-		state: 'wait',
-		thumbnail: 'https://www.flowerrepublic.co.kr/shopimages/sungmo9160/0090010004832.jpg?1665473103',
-		info: { startDate: '2023/07/23', consultCount: '총 5회 / 잔여 3회', consultDate: '2023/07/23 14:00' },
-	},
-	{
-		sid: 1,
-		title: '스투키 일주일 클래스',
-		state: 'done',
-		thumbnail:
-			'https://mblogthumb-phinf.pstatic.net/20160820_73/oneflora_1471684049417Ko98B_JPEG/image_9540627681471684031922.jpg?type=w800',
-		info: { startDate: '2023/07/23', consultCount: '총 5회 / 잔여 3회', consultDate: '2023/07/23 14:00' },
-	},
-	{
-		sid: 2,
-		title: '싸피 방울토마토 짱짱 클래스',
-		state: 'wait',
-		thumbnail: 'https://gardening.godohosting.com/2018/mfset/redcherrytomato_01.jpg',
-		info: { startDate: '2023/07/23', consultCount: '총 5회 / 잔여 3회', consultDate: '2023/07/23 14:00' },
 	},
 ];
 
@@ -192,59 +146,70 @@ export const ProductDetail: IProductDetail[] = [
 
 export const dummySubscribeDetail: ISubscribeDetail = {
 	sid: 0,
+	startDate: '2023-04-23',
 	title: '누구나 쉽게 키우는 몬스테라 클래스',
-	plantName: '몬스테라',
+	info: {
+		consultingCnt: 4,
+		consultingRemainCnt: 3,
+		consultingDate: '2023-08-02',
+		consultingCancel: false,
+		consultingActive: true,
+		consultingTime: 1,
+	},
 	state: 'wait',
 	thumbnail: 'https://www.flowerrepublic.co.kr/shopimages/sungmo9160/0090010004832.jpg?1665473103',
-	info: { startDate: '2023/07/23', consultCount: '총 5회 / 잔여 3회', consultDate: '2023/07/23 14:00' },
-	detailInfo: {
-		subscribeStartDate: '2023/07/23',
-		subscribeEndDate: '2023/12/23',
-		GMNickname: '김싸피', // 담당 그린메이트
-		supplementsCount: 3, // 영양제 개수
-	},
-	embeddedData: [
+	endDate: '202-05-23',
+	plant: '몬스테라',
+	greenmate: '김싸피', // 담당 그린메이트
+	embeddedInfo: [
 		{
 			date: '2023/07/17',
-			temperature: 26,
-			humidity: 36,
-			soilHumidity: 17,
+			time: '22:00',
+			temp: 36,
+			humidity: 17,
+			soil: 25,
 		},
 		{
 			date: '2023/07/18',
-			temperature: 22,
-			humidity: 40,
-			soilHumidity: 18,
+			time: '22:00',
+			temp: 36,
+			humidity: 17,
+			soil: 25,
 		},
 		{
 			date: '2023/07/19',
-			temperature: 24,
-			humidity: 53,
-			soilHumidity: 13,
+			time: '22:00',
+			temp: 36,
+			humidity: 17,
+			soil: 25,
 		},
 		{
 			date: '2023/07/20',
-			temperature: 24,
-			humidity: 26,
-			soilHumidity: 20,
+			time: '22:00',
+			temp: 36,
+			humidity: 17,
+			soil: 25,
 		},
 		{
 			date: '2023/07/21',
-			temperature: 25,
-			humidity: 33,
-			soilHumidity: 10,
+			time: '22:00',
+			temp: 36,
+			humidity: 17,
+			soil: 25,
 		},
 		{
 			date: '2023/07/22',
-			temperature: 23,
-			humidity: 30,
-			soilHumidity: 12,
+			time: '22:00',
+			temp: 36,
+			humidity: 17,
+			soil: 25,
 		},
 		{
 			date: '2023/07/23',
-			temperature: 26,
-			humidity: 27,
-			soilHumidity: 15,
+			time: '22:00',
+			temp: 36,
+			humidity: 17,
+			soil: 25,
 		},
 	],
 };
@@ -298,5 +263,3 @@ export const tempTimeStatusList = [
 	false,
 	true,
 ];
-
-export default dummySubscribe;
