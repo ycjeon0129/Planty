@@ -8,7 +8,15 @@ import MENU from 'constants/menu/VideoConsultingMenu';
 /**
  * 비디오 컨설팅 메뉴바
  */
-function VideoConsultingMenu() {
+function VideoConsultingMenu({
+	toggleWebcam,
+	toggleMicrophone,
+	exitConsulting,
+}: {
+	toggleWebcam: () => void;
+	toggleMicrophone: () => void;
+	exitConsulting: () => void;
+}) {
 	const [camState, toggleCamera] = useToggle(false);
 	const [micState, toggleMic] = useToggle(false);
 	const [chatState, toggleChat] = useToggle(false);
@@ -24,10 +32,12 @@ function VideoConsultingMenu() {
 		const handleCam = () => {
 			// 캠 on/off 로직 추가
 			toggleCamera();
+			toggleWebcam();
 		};
 		const handleMic = () => {
 			// 마이크 on/off 로직 추가
 			toggleMic();
+			toggleMicrophone();
 		};
 		const handleChat = () => {
 			// 캠 on/off 로직 추가
@@ -39,6 +49,7 @@ function VideoConsultingMenu() {
 		};
 		const handleExit = () => {
 			// 컨설팅 종료 로직 추가
+			exitConsulting();
 		};
 
 		switch (key) {

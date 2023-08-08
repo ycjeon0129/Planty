@@ -1,0 +1,41 @@
+package com.planty.db.entity;
+
+import javax.persistence.*;
+import lombok.*;
+import org.hibernate.annotations.ColumnDefault;
+import org.hibernate.annotations.DynamicInsert;
+
+@ToString
+@Getter
+@Setter
+@Builder
+@AllArgsConstructor
+@RequiredArgsConstructor
+@NoArgsConstructor
+@DynamicInsert
+@Table(name = "plant_info")
+@Entity
+public class PlantInfo {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "idx", nullable = false) // 식물 식별키
+    private Integer idx;
+
+    @NonNull
+    @Column(name ="name", length = 128, nullable = false) // 식물 이름
+    private String name;
+
+    @NonNull
+    @Column(name ="tonic_period", nullable = true) // 식물 영양제 제공 주기 (주)
+    private Integer tonicPeriod;
+
+    @Column(name = "size", length = 16, nullable = true) // 크기
+    private String size;
+
+    @Column(name = "place", length = 16, nullable = true) // 생육 장소
+    private String place;
+
+    @Column(name = "edible")
+    @ColumnDefault("0")
+    private Integer edible; // 식용 여부. 식용(1), 비식용(0)
+}

@@ -20,7 +20,6 @@ import BookingPage from 'pages/subscribe/Booking/BookingPage';
 import ConsultingHistoryPage from 'pages/subscribe/ConsultingHistory/ConsultingHistoryPage';
 import VideoConsultingPage from 'pages/Consulting/VideoConsulting/VideoConsultingPage';
 import ShopPay from 'pages/Shop/ShopPay';
-import VideoPage from 'pages/Consulting/Video/VideoPage';
 import ConsultingLoadingPageLayout from 'components/layout/Page/ConsultingLoadingPageLayout/ConsultingLoadingPageLayout';
 import EmergencyParticipatePage from 'pages/Emergency/EmergencyParticipatePage';
 import PrivateRoute from './PrivateRoute';
@@ -63,7 +62,6 @@ function AppRouter() {
 						<Route path="/subscribe/:sid/booking" element={<BookingPage />} />
 						<Route path="/subscribe/:sid/consulting" element={<ConsultingHistoryPage />} />
 						<Route path="/consulting/video" element={<VideoConsultingPage />} />
-						<Route path="/video" element={<VideoPage />} />
 						<Route path="consultingloading" element={<ConsultingLoadingPageLayout />} />
 					</Route>
 
