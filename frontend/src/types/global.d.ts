@@ -22,7 +22,8 @@ export interface IPlantDataset {
 // 막대 하나를 구성하는 식물 데이터들
 export interface IPlantData {
 	date: string;
-	temperature: number;
+	time: string;
+	temp: number;
 	humidity: number;
-	soilHumidity: number;
+	soil: number;
 }
