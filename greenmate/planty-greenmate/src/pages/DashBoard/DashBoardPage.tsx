@@ -1,4 +1,4 @@
-import PageHeader from 'components/atoms/common/PageHeader/PageHeader';
+import PageHeader from 'components/organisms/common/PageHeader/PageHeader';
 import DashBoardPageLayout from 'components/layout/page/DashBoard/DashBoardPageLayout/DashBoardPageLayout';
 import React from 'react';
 
