@@ -11,15 +11,17 @@ import MENU from 'constants/menu/VideoConsultingMenu';
 function VideoConsultingMenu({
 	toggleWebcam,
 	toggleMicrophone,
+	toggleChartDisplay,
 	exitConsulting,
 }: {
 	toggleWebcam: () => void;
 	toggleMicrophone: () => void;
+	toggleChartDisplay: () => void;
 	exitConsulting: () => void;
 }) {
 	const [camState, toggleCamera] = useToggle(false);
 	const [micState, toggleMic] = useToggle(false);
-	const [chatState, toggleChat] = useToggle(false);
+	// const [chatState, toggleChat] = useToggle(false);
 	const [chartState, toggleChart] = useToggle(false);
 	const [exitState] = useToggle(false);
 
@@ -39,13 +41,14 @@ function VideoConsultingMenu({
 			toggleMic();
 			toggleMicrophone();
 		};
-		const handleChat = () => {
-			// 캠 on/off 로직 추가
-			toggleChat();
-		};
+		// const handleChat = () => {
+		// 	// 채팅 on/off 로직 추가
+		// 	toggleChat();
+		// };
 		const handleChart = () => {
-			// 캠 on/off 로직 추가
+			// 차트 on/off 로직 추가
 			toggleChart();
+			toggleChartDisplay();
 		};
 		const handleExit = () => {
 			// 컨설팅 종료 로직 추가
@@ -57,8 +60,8 @@ function VideoConsultingMenu({
 				return [camState, handleCam];
 			case 'mic':
 				return [micState, handleMic];
-			case 'chat':
-				return [chatState, handleChat];
+			// case 'chat':
+			// 	return [chatState, handleChat];
 			case 'chart':
 				return [chartState, handleChart];
 			default:
