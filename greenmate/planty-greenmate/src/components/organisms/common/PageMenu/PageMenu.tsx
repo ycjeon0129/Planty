@@ -2,6 +2,7 @@ import { Button } from '@mui/material';
 import useMovePage from 'hooks/useMovePage';
 import { IMenuItem } from 'types/global';
 import React, { useState } from 'react';
+import uuid from 'react-uuid';
 import './PageMenu.scss';
 
 function PageMenu({ menu }: { menu: IMenuItem[] }) {
@@ -16,7 +17,12 @@ function PageMenu({ menu }: { menu: IMenuItem[] }) {
 	return (
 		<div className="page-menu-container">
 			{menu.map((m: IMenuItem) => (
-				<Button variant={nowMenu === m.idx ? 'contained' : 'outlined'} onClick={() => handleButton(m)} color="success">
+				<Button
+					key={uuid()}
+					variant={nowMenu === m.idx ? 'contained' : 'outlined'}
+					onClick={() => handleButton(m)}
+					color="success"
+				>
 					{m.title}
 				</Button>
 			))}
