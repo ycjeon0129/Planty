@@ -1,0 +1,25 @@
+@import 'styles/base/_variable.scss';
+
+.greenmate-info-outer-box {
+	display: flex;
+	flex-direction: column;
+}
+
+.greenmate-img-box {
+	display: flex;
+	// flex-direction: row;
+	align-items: center;
+	gap: 10px;
+	img {
+		width: 60px;
+		height: 60px;
+	}
+}
+
+.planty-logo-box {
+	margin-bottom: 20px;
+}
+
+.gray-text {
+	color: $black-300;
+}

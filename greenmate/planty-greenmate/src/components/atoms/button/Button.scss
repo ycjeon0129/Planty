@@ -1,0 +1,16 @@
+@use 'styles/base/_variable.scss' as var;
+
+.button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: solid var.$primary 1px;
+  background-color: var.$primary;
+  // padding-left: 10px;
+  width: 250px;
+  height: 30px;
+  text-align: center;
+  border-radius: var.$rd-sm;
+  color: var.$white
+
+}
