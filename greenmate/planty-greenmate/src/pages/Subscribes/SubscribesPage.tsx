@@ -3,7 +3,7 @@ import SubscribesPageLayout from 'components/layout/page/Subscribes/SubscribesPa
 import React from 'react';
 import { Outlet } from 'react-router-dom';
 import PageMenu from 'components/organisms/common/PageMenu/PageMenu';
-import { SUBSCRIBES_MENU } from 'constants/subscribe/SubscribeMenu';
+import SUBSCRIBES_MENU from 'constants/menu/SubscribeMenu';
 
 function SubscribesPage() {
 	return (
