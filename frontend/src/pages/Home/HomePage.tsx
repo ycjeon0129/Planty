@@ -28,14 +28,14 @@ function HomePage() {
 			<RectShortcutButton
 				text="채팅 컨설팅"
 				handleClick={() => {
-					alert('채팅상담');
+					movePage('/consulting/chat');
 				}}
 				type="consulting-chat"
 			/>
 			<RectShortcutButton
 				text="화상 컨설팅"
 				handleClick={() => {
-					alert('화상상담');
+					movePage('/consulting/video');
 				}}
 				type="consulting-video"
 			/>
