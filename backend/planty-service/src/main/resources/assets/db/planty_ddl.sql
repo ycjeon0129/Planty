@@ -130,7 +130,7 @@ DROP TABLE IF EXISTS `planty`.`user_subscribe` ;
 
 CREATE TABLE IF NOT EXISTS `planty`.`user_subscribe` (
   `sid` INT UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '사용자 구독정보 식별키',
-  `arduino_id` INT UNSIGNED NOT NULL COMMENT '아두이노 id - UNIQUE',
+  `arduino_id` INT UNSIGNED DEFAULT NULL COMMENT '아두이노 id - UNIQUE',
   `USER_INFO_uid` INT UNSIGNED NOT NULL COMMENT '사용자 식별키(외래키)',
   `SUBSCRIBE_PRODUCT_spid` INT UNSIGNED NOT NULL COMMENT '구독상품 식별키(외래키)',
   `GM_INFO_gid` INT UNSIGNED NOT NULL COMMENT 'GM 식별키(외래키)',
@@ -291,18 +291,16 @@ COLLATE = utf8mb4_unicode_ci;
 DROP TABLE IF EXISTS `planty`.`plant_data` ;
 
 CREATE TABLE IF NOT EXISTS `planty`.`plant_data` (
-  `arduino_id` INT UNSIGNED NOT NULL COMMENT '사용자 구독정보 식별키(외래키)',
-  `GM_INFO_gid` INT UNSIGNED NOT NULL COMMENT 'GM 식별키(외래키)',
-  `date` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '측정 일시',
-  `temp` FLOAT NULL DEFAULT NULL COMMENT '온도',
-  `humidity` FLOAT NULL DEFAULT NULL COMMENT '습도',
-  `soil` FLOAT NULL DEFAULT NULL COMMENT '토양습도',
-  INDEX `PLANT_DATA_TO_USER_SUBSCRIBE_FK_arduino_id` (`arduino_id` ASC) VISIBLE,
-  INDEX `PLANT_DATA_TO_GM_INFO_FK_gid` (`GM_INFO_gid` ASC) VISIBLE,
-  CONSTRAINT `PLANT_DATA_TO_GM_INFO_FK_gid`
-    FOREIGN KEY (`GM_INFO_gid`)
-    REFERENCES `planty`.`gm_info` (`gid`),
-  CONSTRAINT `PLANT_DATA_TO_USER_SUBSCRIBE_FK_arduino_id`
+    `idx` INT UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '식물 데이터 식별키',
+    `arduino_id` INT UNSIGNED NOT NULL COMMENT '사용자 구독정보 식별키(외래키)',
+    `date` DATE NOT NULL DEFAULT (CURRENT_DATE) COMMENT '측정일',
+    `time` TIME NOT NULL DEFAULT (CURRENT_TIME) COMMENT '측정시간',
+    `temp` FLOAT NULL DEFAULT NULL COMMENT '온도',
+    `humidity` FLOAT NULL DEFAULT NULL COMMENT '습도',
+    `soil` FLOAT NULL DEFAULT NULL COMMENT '토양습도',
+    PRIMARY KEY (`idx`),
+    INDEX `PLANT_DATA_TO_USER_SUBSCRIBE_FK_arduino_id` (`arduino_id` ASC) VISIBLE,
+    CONSTRAINT `PLANT_DATA_TO_USER_SUBSCRIBE_FK_arduino_id`
     FOREIGN KEY (`arduino_id`)
     REFERENCES `planty`.`user_subscribe` (`arduino_id`))
 ENGINE = InnoDB
