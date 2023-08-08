@@ -2,6 +2,7 @@ package com.planty.api.consulting.controller;
 
 import com.planty.api.consulting.response.UserConsultingResponse;
 import com.planty.api.consulting.service.ConsultingService;
+import io.swagger.annotations.Api;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
@@ -16,6 +17,7 @@ import static com.planty.common.util.LogCurrent.END;
 @Slf4j
 @RequestMapping("/api/consultings")
 @RequiredArgsConstructor
+@Api
 public class ConsultingController {
     private final ConsultingService consultingServiceImpl;
     @GetMapping
