@@ -39,7 +39,6 @@ function HomePage() {
 				}}
 				type="consulting-video"
 			/>
-			<AreaTitle title="구독샵" url="/shop" />
 		</HomePageLayout>
 	);
 }
