@@ -7,6 +7,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
@@ -21,11 +22,11 @@ import java.time.LocalDateTime;
 @DynamicUpdate
 @Table(name = "user_subscribe")
 @Entity
-public class UserSubscribe {
+public class UserSubscribe{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "sid", nullable = false) // 식별키
-    private Integer sid;
+    private Long sid;
 
     @Column(name ="arduino_id", unique = true) // 아두이노 id
     private Integer arduinoId;

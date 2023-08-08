@@ -1,7 +1,9 @@
 package com.planty.api.subscribe.service;
 
 import com.planty.api.embedded.response.UserSubscribeEmbeddedResponse;
+import com.planty.api.subscribe.request.UserSubscribeRequest;
 import com.planty.api.subscribe.response.UserSubscribeDatailResponse;
+import com.planty.common.exception.handler.ExceptionHandler;
 import com.planty.db.entity.*;
 import com.planty.db.repository.UserConsultingRepository;
 import com.planty.db.repository.UserEmbeddedRepository;
@@ -26,11 +28,11 @@ public class SubscribeServiceImpl implements SubscribeService {
     private final UserEmbeddedRepository userEmbeddedRepository;
     @Override
     public List<UserSubscribeResponse> getUserSubscribe(String userId) {
-        UserInfo user = userInfoRepository.findByUserId(userId).orElseThrow(() -> {
-            throw new NullPointerException();
-        });
+        UserInfo user = userInfoRepository.findByUserId(userId)
+                .orElseThrow(() -> new NullPointerException(ExceptionHandler.USER_NOT_FOUND));
+
         List<UserSubscribeResponse> subscribeList = new ArrayList<>();
-        List<ViewUserSubscribe> list = userSubscribeRepository.findByUid(user.getUid().intValue());
+        List<ViewUserSubscribe> list = userSubscribeRepository.findByUid(user.getUid());
 
         for(ViewUserSubscribe item : list) {
             boolean end = item.getEndDate() != null;
@@ -52,18 +54,19 @@ public class SubscribeServiceImpl implements SubscribeService {
     }
 
     @Override
-    public UserSubscribeDatailResponse getUserSubscribeDetail(String userId, Integer sid) {
-        UserInfo user = userInfoRepository.findByUserId(userId).orElseThrow(() -> {
-            throw new NullPointerException();
-        });
+    public UserSubscribeDatailResponse getUserSubscribeDetail(String userId, Long sid) {
+        UserInfo user = userInfoRepository.findByUserId(userId)
+                .orElseThrow(() -> new NullPointerException(ExceptionHandler.USER_NOT_FOUND));
 
         // todo : uid, sid 이중 확인 다른방법 check
-        ViewUserSubscribe sub = userSubscribeRepository.findByUidAndSid(user.getUid().intValue(), sid);
+        ViewUserSubscribe sub = userSubscribeRepository.findByUidAndSid(user.getUid(), sid)
+                .orElseThrow(() -> new NullPointerException(ExceptionHandler.USER_SID_NOT_FOUND));
         List<PlantData> plantDataList = userEmbeddedRepository.findByArduinoId(sub.getArduinoId());
         List<UserSubscribeEmbeddedResponse> embeddedList = new ArrayList<>();
         for(PlantData item : plantDataList) {
             UserSubscribeEmbeddedResponse embedded = UserSubscribeEmbeddedResponse.builder()
                     .date(item.getDate())
+                    .time(item.getTime())
                     .temp(item.getTemp())
                     .humidity(item.getHumidity())
                     .soil(item.getSoil())

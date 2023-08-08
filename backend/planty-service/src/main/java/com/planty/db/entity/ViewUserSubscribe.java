@@ -3,6 +3,8 @@ package com.planty.db.entity;
 import javax.persistence.*;
 import lombok.*;
 
+import java.io.Serializable;
+
 @ToString
 @Getter
 @Setter
@@ -11,16 +13,16 @@ import lombok.*;
 @RequiredArgsConstructor
 @Table(name = "view_user_subscribe")
 @Entity
-public class ViewUserSubscribe {
+public class ViewUserSubscribe{
     @Id
     @Column(name = "sid", nullable = false) // 사용자 구독정보 식별키
-    private Integer sid;
+    private Long sid;
 
     @Column(name = "uid") // 사용자 식별키
-    private Integer uid;
+    private Long uid;
 
 //    @OneToOne(fetch = FetchType.LAZY)
-//    @JoinColumn(referencedColumnName = "arduinoId", name = "arduino_id") // 아두이노 id
+//    @JoinColumn(referencedColumnName = "arduino_id", name = "arduino_id") // 아두이노 id
     @Column(name = "arduino_id")
     private Integer arduinoId; //아두이노 id
 

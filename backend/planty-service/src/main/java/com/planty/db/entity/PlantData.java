@@ -7,18 +7,24 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 @ToString
+@Builder
 @Getter
 @DynamicInsert // Apply changed fields only
 @DynamicUpdate // Apply changed fields only
+@AllArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Table(name = "plant_data")
 @Entity
-public class PlantData implements Serializable {
-
+@Embeddable
+public class PlantData{
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "idx", nullable = false)
+    private Long idx;
+
 //    @ManyToOne(fetch = FetchType.LAZY)
-//    @JoinColumn(referencedColumnName = "arduinoId", name = "arduino_id") // 아두이노 id
-    @Column(name = "arduino_id")
+//    @JoinColumn(referencedColumnName = "arduino_id", name = "arduino_id") // 아두이노 id
+    @Column(name = "arduino_id") // 아두이노 id
     private Integer arduinoId;
 
     @Column(name = "date") // 측정일
@@ -35,15 +41,4 @@ public class PlantData implements Serializable {
 
     @Column(name = "soil") // 토양습도
     private float soil;
-
-    @Builder
-    public PlantData(Integer arduinoId, String date, String time,
-                     float temp, float humidity, float soil) {
-        this.arduinoId = arduinoId;
-        this.date = date;
-        this.time = time;
-        this.temp = temp;
-        this.humidity = humidity;
-        this.soil = soil;
-    }
 }
