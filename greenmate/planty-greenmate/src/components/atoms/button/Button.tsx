@@ -6,7 +6,7 @@ function Button({ text }: { text: string }) {
 	const navigate = useNavigate(); // useNavigate 훅 사용
 
 	const handleClick = () => {
-		navigate('/home'); // 버튼 클릭시 '/home' URL로 이동
+		navigate('/dashboard'); // 버튼 클릭시 '/home' URL로 이동
 	};
 
 	return (
