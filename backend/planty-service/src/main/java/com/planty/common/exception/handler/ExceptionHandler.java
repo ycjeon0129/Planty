@@ -17,7 +17,7 @@ public class ExceptionHandler {
     @org.springframework.web.bind.annotation.ExceptionHandler(NullPointerException.class)
     public ResponseEntity exNullHandle(NullPointerException e) {
         log.info("[exceptionHandle] {}",e.getMessage());
-        return new ResponseEntity(new ErrorRespDto(INTERNAL_SERVER_ERROR.value(), e.getMessage()), INTERNAL_SERVER_ERROR);
+        return new ResponseEntity(new ErrorResponse(INTERNAL_SERVER_ERROR.value(), e.getMessage()), INTERNAL_SERVER_ERROR);
 
 //        if(e.getMessage().equals(USER_NOT_FOUND)) return new ResponseEntity(new ErrorRespDto(INTERNAL_SERVER_ERROR.value(), USER_NOT_FOUND), INTERNAL_SERVER_ERROR);
 //        else if(e.getMessage().equals(USER_SID_NOT_FOUND)) return new ResponseEntity(new ErrorRespDto(INTERNAL_SERVER_ERROR.value(), USER_SID_NOT_FOUND), INTERNAL_SERVER_ERROR);
@@ -26,7 +26,7 @@ public class ExceptionHandler {
     @org.springframework.web.bind.annotation.ExceptionHandler(HttpClientErrorException.Forbidden.class)
     public ResponseEntity exUnAuthHandle(HttpClientErrorException.Forbidden e) {
         log.info("[exceptionHandle] {}",e.getMessage());
-        return new ResponseEntity(new ErrorRespDto(FORBIDDEN.value(), "인증 권한 오류"), FORBIDDEN);
+        return new ResponseEntity(new ErrorResponse(FORBIDDEN.value(), "인증 권한 오류"), FORBIDDEN);
     }
 
 }

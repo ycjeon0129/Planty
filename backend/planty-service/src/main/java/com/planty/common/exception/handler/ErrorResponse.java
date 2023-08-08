@@ -7,11 +7,11 @@ import java.util.Date;
 
 @Data
 @AllArgsConstructor
-public class ErrorRespDto {
+public class ErrorResponse {
     private Integer statusCode;
     private String message;
 
-    public ErrorRespDto(Date timestamp, int code, String message) {
+    public ErrorResponse(Date timestamp, int code, String message) {
         super();
         this.statusCode = code;
         this.message = message;
