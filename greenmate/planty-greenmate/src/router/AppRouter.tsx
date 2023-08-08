@@ -16,6 +16,7 @@ import ConsultingPage from 'pages/History/ConsultingPage';
 import HistoryPage from 'pages/History/HistoryPage';
 import SettingPage from 'pages/Setting/SettingPage';
 import LoginPage from 'pages/login/LoginPage';
+import SubscribesDetailPage from 'pages/Subscribes/SubscribesDetailPage';
 import PrivateRoute from './PrivateRoute';
 
 function AppRouter() {
@@ -40,7 +41,9 @@ function AppRouter() {
 						</Route>
 						<Route path="/subscribes" element={<SubscribesPage />}>
 							<Route path="" element={<Navigate to="list" />} />
-							<Route path="list" element={<ListPage />} />
+							<Route path="list" element={<ListPage />}>
+								<Route path=":sid" element={<SubscribesDetailPage />} />
+							</Route>
 							<Route path="calendar" element={<CalendarPage />} />
 						</Route>
 						<Route path="/history" element={<HistoryPage />}>
