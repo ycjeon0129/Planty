@@ -1,0 +1,19 @@
+@use 'styles/base/variable' as var;
+@import 'styles/mixins/grid';
+
+.video-page-layout-container {
+    flex-grow: 1;
+
+    @include grid(20px);
+    grid-template-columns: 6fr 4fr;
+
+    #left {
+        @include grid(20px);
+        grid-template-rows: 3fr 7fr;
+    }
+
+    #right {
+        @include grid(20px);
+        grid-template-rows: 1fr;
+    }
+}

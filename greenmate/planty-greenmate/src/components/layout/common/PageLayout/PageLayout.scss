@@ -1,0 +1,28 @@
+@use 'styles/base/variable' as var;
+@use 'styles/mixins/responsive' as r;
+@import 'styles/mixins/flex';
+
+.page-layout {
+	@include flex-column;
+	flex-grow: 1;
+	border: 1px solid black;
+	padding: var.$pd-xl;
+	background-color: var.$border-bg;
+
+	&.full {
+		width: 100vw;
+		padding-bottom: 1px;
+	}
+
+	@include r.responsive(Phone) {
+		// background: red;
+	}
+
+	@include r.responsive(Tablet) {
+		// background: orange;
+	}
+
+	@include r.responsive(Desktop) {
+		// background: yellow;
+	}
+}
