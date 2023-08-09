@@ -1,11 +1,10 @@
 package com.planty.api.user.model.service;
 
 //import com.planty.api.user.model.request.SocialLoginRequest;
-import com.planty.api.user.model.request.TokenRefreshRequest;
+//import com.planty.api.user.model.request.TokenRefreshRequest;
 import com.planty.api.user.model.request.UserJoinRequest;
-import com.planty.api.user.model.request.UserLoginRequest;
 import com.planty.api.user.model.response.*;
-import com.planty.common.enums.UserType;
+import com.planty.common.exception.handler.ExceptionHandler;
 import com.planty.common.handler.NotFoundException;
 import com.planty.common.jwt.JwtTokenProvider;
 import com.planty.common.util.SecurityUtil;
@@ -13,20 +12,14 @@ import com.planty.db.entity.UserInfo;
 import com.planty.db.repository.UserInfoRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.validation.Valid;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import static com.planty.common.exception.handler.ExceptionHandler.USER_NOT_FOUND;
 
 @Service
 @RequiredArgsConstructor
@@ -94,21 +87,33 @@ public class UserInfoServiceImpl implements UserInfoService {
 
         if(userInfo == null) return null;
 //        log.info("1");
-//        UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(email, userInfo.getUserName());
+//        // Long uid를 String으로 변환하여 토큰 발급에 사용
+//        UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(userInfo.getUid()+"", password);
 //        log.info("2 {}", authenticationToken);
 //        Authentication authentication = authenticationManagerBuilder.getObject().authenticate(authenticationToken);
+//        log.info("3 {}", authentication);
         // 비밀번호 없이 authentication 처리
-        List<GrantedAuthority> roles = new ArrayList<>(1);
-        String roleStr = userInfo.getUserEmail().equals("admin") ? "ROLE_ADMIN" : "ROLE_GUEST";
-        roles.add(new SimpleGrantedAuthority(roleStr));
+//        List<GrantedAuthority> roles = new ArrayList<>(1);
+//        String roleStr = userInfo.getUserEmail().equals("admin") ? "ROLE_ADMIN" : "ROLE_GUEST";
+//        roles.add(new SimpleGrantedAuthority(roleStr));
 
-        Authentication authentication = new UsernamePasswordAuthenticationToken(userInfo, null, roles);
+//        Authentication authentication = new UsernamePasswordAuthenticationToken(userInfo, null, roles);
+//        UsernameAuthenticationToken authenticationToken = new UsernameAuthenticationToken(userInfo.getUid().toString());
+//        log.info("2 {}", authenticationToken);
+//        UsernameAuthenticationProvider usernameAuthenticationProvider = new UsernameAuthenticationProvider();
+//        Authentication authentication = usernameAuthenticationProvider.authenticate(authenticationToken);
+//        log.info("3 {}", authentication);
+//        TokenInfoResponse tokenInfo = jwtTokenProvider.generateToken(authentication);
+        UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(userInfo.getUserEmail(), userInfo.getPassword());
+        log.info("2 {}", authenticationToken);
+        Authentication authentication = authenticationManagerBuilder.getObject().authenticate(authenticationToken);
         log.info("3 {}", authentication);
         TokenInfoResponse tokenInfo = jwtTokenProvider.generateToken(authentication);
         log.info("UserInfoServiceImpl::loginUser::tokenInfo {}", tokenInfo);
         // RefreshToken DB에 저장
         userInfo.setToken(tokenInfo.getRefreshToken());
         log.info("UserInfoServiceImpl::loginUser::userInfo {} - after", userInfo);
+//        tokenInfo.setUid(userInfo.getUid());
         return tokenInfo;
     }
 
@@ -136,18 +141,34 @@ public class UserInfoServiceImpl implements UserInfoService {
     }
 
 //    @Override
-    public TokenInfoResponse refreshUser(TokenRefreshRequest token) throws Exception {
+    public TokenInfoResponse refreshUser(String accessToken, String refreshToken) throws Exception {
+        log.info("serviceImpl::refreshUser - accessToken {}", accessToken);
+        log.info("serviceImpl::refreshUser - refreshToken {}", refreshToken);
         // RefreshToken Validate
-        if(token.getRefreshToken() != null && jwtTokenProvider.validateToken(token.getRefreshToken())) {
+        if(refreshToken != null && jwtTokenProvider.validateToken(refreshToken)) {
             // 저장된 refreshToken과 동일한지 체크
-            UserInfo userInfo = userRepository.findByUserEmail(token.getEmail())
+//            UserInfo userInfo = userRepository.findByUserEmail(token.getEmail())
+            log.info("get uid using jwt :: {}", jwtTokenProvider.getAuthentication(accessToken).getName());
+//            UserInfo userInfo = userRepository.findByUid(token.getUid())
+            UserInfo userInfo = userRepository.findByUid(Long.parseLong(jwtTokenProvider.getAuthentication(accessToken).getName()))
                     .orElseThrow(() -> new NotFoundException("ERROR_001", "유저 정보를 찾을 수 없습니다."));
-            if(token.getRefreshToken().equals(userInfo.getToken())) {
+            if(refreshToken.equals(userInfo.getToken())) {
                 // Access 토큰 새로 생성
-//                UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(userInfo.getUserEmail(), userInfo.getPassword());
-                UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(userInfo.getUserEmail(), password);
+                // Long uid를 String으로 변환하여 토큰 발급에 사용
+//                UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(userInfo.getUid()+"", password);
+////                UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(userInfo.getUserEmail(), password);
+//                Authentication authentication = authenticationManagerBuilder.getObject().authenticate(authenticationToken);
+//
+//
+////                List<GrantedAuthority> roles = new ArrayList<>(1);
+////                String roleStr = userInfo.getUserEmail().equals("admin") ? "ROLE_ADMIN" : "ROLE_GUEST";
+////                roles.add(new SimpleGrantedAuthority(roleStr));
+////
+////                Authentication authentication = new UsernamePasswordAuthenticationToken(userInfo, null, roles);
+//                TokenInfoResponse tokenInfo = jwtTokenProvider.generateToken(authentication);
+                UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(userInfo.getUserEmail(), userInfo.getPassword());
                 Authentication authentication = authenticationManagerBuilder.getObject().authenticate(authenticationToken);
-                TokenInfoResponse tokenInfo = jwtTokenProvider.refresh(authentication, token.getRefreshToken());
+                TokenInfoResponse tokenInfo = jwtTokenProvider.refresh(authentication, userInfo.getToken());
 
                 return tokenInfo;
             } else {
@@ -167,6 +188,22 @@ public class UserInfoServiceImpl implements UserInfoService {
                 .orElseThrow(() -> new NotFoundException("ERROR_001", "유저 정보를 찾을 수 없습니다."));
         // Refresh Token 제거
         userInfo.setToken(null);
+    }
+
+    public UserInfoDetailResponse findUserInfoDetail(Long uid) {
+        UserInfo userInfo = userRepository.findByUid(uid)
+//                .orElseThrow(() -> new NullPointerException(ExceptionHandler(USER_NOT_FOUND)));
+                .orElseThrow(() -> new NullPointerException(ExceptionHandler.USER_NOT_FOUND));
+        String joinDate = userInfo.getJoinDate().toLocalDate().toString();
+        return UserInfoDetailResponse.builder()
+                .userId(userInfo.getUserId())
+                .userName(userInfo.getUserName())
+                .email(userInfo.getUserEmail())
+                .photo(userInfo.getPhoto())
+                .joinDate(joinDate)
+                .emergencyCount(userInfo.getEmergencyCount())
+                .shipping_address(userInfo.getShippingAddress())
+                .build();
     }
 
 

@@ -3,12 +3,9 @@ package com.planty.api.user.controller;
 //import com.planty.common.auth.JwtProvider;
 //import com.planty.common.auth.UserInfoJwtContextHolder;
 //import com.planty.api.user.model.request.SocialLoginRequest;
-import com.planty.api.user.model.request.TokenRefreshRequest;
+//import com.planty.api.user.model.request.TokenRefreshRequest;
 import com.planty.api.user.model.request.UserJoinRequest;
-import com.planty.api.user.model.response.LoginResponse;
-import com.planty.api.user.model.response.TokenInfoResponse;
-import com.planty.api.user.model.response.UserJoinResponse;
-import com.planty.api.user.model.response.UserResponse;
+import com.planty.api.user.model.response.*;
 //import com.planty.api.user.model.service.CustomOAuth2UserService;
 import com.planty.api.user.model.service.UserInfoServiceImpl;
 import com.planty.common.util.RestExceptionUtil;
@@ -70,9 +67,9 @@ public class UserInfoController {
         }
     }
 
-    @GetMapping("/tmp/login/{email}")
+    @PostMapping("/tmp/login/{email}")
     public ResponseEntity<?> login(@PathVariable("email") String email) {
-        log.debug("login email: {}", email);
+        log.info("login email: {}", email);
 
         try {
             TokenInfoResponse tokenInfo = userService.loginUser(email);
@@ -80,10 +77,10 @@ public class UserInfoController {
                 // 토큰 정보 전달
                 return new ResponseEntity<TokenInfoResponse>(tokenInfo, HttpStatus.OK);
             } else {
-                return RestExceptionUtil.messageHandling("아이디 또는 비밀번호가 틀렸습니다.", HttpStatus.INTERNAL_SERVER_ERROR);
+                return RestExceptionUtil.messageHandling("아이디 또는 비밀번호가 틀렸습니다. - 1", HttpStatus.INTERNAL_SERVER_ERROR);
             }
         } catch (Exception e) {
-            return RestExceptionUtil.messageHandling("아이디 또는 비밀번호가 틀렸습니다.", HttpStatus.INTERNAL_SERVER_ERROR);
+            return RestExceptionUtil.messageHandling("아이디 또는 비밀번호가 틀렸습니다. - 2", HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
@@ -113,12 +110,20 @@ public class UserInfoController {
     ////////////////////////////////////////
 
     @PostMapping("/refresh")
-    public ResponseEntity<?> refresh(@RequestBody TokenRefreshRequest userInfo, HttpServletRequest request) {
+//    public ResponseEntity<?> refresh(@RequestBody TokenRefreshRequest userInfo, HttpServletRequest request) {
+    public ResponseEntity<?> refresh(HttpServletRequest request) {
+//        log.info("refresh :: {}", userInfo);
+//        TokenRefreshRequest userInfo = new TokenRefreshRequest();
+//        userInfo.setUid(uid);
         String refreshToken = request.getHeader("refreshToken");
-        userInfo.setRefreshToken(refreshToken);
-        log.debug("refresh user: {}", userInfo);
+        String accessToken = request.getHeader("accessToken");
+        log.info("header {}", refreshToken);
+//        String accessToken = request.getHeader("accessToken");
+//        userInfo.setRefreshToken(refreshToken);
+//        userInfo.setAccessToken(accessToken);
+//        log.debug("refresh user: {}", userInfo);
         try {
-            TokenInfoResponse tokenInfo = userService.refreshUser(userInfo);
+            TokenInfoResponse tokenInfo = userService.refreshUser(accessToken, refreshToken);
             if (tokenInfo != null) {
                 // 토큰 정보 전달
                 return new ResponseEntity<TokenInfoResponse>(tokenInfo, HttpStatus.OK);
@@ -128,6 +133,11 @@ public class UserInfoController {
         } catch (Exception e) {
             return RestExceptionUtil.messageHandling("만료된 토큰입니다.", HttpStatus.UNAUTHORIZED);
         }
+    }
+
+    @GetMapping("/{uid}")
+    public ResponseEntity<UserInfoDetailResponse> findUserInfoDetail(@PathVariable Long uid) {
+        return new ResponseEntity<UserInfoDetailResponse>(userService.findUserInfoDetail(uid), HttpStatus.OK);
     }
 
 

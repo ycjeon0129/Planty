@@ -8,8 +8,8 @@ INSERT INTO gm_info(id, pw, nickname, introduce)
 VALUES('ssafy', 'ssafy202', 'potato', '말하는 감자'),
 ('gardener', 'gardener202', 'groot', 'I am Groot');
 
-INSERT INTO user_info(user_id, user_name, email)
-VALUES('ssafyUser','초보 가드너', 'ssafy@gmail.com'), ('ssafyDevelop', '초보 개발자', 'gardener@naver.com');
+INSERT INTO user_info(user_id, user_name, email, `password`)
+VALUES('ssafyUser','초보 가드너', 'ssafy@gmail.com', "ps1234"), ('ssafyDevelop', '초보 개발자', 'gardener@naver.com', "ps1234");
 
 INSERT INTO plant_info(name, tonic_period, size, place, edible)
 VALUES('토마토', 3, '소','실내',1), ('양파', 4, '소','실내',1);
