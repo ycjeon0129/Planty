@@ -1,34 +1,7 @@
-// 사용자 구독정보
-export interface ISubscribe {
-	sid: number;
-	title: string;
-	state: string;
-	thumbnail: string;
-	info: IConsultingSummary;
-}
-
 export interface IConsultingSummary {
 	startDate: string;
 	consultCount: string;
 	consultDate: string;
-}
-
-export interface ISubscribeDetail extends ISubscribe {
-	plantName: string;
-	detailInfo: {
-		subscribeStartDate: string;
-		subscribeEndDate: string;
-		GMNickname: string; // 담당 그린메이트
-		supplementsCount: number; // 영양제 개수
-	};
-	embeddedData: IEmbeddedDate[];
-}
-
-interface IEmbeddedDate {
-	date: string;
-	temperature: number;
-	humidity: number;
-	soilHumidity: number;
 }
 
 // 컨설팅 예약건

@@ -1,11 +1,3 @@
-export interface IConsultingHistory {
-	consultingDate: string;
-	endDate: string;
-	bookingState: string;
-	recommendDate: string;
-	consultingComment: string;
-}
-
 export type ConsultingSession = Session | null;
 export type ConsultingSubscribers = ISubscriber[];
 export type ConsultingDevice = Device | null;
