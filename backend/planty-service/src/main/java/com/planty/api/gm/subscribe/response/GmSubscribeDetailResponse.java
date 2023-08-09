@@ -1,7 +1,6 @@
 package com.planty.api.gm.subscribe.response;
 
 import lombok.*;
-import lombok.experimental.SuperBuilder;
 
 @Getter
 @Builder
