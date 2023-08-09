@@ -10,11 +10,9 @@ function Button({ text }: { text: string }) {
 	};
 
 	return (
-		<div>
-			<div className="button" onClick={handleClick} role="presentation">
-				<span>{text}</span>
-			</div>
-		</div>
+		<button className="green-button" type="submit" onClick={handleClick}>
+			{text}
+		</button>
 	);
 }
 

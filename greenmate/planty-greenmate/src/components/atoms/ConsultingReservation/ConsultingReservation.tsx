@@ -1,8 +1,21 @@
 import React from 'react';
 import Img2 from 'assets/icons/Next.svg';
-import './ClassReservation.scss';
+import './ConsultingReservation.scss';
+import formatDate from 'utils/formatDate';
+import greenp from 'assets/icons/GreenP.svg';
 
-function ClassReservation({ img }: { img: string }) {
+export interface IBooking {
+	cid: number;
+	sid: number;
+	date: string;
+	time: number;
+	greenmate: string;
+	user: string;
+	title: string;
+}
+
+function ClassReservation({ subscribe }: { subscribe: IBooking }) {
+	const fomatedDate = formatDate(subscribe.date);
 	const isClicked = () => {
 		alert('이동');
 	};
@@ -10,10 +23,12 @@ function ClassReservation({ img }: { img: string }) {
 		<div className="class-reservation-box">
 			<div className="class-reservation-inner-box1">
 				<div className="img-box">
-					<img src={img} alt="그린메이트 사진" />
+					<img src={greenp} alt="그린메이트 사진" />
 				</div>
 				<div>
-					<div className="bold-text">컨설팅 날짜 및 시간</div>
+					<div>
+						<div className="bold-text">{fomatedDate}</div>
+					</div>
 					<div className="gray-text">구독상품 타이틀</div>
 					<div className="gray-text">사용자이름</div>
 				</div>
