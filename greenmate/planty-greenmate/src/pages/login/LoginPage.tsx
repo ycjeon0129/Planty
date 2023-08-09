@@ -3,7 +3,7 @@ import LoginPageLayout from 'components/layout/page/loginpagelayout/LoginPageLay
 import LoginLogo from 'components/atoms/loginlogo/LoginLogo';
 import LoginForm from 'components/atoms/loginform/LoginForm';
 // import { Button } from '@mui/material';
-import Button from 'components/atoms/button/Button';
+import Button from 'components/atoms/Button/Button';
 
 function LoginPage() {
 	return (
