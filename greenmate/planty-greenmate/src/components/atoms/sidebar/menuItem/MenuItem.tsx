@@ -1,5 +1,5 @@
 import React from 'react';
-import './MenuBar.scss';
+import './MenuItem.scss';
 
 interface MenuBarProps {
 	img: string;
@@ -19,7 +19,7 @@ function MenuBar({ img, text }: MenuBarProps) {
 	return (
 		<div className="menu-bar-outer-box">
 			<img src={img} alt="아이콘" />
-			<div>{text}</div>
+			<div className="menu-list">{text}</div>
 		</div>
 	);
 }

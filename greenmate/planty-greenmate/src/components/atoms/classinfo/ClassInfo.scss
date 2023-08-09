@@ -2,7 +2,7 @@
 
 .class-info-box {
 	border: solid $border-100 1px;
-	width: 400px;
+	// width: 400px;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
@@ -32,7 +32,9 @@
 
 .class-info-inner-box2 {
 	display: flex;
-    padding: 10px;
+  padding: 10px;
+	align-items: center;
+	justify-content: center;
 }
 
 .gray-text {

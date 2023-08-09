@@ -1,0 +1,15 @@
+@import 'styles/base/_variable.scss';
+.menu-bar-outer-box {
+  display: flex;
+
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 5px;
+  padding-left: 20px;
+}
+
+.menu-list {
+  font-size: $h4;
+  color: $black-300;
+  font-weight: bold;
+}
