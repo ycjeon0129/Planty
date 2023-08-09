@@ -1,7 +1,7 @@
 package com.planty.api.gm.subscribe.controller;
 
-import com.planty.api.gm.subscribe.service.GMSubscribeService;
-import com.planty.api.gm.subscribe.response.GMSubscribeResponse;
+import com.planty.api.gm.subscribe.response.GmSubscribeResponse;
+import com.planty.api.gm.subscribe.service.GmSubscribeService;
 import io.swagger.annotations.Api;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -18,15 +18,14 @@ import java.util.List;
 @RequestMapping("/api/greenmates/subscribes")
 @RequiredArgsConstructor
 @Api
-public class GMSubscribeController {
+public class GmSubscribeController {
 
-    private final GMSubscribeService gMSubscribeServiceImpl;
+    private final GmSubscribeService gmSubscribeService;
 
     // 담당 구독 전체 조회
     @GetMapping
-    public ResponseEntity<List<GMSubscribeResponse>> findSubscribeList() {
-//        return new ResponseEntity<List<GMSubscribeResponse>>(gMSubscribeService.findSubscribeList(), HttpStatus.OK);
-        return null;
+    public ResponseEntity<List<GmSubscribeResponse>> findSubscribeList() {
+        return new ResponseEntity<List<GmSubscribeResponse>>(gmSubscribeService.findSubscribeList(), HttpStatus.OK);
     }
 
 //    // 담당 구독 상세 조회

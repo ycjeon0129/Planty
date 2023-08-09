@@ -13,5 +13,4 @@ public interface UserSubscribeRepository extends JpaRepository<UserSubscribe, Lo
 
     Optional<UserSubscribe> findByUidAndSid(UserInfo uid, Long sid);
 
-//    List<UserSubscribeSpidMapping> findDistinctByGid_Gid(GMInfo gid);
 }

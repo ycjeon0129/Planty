@@ -1,12 +1,12 @@
 package com.planty.db.repository;
 
-import com.planty.db.entity.GMInfo;
+import com.planty.db.entity.GmInfo;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 
 @Repository
-public interface GMInfoRepository extends JpaRepository<GMInfo, Long> {
-    Optional<GMInfo> findByGid(Long Gid);
+public interface GmInfoRepository extends JpaRepository<GmInfo, Long> {
+    Optional<GmInfo> findByGid(Long Gid);
 }
