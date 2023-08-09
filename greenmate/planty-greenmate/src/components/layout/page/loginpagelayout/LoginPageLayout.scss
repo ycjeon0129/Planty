@@ -1,6 +1,5 @@
 .login-outer-box {
     // border: solid black 1px;
-    height: 700px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -9,13 +8,12 @@
 
 .login-logo {
     // border: solid black 1px;
-    height: 150px;
     width: 300px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-bottom: 50px;
+    margin-bottom: 100px;
 }
 
 .login-form {
