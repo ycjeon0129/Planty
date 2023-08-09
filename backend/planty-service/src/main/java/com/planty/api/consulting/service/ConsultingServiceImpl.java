@@ -2,11 +2,8 @@ package com.planty.api.consulting.service;
 
 import com.planty.api.consulting.response.UserConsultingResponse;
 import com.planty.common.exception.handler.ExceptionHandler;
-import com.planty.common.util.SecurityUtil;
-import com.planty.db.entity.UserInfo;
-import com.planty.db.entity.ViewUserConsulting;
-import com.planty.db.repository.UserConsultingRepository;
-import com.planty.db.repository.UserInfoRepository;
+import com.planty.db.entity.*;
+import com.planty.db.repository.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -18,9 +15,13 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class ConsultingServiceImpl implements ConsultingService {
-    private final UserConsultingRepository userConsultingRepository;
+    private final ViewUserConsultingRepository userConsultingRepository;
     private final UserInfoRepository userInfoRepository;
-    @Override
+    private final TimeTableRepository timeTableRepository;
+    private final UserSubscribeRepository userSubscribeRepository;
+    private final ConsultingBookingRepository consultingBookingRepository;
+    private final GmInfoRepository gmInfoRepository;
+    @Override // 사용자 컨설팅 조회
     public List<UserConsultingResponse> getUserConsultingUid() {
 //        String email = SecurityUtil.getCurrentUserEmail();
 //        UserInfo user = userInfoRepository.findByUserEmail(email)
@@ -51,7 +52,7 @@ public class ConsultingServiceImpl implements ConsultingService {
         return consultingList;
     }
 
-    @Override
+    @Override // 사용자 컨설팅 상세 조회
     public List<UserConsultingResponse> getUserConsultingDetail(Long sid) {
 //        String email = SecurityUtil.getCurrentUserEmail();
 //        UserInfo user = userInfoRepository.findByUserEmail(email)

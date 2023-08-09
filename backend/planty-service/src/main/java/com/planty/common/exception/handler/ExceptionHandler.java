@@ -15,6 +15,9 @@ public class ExceptionHandler {
     public static final String USER_NOT_FOUND = "존재하지 않는 회원입니다.";
     public static final String USER_SID_NOT_FOUND = "존재하지 않는 회원 구독 번호입니다.";
     public static final String PRODUCT_NOT_FOUND = "존재하지 않는 구독 상품입니다.";
+    public static final String TIME_NOT_FOUND = "존재하지 않는 시간입니다.";
+    public static final String GM_NOT_FOUND = "존재하지 않는 GM 입니다.";
+    public static final String BOOKING_NOT_FOUNT = "존재하지 않는 예약 번호입니다.";
 
     @org.springframework.web.bind.annotation.ExceptionHandler(NullPointerException.class)
     public ResponseEntity exNullHandle(NullPointerException e) {

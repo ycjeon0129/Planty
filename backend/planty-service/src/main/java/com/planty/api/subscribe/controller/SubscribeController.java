@@ -1,9 +1,7 @@
 package com.planty.api.subscribe.controller;
 
-import com.planty.api.consulting.response.UserConsultingResponse;
 import com.planty.api.subscribe.request.UserSubscribeRequest;
 import com.planty.api.subscribe.response.UserSubscribeDatailResponse;
-import com.planty.db.entity.UserSubscribe;
 import io.swagger.annotations.Api;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -54,7 +52,7 @@ public class SubscribeController {
     @PostMapping() // 사용자 구독 등록
     public ResponseEntity<?> postUserSubscribe(@RequestBody UserSubscribeRequest userSubscribeRequest) {
         log.info(logCurrent(getClassName(), getMethodName(), START));
-        System.out.println(userSubscribeRequest.toString());
+//        System.out.println(userSubscribeRequest.toString());
         if(subscribeServiceImpl.regUserSubscribe(userSubscribeRequest)){
             log.info(logCurrent(getClassName(), getMethodName(), END));
                 return ResponseEntity.status(200).build();
