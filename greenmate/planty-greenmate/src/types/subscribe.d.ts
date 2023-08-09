@@ -1,5 +1,5 @@
 export interface ISubscribe {
-	sid: number;
+	sid?: number;
 	title: string;
 	thumbnail: string;
 	subscriberCnt: number;
