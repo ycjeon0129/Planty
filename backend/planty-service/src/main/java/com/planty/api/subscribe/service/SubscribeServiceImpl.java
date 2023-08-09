@@ -126,7 +126,7 @@ public class SubscribeServiceImpl implements SubscribeService {
         UserSubscribe userSubscribe = UserSubscribe.builder()
                 .uid(user)
                 .spid(product)
-                .gid(product.getGMInfoGid())
+                .gid(product.getGid())
                 .consultingRemainCnt(product.getConsultingCnt())
                 .build();
 

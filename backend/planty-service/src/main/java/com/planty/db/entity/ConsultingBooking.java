@@ -33,7 +33,7 @@ public class ConsultingBooking {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(referencedColumnName = "gid", name = "GM_INFO_gid") // GM 식별키
-    private GmInfo GMInfoGid;
+    private GmInfo GmInfoGid;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(referencedColumnName = "idx", name = "TIME_TABLE_idx") // 시간 식별키
