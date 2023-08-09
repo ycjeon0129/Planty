@@ -6,6 +6,7 @@ import Develop from 'pages/Develop';
 import 'styles/index.scss';
 import ErrorPage from 'pages/Etc/ErrorPage';
 import DashBoardPage from 'pages/DashBoard/DashBoardPage';
+import LoadingPage from 'pages/Consulting/LoadingPage';
 import ChattingPage from 'pages/Consulting/ChattingPage';
 import VideoPage from 'pages/Consulting/VideoPage';
 import ListPage from 'pages/Subscribes/ListPage';
@@ -24,7 +25,6 @@ function AppRouter() {
 		<div className="container">
 			<BrowserRouter>
 				<SideBar />
-
 				<Routes>
 					{/* 로그인이 필요하지 않은 경로 */}
 					<Route path="/" element={<Navigate replace to="/dashboard" />} />
@@ -36,6 +36,7 @@ function AppRouter() {
 						<Route path="/dashboard" element={<DashBoardPage />} />
 						<Route path="/consulting" element={<Outlet />}>
 							<Route path="" element={<Navigate to="error" />} />
+							<Route path="loading" element={<LoadingPage />} />
 							<Route path="chatting" element={<ChattingPage />} />
 							<Route path="video" element={<VideoPage />} />
 						</Route>
