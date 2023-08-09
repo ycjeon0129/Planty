@@ -1,4 +1,4 @@
-import { IChartData, IPlantData, IPlantDataset } from 'types/global';
+import { IChartData, IPlantData, IPlantDataset } from 'types/base/global';
 
 /**
  * 식물의 온/습도 정보 배열(plantDatas)과 temp hudi 에 따라 최종 차트 데이터를 만들어주는 util 함수

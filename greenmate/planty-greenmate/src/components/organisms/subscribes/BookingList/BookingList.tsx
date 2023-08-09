@@ -3,7 +3,7 @@ import React from 'react';
 import BookingListItem from 'components/atoms/subscribes/BookingListItem/BookingListItem';
 import useAllBooking from 'hooks/api/useAllBooking';
 import './BookingList.scss';
-import { Value } from 'types/global';
+import { Value } from 'types/base/global';
 import useBookingList from 'hooks/api/useBookingList';
 
 function BookingList({ date }: { date?: Value }) {

@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Value } from 'types/global';
+import { Value } from 'types/base/global';
 import formatDate from 'utils/formatDate';
 
 /**

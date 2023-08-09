@@ -1,6 +1,6 @@
 import { Button } from '@mui/material';
 import useMovePage from 'hooks/useMovePage';
-import { IMenuItem } from 'types/global';
+import { IMenuItem } from 'types/base/global';
 import React, { useEffect, useState } from 'react';
 import uuid from 'react-uuid';
 import './PageMenu.scss';

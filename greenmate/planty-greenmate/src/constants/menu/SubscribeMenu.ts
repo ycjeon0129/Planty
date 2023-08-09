@@ -1,4 +1,4 @@
-import { IMenu } from 'types/global';
+import { IMenu } from 'types/base/global';
 
 const SUBSCRIBES_MENU: IMenu = {
 	key: 'subscribes-menu',

@@ -2,7 +2,7 @@ import './FullScheduleCalendar.scss';
 import React from 'react';
 import moment from 'moment';
 import Calendar from 'react-calendar';
-import { Value } from 'types/global';
+import { Value } from 'types/base/global';
 import useBookingList from 'hooks/api/useBookingList';
 import isSameDate from 'utils/isSameDate';
 import { yesterdayDateTime } from 'constants/common/Date';
