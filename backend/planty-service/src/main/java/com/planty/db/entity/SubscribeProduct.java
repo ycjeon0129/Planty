@@ -42,8 +42,8 @@ public class SubscribeProduct {
     @Column(name = "consulting_cnt", nullable = false) // 컨설팅 횟수
     private Integer consultingCnt;
 
-    @Column(name = "thuumbnail") // 썸네일 이미지 : CDN 링크
-    private String thuumbnail;
+    @Column(name = "thumbnail") // 썸네일 이미지 : CDN 링크
+    private String thumbnail;
 
     @Column(name = "description") // 상세설명 : CDN 링크
     private String description;
