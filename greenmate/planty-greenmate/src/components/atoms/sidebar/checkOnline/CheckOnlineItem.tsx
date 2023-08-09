@@ -62,7 +62,6 @@ function CheckOnline() {
 
 	return (
 		<div className="check-online-outer-box">
-			<hr />
 			<div className="check-online-box">
 				<div className="active-management">
 					<div className="bold-text">활동 관리</div>

@@ -1,9 +1,15 @@
+/* eslint-disable react/require-default-props */
 import React from 'react';
+import classNames from 'classnames';
 import './MenuItem.scss';
+import { useLocation } from 'react-router-dom';
 
 interface MenuBarProps {
 	img: string;
 	text: string;
+	handleClick: () => void;
+	pathname?: string;
+	isIng?: boolean;
 }
 
 /** 왼쪽 사이드바 컴포넌트
@@ -15,9 +21,13 @@ interface MenuBarProps {
  * Profile.svg = 프로필
  * Setting = 설정
  */
-function MenuBar({ img, text }: MenuBarProps) {
+function MenuBar({ img, text, handleClick, pathname, isIng }: MenuBarProps) {
+	const realPathname = useLocation().pathname.split('/')[1];
+	const isActive = pathname === realPathname;
+	const className = classNames('menu-bar-outer-box', { isIng, active: isActive });
+
 	return (
-		<div className="menu-bar-outer-box">
+		<div className={className} onClick={handleClick} role="presentation">
 			<img src={img} alt="아이콘" />
 			<div className="menu-list">{text}</div>
 		</div>
