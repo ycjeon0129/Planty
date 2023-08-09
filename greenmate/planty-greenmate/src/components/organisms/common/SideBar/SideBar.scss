@@ -1,9 +1,24 @@
-.side-bar-box {
-    width: 240px;
-	position: relative;
+@use 'styles/base/variable' as var;
+
+.sidebar-container {
 	display: flex;
-	gap: 20px;
 	flex-direction: column;
-	border: 1px solid red;
-	background-color: #fff;
+	flex-grow: 1;
+
+	#logo {
+		flex-basis: 5%;
+		padding: 15px;
+	}
+
+	#profile {
+		flex-basis: 10%;
+	}
+
+	#menu {
+		flex-basis: 35%;
+	}
+
+	#active-manage {
+		flex-basis: 50%;
+	}
 }

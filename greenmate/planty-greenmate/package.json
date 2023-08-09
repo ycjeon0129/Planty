@@ -23,6 +23,7 @@
         "react-calendar": "^4.6.0",
         "react-chartjs-2": "5.2.0",
         "react-dom": "^18.2.0",
+        "react-lottie": "^1.2.3",
         "react-router-dom": "6.14.2",
         "react-scripts": "5.0.1",
         "react-slick": "^0.29.0",
@@ -57,6 +58,7 @@
         ]
     },
     "devDependencies": {
+        "@types/react-lottie": "^1.2.6",
         "@types/react-slick": "^0.23.10",
         "@types/swiper": "^6.0.0",
         "@typescript-eslint/eslint-plugin": "6.1.0",
@@ -72,5 +74,10 @@
         "eslint-plugin-prettier": "5.0.0",
         "eslint-plugin-react": "7.33.0",
         "prettier": "3.0.0"
-    }
+    },
+    "overrides":{
+        "react-lottie": {
+          "react": "^0.14.7 || ^15.0.0 || ^16.0.0 || ^17.0.0 || ^18.0.0" 
+        }
+      }
 }

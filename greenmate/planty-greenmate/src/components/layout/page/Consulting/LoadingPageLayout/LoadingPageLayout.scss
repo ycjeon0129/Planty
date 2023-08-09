@@ -1,0 +1,62 @@
+@import 'styles/base/variable';
+@import 'styles/mixins/common';
+@import 'styles/mixins/flex';
+
+
+#blank {
+    padding-bottom: 50px;
+    ;
+}
+
+#loading-center {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+#title {
+    font-size: 30px;
+    color: $black-500;
+    font-weight: bold;
+    position: absolute;
+    top: 2%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+}
+
+#title-sub {
+    font-size: 23px;
+    color: $black-500;
+    font-weight: bold;
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#footer {
+    color: $black-200;
+    font-size: 22px;
+    font-weight: bold;
+    position: absolute;
+    top: 90%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#footer-sub {
+    color: $black-500;
+    font-size: 30px;
+    font-weight: bold;
+    position: absolute;
+    top: 97%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#loading-img {
+    // position: relative;
+}
