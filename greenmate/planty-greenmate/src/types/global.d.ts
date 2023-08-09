@@ -26,3 +26,15 @@ export interface IPlantData {
 	humidity: number;
 	soilHumidity: number;
 }
+
+// 메뉴 관련
+export interface IMenu {
+	key: string;
+	default: IMenuItem[];
+}
+
+export interface IMenuItem {
+	idx: number;
+	title: string;
+	url: string;
+}

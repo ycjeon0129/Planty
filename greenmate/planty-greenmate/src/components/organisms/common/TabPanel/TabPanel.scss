@@ -1,0 +1,9 @@
+.tab-panel-container {
+    display: flex;
+    flex-direction: column;
+
+    &#simple-tabpanel-1 {
+        flex-grow: 1;
+    }
+
+}

@@ -5,7 +5,8 @@ function HistoryPageLayout({ children }: { children: ReactNode[] }) {
 	return (
 		<PageLayout>
 			{children[0]}
-			<div>{children[1]}</div>
+			{children[1]}
+			{children[2]}
 		</PageLayout>
 	);
 }
