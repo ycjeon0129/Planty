@@ -1,15 +1,18 @@
 import React from 'react';
 import './ClassInfo.scss';
+import { ISubscribe } from 'types/subscribe';
 import Img from 'assets/icons/Next.svg';
+import formatDate from 'utils/formatDate';
 
-interface ClassInfoProps {
-	img: string;
-	title: string;
-	date: string;
-}
-
-function ClassInfo({ img, title, date }: ClassInfoProps) {
-	// 구독자 수 고려
+function ClassInfo({ thumbnail, title, subscriberCnt, startDate, endDate }: ISubscribe) {
+	// startDate <= 현재날짜 <= endDate 안에 있으면 1
+	const formattedStartdate = formatDate(startDate);
+	const formattedEnddate = formatDate(endDate);
+	// 현재 날짜를 받는다
+	// const currentDate = new Date();
+	// 현재날짜를 2023-02-02 (수) 형태로 변환한다.
+	// const formattedCurrentDate = formatDate(currentDate);
+	// const year
 	const isClicked = () => {
 		alert('이동');
 	};
@@ -17,12 +20,16 @@ function ClassInfo({ img, title, date }: ClassInfoProps) {
 		<div className="class-info-box">
 			<div className="class-info-inner-box1">
 				<div className="img-box">
-					<img src={img} alt="그린메이트 사진" />
+					<img src={thumbnail} alt="그린메이트 사진" />
 				</div>
 				<div>
 					<div className="bold-text">{title}</div>
-					<div className="gray-text">구독자명수</div>
-					<div className="gray-text">{date}</div>
+					<div className="gray-text">{subscriberCnt} 명의 구독자</div>
+					<div className="date-box">
+						<div className="gray-text">{formattedStartdate}</div>
+						<div className="gray-text">~</div>
+						<div className="gray-text">{formattedEnddate}</div>
+					</div>
 				</div>
 			</div>
 			<div className="class-info-inner-box2">
