@@ -6,9 +6,11 @@ import Header from 'components/organisms/common/Header/Header';
 import OpenViduVideo from 'components/organisms/consulting/OpenViduVideo/OpenViduVideo';
 import VideoConsultingMenu from 'components/organisms/consulting/VideoConsultingMenu/VideoConsultingMenu';
 import useMovePage from 'hooks/useMovePage';
+
 import { OpenVidu, Publisher, Session, StreamEvent, Subscriber } from 'openvidu-browser';
 import { getToken } from 'utils/api/consulting';
 import { Link } from 'react-router-dom';
+import LoadingPage from './LoadingPage';
 
 const mySessionId = 'TESTEST';
 const myName = 'Test1';
@@ -110,10 +112,9 @@ function VideoPage() {
 		};
 	});
 
-	console.log(isLoading);
-	// if (isLoading || !publisher || !subscriber) {
-	// 	return <ConsultingLoadingPageLayout />;
-	// }
+	if (isLoading || !publisher || !subscriber) {
+		return <LoadingPage />;
+	}
 
 	return (
 		<VideoPageLayout>
