@@ -15,6 +15,8 @@ import EmergencyPage from 'pages/History/EmergencyPage';
 import ConsultingPage from 'pages/History/ConsultingPage';
 import HistoryPage from 'pages/History/HistoryPage';
 import SettingPage from 'pages/Setting/SettingPage';
+import LoginPage from 'pages/login/LoginPage';
+import SubscribesDetailPage from 'pages/Subscribes/SubscribesDetailPage';
 import PrivateRoute from './PrivateRoute';
 
 function AppRouter() {
@@ -26,7 +28,8 @@ function AppRouter() {
 				<Routes>
 					{/* 로그인이 필요하지 않은 경로 */}
 					<Route path="/" element={<Navigate replace to="/dashboard" />} />
-					<Route path="/login" element={<App />} />
+					<Route path="/app" element={<App />} />
+					<Route path="/login" element={<LoginPage />} />
 
 					{/* 로그인이 필요한 경로 */}
 					<Route path="/" element={<PrivateRoute />}>
@@ -38,7 +41,9 @@ function AppRouter() {
 						</Route>
 						<Route path="/subscribes" element={<SubscribesPage />}>
 							<Route path="" element={<Navigate to="list" />} />
-							<Route path="list" element={<ListPage />} />
+							<Route path="list" element={<ListPage />}>
+								<Route path=":sid" element={<SubscribesDetailPage />} />
+							</Route>
 							<Route path="calendar" element={<CalendarPage />} />
 						</Route>
 						<Route path="/history" element={<HistoryPage />}>

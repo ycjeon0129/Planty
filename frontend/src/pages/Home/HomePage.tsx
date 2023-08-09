@@ -2,6 +2,7 @@ import HomePageLayout from 'components/layout/Page/HomePageLayout/HomePageLayout
 import AreaTitle from 'components/atoms/common/AreaTitle/AreaTitle';
 import SubscribeSlider from 'components/organisms/subscribe/SubscribeSlider/SubscribeSlider';
 import React from 'react';
+import toast from 'react-hot-toast';
 import BannerSlider from 'components/organisms/common/BannerSlider/BannerSlider';
 import SquareShortcutButton from 'components/atoms/common/SquareShortcutButton/SquareShortcutButton';
 import RectShortcutButton from 'components/atoms/common/RectShortcutButton/RectShortcutButton';
@@ -28,18 +29,17 @@ function HomePage() {
 			<RectShortcutButton
 				text="채팅 컨설팅"
 				handleClick={() => {
-					alert('채팅상담');
+					toast.success('채팅 컨설팅 입니다');
 				}}
 				type="consulting-chat"
 			/>
 			<RectShortcutButton
 				text="화상 컨설팅"
 				handleClick={() => {
-					alert('화상상담');
+					movePage('/consulting/video');
 				}}
 				type="consulting-video"
 			/>
-			<AreaTitle title="구독샵" url="/shop" />
 		</HomePageLayout>
 	);
 }

@@ -5,9 +5,12 @@ import BadgeDescription from 'components/organisms/common/BadgeDescription/Badge
 import SubscribeStateBadge from 'components/atoms/subscribe/SubscribeStateBadge/SubscribeStateBadge';
 import { CONSULTING_STATUS_DESC_LIST } from 'constants/common/StatusDescList';
 import PageTitleButton from 'components/atoms/common/PageTitleButton/PageTitleButton';
-import dummySubscribe from 'dummy';
+import { ISubscribe } from 'types/subscribe';
+import useAllSubscribe from 'hooks/subscribes/useAllSubscribe';
 
 function SubscribePage() {
+	const subscribes: ISubscribe[] = useAllSubscribe() as ISubscribe[];
+
 	const badgeList = [
 		<SubscribeStateBadge stateKey="wait" />,
 		<SubscribeStateBadge stateKey="done" />,
@@ -23,7 +26,7 @@ function SubscribePage() {
 			<BadgeDescription title="컨설팅 상태" descriptionList={CONSULTING_STATUS_DESC_LIST} badgeList={badgeList} />
 
 			{/* 구독 목록 */}
-			<SubscribeList subscribes={dummySubscribe} />
+			<SubscribeList subscribes={subscribes} />
 		</SubscribePageLayout>
 	);
 }

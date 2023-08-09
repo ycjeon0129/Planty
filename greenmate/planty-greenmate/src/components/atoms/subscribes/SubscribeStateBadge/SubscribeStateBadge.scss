@@ -1,0 +1,31 @@
+@use 'sass:math';
+@use 'styles/base/variable' as var;
+
+@mixin badgeColor($color) {
+	border: 1px solid $color;
+	color: $color;
+	border-radius: var.$rd-lg;
+}
+
+.badge-container {
+	width: fit-content;
+
+	span {
+		display: block;
+		font-size: var.$p0;
+		padding: math.div(var.$pd-sm, 2) var.$pd-lg;
+	}
+
+	.primary {
+		@include badgeColor(var.$primary);
+	}
+	.danger {
+		@include badgeColor(var.$danger);
+	}
+	.success {
+		@include badgeColor(var.$success);
+	}
+	.disabled {
+		@include badgeColor(var.$disabled);
+	}
+}

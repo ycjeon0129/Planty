@@ -1,6 +1,6 @@
 import { openviduInstance } from './instance';
 
-const APPLICATION_SERVER_URL = process.env.REACT_APP_OPEN_VIDU_SERVER_URL;
+const APPLICATION_SERVER_URL = process.env.REACT_APP_OPEN_VIDU_SERVER_URL ? '' : 'https://demos.openvidu.io/';
 
 export const createToken = async (sessionId: string) => {
 	const response = await openviduInstance.post(

@@ -31,4 +31,4 @@ export const MENUS: SidebarProps = {
 	},
 };
 
-export const NOT_ARROWED_PATH = ['/error', '/login', /\/subscribe\/\d+\/consulting/];
+export const NOT_ARROWED_PATH = ['/error', '/login', '/consulting/video', /\/subscribe\/\d+\/consulting/];

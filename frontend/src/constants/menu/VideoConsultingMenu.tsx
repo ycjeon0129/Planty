@@ -3,8 +3,8 @@ import { ReactComponent as VideoOn } from 'assets/icons/consultingMenu/VideoOn.s
 import { ReactComponent as VideoOff } from 'assets/icons/consultingMenu/VideoOff.svg';
 import { ReactComponent as MicOn } from 'assets/icons/consultingMenu/MicOn.svg';
 import { ReactComponent as MicOff } from 'assets/icons/consultingMenu/MicOff.svg';
-import { ReactComponent as ChatOn } from 'assets/icons/consultingMenu/ChatOn.svg';
-import { ReactComponent as ChatOff } from 'assets/icons/consultingMenu/ChatOff.svg';
+// import { ReactComponent as ChatOn } from 'assets/icons/consultingMenu/ChatOn.svg';
+// import { ReactComponent as ChatOff } from 'assets/icons/consultingMenu/ChatOff.svg';
 import { ReactComponent as Chart } from 'assets/icons/consultingMenu/Chart.svg';
 import { ReactComponent as Exit } from 'assets/icons/consultingMenu/Power.svg';
 
@@ -33,13 +33,13 @@ export const MENU: IVideoConsultingMenu = [
 		visible: true,
 		isDanger: false,
 	},
-	{
-		key: 'chat',
-		onIcon: <ChatOn />,
-		offIcon: <ChatOff />,
-		visible: true,
-		isDanger: false,
-	},
+	// {
+	// 	key: 'chat',
+	// 	onIcon: <ChatOn />,
+	// 	offIcon: <ChatOff />,
+	// 	visible: true,
+	// 	isDanger: false,
+	// },
 	{
 		key: 'chart',
 		onIcon: <Chart />,

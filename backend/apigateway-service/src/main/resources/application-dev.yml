@@ -1,5 +1,0 @@
-# dev : 운영서버에 올라가는 전 테스트를 하기 위한 개발서버 환경
-spring:
-  config:
-    activate:
-      on-profile: dev

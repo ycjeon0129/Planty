@@ -1,19 +1,31 @@
 @use 'styles/base/variable' as var;
+@import 'styles/mixins/flex';
 @import 'styles/mixins/grid';
 
 .chatting-page-layout-container {
+    position: relative;
     flex-grow: 1;
 
     @include grid(20px);
-    grid-template-columns: 6fr 4fr;
+    grid-template-columns: 1fr;
 
-    #left {
-        @include grid(20px);
-        grid-template-rows: 3fr 7fr;
+    #chatting-area {
+        @include flex-column;
+        justify-content: space-between;
+
+
+        #chat-info {
+            border: 1px solid red;
+        }
+
+        #chat-messages {
+            border: 1px solid red;
+        }
+
+        #chat-input {
+            bottom: 0;
+            border: 1px solid red;
+        }
     }
 
-    #right {
-        @include grid(20px);
-        grid-template-rows: 1fr;
-    }
 }
