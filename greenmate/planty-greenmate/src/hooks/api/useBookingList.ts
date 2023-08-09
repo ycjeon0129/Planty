@@ -1,6 +1,6 @@
 import findConsultingApi from 'utils/api/booking';
 import { useEffect, useState } from 'react';
-import { Value } from 'types/global';
+import { Value } from 'types/base/global';
 import { IConsulting } from 'types/subscribe';
 
 /**
