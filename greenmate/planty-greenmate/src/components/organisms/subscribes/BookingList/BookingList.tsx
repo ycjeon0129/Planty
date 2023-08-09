@@ -26,4 +26,17 @@ function BookingList({ date }: { date?: Value }) {
 	);
 }
 
+/*
+<BookingListItem
+				booking={{
+					cid: 0,
+					date: '2023-03-08',
+					greenmate: '전인혁',
+					user: '김인혁',
+					sid: 3,
+					time: 3,
+					title: '토마토 클래스',
+				}}
+			/>
+*/
 export default BookingList;
