@@ -1,29 +1,13 @@
-import { openviduInstance } from './instance';
+import { instance } from './instance';
 
-const APPLICATION_SERVER_URL = process.env.REACT_APP_OPEN_VIDU_SERVER_URL ? '' : 'https://demos.openvidu.io/';
+export const findAllConsulting = async () => {
+	const response = await instance.get('/consultings');
 
-export const createToken = async (sessionId: string) => {
-	const response = await openviduInstance.post(
-		`${APPLICATION_SERVER_URL}api/sessions/${sessionId}/connections`,
-		{},
-		{
-			headers: { 'Content-Type': 'application/json' },
-		},
-	);
-	return response.data; // The token
+	return response;
 };
 
-export const createSession = async (sessionId: string) => {
-	const response = await openviduInstance.post(
-		`${APPLICATION_SERVER_URL}api/sessions`,
-		{ customSessionId: sessionId },
-		{
-			headers: { 'Content-Type': 'application/json' },
-		},
-	);
-	return response.data; // The sessionId
-};
+export const findConsulting = async (cid: number) => {
+	const response = await instance.get(`/consultings/${cid}`);
 
-export const getToken = async (sessionId: string) => {
-	return createToken(await createSession(sessionId));
+	return response;
 };

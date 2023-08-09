@@ -11,9 +11,3 @@ export const findSubscribeApi = async (sid: number) => {
 
 	return response;
 };
-
-export const findAllBookingApi = async () => {
-	const response = await instance.get('/bookings');
-
-	return response;
-};
