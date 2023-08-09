@@ -1,26 +1,22 @@
 import React, { ReactNode } from 'react';
-import './EmergencyParticipatePageLayout.scss';
-import ContentsLayout from 'components/layout/common/ContentsLayout/ContentsLayout';
+import './LoadingPageLayout.scss';
 import PageLayout from 'components/layout/common/PageLayout/PageLayout';
-import NavigationLayout from 'components/layout/navigation/NavigationLayout/NavigationLayout';
 
 function LoadingPageLayout({ children }: { children: ReactNode[] }) {
 	return (
-		<PageLayout>
+		<PageLayout isFullPage>
 			{/* 페이지 헤더 */}
-			<NavigationLayout>{children[0]}</NavigationLayout>
+			<div id="blank">{children[0]}</div>
 			{/* 응급실 서비스 box */}
-			<ContentsLayout id="emergency-box">
-				<div>{children[1]}</div>
-			</ContentsLayout>
-			{/* 장비확인 text */}
-			<ContentsLayout id="check-equip-text">
-				<div>{children[2]}</div>
-			</ContentsLayout>
-			{/* 참여하기버튼 */}
-			<ContentsLayout id="participate-btn">
-				<div>{children[3]}</div>
-			</ContentsLayout>
+			<div id="loading-center">
+				<div id="title">{children[1]}</div>
+				{/* 장비확인 text */}
+				<div id="title-sub">{children[2]}</div>
+				{/* 참여하기버튼 */}
+				<div id="loading-img">{children[3]}</div>
+				<div id="footer">{children[4]}</div>
+				<div id="footer-sub">{children[5]}</div>
+			</div>
 		</PageLayout>
 	);
 }

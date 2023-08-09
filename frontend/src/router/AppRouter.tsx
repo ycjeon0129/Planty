@@ -28,7 +28,7 @@ import PrivateRoute from './PrivateRoute';
 import 'styles/index.scss';
 
 function AppRouter() {
-	const [isLoading, setIsLoading] = useState(false);
+	const [isLoading, setIsLoading] = useState(true);
 
 	const loading = () => {
 		setTimeout(() => {
