@@ -1,6 +1,6 @@
 @use 'styles/base/_variable.scss' as var;
 
-.button {
+.green-button {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -14,3 +14,7 @@
   color: var.$white
 
 }
+
+// .green-button {
+//   width: 200px;
+// }
