@@ -11,7 +11,7 @@ import java.util.Optional;
 @Repository
 public interface SubscribeProductRepository extends JpaRepository<SubscribeProduct, Long> {
     Optional<SubscribeProduct> findBySpid(Long spid);
-    Optional<SubscribeProduct> findBySpidAndGid(Long spid, GmInfo gmInfo);
+//    Optional<SubscribeProduct> findBySpidAndGid(Long spid, GmInfo gmInfo);
 
     List<SubscribeProduct> findByGid(GmInfo gmInfo);
 
