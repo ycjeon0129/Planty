@@ -1,11 +1,21 @@
 @use 'styles/base/_variable.scss' as var;
 
 .login-intro-text {
-	color: var.$black-100;
+	color: var.$black-400;
 	font-size: var.$h5;
 }
 
 .login-log-box {
 	display: flex;
 	flex-direction: column;
+	align-items: center;
+
+	img {
+		width: 150px;
+	}
+
+}
+
+.auto-login {
+	margin-bottom: 30px;
 }

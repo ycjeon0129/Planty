@@ -5,7 +5,7 @@ import ContentsLayout from 'components/layout/common/ContentsLayout/ContentsLayo
 function EmergencyPageLayout({ children }: { children: ReactNode[] }) {
 	return (
 		<ContentsLayout id="emergency-list-contents-layout">
-			<div className="list-page-layout-container">
+			<div className="emergency-page-layout-container">
 				<div id="emergency-list">{children[0]}</div>
 				<div id="emergency-list">{children[1]}</div>
 			</div>

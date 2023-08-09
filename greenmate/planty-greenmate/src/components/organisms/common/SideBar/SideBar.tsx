@@ -47,8 +47,8 @@ function SideBar() {
 						/>
 						<MenuItem
 							img={counsulting}
-							text="컨설팅 이용내역 조회"
-							handleClick={() => movePage('/history/consulting')}
+							text="컨설팅 내역 조회"
+							handleClick={() => movePage('/history/emergency')}
 							pathname="history"
 						/>
 						<MenuItem img={setting} text="설정" handleClick={() => movePage('/settings')} pathname="settings" />

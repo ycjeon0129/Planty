@@ -1,14 +1,14 @@
-.list-page-layout-container {
+.emergency-page-layout-container {
     display: flex;
     flex-grow: 1;
 
     #emergency-list {
-        flex-basis: 40%;
+        flex-basis: 50%;
         display: flex;
     }
 
     #emergency-detail {
-        flex-basis: 60%;
+        flex-basis: 50%;
         display: flex;
     }
 }

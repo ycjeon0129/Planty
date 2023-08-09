@@ -2,7 +2,7 @@ export type AccessToken = {
 	uid: number;
 };
 
-export type SetUserBody = {
+export type SetAuthBody = {
 	auth: string;
 	nickname: string;
 	profilePhoto: string;
@@ -10,14 +10,15 @@ export type SetUserBody = {
 };
 
 export type LoginBody = {
-	auth: string;
+	id: string;
+	password: string;
 };
 
-export type IUser = {
+export type IAuth = {
 	nickname: string;
-	auth: string;
+	id: string;
+	status: boolean;
 	profilePhoto: string;
-	joinDate: Date;
-	ticketCount: number;
-	address: string;
+	joinDate: string;
+	introduce: string;
 };

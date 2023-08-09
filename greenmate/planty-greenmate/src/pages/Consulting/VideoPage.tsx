@@ -8,7 +8,7 @@ import VideoConsultingMenu from 'components/organisms/consulting/VideoConsulting
 import useMovePage from 'hooks/useMovePage';
 
 import { OpenVidu, Publisher, Session, StreamEvent, Subscriber } from 'openvidu-browser';
-import { getToken } from 'utils/api/consulting';
+import { getToken } from 'utils/api/openVidu';
 import { Link } from 'react-router-dom';
 import LoadingPage from './LoadingPage';
 
