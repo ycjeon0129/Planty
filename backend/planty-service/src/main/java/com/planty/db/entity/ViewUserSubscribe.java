@@ -65,7 +65,7 @@ public class ViewUserSubscribe{
     @Column(name = "active") // 실행여부. 실행(1), 미실행(0)
     private Boolean cbActive;
 
-    @Column(name = "cb_time")
+    @Column(name = "cb_time") // 시간 식별키
     private Integer cbTime;
 
 }

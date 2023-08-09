@@ -11,17 +11,17 @@ import javax.validation.constraints.NotNull;
 @ToString
 public class UserSubscribeEmbeddedResponse {
     @NotNull
-    private String date;
+    private String date; // 측정일
 
     @NotNull
-    private String time;
+    private String time; // 측정시간
 
     @NotNull
-    private float temp;
+    private float temp; // 온도
 
     @NotNull
-    private float humidity;
+    private float humidity; // 습도
 
     @NotNull
-    private float soil;
+    private float soil; // 토양습도
 }
