@@ -28,7 +28,7 @@ public class SubscribeProduct {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(referencedColumnName = "gid", name = "GM_INFO_gid") // GM 식별키
-    private GmInfo GMInfoGid;
+    private GMInfo GMInfoGid;
 
     @NonNull
     @Column(name = "name", length = 128, nullable = false) // 구독 상품명

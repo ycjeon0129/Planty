@@ -41,7 +41,7 @@ public class UserSubscribe{
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(referencedColumnName = "gid", name = "GM_INFO_gid") // GM 식별키
-    private GmInfo gid;
+    private GMInfo gid;
 
     @NonNull
     @Column(name = "consulting_remain_cnt", nullable = false) // 남은 컨설팅 횟수

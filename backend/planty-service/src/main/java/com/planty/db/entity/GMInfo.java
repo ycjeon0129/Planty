@@ -17,7 +17,7 @@ import org.hibernate.annotations.DynamicUpdate;
 @DynamicUpdate
 @Table(name = "gm_info")
 @Entity
-public class GmInfo {
+public class GMInfo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "gid", nullable = false) // 식별키
