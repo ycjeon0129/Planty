@@ -3,6 +3,7 @@ import InfoRow from 'components/atoms/common/InfoRow/InfoRow';
 import React from 'react';
 import converTime from 'utils/converTime';
 import formatDate from 'utils/formatDate';
+import './EmergencyDetail.scss';
 // import useLocationIdx from 'hooks/common/useSid';
 // import useEmergency from 'hooks/api/useEmergency';
 
