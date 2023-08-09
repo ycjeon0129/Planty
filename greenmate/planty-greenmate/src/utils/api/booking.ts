@@ -1,4 +1,4 @@
-import { Value } from 'types/global';
+import { Value } from 'types/base/global';
 import { instance } from './instance';
 
 /**
