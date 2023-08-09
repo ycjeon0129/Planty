@@ -19,6 +19,7 @@ import SettingPage from 'pages/Setting/SettingPage';
 import LoginPage from 'pages/login/LoginPage';
 import SubscribesDetailPage from 'pages/Subscribes/SubscribesDetailPage';
 import EmergencyDetail from 'components/organisms/history/EmergencyDetail/EmergencyDetail';
+import ConsultingList from 'components/organisms/history/ConsultingList/ConsultingList';
 import PrivateRoute from './PrivateRoute';
 
 function AppRouter() {
@@ -53,7 +54,9 @@ function AppRouter() {
 							<Route path="emergency" element={<EmergencyPage />}>
 								<Route path=":eid" element={<EmergencyDetail />} />
 							</Route>
-							<Route path="consulting" element={<ConsultingPage />} />
+							<Route path="consulting" element={<ConsultingPage />}>
+								<Route path=":cid" element={<ConsultingList />} />
+							</Route>
 						</Route>
 						<Route path="/settings" element={<SettingPage />} />
 					</Route>
