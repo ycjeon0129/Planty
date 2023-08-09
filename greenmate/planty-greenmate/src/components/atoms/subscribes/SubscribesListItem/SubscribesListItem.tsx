@@ -1,13 +1,24 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './SubscribesListItem.scss';
 import { ISubscribe } from 'types/subscribe';
 import moment from 'moment';
+import classNames from 'classnames';
+import useLocationIdx from 'hooks/common/useSid';
 
-function SubscribesListItem({ subscribe }: { subscribe: ISubscribe }) {
+function SubscribesListItem({ subscribe, handleClick }: { subscribe: ISubscribe; handleClick: () => void }) {
 	const today = moment(new Date()).format('YYYY-MM-DD');
+	const [active, setActive] = useState(false);
+
+	const className = classNames('subscribes-list-item-container', { active });
+	const sid = useLocationIdx(3);
+
+	useEffect(() => {
+		if (sid === subscribe.sid) setActive(true);
+		else setActive(false);
+	}, [subscribe, sid]);
 
 	return (
-		<div className="subscribes-list-item-container">
+		<div className={className} onClick={handleClick} role="presentation">
 			<img src={subscribe.thumbnail} alt="img" />
 			<div>
 				<h3>{subscribe.title}</h3>

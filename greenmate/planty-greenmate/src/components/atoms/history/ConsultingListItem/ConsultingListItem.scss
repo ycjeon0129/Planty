@@ -1,0 +1,25 @@
+.booking-header {
+    display: flex;
+    flex-grow: 1;
+    justify-content: space-between;
+    align-items: center
+}
+
+.booking-info {
+    text-align: start;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+
+    h3 {
+        font-weight: bold;
+    }
+
+
+
+    #detail {}
+
+    #advice {
+        font-size: 1.4em;
+    }
+}

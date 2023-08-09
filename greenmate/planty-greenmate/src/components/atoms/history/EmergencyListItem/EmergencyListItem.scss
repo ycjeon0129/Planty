@@ -27,4 +27,8 @@
         flex-basis: 10%;
     }
 
+    &.active {
+        background-color: var.$light-green-500;
+    }
+
 }
