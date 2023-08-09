@@ -24,7 +24,7 @@ public class ConsultingController {
     public ResponseEntity<?> getUserConsultingList() {
 
         log.info(logCurrent(getClassName(), getMethodName(), START));
-        List<UserConsultingResponse> consultingList = consultingServiceImpl.getUserConsultingUid("ssafyDevelop");
+        List<UserConsultingResponse> consultingList = consultingServiceImpl.getUserConsultingUid();
 
         if (!consultingList.isEmpty()) {
             log.info(logCurrent(getClassName(), getMethodName(), END));
@@ -39,7 +39,7 @@ public class ConsultingController {
     public ResponseEntity<?> getUserConsultingDetailList(@PathVariable("sid") Long sid) {
 
         log.info(logCurrent(getClassName(), getMethodName(), START));
-        List<UserConsultingResponse> consultingDetailList = consultingServiceImpl.getUserConsultingDetail("ssafyDevelop", sid);
+        List<UserConsultingResponse> consultingDetailList = consultingServiceImpl.getUserConsultingDetail(sid);
 
         if (!consultingDetailList.isEmpty()) {
             log.info(logCurrent(getClassName(), getMethodName(), END));
