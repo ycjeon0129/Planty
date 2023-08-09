@@ -18,8 +18,6 @@ import com.planty.api.subscribe.service.SubscribeService;
 import static com.planty.common.util.LogCurrent.*;
 import static com.planty.common.util.LogCurrent.logCurrent;
 
-import com.planty.common.response.ResponseBody;
-
 
 @RestController
 @Slf4j
@@ -36,13 +34,10 @@ public class SubscribeController {
 
         if (!subscribeList.isEmpty()) {
             log.info(logCurrent(getClassName(), getMethodName(), END));
-//            return ResponseEntity.ok().body(subscribeList);
-            return ResponseEntity.status(200).body(ResponseBody.create(200, "success", subscribeList));
+                return ResponseEntity.status(200).body(subscribeList);
         }
         log.info(logCurrent(getClassName(), getMethodName(), END));
-//        return ResponseEntity.noContent().build();
-        return ResponseEntity.status(204).body(ResponseBody.create(204, "fail"));
-
+        return ResponseEntity.status(204).build();
     }
     @GetMapping("/{sid}") // 사용자 구독 상세 조회
     public ResponseEntity<?> getUserSubscribeDetailList(@PathVariable("sid") Long sid) {
@@ -51,9 +46,9 @@ public class SubscribeController {
         UserSubscribeDatailResponse response = subscribeServiceImpl.getUserSubscribeDetail(sid);
         if(response != null) {
             log.info(logCurrent(getClassName(), getMethodName(), END));
-            return ResponseEntity.status(200).body(ResponseBody.create(200, "success", response));
+            return ResponseEntity.status(200).body(response);
         }
-        return ResponseEntity.status(204).body(ResponseBody.create(204, "fail"));
+        return ResponseEntity.status(204).build();
     }
 
     @PostMapping() // 사용자 구독 등록
@@ -62,11 +57,10 @@ public class SubscribeController {
         System.out.println(userSubscribeRequest.toString());
         if(subscribeServiceImpl.regUserSubscribe(userSubscribeRequest)){
             log.info(logCurrent(getClassName(), getMethodName(), END));
-//            return ResponseEntity.ok().build();
-            return ResponseEntity.status(200).body(ResponseBody.create(200, "success"));
+                return ResponseEntity.status(200).build();
         }
         log.info(logCurrent(getClassName(), getMethodName(), END));
-        return ResponseEntity.status(500).body(ResponseBody.create(500, "fail"));
+        return ResponseEntity.status(500).build();
     }
 
     @DeleteMapping("/{sid}") // 사용자 구독 삭제
@@ -74,10 +68,10 @@ public class SubscribeController {
         log.info(logCurrent(getClassName(), getMethodName(), START));
         if(subscribeServiceImpl.deleteUserSubscribe(sid)){
             log.info(logCurrent(getClassName(), getMethodName(), END));
-            return ResponseEntity.status(200).body(ResponseBody.create(200, "success"));
+            return ResponseEntity.status(200).build();
         }
         log.info(logCurrent(getClassName(), getMethodName(), END));
-        return ResponseEntity.status(500).body(ResponseBody.create(500, "fail"));
+        return ResponseEntity.status(500).build();
     }
 
 }
