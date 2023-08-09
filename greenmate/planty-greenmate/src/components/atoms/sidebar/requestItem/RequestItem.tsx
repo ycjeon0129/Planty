@@ -1,5 +1,5 @@
 import React from 'react';
-import './Request.scss';
+import './RequestItem.scss';
 import x from 'assets/icons/Close.svg';
 
 interface RequestProps {

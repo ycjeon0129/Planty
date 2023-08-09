@@ -31,16 +31,16 @@ function LoginForm() {
 			<Box sx={{ display: 'flex', flexWrap: 'wrap' }}>
 				<div>
 					<FormControl sx={{ m: 1, width: '53ch' }} variant="outlined">
-						<InputLabel htmlFor="outlined-adornment-password">ID</InputLabel>
+						<InputLabel htmlFor="outlined-adornment-id">ID</InputLabel>
 						<OutlinedInput
-							id="outlined-adornment-password"
-							type="text"
+							id="outlined-adornment-id"
+							type="id"
 							value={id}
 							onChange={(e) => setId(e.target.value)}
 							endAdornment={
 								<InputAdornment position="end">
 									<IconButton
-										aria-label="toggle password visibility"
+										aria-label="toggle id visibility"
 										onClick={() => {
 											handleClearId();
 										}}
