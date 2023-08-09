@@ -14,8 +14,8 @@ export interface IBooking {
 	title: string;
 }
 
-function ClassReservation({ subscribe }: { subscribe: IBooking }) {
-	const fomatedDate = formatDate(subscribe.date);
+function ClassReservation({ booking }: { booking: IBooking }) {
+	const fomatedDate = formatDate(booking.date);
 	const isClicked = () => {
 		alert('이동');
 	};
