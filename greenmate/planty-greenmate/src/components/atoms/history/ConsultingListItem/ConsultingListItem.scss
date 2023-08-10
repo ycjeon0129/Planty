@@ -1,25 +1,29 @@
-.booking-header {
-    display: flex;
-    flex-grow: 1;
-    justify-content: space-between;
-    align-items: center
-}
+.consulting-list-item-container {
+    margin-bottom: 10px;
 
-.booking-info {
-    text-align: start;
-    display: flex;
-    flex-direction: column;
-    gap: 30px;
-
-    h3 {
-        font-weight: bold;
+    .consulting-header {
+        display: flex;
+        flex-grow: 1;
+        justify-content: space-between;
+        align-items: center;
     }
 
+    .consulting-info {
+        text-align: start;
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+
+        h3 {
+            font-weight: bold;
+        }
 
 
-    #detail {}
 
-    #advice {
-        font-size: 1.4em;
+        #detail {}
+
+        #advice {
+            font-size: 1.4em;
+        }
     }
 }

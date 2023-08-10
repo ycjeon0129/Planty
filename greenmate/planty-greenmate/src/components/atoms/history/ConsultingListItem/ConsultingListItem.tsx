@@ -17,7 +17,7 @@ function ConsultingListItem({ consulting }: { consulting: IConsulting }) {
 		return 'notJoin';
 	};
 	return (
-		<Accordion>
+		<Accordion className="consulting-list-item-container">
 			<AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel1a-content" id="panel1a-header">
 				<div className="consulting-header">
 					<h3>
