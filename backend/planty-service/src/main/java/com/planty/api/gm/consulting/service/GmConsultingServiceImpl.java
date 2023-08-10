@@ -27,7 +27,7 @@ public class GmConsultingServiceImpl implements GmConsultingService {
     public List<UserConsultingResponse> findConsultingList() {
         List<UserConsultingResponse> consultingList = new ArrayList<>();
         log.info("1");
-        List<ViewUserConsulting> list = viewUserConsultingRepository.findByUid(SecurityUtil.getCurrentGid());
+        List<ViewUserConsulting> list = viewUserConsultingRepository.findByGid(SecurityUtil.getCurrentGid());
         log.info("{}", list);
         for(ViewUserConsulting item : list) {
             consultingList.add(
