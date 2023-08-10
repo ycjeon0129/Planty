@@ -86,9 +86,9 @@ CREATE TABLE IF NOT EXISTS `planty`.`plant_info` (
   `idx` INT UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '식물 식별키',
   `name` VARCHAR(128) NOT NULL COMMENT '식물 이름',
   `tonic_period` INT NULL DEFAULT NULL COMMENT '식물 영양제 제공 주기 (주)',
-  `size` VARCHAR(16) NULL DEFAULT NULL COMMENT '크기',
-  `place` VARCHAR(16) NULL DEFAULT NULL COMMENT '생육 장소',
-  `edible` TINYINT(1) NULL DEFAULT '0' COMMENT '식용 여부. 식용(1), 비식용(0)',
+  `size` INT NULL DEFAULT NULL COMMENT '크기. 소(0), 중(1), 대(2)',
+  `place` INT NULL DEFAULT NULL COMMENT '생육 장소. 무관(0), 실내(1), 실외(2)',
+  `eatable` TINYINT(1) NULL DEFAULT '0' COMMENT '식용 여부. 식용(1), 비식용(0)',
   PRIMARY KEY (`idx`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
@@ -109,7 +109,7 @@ CREATE TABLE IF NOT EXISTS `planty`.`subscribe_product` (
   `consulting_cnt` INT UNSIGNED NOT NULL DEFAULT '0' COMMENT '컨설팅 횟수',
   `thumbnail` VARCHAR(256) NULL DEFAULT NULL COMMENT '썸네일 이미지 : CDN 링크',
   `description` VARCHAR(256) NULL DEFAULT NULL COMMENT '상세설명 : CDN 링크',
-  `level` INT UNSIGNED NOT NULL COMMENT '구독 상품 난이도, level : 1,2,3',
+  `level` INT UNSIGNED NOT NULL COMMENT '구독 상품 난이도, level : 1~5',
   `price` INT NOT NULL COMMENT '구독 상품 가격',
   PRIMARY KEY (`spid`),
   INDEX `SUBSCRIBE_PRODUCT_TO_PLANT_INFO_FK_idx` (`PLANT_INFO_idx` ASC) VISIBLE,
@@ -226,7 +226,7 @@ CREATE TABLE IF NOT EXISTS `planty`.`emergency_log` (
   `USER_INFO_uid` INT UNSIGNED NOT NULL COMMENT '사용자 식별키(외래키)',
   `GM_INFO_gid` INT UNSIGNED NOT NULL COMMENT 'GM 식별키(외래키)',
   `name` VARCHAR(32) NULL DEFAULT NULL COMMENT '식물 이름',
-  `type` TINYINT(1) NOT NULL DEFAULT '0' COMMENT '상담 유형. 화상(0), 채팅(1)',
+  `type` TINYINT(1) NOT NULL DEFAULT '0' COMMENT '상담 유형. 채팅(0), 화상(1)',
   `content` TEXT NULL DEFAULT NULL COMMENT '상담 내용',
   `start_time` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '실제 시작 시간',
   `end_time` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '실제 종료 시간',
@@ -368,6 +368,27 @@ AS select `us`.`sid` AS `sid`,`us`.`USER_INFO_uid` AS `uid`,
                        left join `planty`.`consulting_booking` `cb` on(((`us`.`sid` = `cb`.`USER_SUBSCRIBE_sid`)
                        and `cb`.`cid` in (select max(`planty`.`consulting_booking`.`cid`)
                                           from `planty`.`consulting_booking` group by `planty`.`consulting_booking`.`USER_SUBSCRIBE_sid`)))) order by `us`.`sid`;
+                                          
+                                          
+-- -----------------------------------------------------
+-- View `planty`.`view_user_emergency`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `planty`.`view_user_emergency`;
+DROP VIEW IF EXISTS `planty`.`view_user_emergency` ;
+USE `planty`;
+CREATE  OR REPLACE ALGORITHM=UNDEFINED DEFINER=`planty`@`%`
+SQL SECURITY DEFINER VIEW `planty`.`view_user_emergency`
+AS select `el`.`eid` AS `eid`,
+		  `el`.`type` AS `type`,
+          `el`.`name` AS `name`,
+          `el`.`start_time` AS `start_date`,
+          `el`.`end_time` AS `end_date`,
+          `el`.`content` AS `advice`,
+          `gm`.`nickname` AS `greenmate`,
+          `ui`.`user_name` AS `user` from
+			   ((`planty`.`emergency_log` `el` join `planty`.`gm_info` `gm` on (`gm`.`gid` = `el`.`GM_INFO_gid`))
+					join `planty`.`user_info` `ui` on(`ui`.`uid` = `el`.`USER_INFO_uid`));
+
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;

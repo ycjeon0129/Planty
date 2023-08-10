@@ -5,5 +5,5 @@ import com.planty.api.consulting.response.UserConsultingResponse;
 import java.util.List;
 
 public interface GmConsultingService {
-    List<UserConsultingResponse> findConsultingList();
+    List<UserConsultingResponse> findConsultingList(Long spid);
 }

@@ -17,20 +17,22 @@ import java.io.Serializable;
 public class EmergencyLog implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // 응급실 이용 내역 식별키
     private Long eid;
 
-    @NonNull
-    @Column(name = "RECOMMENDED_START_DATE") // 권장 상담 시작일
-    private String recommendedStartDate;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(referencedColumnName = "uid", name = "USER_INFO_uid") // 사용자 식별키
+    private UserInfo uid;
 
-    @NonNull
-    @Column(name = "RECOMMENDED_END_DATE") // 권장 상담 종료일
-    private String recommendedEndDate;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(referencedColumnName = "gid", name = "GM_INFO_gid") // GM 식별키
+    private GmInfo gid;
 
-    @NonNull
-    @Column(name = "times") // 컨설팅 회차
-    private Integer times;
+    @Column(name = "name") // 식물 이름
+    private String name;
+
+    @Column(name = "type") // 상담 유형. 화상(0), 채팅(1)
+    private Integer type;
 
     @Column(name = "content") // 상담 내용
     private String content;
@@ -44,12 +46,13 @@ public class EmergencyLog implements Serializable {
     private String endTime;
 
     @Builder
-    public EmergencyLog(ConsultingBooking cid, String recommendedStartDate, String recommendedEndDate,
-                        Integer times, String content, String startTime, String endTime) {
-        this.cid = cid;
-        this.recommendedStartDate = recommendedStartDate;
-        this.recommendedEndDate = recommendedEndDate;
-        this.times = times;
+    public EmergencyLog(Long eid, UserInfo uid, GmInfo gid, String name, Integer type, String content,
+                        String startTime, String endTime) {
+        this.eid = eid;
+        this.uid = uid;
+        this.gid = gid;
+        this.name = name;
+        this.type = type;
         this.content = content;
         this.startTime = startTime;
         this.endTime = endTime;

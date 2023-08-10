@@ -22,8 +22,10 @@ public class GmConsultingController {
 
     // 담당 구독 전체 조회
     @GetMapping()
-    public ResponseEntity<List<UserConsultingResponse>> findConsultingList() {
-        List<UserConsultingResponse> list = gmConsultingsService.findConsultingList();
+    public ResponseEntity<List<UserConsultingResponse>> findConsultingList(
+            @RequestParam(value = "spid", required = false) Long spid
+    ) {
+        List<UserConsultingResponse> list = gmConsultingsService.findConsultingList(spid);
         if (list.size() == 0) { // 컨설팅 예약이 없는 경우
             return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
         }
