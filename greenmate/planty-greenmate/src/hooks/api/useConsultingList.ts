@@ -1,19 +1,13 @@
-import findConsultingApi from 'utils/api/booking';
 import { useEffect, useState } from 'react';
-import { Value } from 'types/base/global';
 import { IConsulting } from 'types/subscribe';
+import { findAllConsulting } from 'utils/api/consulting';
 
-/**
- * 캘린더 상의 선택일자에 해당하는 예약(컨설팅) 목록을 불러와 리턴하는 커스텀 훅
- * @param date optional. Date 객체가 들어오면 해당 날짜에 해당하는 예약 목록만 출력.
- * @returns 컨설팅 내역 목록 배열
- */
-const useConsultingList = (date?: Value): IConsulting[] => {
+const useConsultingList = (): IConsulting[] => {
 	const [consultings, setConsultings] = useState<IConsulting[]>([]);
 
-	const fetchData = async (resDate: Value) => {
+	const fetchData = async () => {
 		try {
-			const response = await findConsultingApi(resDate);
+			const response = await findAllConsulting();
 			if (response?.data.subscribes) setConsultings(response.data.subscribes);
 		} catch (error) {
 			console.error('에러', error);
@@ -21,8 +15,8 @@ const useConsultingList = (date?: Value): IConsulting[] => {
 	};
 
 	useEffect(() => {
-		fetchData(date as Value);
-	}, [date]);
+		fetchData();
+	}, []);
 
 	return consultings;
 };

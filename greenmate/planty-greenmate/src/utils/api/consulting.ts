@@ -6,8 +6,20 @@ export const findAllConsulting = async () => {
 	return response;
 };
 
+export const findAllConsultingBySpid = async (spid: number) => {
+	const response = await instance.get(`/consultings?spid=${spid}`);
+
+	return response;
+};
+
 export const findConsulting = async (cid: number) => {
 	const response = await instance.get(`/consultings/${cid}`);
+
+	return response;
+};
+
+export const findAllRequest = async () => {
+	const response = await instance.get(`/requests`);
 
 	return response;
 };

@@ -1,6 +1,8 @@
 .tab-panel-container {
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
 
     &#simple-tabpanel-1 {
         flex-grow: 1;

@@ -17,7 +17,7 @@ function ConsultingListItem({ consulting }: { consulting: IConsulting }) {
 		return 'notJoin';
 	};
 	return (
-		<Accordion>
+		<Accordion className="consulting-list-item-container">
 			<AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel1a-content" id="panel1a-header">
 				<div className="consulting-header">
 					<h3>
@@ -32,10 +32,10 @@ function ConsultingListItem({ consulting }: { consulting: IConsulting }) {
 				<div className="consulting-info">
 					<div id="detail">
 						<h3>컨설팅 상세</h3>
-						<InfoRow title="- 컨설팅 시작 시간" content={consulting.startTime} />
-						<InfoRow title="- 컨설팅 종료 시간" content={consulting.endTime} />
+						<InfoRow title="컨설팅 시작 시간" content={consulting.startTime} />
+						<InfoRow title="컨설팅 종료 시간" content={consulting.endTime} />
 						<InfoRow
-							title="- 다음 컨설팅 권장일"
+							title="다음 컨설팅 권장일"
 							content={`${formatDate(consulting.recommendedStartDate)} ~ ${formatDate(
 								consulting.recommendedEndDate,
 							)} 中`}
@@ -43,7 +43,7 @@ function ConsultingListItem({ consulting }: { consulting: IConsulting }) {
 					</div>
 					<div id="advice">
 						<h3>가드너에게 한마디</h3>
-						<p>- {consulting.advice}</p>
+						<p>{consulting.advice}</p>
 					</div>
 				</div>
 			</AccordionDetails>

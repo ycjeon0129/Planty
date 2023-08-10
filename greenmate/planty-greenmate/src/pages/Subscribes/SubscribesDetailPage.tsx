@@ -5,7 +5,8 @@ import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
 import TabPanel from 'components/organisms/common/TabPanel/TabPanel';
 import SubScribeDetail from 'components/organisms/subscribes/SubScribeDetail/SubScribeDetail';
-import BookingList from '../../components/organisms/subscribes/BookingList/BookingList';
+import SubscribeBookingList from 'components/organisms/subscribes/SubscribeBookingList/SubscribeBookingList';
+// import BookingList from '../../components/organisms/subscribes/BookingList/BookingList';
 
 function a11yProps(index: number) {
 	return {
@@ -35,7 +36,7 @@ function SubscribesDetailPage() {
 			</TabPanel>
 			{/* 탭 패널 2 : 컨설팅 예약 목록 */}
 			<TabPanel value={value} index={1}>
-				<BookingList />
+				<SubscribeBookingList />
 			</TabPanel>
 		</Box>
 	);

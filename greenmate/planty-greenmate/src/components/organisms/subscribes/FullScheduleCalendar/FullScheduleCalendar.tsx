@@ -3,7 +3,7 @@ import React from 'react';
 import moment from 'moment';
 import Calendar from 'react-calendar';
 import { Value } from 'types/base/global';
-import useBookingList from 'hooks/api/useBookingList';
+import useBookingList from 'hooks/api/useAllBooking';
 import isSameDate from 'utils/isSameDate';
 import { yesterdayDateTime } from 'constants/common/Date';
 import { IBooking } from 'types/subscribe';
