@@ -50,28 +50,28 @@ public class BookingServiceImpl implements BookingService {
         return bookingList;
     }
 
-    @Override
-    public Boolean[] getUserBookingDate(Long sid,String date) {
-        log.info(logCurrent(getClassName(), getMethodName(), START));
-        String email = SecurityUtil.getCurrentUserEmail();
-        UserInfo user = userInfoRepository.findByUserEmail(email)
-                .orElseThrow(() -> new NullPointerException(ExceptionHandler.USER_NOT_FOUND));
-
-        List<UserBookingResponse> bookingList = new ArrayList<>();
-        List<ViewUserConsulting> list = viewUserConsultingRepository.findByUid(user.getUid());
-        for(ViewUserConsulting item : list) {
-            UserBookingResponse booking = UserBookingResponse.builder()
-                    .sid(item.getSid())
-                    .cid(item.getCid())
-                    .title(item.getName())
-                    .date(item.getDate())
-                    .time(item.getTime())
-                    .greenmate(item.getGmName())
-                    .build();
-            bookingList.add(booking);
-        }
-        return bookingList;
-    }
+//    @Override
+//    public Boolean[] getUserBookingDate(Long sid,String date) {
+//        log.info(logCurrent(getClassName(), getMethodName(), START));
+//        String email = SecurityUtil.getCurrentUserEmail();
+//        UserInfo user = userInfoRepository.findByUserEmail(email)
+//                .orElseThrow(() -> new NullPointerException(ExceptionHandler.USER_NOT_FOUND));
+//
+//        List<UserBookingResponse> bookingList = new ArrayList<>();
+//        List<ViewUserConsulting> list = viewUserConsultingRepository.findByUid(user.getUid());
+//        for(ViewUserConsulting item : list) {
+//            UserBookingResponse booking = UserBookingResponse.builder()
+//                    .sid(item.getSid())
+//                    .cid(item.getCid())
+//                    .title(item.getName())
+//                    .date(item.getDate())
+//                    .time(item.getTime())
+//                    .greenmate(item.getGmName())
+//                    .build();
+//            bookingList.add(booking);
+//        }
+//        return bookingList;
+//    }
     @Override // 사용자 컨설팅 등록
     public boolean regUserBooking(UserBookingRequest userBookingRequest) {
         log.info(logCurrent(getClassName(), getMethodName(), START));
