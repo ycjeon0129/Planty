@@ -8,16 +8,19 @@ function SubscribesList() {
 	const subscribes = useAllSubscribe();
 	const { movePage } = useMovePage();
 
-	if (subscribes.length)
+	if (subscribes.length) {
 		return (
 			<div className="subscribes-list-container">
-				{subscribes?.map((s) => <SubscribesListItem subscribe={s} handleClick={() => movePage(`${s.sid}`)} />)}
+				{subscribes.map((s) => (
+					<SubscribesListItem key={s.spid} subscribe={s} handleClick={() => movePage(`${s.spid}`)} />
+				))}
 			</div>
 		);
+	}
 
 	return (
 		<div className="subscribes-list-container no-content">
-			<h2>현재 진행중인 구독이 없습니다.</h2>
+			<div>현재 구독한 상품이 없습니다.</div>
 		</div>
 	);
 }
