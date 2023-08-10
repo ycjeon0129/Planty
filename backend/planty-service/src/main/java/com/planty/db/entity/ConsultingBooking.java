@@ -33,7 +33,7 @@ public class ConsultingBooking {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(referencedColumnName = "gid", name = "GM_INFO_gid") // GM 식별키
-    private GmInfo GmInfoGid;
+    private GmInfo gid;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(referencedColumnName = "idx", name = "TIME_TABLE_idx") // 시간 식별키
@@ -43,11 +43,9 @@ public class ConsultingBooking {
     @Column(name = "date", length = 128) // 예약 날짜
     private String date;
 
-    @NonNull
     @Column(name = "cancel") // 취소여부. 취소(1), 미취소(0)
     private Boolean cancel;
 
-    @NonNull
     @Column(name = "active") // 실행여부. 실행(1), 미실행(0)
     private Boolean active;
 
