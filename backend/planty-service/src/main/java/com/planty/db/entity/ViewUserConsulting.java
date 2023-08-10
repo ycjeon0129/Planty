@@ -31,7 +31,7 @@ public class ViewUserConsulting {
     private Long spid;
 
     @NonNull
-    @Column(name = "gid") // Gm nickname
+    @Column(name = "gid") // 그린메이트 식별키
     private Long gid;
 
     @NonNull
