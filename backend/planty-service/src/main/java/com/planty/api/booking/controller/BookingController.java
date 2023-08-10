@@ -34,6 +34,20 @@ public class BookingController {
         log.info(logCurrent(getClassName(), getMethodName(), END));
         return ResponseEntity.status(204).build();
     }
+
+    @GetMapping("/{sid}/{date}") // 사용자 구독 상세 조회
+    public ResponseEntity<?> getUserBookingDate(@PathVariable("sid") Long sid, @PathVariable("date") String date) {
+        log.info(logCurrent(getClassName(), getMethodName(), START));
+        Boolean[] bookingList = bookingServiceImpl.getUserBookingDate(sid, date);
+
+        if (bookingList.length != 0) {
+            log.info(logCurrent(getClassName(), getMethodName(), END));
+            return ResponseEntity.status(200).body(bookingList);
+        }
+        log.info(logCurrent(getClassName(), getMethodName(), END));
+        return ResponseEntity.status(204).build();
+    }
+
     @PostMapping() // 사용자 예약 등록
     public ResponseEntity<?> postUserBooking(@RequestBody UserBookingRequest userConsultingRequest) {
         log.info(logCurrent(getClassName(), getMethodName(), START));
