@@ -39,7 +39,7 @@ function CurrentProgress() {
 					<div>
 						<img src={ProgressImg} alt="" />
 					</div>
-					<div className="primary-text">24분째 진행중</div>
+					{/* <div className="primary-text">24분째 진행중</div> */}
 				</div>
 			</div>
 		</div>

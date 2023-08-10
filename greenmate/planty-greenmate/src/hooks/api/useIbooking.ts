@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { IBooking } from 'types/subscribe';
-import { findAllBookingApi } from 'utils/api/subscribe';
+import { findAllBookingApi } from 'utils/api/booking';
 
 const useAllBooking = () => {
 	const [bookings, setBookings] = useState<IBooking[]>([]);

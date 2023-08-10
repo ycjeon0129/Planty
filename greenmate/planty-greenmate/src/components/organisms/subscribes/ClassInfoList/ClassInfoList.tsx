@@ -1,0 +1,26 @@
+import React from 'react';
+import './ClassInfoList.scss';
+import useAllSubscribe from 'hooks/api/useAllSubscribe';
+import ClassInfo from 'components/atoms/ClassInfo/ClassInfo';
+
+function ClassInfoList() {
+	const subscribes = useAllSubscribe();
+
+	if (subscribes.length) {
+		return (
+			<div>
+				{subscribes.map((s) => (
+					<ClassInfo subscribe={s} />
+				))}
+			</div>
+		);
+	}
+
+	return (
+		<div className="subscribes-list-container no-content">
+			<div>현재 구독한 상품이 없습니다.</div>
+		</div>
+	);
+}
+
+export default ClassInfoList;
