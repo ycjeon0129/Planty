@@ -9,6 +9,7 @@ import com.planty.db.repository.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,6 +29,29 @@ public class BookingServiceImpl implements BookingService {
 
     @Override
     public List<UserBookingResponse> getUserBooking() {
+        log.info(logCurrent(getClassName(), getMethodName(), START));
+        String email = SecurityUtil.getCurrentUserEmail();
+        UserInfo user = userInfoRepository.findByUserEmail(email)
+                .orElseThrow(() -> new NullPointerException(ExceptionHandler.USER_NOT_FOUND));
+
+        List<UserBookingResponse> bookingList = new ArrayList<>();
+        List<ViewUserConsulting> list = viewUserConsultingRepository.findByUid(user.getUid());
+        for(ViewUserConsulting item : list) {
+            UserBookingResponse booking = UserBookingResponse.builder()
+                    .sid(item.getSid())
+                    .cid(item.getCid())
+                    .title(item.getName())
+                    .date(item.getDate())
+                    .time(item.getTime())
+                    .greenmate(item.getGmName())
+                    .build();
+            bookingList.add(booking);
+        }
+        return bookingList;
+    }
+
+    @Override
+    public Boolean[] getUserBookingDate(Long sid,String date) {
         log.info(logCurrent(getClassName(), getMethodName(), START));
         String email = SecurityUtil.getCurrentUserEmail();
         UserInfo user = userInfoRepository.findByUserEmail(email)
