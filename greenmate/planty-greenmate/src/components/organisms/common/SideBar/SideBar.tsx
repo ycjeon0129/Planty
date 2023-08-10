@@ -14,11 +14,11 @@ import RequestItem from 'components/atoms/sidebar/requestItem/RequestItem';
 import PlantyLogo from 'assets/icons/logo/PlantyLogo.svg';
 import './SideBar.scss';
 import useMovePage from 'hooks/useMovePage';
+import { useRecoilState } from 'recoil';
+import authState from 'recoil/auth';
 
 function SideBar() {
-	// 컨설팅 종류가 채팅이면 /chatting
-	// 컨설팅 종류가 화상이면 /video
-	const type = 'chat'; // 추후에는 recoil에서 불러오도록
+	const [auth] = useRecoilState(authState);
 	const { movePage } = useMovePage();
 
 	if (useSidebarRender()) {
@@ -28,16 +28,21 @@ function SideBar() {
 					<div id="logo">
 						<img src={PlantyLogo} alt="planty" onClick={() => movePage('/dashboard')} role="presentation" />
 					</div>
-					<div id="profile">
+					<div id="profile" onClick={() => movePage('/settings')} role="presentation">
 						<GreenmateInfo img={greenmateImg} text="영국남자" />
 					</div>
 					<div id="menu">
-						<MenuItem
-							img={Ing}
-							text="현재 진행중인 컨설팅"
-							handleClick={() => movePage(type === 'chat' ? '/consulting/video' : '/consulting/video')}
-							isIng
-						/>
+						{/* 현재 진행중인 컨설팅이 있다면, 메뉴 추가 */}
+						{auth?.currentConsulting ? (
+							<MenuItem
+								img={Ing}
+								text="현재 진행중인 컨설팅"
+								handleClick={() => movePage(auth?.currentConsulting?.type ? '/consulting/video' : '/consulting/chat')}
+								isIng
+							/>
+						) : (
+							<div />
+						)}
 						<MenuItem img={dashboard} text="대시보드" handleClick={() => movePage('/dashboard')} pathname="dashboard" />
 						<MenuItem
 							img={classImg}

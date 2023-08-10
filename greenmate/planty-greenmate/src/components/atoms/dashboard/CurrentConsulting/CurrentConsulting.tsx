@@ -14,7 +14,7 @@ function CurrentConsulting() {
 	if (auth?.currentConsulting)
 		return (
 			<div>
-				<AreaTitle title="현재 진행 중인 컨설팅" url="/consulting/video" />
+				<AreaTitle title="현재 진행중인 컨설팅" url="/consulting/video" />
 				<div className="current-consulting-container">
 					<div id="profile">
 						<img src={GreenmateImg} alt="사진" />
@@ -34,7 +34,7 @@ function CurrentConsulting() {
 		);
 	return (
 		<div>
-			<AreaTitle title="현재 진행 중인 컨설팅" url="/consulting/video" />
+			<AreaTitle title="현재 진행중인 컨설팅" url="#" />
 			<div className="current-consulting-container">
 				<h3>현재 진행중인 컨설팅이 없습니다.</h3>
 			</div>
