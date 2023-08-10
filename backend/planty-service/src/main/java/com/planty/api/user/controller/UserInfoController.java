@@ -9,6 +9,7 @@ import com.planty.api.user.model.response.*;
 //import com.planty.api.user.model.service.CustomOAuth2UserService;
 import com.planty.api.user.model.service.UserInfoServiceImpl;
 import com.planty.common.util.RestExceptionUtil;
+import com.planty.common.util.SecurityUtil;
 import com.planty.db.entity.UserInfo;
 import com.planty.db.repository.UserInfoRepository;
 import io.swagger.annotations.Api;
@@ -102,7 +103,7 @@ public class UserInfoController {
 
     @GetMapping("/test")
     public String testFunc() {
-        return "test";
+        return SecurityUtil.getCurrentUserEmail();
     }
 
     ////////////////////////////////////////

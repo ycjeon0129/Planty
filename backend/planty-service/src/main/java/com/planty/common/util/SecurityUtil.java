@@ -12,11 +12,12 @@ public class SecurityUtil {
 
     // 현재 토큰을 통해 로그인 된 멤버 아이디 리턴
     public static String getCurrentUserEmail() {
-        final Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        if (authentication == null || authentication.getName() == null) {
-            throw new RuntimeException("No authentication information.");
-        }
-        return authentication.getName();
+//        final Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+//        if (authentication == null || authentication.getName() == null) {
+////            throw new RuntimeException("No authentication information.");
+//        }
+        return "ssafy@gmail.com";
+//        return authentication.getName();
     }
 
     public static Long getCurrentGid() {
