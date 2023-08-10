@@ -24,6 +24,15 @@ public class ViewUserConsulting {
     @Column(name = "sid")  // 사용자 구독정보 식별키
     private Long sid;
 
+//    @ManyToOne(fetch = FetchType.LAZY)
+//    @JoinColumn(referencedColumnName = "spid", name = "spid")
+    @Column(name = "spid")  // 구독 상품 식별키
+    private Integer spid;
+
+    @NonNull
+    @Column(name = "gm_name") // Gm nickname
+    private String gmName;
+
     @NonNull
     @Column(name = "time") // 시간 식별기
     private Integer time;
