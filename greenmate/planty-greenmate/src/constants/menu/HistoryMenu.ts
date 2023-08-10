@@ -1,4 +1,4 @@
-import { IMenu } from 'types/global';
+import { IMenu } from 'types/base/global';
 
 const HISTORY_MENU: IMenu = {
 	key: 'history-menu',

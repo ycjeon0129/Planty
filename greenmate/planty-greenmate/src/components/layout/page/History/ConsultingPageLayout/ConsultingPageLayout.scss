@@ -1,0 +1,14 @@
+.consulting-page-layout-container {
+    display: flex;
+    flex-grow: 1;
+
+    #consulting-list {
+        flex-basis: 50%;
+        display: flex;
+    }
+
+    #consulting-detail {
+        flex-basis: 50%;
+        display: flex;
+    }
+}

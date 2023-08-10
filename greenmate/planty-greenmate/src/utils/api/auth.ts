@@ -1,6 +1,6 @@
 import LocalStorage from 'constants/storage/LocalStorage';
 import jwt_decode from 'jwt-decode';
-import { AccessToken, LoginBody, SetUserBody } from 'types/auth';
+import { AccessToken, LoginBody, SetAuthBody } from 'types/auth';
 import SessionStorage from 'constants/storage/SessionStorage';
 import { instance } from './instance';
 
@@ -30,7 +30,7 @@ export const findUserApi = async () => {
  * 사용자 회원 가입
  * @returns 회원가입 결과
  */
-export const setUserApi = async (body: SetUserBody) => {
+export const setUserApi = async (body: SetAuthBody) => {
 	const response = await instance.post('/user', body);
 
 	return response;

@@ -14,7 +14,7 @@ export interface ISubscribeDetail extends ISubscribe {
 	consultingCnt: number;
 }
 
-interface IConsulting {
+export interface IConsulting {
 	cid: number;
 	sid: number;
 	time: number;
@@ -27,4 +27,14 @@ interface IConsulting {
 	advice: string;
 	startTime: string;
 	endTime: string;
+}
+
+export interface IBooking {
+	cid: number;
+	sid: number;
+	date: string;
+	time: number;
+	greenmate: string;
+	user: string;
+	title: string;
 }

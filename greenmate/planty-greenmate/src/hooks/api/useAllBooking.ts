@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react';
-import { IConsulting } from 'types/subscribe';
-import { findAllBookingApi } from 'utils/api/subscribe';
+import { IBooking } from 'types/subscribe';
+import { findAllBookingApi } from 'utils/api/booking';
 
 const useAllBooking = () => {
-	const [bookings, setBookings] = useState<IConsulting[]>([]);
+	const [bookings, setBookings] = useState<IBooking[]>([]);
 
 	const fetchData = async () => {
 		try {

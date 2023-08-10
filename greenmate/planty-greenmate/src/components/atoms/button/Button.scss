@@ -1,20 +1,21 @@
-@use 'styles/base/_variable.scss' as var;
+@use 'styles/base/variable' as var;
 
-.green-button {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border: solid var.$primary 1px;
-  background-color: var.$primary;
-  // padding-left: 10px;
-  width: 250px;
-  height: 30px;
-  text-align: center;
-  border-radius: var.$rd-sm;
-  color: var.$white
-
+@mixin buttonColor($color) {
+	background-color: $color;
+	border-radius: var.$rd-sm;
+	color: var.$white;
 }
 
-// .green-button {
-//   width: 200px;
-// }
+.button-container {
+	padding: var.$pd-sm;
+	text-align: center;
+	font-size: var.$h5;
+
+	&.primary {
+		@include buttonColor(var.$primary);
+	}
+
+	&.disabled {
+		@include buttonColor(var.$black-200);
+	}
+}

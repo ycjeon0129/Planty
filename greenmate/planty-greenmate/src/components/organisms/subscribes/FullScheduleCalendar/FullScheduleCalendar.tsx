@@ -2,11 +2,11 @@ import './FullScheduleCalendar.scss';
 import React from 'react';
 import moment from 'moment';
 import Calendar from 'react-calendar';
-import { Value } from 'types/global';
+import { Value } from 'types/base/global';
 import useBookingList from 'hooks/api/useBookingList';
 import isSameDate from 'utils/isSameDate';
 import { yesterdayDateTime } from 'constants/common/Date';
-import { IConsulting } from 'types/subscribe';
+import { IBooking } from 'types/subscribe';
 
 interface ICustomCaledarProps {
 	selectedDate: Value;
@@ -18,7 +18,7 @@ interface ICustomCaledarProps {
  * @param bookings 전체 예약(컨설팅) 목록
  * @param date 현재 선택된 날짜
  */
-const getTileContent = (bookings: IConsulting[], date: Date) => {
+const getTileContent = (bookings: IBooking[], date: Date) => {
 	const dot = <div className="booking-dot-container" />;
 	return bookings.find((el) => isSameDate(moment(date).format('YY-MM-DD'), el.date)) ? dot : null;
 };
