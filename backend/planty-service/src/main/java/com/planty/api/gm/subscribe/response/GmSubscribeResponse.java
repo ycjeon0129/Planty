@@ -12,7 +12,7 @@ public class GmSubscribeResponse {
     private Long spid;
     private String name;
     private String thumbnail;
-    private int consultingCnt;
+    private int subscriberCnt;
     private int period;
 
 }
