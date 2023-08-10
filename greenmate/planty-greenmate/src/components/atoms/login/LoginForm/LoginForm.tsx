@@ -17,6 +17,7 @@ import { useRecoilState } from 'recoil';
 import authState from 'recoil/auth';
 import useMovePage from 'hooks/useMovePage';
 import { IAuth } from 'types/auth';
+import { toast } from 'react-hot-toast';
 
 function LoginForm() {
 	const [, setAuth] = useRecoilState(authState);
@@ -57,13 +58,13 @@ function LoginForm() {
 				};
 
 				setAuth(info);
-				console.log('로그인 성공');
+				toast.success('로그인 완료! 대시보드로 이동합니다.');
 
 				movePage('/');
 			}
 		} catch (error) {
 			console.error('에러', error);
-			alert('로그인 실패 !');
+			toast.error('로그인에 실패했습니다! 잠시 후 다시 시도하세요.');
 		}
 	};
 
