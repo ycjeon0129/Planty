@@ -13,7 +13,7 @@ interface RequestProps {
  * @param param0 Type : 채팅 or 화상, greenmate: 그린메이트 닉네임, service: 응급실, 정기 컨설팅
  * @returns
  */
-function Request({ type, greenmate, service }: RequestProps) {
+function RequestItem({ type, greenmate, service }: RequestProps) {
 	return (
 		<div>
 			<div className="request-outer-box">
@@ -37,4 +37,4 @@ function Request({ type, greenmate, service }: RequestProps) {
 	);
 }
 
-export default Request;
+export default RequestItem;

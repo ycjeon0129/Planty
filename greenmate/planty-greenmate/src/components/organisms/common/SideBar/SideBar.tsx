@@ -10,12 +10,12 @@ import counsulting from 'assets/icons/greenmatesidebar/Consulting.svg';
 import GreenmateInfo from 'components/atoms/sidebar/greenmateinfo/GreenmateInfo';
 import greenmateImg from 'assets/icons/Greenmate.svg';
 import CheckOnline from 'components/atoms/sidebar/checkOnline/CheckOnlineItem';
-import RequestItem from 'components/atoms/sidebar/requestItem/RequestItem';
 import PlantyLogo from 'assets/icons/logo/PlantyLogo.svg';
-import './SideBar.scss';
 import useMovePage from 'hooks/useMovePage';
 import { useRecoilState } from 'recoil';
+import './SideBar.scss';
 import authState from 'recoil/auth';
+import RequestList from '../RequestList/RequestList';
 
 function SideBar() {
 	const [auth] = useRecoilState(authState);
@@ -60,7 +60,7 @@ function SideBar() {
 					</div>
 					<div id="active-manage">
 						<CheckOnline />
-						<RequestItem type="채팅" greenmate="영국여자" service="응급실" />
+						<RequestList />
 					</div>
 				</div>
 			</SideBarLayout>
