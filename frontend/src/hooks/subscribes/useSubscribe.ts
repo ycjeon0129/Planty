@@ -12,7 +12,8 @@ const useSubscribe = (sid: number): ISubscribeDetail | null => {
 	const fetchData = async (reqSid: number) => {
 		try {
 			const response = await findSubscribeApi(reqSid);
-			const newSubcribe: ISubscribeDetail = responseToSubscribeDetail(response.data);
+			console.log('구독 정보', response);
+			const newSubcribe: ISubscribeDetail = responseToSubscribeDetail(response.data.resObject);
 			setSubscribe(newSubcribe);
 		} catch (error) {
 			console.error('에러', error);
