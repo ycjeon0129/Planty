@@ -20,12 +20,12 @@ public class GmConsultingServiceImpl implements GmConsultingService {
     private final SubscribeProductRepository subscribeProductRepository;
     private final UserSubscribeRepository userSubscribeRepository;
     private final PlantyInfoRepository plantyInfoRepository;
-    private final ViewUserConsultingRepository userConsultingRepository;
+    private final ViewUserConsultingRepository ViewUserConsultingRepository;
 
     @Override
     public List<UserConsultingResponse> findConsultingList() {
         List<UserConsultingResponse> consultingList = new ArrayList<>();
-        List<ViewUserConsulting> list = userConsultingRepository.findByUid(user.getUid());
+        List<ViewUserConsulting> list = ViewUserConsultingRepository.findByUid(user.getUid());
         for(ViewUserConsulting item : list) {
             UserConsultingResponse consult = UserConsultingResponse.builder()
                     .cid(item.getCid())
