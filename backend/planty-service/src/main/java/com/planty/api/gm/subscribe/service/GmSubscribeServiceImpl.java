@@ -33,14 +33,14 @@ public class GmSubscribeServiceImpl implements GmSubscribeService {
 
     @Override
     public List<GmSubscribeResponse> findSubscribeList() {
-        List<GmSubscribeResponse> list = new ArrayList<>();
+        List<GmSubscribeResponse> subscribeList = new ArrayList<>();
         Long gid = SecurityUtil.getCurrentGid();
         GmInfo gmInfo = gmInfoRepository.findByGid(gid)
                 .orElseThrow(() -> new NullPointerException(ExceptionHandler.GM_NOT_FOUND));
         List<SubscribeProduct> subscribeProduct = subscribeProductRepository.findByGid(gmInfo);
         for (SubscribeProduct sp : subscribeProduct) {
             List<UserSubscribe> numList = userSubscribeRepository.findBySpid(sp);
-            list.add(GmSubscribeResponse.builder()
+            subscribeList.add(GmSubscribeResponse.builder()
                     .spid(sp.getSpid())
                     .name(sp.getName())
                     .thumbnail(sp.getThumbnail())
@@ -49,7 +49,7 @@ public class GmSubscribeServiceImpl implements GmSubscribeService {
                     .build()
             );
         }
-        return list;
+        return subscribeList;
     }
 
     @Override
