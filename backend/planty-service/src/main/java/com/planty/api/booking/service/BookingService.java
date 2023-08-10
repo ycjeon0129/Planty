@@ -8,6 +8,7 @@ import java.util.List;
 public interface BookingService {
 
     List<UserBookingResponse> getUserBooking();
+    boolean[] getUserBookingDate(Long sid, String date);
     boolean regUserBooking (UserBookingRequest userBookingRequest);
     boolean deleteUserBooking(Long cid);
 }
