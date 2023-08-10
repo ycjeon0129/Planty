@@ -4,6 +4,7 @@ import com.planty.api.embedded.response.UserSubscribeEmbeddedResponse;
 import com.planty.api.subscribe.request.UserSubscribeRequest;
 import com.planty.api.subscribe.response.UserSubscribeDatailResponse;
 import com.planty.common.exception.handler.ExceptionHandler;
+import com.planty.common.util.SecurityUtil;
 import com.planty.db.entity.*;
 import com.planty.db.repository.*;
 import com.planty.api.subscribe.response.UserSubscribeResponse;
@@ -30,11 +31,8 @@ public class SubscribeServiceImpl implements SubscribeService {
     @Override // 사용자 구독 조회
     public List<UserSubscribeResponse> getUserSubscribe() {
         log.info(logCurrent(getClassName(), getMethodName(), START));
-//        String email = SecurityUtil.getCurrentUserEmail();
-//        UserInfo user = userInfoRepository.findByUserEmail(email)
-//                .orElseThrow(() -> new NullPointerException(ExceptionHandler.USER_NOT_FOUND));
-
-        UserInfo user = userInfoRepository.findByUserId("ssafyDevelop")
+        String email = SecurityUtil.getCurrentUserEmail();
+        UserInfo user = userInfoRepository.findByUserEmail(email)
                 .orElseThrow(() -> new NullPointerException(ExceptionHandler.USER_NOT_FOUND));
 
         List<UserSubscribeResponse> subscribeList = new ArrayList<>();
@@ -63,11 +61,8 @@ public class SubscribeServiceImpl implements SubscribeService {
     @Override // 사용자 구독 상세 조회
     public UserSubscribeDatailResponse getUserSubscribeDetail(Long sid) {
         log.info(logCurrent(getClassName(), getMethodName(), START));
-        //        String email = SecurityUtil.getCurrentUserEmail();
-//        UserInfo user = userInfoRepository.findByUserEmail(email)
-//                .orElseThrow(() -> new NullPointerException(ExceptionHandler.USER_NOT_FOUND));
-
-        UserInfo user = userInfoRepository.findByUserId("ssafyDevelop")
+        String email = SecurityUtil.getCurrentUserEmail();
+        UserInfo user = userInfoRepository.findByUserEmail(email)
                 .orElseThrow(() -> new NullPointerException(ExceptionHandler.USER_NOT_FOUND));
 
         ViewUserSubscribe sub = viewUserSubscribeRepository.findByUidAndSid(user.getUid(), sid)
@@ -108,11 +103,8 @@ public class SubscribeServiceImpl implements SubscribeService {
     @Override // 사용자 구독 등록
     public boolean regUserSubscribe(UserSubscribeRequest UserSubscribeRequest) {
         log.info(logCurrent(getClassName(), getMethodName(), START));
-        //        String email = SecurityUtil.getCurrentUserEmail();
-//        UserInfo user = userInfoRepository.findByUserEmail(email)
-//                .orElseThrow(() -> new NullPointerException(ExceptionHandler.USER_NOT_FOUND));
-
-        UserInfo user = userInfoRepository.findByUserId("ssafyDevelop")
+        String email = SecurityUtil.getCurrentUserEmail();
+        UserInfo user = userInfoRepository.findByUserEmail(email)
                 .orElseThrow(() -> new NullPointerException(ExceptionHandler.USER_NOT_FOUND));
 
         SubscribeProduct product = subscribeProductRepository.findBySpid(UserSubscribeRequest.getSpid())
@@ -138,10 +130,8 @@ public class SubscribeServiceImpl implements SubscribeService {
     @Override // 사용자 구독 삭제
     public boolean deleteUserSubscribe(Long sid) {
         log.info(logCurrent(getClassName(), getMethodName(), START));
-//        String email = SecurityUtil.getCurrentUserEmail();
-//        UserInfo user = userInfoRepository.findByUserEmail(email)
-//                .orElseThrow(() -> new NullPointerException(ExceptionHandler.USER_NOT_FOUND));
-        UserInfo user = userInfoRepository.findByUserId("ssafyDevelop")
+        String email = SecurityUtil.getCurrentUserEmail();
+        UserInfo user = userInfoRepository.findByUserEmail(email)
                 .orElseThrow(() -> new NullPointerException(ExceptionHandler.USER_NOT_FOUND));
 
         UserSubscribe userSubscribe = userSubscribeRepository.findByUidAndSid(user,sid)

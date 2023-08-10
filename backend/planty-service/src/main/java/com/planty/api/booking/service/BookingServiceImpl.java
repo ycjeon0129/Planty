@@ -2,6 +2,7 @@ package com.planty.api.booking.service;
 
 import com.planty.api.booking.request.UserBookingRequest;
 import com.planty.common.exception.handler.ExceptionHandler;
+import com.planty.common.util.SecurityUtil;
 import com.planty.db.entity.*;
 import com.planty.db.repository.*;
 import lombok.RequiredArgsConstructor;
@@ -23,7 +24,8 @@ public class BookingServiceImpl implements BookingService {
     @Override // 사용자 컨설팅 등록
     public boolean regUserBooking(UserBookingRequest userBookingRequest) {
         log.info(logCurrent(getClassName(), getMethodName(), START));
-        UserInfo user = userInfoRepository.findByUserId("ssafyDevelop")
+        String email = SecurityUtil.getCurrentUserEmail();
+        UserInfo user = userInfoRepository.findByUserEmail(email)
                 .orElseThrow(() -> new NullPointerException(ExceptionHandler.USER_NOT_FOUND));
 
         TimeTable time = timeTableRepository.findByIdx(userBookingRequest.getTimeId())
@@ -60,7 +62,8 @@ public class BookingServiceImpl implements BookingService {
     @Override // 사용자 컨설팅 삭제
     public boolean deleteUserBooking(Long cid) {
         log.info(logCurrent(getClassName(), getMethodName(), START));
-        UserInfo user = userInfoRepository.findByUserId("ssafyDevelop")
+        String email = SecurityUtil.getCurrentUserEmail();
+        UserInfo user = userInfoRepository.findByUserEmail(email)
                 .orElseThrow(() -> new NullPointerException(ExceptionHandler.USER_NOT_FOUND));
 
         ConsultingBooking booking = consultingBookingRepository.findByUidAndCid(user, cid)
