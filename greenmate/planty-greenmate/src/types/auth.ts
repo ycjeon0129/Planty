@@ -21,4 +21,16 @@ export type IAuth = {
 	profilePhoto: string;
 	joinDate: string;
 	introduce: string;
+	currentConsulting: ICurrentConsulting | null;
 };
+
+export interface ICurrentConsulting {
+	cid: number;
+	sid: number | null;
+	category: number;
+	type: number;
+	user: string;
+	greenmate: string;
+	startTime: string;
+	time: number;
+}

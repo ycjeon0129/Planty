@@ -8,16 +8,16 @@ import { instance } from './instance';
 const findBookingApi = async (date: Value) => {
 	if (date && date instanceof Date) {
 		const params = { year: date?.getFullYear(), month: date && date.getMonth() + 1, day: date?.getDate() };
-		const response = await instance.get(`/bookings`, { params });
+		const response = await instance.get(`/consultings`, { params });
 		return response;
 	}
-	const response = await instance.get(`/bookings`);
+	const response = await instance.get(`/consultings`);
 
 	return response;
 };
 
 export const findAllBookingApi = async () => {
-	const response = await instance.get('/bookings');
+	const response = await instance.get('/consultings');
 
 	return response;
 };
