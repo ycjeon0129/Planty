@@ -42,7 +42,7 @@ function SideBar() {
 						<MenuItem
 							img={classImg}
 							text="구독 관리"
-							handleClick={() => movePage('/subscribes')}
+							handleClick={() => movePage('/subscribes/list')}
 							pathname="subscribes"
 						/>
 						<MenuItem
