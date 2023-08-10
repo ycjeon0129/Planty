@@ -11,5 +11,5 @@ import javax.validation.constraints.NotNull;
 @ToString
 public class UserBookingDateResponse {
     @NotNull
-    private Boolean time; // 시간 식별키 -> 활성화(1), 비활성화(4)
+    private Boolean time; // 시간 식별키 -> 활성화(1), 비활성화(0)
 }
