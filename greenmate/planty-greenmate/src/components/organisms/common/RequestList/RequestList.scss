@@ -1,6 +1,20 @@
+@use 'styles/base/variable' as var;
+
 .request-list-container {
     display: flex;
     flex-direction: column;
     height: 300px;
     overflow-y: scroll;
+
+    #no-content {
+        padding: 20px;
+        color: var.$primary;
+        font-size: 1.2em;
+        text-align: center;
+        white-space: pre-line;
+
+        &.status-off {
+            color: var.$black-300
+        }
+    }
 }
