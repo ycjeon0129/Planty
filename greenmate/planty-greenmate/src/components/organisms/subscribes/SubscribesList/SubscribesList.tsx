@@ -12,7 +12,7 @@ function SubscribesList() {
 		return (
 			<div className="subscribes-list-container">
 				{subscribes.map((s) => (
-					<SubscribesListItem key={s.spid} subscribe={s} handleClick={() => movePage(`${s.spid}`)} />
+					<SubscribesListItem key={s.spid} subscribe={s} handleClick={() => movePage(`/subscribes/list/${s.spid}`)} />
 				))}
 			</div>
 		);
