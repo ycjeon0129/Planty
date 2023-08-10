@@ -1,13 +1,14 @@
 @import 'styles/base/_variable.scss';
 
 .class-info-box {
+	width: 90%;
 	border: solid $border-100 1px;
 	// width: 400px;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
 	border-radius: $rd-sm;
-    margin-bottom: 10px;
+	margin-bottom: 10px;
 	background-color: $border-100;
 }
 
@@ -15,7 +16,7 @@
 	display: flex;
 	// justify-content: center;
 	align-items: center;
-    margin-left: 5px;
+	margin-left: 5px;
 }
 
 .img-box {
@@ -24,6 +25,7 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
+
 	img {
 		width: 70px;
 		height: 70px;
@@ -33,7 +35,7 @@
 
 .class-info-inner-box2 {
 	display: flex;
-  padding: 10px;
+	padding: 10px;
 	align-items: center;
 	justify-content: center;
 }

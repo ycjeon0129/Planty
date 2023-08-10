@@ -26,7 +26,7 @@ function SideBar() {
 			<SideBarLayout>
 				<div className="sidebar-container">
 					<div id="logo">
-						<img src={PlantyLogo} alt="planty" />
+						<img src={PlantyLogo} alt="planty" onClick={() => movePage('/dashboard')} role="presentation" />
 					</div>
 					<div id="profile">
 						<GreenmateInfo img={greenmateImg} text="영국남자" />
@@ -42,7 +42,7 @@ function SideBar() {
 						<MenuItem
 							img={classImg}
 							text="구독 관리"
-							handleClick={() => movePage('/subscribes')}
+							handleClick={() => movePage('/subscribes/list')}
 							pathname="subscribes"
 						/>
 						<MenuItem

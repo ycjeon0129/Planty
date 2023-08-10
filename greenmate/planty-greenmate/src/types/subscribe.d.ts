@@ -1,10 +1,10 @@
 export interface ISubscribe {
-	sid: number;
-	title: string;
+	consultingCnt: number;
+	name: string;
+	period: number;
+	spid: number;
 	thumbnail: string;
 	subscriberCnt: number;
-	startDate: string;
-	endDate: string;
 }
 
 export interface ISubscribeDetail extends ISubscribe {

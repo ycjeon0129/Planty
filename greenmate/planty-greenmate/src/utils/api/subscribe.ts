@@ -7,7 +7,7 @@ export const findAllSubscribeApi = async () => {
 };
 
 export const findSubscribeApi = async (sid: number) => {
-	const response = await instance.get(`/subscribe/${sid}`);
+	const response = await instance.get(`/subscribes/${sid}`);
 
 	return response;
 };

@@ -18,8 +18,8 @@ function PageMenu({ menu }: { menu: IMenuItem[] }) {
 
 	useEffect(() => {
 		const pathname = location.pathname.split('/')[2];
-		if (pathname === 'list') setNowMenu(0);
-		else if (pathname === 'calendar') setNowMenu(1);
+		if (pathname === 'list' || pathname === 'emergency') setNowMenu(0);
+		else if (pathname === 'calendar' || pathname === 'consulting') setNowMenu(1);
 	}, [location]);
 	return (
 		<div className="page-menu-container">

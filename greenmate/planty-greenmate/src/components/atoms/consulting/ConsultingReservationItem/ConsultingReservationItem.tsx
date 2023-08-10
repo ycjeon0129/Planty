@@ -14,7 +14,7 @@ export interface IBooking {
 	title: string;
 }
 
-function ClassReservation({ booking }: { booking: IBooking }) {
+function ConsultingReservationItem({ booking }: { booking: IBooking }) {
 	const fomatedDate = formatDate(booking.date);
 	const isClicked = () => {
 		alert('이동');
@@ -42,4 +42,4 @@ function ClassReservation({ booking }: { booking: IBooking }) {
 	);
 }
 
-export default ClassReservation;
+export default ConsultingReservationItem;
