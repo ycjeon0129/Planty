@@ -1,6 +1,7 @@
 @use 'styles/base/variable' as var;
 
 .subscribe-detail-container {
+    width: 100%;
     padding: 30px;
 
     #thumbnail-container {
@@ -17,5 +18,11 @@
         }
     }
 
-    #info {}
+    #info {
+        font-size: 1.4em;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+
+    }
 }
