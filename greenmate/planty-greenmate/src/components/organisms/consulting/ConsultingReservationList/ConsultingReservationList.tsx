@@ -1,13 +1,13 @@
 import React from 'react';
-import useAllBooking from 'hooks/api/useAllBooking';
+import useIbooking from 'hooks/api/useIbooking';
 import ConsultingReservation from 'components/atoms/ConsultingReservation/ConsultingReservation';
 
 function ConsultingReservationList() {
-	const subscribes = useAllBooking();
+	const subscribes = useIbooking();
 
 	return (
 		<div>
-			<div>{subscribes?.map((s) => <ConsultingReservation subscribe={s} />)}</div>
+			<div>{subscribes?.map((s) => <ConsultingReservation booking={s} />)}</div>
 		</div>
 	);
 }

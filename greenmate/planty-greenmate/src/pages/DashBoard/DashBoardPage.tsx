@@ -1,10 +1,10 @@
 import PageHeader from 'components/organisms/common/PageHeader/PageHeader';
 import DashBoardPageLayout from 'components/layout/page/DashBoard/DashBoardPageLayout/DashBoardPageLayout';
 import React from 'react';
-import ClassInfo from 'components/atoms/ClassInfo/ClassInfo';
+import ClassInfo from 'components/atoms/classinfo/ClassInfo';
 import Title from 'components/atoms/title/Title';
-import CurrentProgress from 'components/atoms/currentprogress/CurrentProgress/CurrentProgress';
-import NotingCurrentProgress from 'components/atoms/currentprogress/NotingCurrentProgress/NotingCurrentProgress';
+import CurrentProgress from 'components/atoms/currentProgress/CurrentProgress/CurrentProgress';
+import NotingCurrentProgress from 'components/atoms/currentProgress/NotingCurrentProgress/NotingCurrentProgress';
 import useAllSubscribe from 'hooks/api/useAllSubscribe';
 import ConsultingReservationList from 'components/organisms/consulting/ConsultingReservationList/ConsultingReservationList';
 
