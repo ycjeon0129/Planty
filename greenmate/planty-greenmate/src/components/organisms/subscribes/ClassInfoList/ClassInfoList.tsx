@@ -1,7 +1,8 @@
 import React from 'react';
 import './ClassInfoList.scss';
 import useAllSubscribe from 'hooks/api/useAllSubscribe';
-import ClassInfo from 'components/atoms/ClassInfo/ClassInfo';
+// import ClassInfo from 'components/atoms/ClassInfo/ClassInfo';
+import SubscribesListItem from 'components/atoms/subscribes/SubscribesListItem/SubscribesListItem';
 
 function ClassInfoList() {
 	const subscribes = useAllSubscribe();
@@ -10,7 +11,7 @@ function ClassInfoList() {
 		return (
 			<div>
 				{subscribes.map((s) => (
-					<ClassInfo subscribe={s} />
+					<SubscribesListItem key={s.spid} subscribe={s} handleClick={() => {}} />
 				))}
 			</div>
 		);

@@ -1,6 +1,6 @@
 import React from 'react';
 import useIbooking from 'hooks/api/useIbooking';
-import ConsultingReservation from 'components/atoms/ConsultingReservation/ConsultingReservation';
+import ConsultingReservationItem from 'components/atoms/consulting/ConsultingReservationItem/ConsultingReservationItem';
 
 function ConsultingReservationList() {
 	const subscribes = useIbooking();
@@ -9,7 +9,7 @@ function ConsultingReservationList() {
 			<div>
 				<div>
 					{subscribes.map((s) => (
-						<ConsultingReservation booking={s} />
+						<ConsultingReservationItem booking={s} />
 					))}
 				</div>
 			</div>
