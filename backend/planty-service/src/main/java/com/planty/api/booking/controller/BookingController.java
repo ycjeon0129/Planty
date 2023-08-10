@@ -1,12 +1,16 @@
 package com.planty.api.booking.controller;
 
 import com.planty.api.booking.request.UserBookingRequest;
+import com.planty.api.booking.response.UserBookingResponse;
 import com.planty.api.booking.service.BookingService;
+import com.planty.api.subscribe.response.UserSubscribeResponse;
 import io.swagger.annotations.Api;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 import static com.planty.common.util.LogCurrent.*;
 import static com.planty.common.util.LogCurrent.END;
@@ -17,6 +21,33 @@ import static com.planty.common.util.LogCurrent.END;
 @Api
 public class BookingController {
     private final BookingService bookingServiceImpl;
+
+    @GetMapping // 사용자 예약 조회
+    public ResponseEntity<?> getUserBooking() {
+        log.info(logCurrent(getClassName(), getMethodName(), START));
+        List<UserBookingResponse> bookingList = bookingServiceImpl.getUserBooking();
+
+        if (!bookingList.isEmpty()) {
+            log.info(logCurrent(getClassName(), getMethodName(), END));
+            return ResponseEntity.status(200).body(bookingList);
+        }
+        log.info(logCurrent(getClassName(), getMethodName(), END));
+        return ResponseEntity.status(204).build();
+    }
+
+    @GetMapping("/{sid}/{date}") // 사용자 구독 상세 조회
+    public ResponseEntity<?> getUserBookingDate(@PathVariable("sid") Long sid, @PathVariable("date") String date) {
+        log.info(logCurrent(getClassName(), getMethodName(), START));
+        Boolean[] bookingList = bookingServiceImpl.getUserBookingDate(sid, date);
+
+        if (bookingList.length != 0) {
+            log.info(logCurrent(getClassName(), getMethodName(), END));
+            return ResponseEntity.status(200).body(bookingList);
+        }
+        log.info(logCurrent(getClassName(), getMethodName(), END));
+        return ResponseEntity.status(204).build();
+    }
+
     @PostMapping() // 사용자 예약 등록
     public ResponseEntity<?> postUserBooking(@RequestBody UserBookingRequest userConsultingRequest) {
         log.info(logCurrent(getClassName(), getMethodName(), START));

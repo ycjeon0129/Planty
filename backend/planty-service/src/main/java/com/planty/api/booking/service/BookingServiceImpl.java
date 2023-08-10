@@ -1,6 +1,7 @@
 package com.planty.api.booking.service;
 
 import com.planty.api.booking.request.UserBookingRequest;
+import com.planty.api.booking.response.UserBookingResponse;
 import com.planty.common.exception.handler.ExceptionHandler;
 import com.planty.common.util.SecurityUtil;
 import com.planty.db.entity.*;
@@ -8,19 +9,69 @@ import com.planty.db.repository.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import static com.planty.common.util.LogCurrent.*;
 import static com.planty.common.util.LogCurrent.END;
 @Slf4j
 @Service
 @RequiredArgsConstructor
 public class BookingServiceImpl implements BookingService {
-    private final ViewUserConsultingRepository userConsultingRepository;
+    private final ViewUserConsultingRepository viewUserConsultingRepository;
     private final UserInfoRepository userInfoRepository;
     private final TimeTableRepository timeTableRepository;
     private final UserSubscribeRepository userSubscribeRepository;
     private final ConsultingBookingRepository consultingBookingRepository;
     private final GmInfoRepository gmInfoRepository;
 
+    @Override
+    public List<UserBookingResponse> getUserBooking() {
+        log.info(logCurrent(getClassName(), getMethodName(), START));
+        String email = SecurityUtil.getCurrentUserEmail();
+        UserInfo user = userInfoRepository.findByUserEmail(email)
+                .orElseThrow(() -> new NullPointerException(ExceptionHandler.USER_NOT_FOUND));
+
+        List<UserBookingResponse> bookingList = new ArrayList<>();
+        List<ViewUserConsulting> list = viewUserConsultingRepository.findByUid(user.getUid());
+        for(ViewUserConsulting item : list) {
+            UserBookingResponse booking = UserBookingResponse.builder()
+                    .sid(item.getSid())
+                    .cid(item.getCid())
+                    .title(item.getName())
+                    .date(item.getDate())
+                    .time(item.getTime())
+                    .greenmate(item.getGmName())
+                    .build();
+            bookingList.add(booking);
+        }
+        return bookingList;
+    }
+
+    @Override
+    public Boolean[] getUserBookingDate(Long sid,String date) {
+        log.info(logCurrent(getClassName(), getMethodName(), START));
+        String email = SecurityUtil.getCurrentUserEmail();
+        UserInfo user = userInfoRepository.findByUserEmail(email)
+                .orElseThrow(() -> new NullPointerException(ExceptionHandler.USER_NOT_FOUND));
+
+        List<UserBookingResponse> bookingList = new ArrayList<>();
+        List<ViewUserConsulting> list = viewUserConsultingRepository.findByUid(user.getUid());
+        for(ViewUserConsulting item : list) {
+            UserBookingResponse booking = UserBookingResponse.builder()
+                    .sid(item.getSid())
+                    .cid(item.getCid())
+                    .title(item.getName())
+                    .date(item.getDate())
+                    .time(item.getTime())
+                    .greenmate(item.getGmName())
+                    .build();
+            bookingList.add(booking);
+        }
+        return bookingList;
+    }
     @Override // 사용자 컨설팅 등록
     public boolean regUserBooking(UserBookingRequest userBookingRequest) {
         log.info(logCurrent(getClassName(), getMethodName(), START));

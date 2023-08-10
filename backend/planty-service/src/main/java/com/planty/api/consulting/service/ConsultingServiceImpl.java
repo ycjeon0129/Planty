@@ -19,7 +19,7 @@ import static com.planty.common.util.LogCurrent.START;
 @Service
 @RequiredArgsConstructor
 public class ConsultingServiceImpl implements ConsultingService {
-    private final ViewUserConsultingRepository ViewUserConsultingRepository;
+    private final ViewUserConsultingRepository viewUserConsultingRepository;
     private final UserInfoRepository userInfoRepository;
     private final TimeTableRepository timeTableRepository;
     private final UserSubscribeRepository userSubscribeRepository;
@@ -33,7 +33,7 @@ public class ConsultingServiceImpl implements ConsultingService {
                 .orElseThrow(() -> new NullPointerException(ExceptionHandler.USER_NOT_FOUND));
 
         List<UserConsultingResponse> consultingList = new ArrayList<>();
-        List<ViewUserConsulting> list = ViewUserConsultingRepository.findByUid(user.getUid());
+        List<ViewUserConsulting> list = viewUserConsultingRepository.findByUid(user.getUid());
         for(ViewUserConsulting item : list) {
             UserConsultingResponse consult = UserConsultingResponse.builder()
                     .cid(item.getCid())
@@ -63,7 +63,7 @@ public class ConsultingServiceImpl implements ConsultingService {
 
         List<UserConsultingResponse> consultingListDetail = new ArrayList<>();
 
-        List<ViewUserConsulting> list = ViewUserConsultingRepository.findByUidAndSid(user.getUid(), sid);
+        List<ViewUserConsulting> list = viewUserConsultingRepository.findByUidAndSid(user.getUid(), sid);
         for(ViewUserConsulting item : list) {
             UserConsultingResponse consult = UserConsultingResponse.builder()
                     .cid(item.getCid())
