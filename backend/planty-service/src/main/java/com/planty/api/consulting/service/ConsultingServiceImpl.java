@@ -2,6 +2,7 @@ package com.planty.api.consulting.service;
 
 import com.planty.api.consulting.response.UserConsultingResponse;
 import com.planty.common.exception.handler.ExceptionHandler;
+import com.planty.common.util.SecurityUtil;
 import com.planty.db.entity.*;
 import com.planty.db.repository.*;
 import lombok.RequiredArgsConstructor;
@@ -10,6 +11,9 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.planty.common.util.LogCurrent.*;
+import static com.planty.common.util.LogCurrent.START;
 
 @Slf4j
 @Service
@@ -23,11 +27,9 @@ public class ConsultingServiceImpl implements ConsultingService {
     private final GmInfoRepository gmInfoRepository;
     @Override // 사용자 컨설팅 조회
     public List<UserConsultingResponse> getUserConsultingUid() {
-//        String email = SecurityUtil.getCurrentUserEmail();
-//        UserInfo user = userInfoRepository.findByUserEmail(email)
-//                .orElseThrow(() -> new NullPointerException(ExceptionHandler.USER_NOT_FOUND));
-
-        UserInfo user = userInfoRepository.findByUserId("ssafyDevelop")
+        log.info(logCurrent(getClassName(), getMethodName(), START));
+        String email = SecurityUtil.getCurrentUserEmail();
+        UserInfo user = userInfoRepository.findByUserEmail(email)
                 .orElseThrow(() -> new NullPointerException(ExceptionHandler.USER_NOT_FOUND));
 
         List<UserConsultingResponse> consultingList = new ArrayList<>();
@@ -54,11 +56,9 @@ public class ConsultingServiceImpl implements ConsultingService {
 
     @Override // 사용자 컨설팅 상세 조회
     public List<UserConsultingResponse> getUserConsultingDetail(Long sid) {
-//        String email = SecurityUtil.getCurrentUserEmail();
-//        UserInfo user = userInfoRepository.findByUserEmail(email)
-//                .orElseThrow(() -> new NullPointerException(ExceptionHandler.USER_NOT_FOUND));
-
-        UserInfo user = userInfoRepository.findByUserId("ssafyDevelop")
+        log.info(logCurrent(getClassName(), getMethodName(), START));
+        String email = SecurityUtil.getCurrentUserEmail();
+        UserInfo user = userInfoRepository.findByUserEmail(email)
                 .orElseThrow(() -> new NullPointerException(ExceptionHandler.USER_NOT_FOUND));
 
         List<UserConsultingResponse> consultingListDetail = new ArrayList<>();
