@@ -47,7 +47,7 @@ public class BookingServiceImpl implements BookingService {
         ConsultingBooking consultingBooking = ConsultingBooking.builder()
                 .sid(subscribe)
                 .uid(user)
-                .GMInfoGid(gm)
+                .gid(gm)
                 .timeIdx(time)
                 .date(userBookingRequest.getDate())
                 .build();
