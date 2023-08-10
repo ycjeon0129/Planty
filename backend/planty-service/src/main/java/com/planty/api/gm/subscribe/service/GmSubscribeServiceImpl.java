@@ -3,6 +3,7 @@ package com.planty.api.gm.subscribe.service;
 import com.planty.api.gm.subscribe.response.GmSubscribeDetailResponse;
 import com.planty.api.gm.subscribe.response.GmSubscribeResponse;
 import com.planty.common.exception.handler.ExceptionHandler;
+import com.planty.common.util.LogCurrent;
 import com.planty.common.util.SecurityUtil;
 import com.planty.db.entity.GmInfo;
 import com.planty.db.entity.PlantInfo;
@@ -38,11 +39,12 @@ public class GmSubscribeServiceImpl implements GmSubscribeService {
                 .orElseThrow(() -> new NullPointerException(ExceptionHandler.GM_NOT_FOUND));
         List<SubscribeProduct> subscribeProduct = subscribeProductRepository.findByGid(gmInfo);
         for (SubscribeProduct sp : subscribeProduct) {
+            List<UserSubscribe> numList = userSubscribeRepository.findBySpid(sp);
             list.add(GmSubscribeResponse.builder()
                     .spid(sp.getSpid())
                     .name(sp.getName())
                     .thumbnail(sp.getThumbnail())
-                    .consultingCnt(sp.getConsultingCnt())
+                    .subscriberCnt(numList.size())
                     .period(sp.getPeriod())
                     .build()
             );
@@ -60,16 +62,17 @@ public class GmSubscribeServiceImpl implements GmSubscribeService {
         PlantInfo plantInfo = plantyInfoRepository.findByIdx(spInfo.getPlantInfoIdx().getIdx())
                 .orElseThrow(() -> new NullPointerException(ExceptionHandler.PLANT_NOT_FOUND));
         String plant = plantInfo.getName();
+        List<UserSubscribe> numList = userSubscribeRepository.findBySpid(spInfo);
         return GmSubscribeDetailResponse.builder()
                 .spid(spInfo.getSpid())
                 .name(spInfo.getName())
                 .thumbnail(spInfo.getThumbnail())
-                .consultingCnt(spInfo.getConsultingCnt())
+                .subscriberCnt(numList.size())
                 .period(spInfo.getPeriod())
                 .price(spInfo.getPrice())
                 .level(spInfo.getLevel())
                 .plant(plant)
+                .consultingCnt(spInfo.getConsultingCnt())
                 .build();
     }
-
 }

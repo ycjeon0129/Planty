@@ -12,5 +12,6 @@ public interface UserSubscribeRepository extends JpaRepository<UserSubscribe, Lo
     Optional<UserSubscribe> findByUidAndSpid(UserInfo uid, SubscribeProduct spid);
 
     Optional<UserSubscribe> findByUidAndSid(UserInfo uid, Long sid);
+    List<UserSubscribe> findBySpid(SubscribeProduct spid);
 
 }
