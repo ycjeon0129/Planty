@@ -3,16 +3,25 @@ import './SubscribesList.scss';
 import useAllSubscribe from 'hooks/api/useAllSubscribe';
 import SubscribesListItem from 'components/atoms/subscribes/SubscribesListItem/SubscribesListItem';
 import useMovePage from 'hooks/useMovePage';
+import { useLocation } from 'react-router-dom';
 
 function SubscribesList() {
 	const subscribes = useAllSubscribe();
 	const { movePage } = useMovePage();
+	const pathname = useLocation().pathname.split('/')[1];
+
+	const handleClick = (spid: number) => {
+		if (pathname === 'history') {
+			return movePage(`/history/consulting/${spid}`);
+		}
+		return movePage(`/subscribes/list/${spid}`);
+	};
 
 	if (subscribes.length) {
 		return (
 			<div className="subscribes-list-container">
 				{subscribes.map((s) => (
-					<SubscribesListItem key={s.spid} subscribe={s} handleClick={() => movePage(`/subscribes/list/${s.spid}`)} />
+					<SubscribesListItem key={s.spid} subscribe={s} handleClick={() => handleClick(s.spid)} />
 				))}
 			</div>
 		);
