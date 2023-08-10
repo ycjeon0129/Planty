@@ -8,5 +8,7 @@ import java.util.Optional;
 
 @Repository
 public interface GmInfoRepository extends JpaRepository<GmInfo, Long> {
-    Optional<GmInfo> findByGid(Long Gid);
+    /* OAuth */
+    Optional<GmInfo> findByGid(Long gid);
+
 }

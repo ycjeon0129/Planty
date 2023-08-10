@@ -28,10 +28,12 @@ public class ConsultingController {
 
         if (!consultingList.isEmpty()) {
             log.info(logCurrent(getClassName(), getMethodName(), END));
-            return ResponseEntity.ok().body(consultingList);
+            return ResponseEntity.status(200).body(consultingList);
+//            return ResponseEntity.ok().body(consultingList);
         }
         log.info(logCurrent(getClassName(), getMethodName(), END));
-        return ResponseEntity.noContent().build();
+        return ResponseEntity.status(204).build();
+//        return ResponseEntity.noContent().build();
 
     }
 
@@ -43,10 +45,10 @@ public class ConsultingController {
 
         if (!consultingDetailList.isEmpty()) {
             log.info(logCurrent(getClassName(), getMethodName(), END));
-            return ResponseEntity.ok().body(consultingDetailList);
+            return ResponseEntity.status(200).body(consultingDetailList);
         }
         log.info(logCurrent(getClassName(), getMethodName(), END));
-        return ResponseEntity.noContent().build();
+        return ResponseEntity.status(204).build();
 
     }
 }
