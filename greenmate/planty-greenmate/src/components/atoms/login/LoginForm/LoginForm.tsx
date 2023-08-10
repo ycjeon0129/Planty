@@ -11,14 +11,14 @@ import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import ClearIcon from '@mui/icons-material/Clear';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
-import Button from 'components/atoms/Button/Button';
+import Button from 'components/atoms/common/Button/Button';
 import { loginApi } from 'utils/api/auth';
 import { useRecoilState } from 'recoil';
 import authState from 'recoil/auth';
 import useMovePage from 'hooks/useMovePage';
+import { IAuth } from 'types/auth';
 
 function LoginForm() {
-	// const [deleteId, SetDeleteId] = React.useState(true);
 	const [, setAuth] = useRecoilState(authState);
 	const { movePage } = useMovePage();
 	const [id, setId] = useState('');
@@ -46,13 +46,14 @@ function LoginForm() {
 
 			// 로그인 성공 시
 			if (response.status === 200) {
-				const info = {
+				const info: IAuth = {
 					nickname: '',
 					id: '',
 					status: false,
 					profilePhoto: '',
 					joinDate: '',
 					introduce: '',
+					currentConsulting: null,
 				};
 
 				setAuth(info);
