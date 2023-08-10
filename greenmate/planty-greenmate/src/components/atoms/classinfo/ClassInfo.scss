@@ -8,6 +8,7 @@
 	align-items: center;
 	border-radius: $rd-sm;
     margin-bottom: 10px;
+	background-color: $border-100;
 }
 
 .class-info-inner-box1 {
@@ -44,11 +45,16 @@
 
 .bold-text {
 	font-weight: bold;
-
-
+	display: flex;
+	align-items: center;
 	margin-bottom: 5px;
 }
 
 .green-text {
 	color: $green;
+}
+
+.date-box {
+	display: flex;
+	gap: 5px;
 }

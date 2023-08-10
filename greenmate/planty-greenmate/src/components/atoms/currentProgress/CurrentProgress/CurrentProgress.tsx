@@ -2,8 +2,7 @@ import React from 'react';
 import './CurrentProgress.scss';
 import GreenmateImg from 'assets/icons/Greenmate.svg';
 import ProgressImg from 'assets//icons/CurrentProgress.svg';
-import Title from '../title/Title';
-
+import Title from 'components/atoms/title/Title';
 // 받아야하는 인자
 // 컨설턴트 사진, 컨설턴트 이름, 서비스 유형, 컨설팅 방식, 시작 시간
 function CurrentProgress() {

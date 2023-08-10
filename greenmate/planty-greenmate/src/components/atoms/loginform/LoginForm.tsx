@@ -11,7 +11,7 @@ import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import ClearIcon from '@mui/icons-material/Clear';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
-import Button from 'components/atoms/Button/Button';
+import Button from 'components/atoms/button/Button';
 import { loginApi } from 'utils/api/auth';
 import { useRecoilState } from 'recoil';
 import authState from 'recoil/auth';
