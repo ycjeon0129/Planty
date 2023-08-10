@@ -20,6 +20,8 @@ import LoginPage from 'pages/login/LoginPage';
 import SubscribesDetailPage from 'pages/Subscribes/SubscribesDetailPage';
 import EmergencyDetail from 'components/organisms/history/EmergencyDetail/EmergencyDetail';
 import ConsultingList from 'components/organisms/history/ConsultingList/ConsultingList';
+import ScrollToTop from 'components/atoms/common/ScrollToTop/ScrollToTop';
+import { Toaster } from 'react-hot-toast';
 import PrivateRoute from './PrivateRoute';
 
 function AppRouter() {
@@ -67,6 +69,16 @@ function AppRouter() {
 
 					<Route path="/develop" element={<Develop />} />
 				</Routes>
+				<ScrollToTop />
+				<Toaster
+					containerStyle={{
+						top: 10,
+						fontSize: 14,
+					}}
+					toastOptions={{
+						duration: 1500,
+					}}
+				/>
 			</BrowserRouter>
 		</div>
 	);
