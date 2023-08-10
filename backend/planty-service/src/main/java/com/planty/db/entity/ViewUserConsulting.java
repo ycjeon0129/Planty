@@ -26,8 +26,13 @@ public class ViewUserConsulting {
 
 //    @ManyToOne(fetch = FetchType.LAZY)
 //    @JoinColumn(referencedColumnName = "spid", name = "spid")
+    @NonNull
     @Column(name = "spid")  // 구독 상품 식별키
-    private Integer spid;
+    private Long spid;
+
+    @NonNull
+    @Column(name = "gid") // Gm nickname
+    private Long gid;
 
     @NonNull
     @Column(name = "gm_name") // Gm nickname

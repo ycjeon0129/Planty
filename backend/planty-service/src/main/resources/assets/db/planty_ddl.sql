@@ -334,7 +334,7 @@ USE `planty`;
 CREATE  OR REPLACE ALGORITHM=UNDEFINED DEFINER=`planty`@`%`
 SQL SECURITY DEFINER VIEW `planty`.`view_user_consulting`
 AS select `cb`.`USER_INFO_uid` AS `uid`,`us`.`sid` AS `sid`,`cb`.`cid` AS `cid`,
-          `sp`.`spid` AS `spid`,`cb`.`TIME_TABLE_idx` AS `time`,`cb`.`date` AS `date`,`cb`.`cancel` AS `cancel`,
+          `sp`.`spid` AS `spid`,`gi`.`gid` AS `gid`,`cb`.`TIME_TABLE_idx` AS `time`,`cb`.`date` AS `date`,`cb`.`cancel` AS `cancel`,
           `cb`.`active` AS `active`,`sp`.`name` AS `name`,`gi`.`nickname` AS `gm_name`,
           `cl`.`RECOMMENDED_START_DATE` AS `RECOMMENDED_START_DATE`,`cl`.`RECOMMENDED_END_DATE` AS `RECOMMENDED_END_DATE`,
           `cl`.`content` AS `content`,`cl`.`start_time` AS `start_time`,
@@ -343,6 +343,7 @@ AS select `cb`.`USER_INFO_uid` AS `uid`,`us`.`sid` AS `sid`,`cb`.`cid` AS `cid`,
        join `planty`.`user_subscribe` `us` on((`cb`.`USER_SUBSCRIBE_sid` = `us`.`sid`)))
        join `planty`.`subscribe_product` `sp` on((`us`.`SUBSCRIBE_PRODUCT_spid` = `sp`.`spid`)))
        join `planty`.`gm_info` `gi` on((`sp`.`GM_INFO_gid` = `gi`.`gid`))) order by `cb`.`cid`;
+
 
 -- -----------------------------------------------------
 -- View `planty`.`view_user_subscribe`
