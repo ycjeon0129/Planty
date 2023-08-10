@@ -11,6 +11,20 @@ import { PRODUCT_LIST_ITEM_LABELS } from 'constants/common/Labels';
  * @param product 상품 정보들을 담고 있는 객체
  */
 function ProductListItem({ product }: { product: IProduct }) {
+	// const fetchDate = async () => {
+	// 	try {
+	// 		const response = await findTestSubscribeApi();
+
+	// 		console.log(response);
+	// 		// setSubscribes(null);
+	// 	} catch (err) {
+	// 		console.error(err);
+	// 	}
+	// };
+
+	// useEffect(() => {
+	// 	fetchDate();
+	// }, []);
 	const testFunc = () => {
 		alert('클릭');
 	};
@@ -19,7 +33,7 @@ function ProductListItem({ product }: { product: IProduct }) {
 		<ProductListItemLayout>
 			<ListItemTitle title={product.title} url={`detail/${product.pid}`} />
 			<img src={product.thumbnail} alt="" />
-			<InfoList info={product.info} labels={PRODUCT_LIST_ITEM_LABELS} />
+			<InfoList subscribe={product.info} labels={PRODUCT_LIST_ITEM_LABELS} />
 			<Button isActive={false} text="구매하기" handleClick={testFunc} />
 		</ProductListItemLayout>
 	);

@@ -18,7 +18,7 @@ function ConsultingInfo({ sid, info }: { sid: number; info: IConsultingSummary }
 	return (
 		<ConsultingInfoLayout>
 			<ConsultingStickerList consultingStatus={[0, 1, 0, 0, 2, 2]} />
-			<InfoList info={tmpInfo} labels={CONSULTING_INFO_LABELS} />
+			<InfoList subscribe={tmpInfo} labels={CONSULTING_INFO_LABELS} />
 			<Button isActive text="예약하기" handleClick={() => movePage('booking')} />
 			<Button isActive={false} text="컨설팅 내역보기" handleClick={() => movePage(`/subscribe/${sid}/consulting`)} />
 		</ConsultingInfoLayout>
