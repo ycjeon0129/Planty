@@ -1,13 +1,13 @@
 import { useState, useEffect } from 'react';
 import { IBooking } from 'types/subscribe';
-import { findAllBookingApi } from 'utils/api/booking';
+import { findAllBookingBySpidApi } from 'utils/api/booking';
 
-const useAllBooking = () => {
+const useAllBookingBySpid = (spid: number) => {
 	const [bookings, setBookings] = useState<IBooking[]>([]);
 
-	const fetchData = async () => {
+	const fetchData = async (reqSpid: number) => {
 		try {
-			const response = await findAllBookingApi();
+			const response = await findAllBookingBySpidApi(reqSpid);
 			setBookings(response.data);
 		} catch (error) {
 			console.error('에러', error);
@@ -15,10 +15,10 @@ const useAllBooking = () => {
 	};
 
 	useEffect(() => {
-		fetchData();
-	}, []);
+		fetchData(spid);
+	}, [spid]);
 
 	return bookings;
 };
 
-export default useAllBooking;
+export default useAllBookingBySpid;
