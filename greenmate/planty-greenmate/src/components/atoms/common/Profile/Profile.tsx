@@ -1,11 +1,35 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './Profile.scss';
 import ProfileImg from 'assets/icons/GreenmateProfile.svg';
 import EditIcon from '@mui/icons-material/Edit';
 import IconButton from '@mui/material/IconButton';
 
-// 그린메이트 활동명, 그린메이트 사진, 그린메이트 소개글
+// 데이터 받아서 데이터 타입 맞추고 프롭스에 넣어주기
 function Profile() {
+	// 수정 아이콘 눌렀을 때 토글
+	const [nickName, setNickName] = useState(true);
+	const [introduceInfo, setIntroduceInfo] = useState(true);
+
+	const nickNameClick = () => {
+		setNickName(!nickName);
+	};
+
+	const introduceClick = () => {
+		setIntroduceInfo(!introduceInfo);
+	};
+
+	// 데이터 집어넣기
+	const [nickNameText, setNickNameText] = useState('닉네임');
+	const [introduceText, setIntroduceText] = useState('받아온 소개글 데이터');
+	// 데이터 수정 정보 뽑아서
+	const handleNickNameChange = (event: { target: { value: React.SetStateAction<string> } }) => {
+		setNickNameText(event.target.value);
+	};
+
+	const handleIntroduceChange = (event: { target: { value: React.SetStateAction<string> } }) => {
+		setIntroduceText(event.target.value);
+	};
+
 	return (
 		<div className="profile-entire-box">
 			<div className="profile-box">
@@ -16,23 +40,28 @@ function Profile() {
 					<div className="greenmate-nickname-box">
 						<div className="nickname-button-box">
 							<div className="navy-text">그린메이트 활동명</div>
-							<IconButton color="primary" aria-label="add to shopping cart">
+							<IconButton color="primary" aria-label="add to shopping cart" onClick={nickNameClick}>
 								<EditIcon />
 							</IconButton>
 						</div>
-						<div className="navy-text nickname">닉네임</div>
+						{nickName ? (
+							<div className="navy-text nickname">{nickNameText}</div>
+						) : (
+							<input className="navy-text nickname" value={nickNameText} onChange={handleNickNameChange} />
+						)}
 					</div>
 					<div className="greenmate-intro-box">
 						<div className="intro-button-box">
 							<div className="navy-text">소개말</div>
-							<IconButton color="primary" aria-label="add to shopping cart">
+							<IconButton color="primary" aria-label="add to shopping cart" onClick={introduceClick}>
 								<EditIcon />
 							</IconButton>
 						</div>
-						<div className="navy-text introduce">
-							식물이 자꾸 시들었다구요? 제가 도와드릴게요. 식물 컨설턴트 경력 20년째, 연구 경력 30년째. 저만의 노하우로
-							멋진 식물을 선물해드릴게요.
-						</div>
+						{introduceInfo ? (
+							<div className="navy-text introduce">{introduceText}</div>
+						) : (
+							<textarea className="navy-text introduceInput" value={introduceText} onChange={handleIntroduceChange} />
+						)}
 					</div>
 				</div>
 			</div>
