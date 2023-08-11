@@ -13,7 +13,7 @@ const useSubscribe = (sid: number): ISubscribeDetail | null => {
 		try {
 			const response = await findSubscribeApi(reqSid);
 			console.log('구독 정보', response);
-			const newSubcribe: ISubscribeDetail = responseToSubscribeDetail(response.data.resObject);
+			const newSubcribe: ISubscribeDetail = responseToSubscribeDetail(response.data);
 			setSubscribe(newSubcribe);
 		} catch (error) {
 			console.error('에러', error);

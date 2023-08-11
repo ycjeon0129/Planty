@@ -12,11 +12,7 @@ const useAllSubscribe = (): ISubscribe[] | null => {
 	const fetchData = async () => {
 		try {
 			const response = await findAllSubscribeApi();
-			// console.log(response);
-			const newSubcribes: ISubscribe[] = response.data.resObject.map((el: ISubscribeResponse) =>
-				responseToSubscribe(el),
-			);
-
+			const newSubcribes: ISubscribe[] = response.data.map((el: ISubscribeResponse) => responseToSubscribe(el));
 			setSubscribes(newSubcribes);
 		} catch (error) {
 			console.error('에러', error);

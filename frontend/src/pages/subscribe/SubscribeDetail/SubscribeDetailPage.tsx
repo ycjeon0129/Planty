@@ -5,13 +5,19 @@ import AreaTitle from 'components/atoms/common/AreaTitle/AreaTitle';
 import ConsultingInfo from 'components/organisms/subscribe/ConsultingInfo/ConsultingInfo';
 import SubscribeDetailItem from 'components/organisms/subscribe/SubscribeDetailItem/SubscribeDetailItem';
 import PlantChart from 'components/organisms/subscribe/PlantChart/PlantChart';
-import { useLocation } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import useSubscribe from 'hooks/subscribes/useSubscribe';
 import { IConsultingSummary, IEmbeddedInfo, ISubscribeDetail } from 'types/subscribe';
+import useIsLoading from 'hooks/useIsLoading';
 
 function SubscribeDetailPage() {
-	const sid = +useLocation().pathname.split('/')[2];
-	const subscribe = useSubscribe(sid);
+	const { sid = 0 } = useParams();
+	const subscribe = useSubscribe(Number(sid));
+	const isLoading = useIsLoading(subscribe);
+
+	if (isLoading) {
+		return <div>로딩중</div>;
+	}
 
 	return (
 		<SubscribeDetailPageLayout>
@@ -24,7 +30,7 @@ function SubscribeDetailPage() {
 
 			{/* 컨설팅 정보 */}
 			<AreaTitle title="컨설팅 정보" url="#" />
-			<ConsultingInfo sid={sid} info={subscribe?.info as IConsultingSummary} />
+			<ConsultingInfo sid={Number(sid)} info={subscribe?.info as IConsultingSummary} />
 
 			{/* 온습도 정보 */}
 			<AreaTitle title="온습도 정보" url="#" />
