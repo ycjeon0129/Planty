@@ -35,7 +35,7 @@ function BookingListItem({ booking }: { booking: IConsulting }) {
 			<SubscribeStateBadge stateKey={state} />
 			<img src={booking.thumbnail} alt="" />
 			<InfoList
-				subscribe={{ consultingDate: moment(booking.date).format('YYYY-MM-DD') }}
+				info={{ consultingDate: moment(booking.date).format('YYYY-MM-DD') }}
 				labels={BOOKING_LIST_ITEM_LABELS}
 			/>
 			<Button isActive={false} text="컨설팅 이용하기" handleClick={testFunc} />
