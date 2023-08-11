@@ -1,5 +1,6 @@
 import React from 'react';
 import BadgeDescriptionLayout from 'components/layout/common/StatusDescriptionLayout/StatusDescriptionLayout';
+import uuid from 'react-uuid';
 
 function BadgeDescription({
 	title,
@@ -25,7 +26,7 @@ function BadgeDescription({
 			{/* 뱃지 목록 */}
 			<ul>
 				{badgeList.map((v) => (
-					<li>{v}</li>
+					<li key={uuid()}>{v}</li>
 				))}
 			</ul>
 		</BadgeDescriptionLayout>
