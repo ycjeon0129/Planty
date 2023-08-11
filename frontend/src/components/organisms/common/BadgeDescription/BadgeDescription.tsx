@@ -1,15 +1,15 @@
 import React from 'react';
 import BadgeDescriptionLayout from 'components/layout/common/StatusDescriptionLayout/StatusDescriptionLayout';
-import uuid from 'react-uuid';
+import SubscribeStateBadge from 'components/atoms/subscribe/SubscribeStateBadge/SubscribeStateBadge';
 
 function BadgeDescription({
 	title,
 	descriptionList,
-	badgeList,
+	stateKeyList,
 }: {
 	title: string;
 	descriptionList: string[];
-	badgeList: JSX.Element[];
+	stateKeyList: string[];
 }) {
 	return (
 		<BadgeDescriptionLayout>
@@ -25,8 +25,10 @@ function BadgeDescription({
 
 			{/* 뱃지 목록 */}
 			<ul>
-				{badgeList.map((v) => (
-					<li key={uuid()}>{v}</li>
+				{stateKeyList.map((v) => (
+					<li key={v}>
+						<SubscribeStateBadge stateKey={v} />
+					</li>
 				))}
 			</ul>
 		</BadgeDescriptionLayout>

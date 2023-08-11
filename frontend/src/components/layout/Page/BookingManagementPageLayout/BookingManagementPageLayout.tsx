@@ -10,15 +10,17 @@ function BookingManagementPageLayout({ children }: { children: ReactNode[] }) {
 			{/* 페이지 헤더 */}
 			<NavigationLayout>{children[0]}</NavigationLayout>
 			<div className="booking-management-page-layout">
-				{/* 전체 예약 일정 */}
 				<ContentsLayout id="calendar">
+					{/* 전체 예약일정 영역 헤더 */}
 					{children[1]}
+					{/* 캘린더 */}
 					{children[2]}
 				</ContentsLayout>
-				{children[3]}
 				<ContentsLayout id="booking-list">
+					{/* 지정일의 예약 목록 */}
+					{children[3]}
+					{/* 지정일 영역 헤더 */}
 					{children[4]}
-					{children[5]}
 				</ContentsLayout>
 			</div>
 		</PageLayout>
