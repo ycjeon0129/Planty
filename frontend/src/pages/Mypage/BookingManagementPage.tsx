@@ -5,18 +5,12 @@ import PageTitleButton from 'components/atoms/common/PageTitleButton/PageTitleBu
 import CustomCalendar from 'components/atoms/booking/FullScheduleCalendar/FullScheduleCalendar';
 import useSelectedDate from 'hooks/useSelectedDate';
 import BookingList from 'components/organisms/booking/BookingList/BookingList';
-import SubscribeStateBadge from 'components/atoms/subscribe/SubscribeStateBadge/SubscribeStateBadge';
 import BadgeDescription from 'components/organisms/common/BadgeDescription/BadgeDescription';
 import { BOOKING_STATUS_DESC_LIST } from 'constants/common/StatusDescList';
 
 function BookingManagement() {
 	const [date, setDate, formatDate] = useSelectedDate();
-
-	const badgeList = [
-		<SubscribeStateBadge stateKey="done" />,
-		<SubscribeStateBadge stateKey="join" />,
-		<SubscribeStateBadge stateKey="notJoin" />,
-	];
+	const stateKeyList = ['done', 'join', 'notJoin'];
 
 	return (
 		<BookingManagementPageLayout>
@@ -29,7 +23,7 @@ function BookingManagement() {
 			{/* 지정일 예약목록 */}
 			<AreaTitle title={`${formatDate as string}  예약 목록`} url="#" />
 			{/* 예약 상태 설명 */}
-			<BadgeDescription title="예약 상태" descriptionList={BOOKING_STATUS_DESC_LIST} badgeList={badgeList} />
+			<BadgeDescription title="예약 상태" descriptionList={BOOKING_STATUS_DESC_LIST} stateKeyList={stateKeyList} />
 			{/* 지정일의 예약 목록 */}
 			<BookingList date={date} />
 		</BookingManagementPageLayout>
