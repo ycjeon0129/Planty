@@ -31,7 +31,7 @@ function BookingManagement() {
 			{/* 예약 상태 설명 */}
 			<BadgeDescription title="예약 상태" descriptionList={BOOKING_STATUS_DESC_LIST} badgeList={badgeList} />
 			{/* 지정일의 예약 목록 */}
-			<BookingList date={date} />
+			<BookingList />
 		</BookingManagementPageLayout>
 	);
 }
