@@ -1,6 +1,7 @@
-import { IConsultingHistory } from 'types/consulting';
-import { IProduct, IBanner, IConsulting, IProductDetail } from 'types/dummy';
-import { ISubscribeDetail } from 'types/subscribe';
+import { IBanner } from 'types/common/global';
+import { IConsulting, IConsultingHistory } from 'types/domain/consulting';
+import { IProduct, IProductDetail } from 'types/domain/product';
+import { ISubscribeDetail } from 'types/domain/subscribe';
 
 export const dummyBookings: IConsulting[] = [
 	{
