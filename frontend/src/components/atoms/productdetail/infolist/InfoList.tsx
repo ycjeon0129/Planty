@@ -1,6 +1,6 @@
 import React from 'react';
-import { IProductDetail } from 'types/dummy';
 import './InfoList.scss';
+import { IProductDetail } from 'types/domain/product';
 
 function InfoList({ product }: { product: IProductDetail }) {
 	return (

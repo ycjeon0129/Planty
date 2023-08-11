@@ -1,6 +1,6 @@
 import React from 'react';
 import './PayCheck.scss';
-import { IProduct } from 'types/dummy';
+import { IProduct } from 'types/domain/product';
 
 function PayCheck({ product }: { product: IProduct }) {
 	return (

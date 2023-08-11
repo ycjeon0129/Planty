@@ -1,0 +1,12 @@
+@use 'styles/base/variable' as var;
+
+.area-title-container {
+	display: flex;
+	margin-bottom: var.$mb-content-sm;
+	font-weight: bold;
+
+	a {
+		display: flex;
+		align-items: center;
+	}
+}

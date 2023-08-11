@@ -1,0 +1,15 @@
+.info-row {
+    font-size: 1.4em;
+    display: flex;
+    flex-direction: row;
+
+    .info-title {
+        min-width: 180px;
+        font-weight: bold;
+        flex-basis: 25%;
+    }
+
+    .info-content {
+        flex-basis: 75%;
+    }
+}

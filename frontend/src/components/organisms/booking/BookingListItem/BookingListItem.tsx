@@ -1,45 +1,35 @@
-import React, { useEffect, useState } from 'react';
-import ListItemTitle from 'components/atoms/common/ListItemTitle/ListItemTitle';
-import SubscribeStateBadge from 'components/atoms/subscribe/SubscribeStateBadge/SubscribeStateBadge';
-import Button from 'components/atoms/common/Button/Button';
-import InfoList from 'components/organisms/common/InfoList/InfoList';
-import { IConsulting } from 'types/dummy';
-import BookingListItemLayout from 'components/layout/booking/BookingListItemLayout/BookingListItemLayout';
-import moment from 'moment';
-import BOOKING_LIST_ITEM_LABELS from 'constants/common/Labels';
+import React from 'react';
+import './BookingListItem.scss';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import Accordion from '@mui/material/Accordion';
+import AccordionSummary from '@mui/material/AccordionSummary';
+import AccordionDetails from '@mui/material/AccordionDetails';
+import 'moment/locale/ko';
+import { IBooking } from 'types/domain/booking';
+import convertTime from 'utils/common/convertTime';
+import InfoRow from 'components/atoms/common/InfoRow/InfoRow';
 
-/**
- * 예약 목록 아이템
- * @param booking 예약 정보 1건
- */
-function BookingListItem({ booking }: { booking: IConsulting }) {
-	const [state, setState] = useState('wait');
-
-	const testFunc = () => {
-		alert('클릭');
-	};
-
-	useEffect(() => {
-		if (!booking.active && !booking.cancel) {
-			setState('done');
-		} else if (booking.active) {
-			setState('join');
-		} else {
-			setState('notJoin');
-		}
-	}, [booking]);
-
+function BookingListItem({ booking }: { booking: IBooking }) {
 	return (
-		<BookingListItemLayout>
-			<ListItemTitle title={booking.subscribe} url={`/subscribe/${booking.sid}`} />
-			<SubscribeStateBadge stateKey={state} />
-			<img src={booking.thumbnail} alt="" />
-			<InfoList
-				info={{ consultingDate: moment(booking.date).format('YYYY-MM-DD') }}
-				labels={BOOKING_LIST_ITEM_LABELS}
-			/>
-			<Button isActive={false} text="컨설팅 이용하기" handleClick={testFunc} />
-		</BookingListItemLayout>
+		<Accordion className="booking-list-item-container">
+			<AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel1a-content" id="panel1a-header">
+				<div className="booking-header">
+					<h3>{booking.title}</h3>
+					<h3>
+						{booking.date} / {convertTime(booking.time)}
+					</h3>
+				</div>
+			</AccordionSummary>
+			<AccordionDetails>
+				<div className="booking-info">
+					<div id="detail">
+						<h3>예약 정보 상세</h3>
+						<InfoRow title="- 가드너" content={booking.user} />
+						<InfoRow title="- 그린메이트" content={booking.greenmate} />
+					</div>
+				</div>
+			</AccordionDetails>
+		</Accordion>
 	);
 }
 

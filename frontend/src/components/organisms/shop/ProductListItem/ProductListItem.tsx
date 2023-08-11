@@ -3,14 +3,28 @@ import ProductListItemLayout from 'components/layout/shop/ProductListItemLayout/
 import ListItemTitle from 'components/atoms/common/ListItemTitle/ListItemTitle';
 import Button from 'components/atoms/common/Button/Button';
 import InfoList from 'components/organisms/common/InfoList/InfoList';
-import { IProduct } from 'types/dummy';
 import { PRODUCT_LIST_ITEM_LABELS } from 'constants/common/Labels';
+import { IProduct } from 'types/domain/product';
 
 /**
  * 구독샵 상품 목록 아이템의 모음
  * @param product 상품 정보들을 담고 있는 객체
  */
 function ProductListItem({ product }: { product: IProduct }) {
+	// const fetchDate = async () => {
+	// 	try {
+	// 		const response = await findTestSubscribeApi();
+
+	// 		console.log(response);
+	// 		// setSubscribes(null);
+	// 	} catch (err) {
+	// 		console.error(err);
+	// 	}
+	// };
+
+	// useEffect(() => {
+	// 	fetchDate();
+	// }, []);
 	const testFunc = () => {
 		alert('클릭');
 	};

@@ -1,0 +1,13 @@
+@import 'styles/base/_variable.scss';
+
+.noting-progress-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.noting-gray-text {
+    color: $black-300;
+    font-size: $h2;
+}

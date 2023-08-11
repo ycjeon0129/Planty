@@ -5,7 +5,7 @@ import {
 	ConsultingSession,
 	ConsultingStreamManager,
 	ConsultingSubscribers,
-} from 'types/consulting';
+} from 'types/common/openVidu';
 
 export const consultingSessionState = atom<ConsultingSession | null>({
 	key: 'consultingSessionState',

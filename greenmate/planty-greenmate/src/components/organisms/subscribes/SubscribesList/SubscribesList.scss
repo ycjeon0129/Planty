@@ -1,0 +1,16 @@
+@use 'styles/base/variable' as var;
+
+.subscribes-list-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-height: 80vh;
+    text-align: center;
+    flex-grow: 1;
+    overflow-y: scroll;
+
+    &.no-content {
+        color: var.$black-300;
+        justify-content: center;
+    }
+}

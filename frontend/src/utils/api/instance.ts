@@ -3,7 +3,7 @@ import LocalStorage from 'constants/storage/LocalStorage';
 import SessionStorage from 'constants/storage/SessionStorage';
 
 export const instance: AxiosInstance = axios.create({
-	baseURL: process.env.REACT_APP_BASE_SERVER_URL,
+	baseURL: process.env.REACT_APP_SERVER_BASE_URL,
 	headers: {
 		'Content-Type': 'application/json',
 	},

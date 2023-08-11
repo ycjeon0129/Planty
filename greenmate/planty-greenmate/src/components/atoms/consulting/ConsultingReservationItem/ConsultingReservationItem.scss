@@ -1,0 +1,47 @@
+@import 'styles/base/_variable.scss';
+
+.class-reservation-box {
+	border: solid $border-100 1px;
+	// width: 400px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	border-radius: $rd-sm;
+	margin-bottom: 10px;
+	background-color: $border-100;
+}
+
+.class-reservation-inner-box1 {
+	display: flex;
+	// justify-content: center;
+	align-items: center;
+	margin-left: 5px;
+}
+
+.img-box {
+	width: 100px;
+	height: 100px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	img {
+		width: 40px;
+		height: 40px;
+		border-radius: $rd-lg;
+	}
+}
+
+.class-reservation-inner-box2 {
+	display: flex;
+	padding: 10px;
+}
+
+.gray-text {
+	color: $black-300;
+	font-style: italic;
+}
+
+.bold-text {
+	font-weight: bold;
+	margin-bottom: 5px;
+}

@@ -1,0 +1,27 @@
+@import 'styles/base/_variable.scss';
+
+.active-management {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: $border-100;
+}
+
+.check-online-box {
+    padding-left : 20px;
+}
+
+.check-online-outer-box {
+    margin-top: 50px;
+}
+
+.bold-text {
+	font-weight: bold;
+    font-size: $h5;
+    color: $black-500;
+}
+
+.gray-text {
+	color: $black-300;
+
+}

@@ -1,0 +1,50 @@
+@use 'styles/base/variable' as var;
+
+.subscribes-list-item-container {
+    cursor: pointer;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    border-radius: var.$rd-sm;
+    width: 90%;
+    height: 100px;
+    margin-top: 5px;
+
+
+
+    #thumbnail {
+        flex-basis: 15%;
+        display: flex;
+        justify-content: center;
+
+        img {
+            border-radius: var.$rd-lg;
+            border: 1px solid var.$black-200;
+            width: 70px;
+            height: 70px;
+        }
+    }
+
+    #info {
+        flex-basis: 75%;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        text-align: start;
+    }
+
+    #next-button {
+        flex-basis: 10%;
+
+    }
+
+    &.active {
+        background-color: var.$light-green-500;
+    }
+
+    &:hover {
+        background-color: var.$light-green-500;
+
+    }
+}
