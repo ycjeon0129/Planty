@@ -12,7 +12,7 @@ import java.io.Serializable;
 @DynamicInsert // Apply changed fields only
 @DynamicUpdate // Apply changed fields only
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@Table (name = "consulting_log")
+@Table (name = "emergency_log")
 @Entity
 public class EmergencyLog implements Serializable {
 
@@ -32,7 +32,7 @@ public class EmergencyLog implements Serializable {
     private String name;
 
     @Column(name = "type") // 상담 유형. 화상(0), 채팅(1)
-    private Integer type;
+    private Boolean type;
 
     @Column(name = "content") // 상담 내용
     private String content;
@@ -46,7 +46,7 @@ public class EmergencyLog implements Serializable {
     private String endTime;
 
     @Builder
-    public EmergencyLog(Long eid, UserInfo uid, GmInfo gid, String name, Integer type, String content,
+    public EmergencyLog(Long eid, UserInfo uid, GmInfo gid, String name, Boolean type, String content,
                         String startTime, String endTime) {
         this.eid = eid;
         this.uid = uid;
