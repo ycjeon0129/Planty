@@ -2,19 +2,20 @@
 @import 'styles/mixins/flex';
 
 .info-list-item {
-	@include flex-row;
+	@include flex-row(10px);
 
 	span {
 		font-size: var.$p1;
 		margin-bottom: var.$mr-sm;
-	}
 
-	span:nth-child(1) {
-		min-width: 70px;
-		color: var.$black-400;
-	}
-	span:nth-child(2) {
-		color: var.$black-300;
-		font-weight: normal;
+		&:nth-child(1) {
+			min-width: 70px;
+			color: var.$black-400;
+		}
+
+		&:nth-child(2) {
+			font-weight: normal;
+			color: var.$black-300;
+		}
 	}
 }
