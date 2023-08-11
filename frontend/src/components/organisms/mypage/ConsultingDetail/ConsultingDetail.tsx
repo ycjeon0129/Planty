@@ -3,7 +3,7 @@ import './ConsultingDetail.scss';
 import { ReactComponent as OpenIcon } from 'assets/icons/arrow/DownBlack300.svg';
 import { ReactComponent as CloseIcon } from 'assets/icons/arrow/UpBlack300.svg';
 import SubscribeStateBadge from 'components/atoms/subscribe/SubscribeStateBadge/SubscribeStateBadge';
-import { IConsultingHistory } from 'types/consulting';
+import { IConsultingHistory } from 'types/domain/consulting';
 
 /**
  * 컨설팅 내역 box

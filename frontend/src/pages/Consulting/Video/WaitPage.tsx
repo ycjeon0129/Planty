@@ -1,6 +1,6 @@
 import React from 'react';
 import { OpenVidu, StreamEvent } from 'openvidu-browser';
-import { ISubscriber } from 'types/consulting';
+import { ISubscriber } from 'types/domain/subscribe';
 import { getToken } from 'utils/api/consulting';
 import useConsulting from 'hooks/useConsulting';
 // import OpenViduVideo from 'components/atoms/consulting/OpenViduVideo/OpenViduVideo';

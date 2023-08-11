@@ -1,7 +1,7 @@
 import React from 'react';
 import './price.scss';
 import PurchaseButton from 'components/atoms/common/PurchaseButton/PurchaseButton';
-import { IProductDetail } from 'types/dummy';
+import { IProductDetail } from 'types/domain/product';
 
 function Price({ product }: { product: IProductDetail }) {
 	// 숫자를 통화 형식으로 변환

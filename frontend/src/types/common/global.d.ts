@@ -27,3 +27,9 @@ export interface IPlantData {
 	humidity: number;
 	soil: number;
 }
+
+// 홈 광고 배너
+export interface IBanner {
+	id: number;
+	src: string;
+}

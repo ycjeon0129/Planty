@@ -1,7 +1,7 @@
 import React from 'react';
 import GreenMate from 'assets/icons/Greenmate.svg';
 import './title.scss';
-import { IProductDetail } from 'types/dummy';
+import { IProductDetail } from 'types/domain/product';
 
 // eslint-disable-next-line @typescript-eslint/no-shadow
 function title({ title }: { title: IProductDetail }) {

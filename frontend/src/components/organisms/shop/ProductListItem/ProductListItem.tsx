@@ -3,8 +3,8 @@ import ProductListItemLayout from 'components/layout/shop/ProductListItemLayout/
 import ListItemTitle from 'components/atoms/common/ListItemTitle/ListItemTitle';
 import Button from 'components/atoms/common/Button/Button';
 import InfoList from 'components/organisms/common/InfoList/InfoList';
-import { IProduct } from 'types/dummy';
 import { PRODUCT_LIST_ITEM_LABELS } from 'constants/common/Labels';
+import { IProduct } from 'types/domain/product';
 
 /**
  * 구독샵 상품 목록 아이템의 모음

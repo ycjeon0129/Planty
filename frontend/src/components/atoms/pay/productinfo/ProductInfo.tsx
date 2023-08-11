@@ -1,6 +1,6 @@
 import React from 'react';
 import './ProductInfo.scss';
-import { IProduct } from 'types/dummy';
+import { IProduct } from 'types/domain/product';
 
 /** 구독상품에 대한 데이터를 받아서 한번 더 확인시켜주는 곳
  * @params product안에는 dummyProduct가 들어간다.

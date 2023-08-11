@@ -65,3 +65,5 @@ export interface ISubscribeDetail extends ISubscribe {
 	greenmate: string;
 	embeddedInfo: IEmbeddedInfo[];
 }
+
+export interface ISubscriber {}

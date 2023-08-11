@@ -4,7 +4,7 @@ import BookingPageLayout from 'components/layout/Page/BookingPageLayout/BookingP
 import CalendarIcon from 'assets/icons/Calendar.svg';
 import TimeIcon from 'assets/icons/Time.svg';
 import PageTitleButton from 'components/atoms/common/PageTitleButton/PageTitleButton';
-import { Value } from 'types/global';
+import { Value } from 'types/common/global';
 import Button from 'components/atoms/common/Button/Button';
 import BookingTimeList from 'components/organisms/booking/BookingTimeList/BookingTimeList';
 import BOOKING_TIME_TEXT_LIST from 'constants/common/Booking';
