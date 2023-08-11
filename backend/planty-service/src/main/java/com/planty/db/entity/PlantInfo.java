@@ -35,7 +35,7 @@ public class PlantInfo {
     @Column(name = "place", length = 16, nullable = true) // 생육 장소
     private String place;
 
-    @Column(name = "edible")
+    @Column(name = "eatable")
     @ColumnDefault("0")
-    private Integer edible; // 식용 여부. 식용(1), 비식용(0)
+    private Integer eatable; // 식용 여부. 식용(1), 비식용(0)
 }

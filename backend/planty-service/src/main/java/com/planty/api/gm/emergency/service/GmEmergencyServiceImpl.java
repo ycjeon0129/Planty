@@ -1,7 +1,7 @@
-package com.planty.api.gm.consulting.service;
+package com.planty.api.gm.emergency.service;
 
 import com.planty.api.consulting.response.UserConsultingResponse;
-import com.planty.common.exception.handler.ExceptionHandler;
+import com.planty.api.gm.consulting.service.GmConsultingService;
 import com.planty.common.util.SecurityUtil;
 import com.planty.db.entity.ViewUserConsulting;
 import com.planty.db.repository.*;
@@ -15,7 +15,7 @@ import java.util.List;
 @Slf4j
 @Service
 @RequiredArgsConstructor
-public class GmConsultingServiceImpl implements GmConsultingService {
+public class GmEmergencyServiceImpl implements GmConsultingService {
 
     private final GmInfoRepository gmInfoRepository;
     private final SubscribeProductRepository subscribeProductRepository;
@@ -24,15 +24,11 @@ public class GmConsultingServiceImpl implements GmConsultingService {
     private final ViewUserConsultingRepository viewUserConsultingRepository;
 
     @Override
-    public List<UserConsultingResponse> findConsultingList(Long spid) {
+    public List<UserConsultingResponse> findConsultingList() {
         List<UserConsultingResponse> consultingList = new ArrayList<>();
-        Long gid = SecurityUtil.getCurrentGid();
-        List<ViewUserConsulting> list = new ArrayList<>();
-        if (spid == null) {
-            list = viewUserConsultingRepository.findByGid(gid);
-        } else {
-            list = viewUserConsultingRepository.findByGidAndSpid(gid, spid);
-        }
+        log.info("1");
+        List<ViewUserConsulting> list = viewUserConsultingRepository.findByGid(SecurityUtil.getCurrentGid());
+        log.info("{}", list);
         for(ViewUserConsulting item : list) {
             consultingList.add(
                     UserConsultingResponse.builder()
