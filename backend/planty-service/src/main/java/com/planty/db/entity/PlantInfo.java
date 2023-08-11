@@ -30,12 +30,12 @@ public class PlantInfo {
     private Integer tonicPeriod;
 
     @Column(name = "size", length = 16, nullable = true) // 크기
-    private String size;
+    private Integer size;
 
     @Column(name = "place", length = 16, nullable = true) // 생육 장소
-    private String place;
+    private Integer place;
 
     @Column(name = "eatable")
     @ColumnDefault("0")
-    private Integer eatable; // 식용 여부. 식용(1), 비식용(0)
+    private boolean eatable; // 식용 여부. 식용(1), 비식용(0)
 }

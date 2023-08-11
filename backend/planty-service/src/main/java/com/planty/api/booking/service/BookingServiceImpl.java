@@ -43,6 +43,7 @@ public class BookingServiceImpl implements BookingService {
                     .date(item.getDate())
                     .time(item.getTime())
                     .greenmate(item.getGmName())
+                    .user(user.getUserName())
                     .build();
             bookingList.add(booking);
         }

@@ -20,4 +20,7 @@ public class UserBookingResponse {
     private String date; // 예약 날짜
     @NotNull
     private Integer time; // 시간 식별키
+    @NotNull
+    private String user; // 사용자 이름
+
 }
