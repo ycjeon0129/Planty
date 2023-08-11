@@ -38,12 +38,6 @@
     @include flex-column(0px);
 }
 
-// .profile-entire-box {
-//     display: flex;
-//     justify-content: center;
-//     align-items: center;
-// }
-
 .navy-text {
     color: $navy;
     &.nickname {
@@ -51,6 +45,10 @@
     }
     &.introduce {
         font-size: $h3;
-        max-width: 500px;
+        width: 500px;
+    }
+    &.introduceInput {
+        font-size: $h3;
+        width: 500px;
     }
 }
