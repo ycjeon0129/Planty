@@ -7,7 +7,7 @@ import SubscribeDetailItem from 'components/organisms/subscribe/SubscribeDetailI
 import PlantChart from 'components/organisms/subscribe/PlantChart/PlantChart';
 import { useParams } from 'react-router-dom';
 import useSubscribe from 'hooks/subscribes/useSubscribe';
-import { IConsultingSummary, IEmbeddedInfo, ISubscribeDetail } from 'types/subscribe';
+import { IConsultingSummary, IEmbeddedInfo, ISubscribeDetail } from 'types/domain/subscribe';
 import useIsLoading from 'hooks/useIsLoading';
 
 function SubscribeDetailPage() {

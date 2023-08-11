@@ -5,12 +5,9 @@ import PageTitleButton from 'components/atoms/common/PageTitleButton/PageTitleBu
 import CustomCalendar from 'components/atoms/booking/FullScheduleCalendar/FullScheduleCalendar';
 import useSelectedDate from 'hooks/useSelectedDate';
 import BookingList from 'components/organisms/booking/BookingList/BookingList';
-import BadgeDescription from 'components/organisms/common/BadgeDescription/BadgeDescription';
-import { BOOKING_STATUS_DESC_LIST } from 'constants/common/StatusDescList';
 
 function BookingManagement() {
 	const [date, setDate, formatDate] = useSelectedDate();
-	const stateKeyList = ['done', 'join', 'notJoin'];
 
 	return (
 		<BookingManagementPageLayout>
@@ -20,12 +17,10 @@ function BookingManagement() {
 			<AreaTitle title="전체 예약 일정" url="#" />
 			{/* 캘린더 */}
 			<CustomCalendar selectedDate={date} setSelectedDate={setDate} />
-			{/* 지정일 예약목록 */}
+			{/* 지정일 영역 헤더 */}
 			<AreaTitle title={`${formatDate as string}  예약 목록`} url="#" />
-			{/* 예약 상태 설명 */}
-			<BadgeDescription title="예약 상태" descriptionList={BOOKING_STATUS_DESC_LIST} stateKeyList={stateKeyList} />
 			{/* 지정일의 예약 목록 */}
-			<BookingList date={date} />
+			<BookingList />
 		</BookingManagementPageLayout>
 	);
 }

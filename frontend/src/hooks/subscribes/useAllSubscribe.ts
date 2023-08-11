@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { ISubscribe, ISubscribeResponse } from 'types/subscribe';
+import { ISubscribe, ISubscribeResponse } from 'types/domain/subscribe';
 import { findAllSubscribeApi } from 'utils/api/subscribe';
 import responseToSubscribe from 'utils/subscribes/responseToSubscribe';
 

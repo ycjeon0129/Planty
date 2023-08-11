@@ -5,7 +5,7 @@ import SubscribeStateBadge from 'components/atoms/subscribe/SubscribeStateBadge/
 import Button from 'components/atoms/common/Button/Button';
 import InfoList from 'components/organisms/common/InfoList/InfoList';
 import { SUBSCRIBE_LIST_ITEM_LABELS } from 'constants/common/Labels';
-import { ISubscribe } from 'types/subscribe';
+import { ISubscribe } from 'types/domain/subscribe';
 
 /**
  * 구독 목록 아이템

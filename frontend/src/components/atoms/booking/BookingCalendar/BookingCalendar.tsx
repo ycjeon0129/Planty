@@ -1,8 +1,8 @@
 import React from 'react';
 import './BookingCalendar.scss';
 import Calendar from 'react-calendar';
-import { Value } from 'types/global';
 import moment from 'moment';
+import { Value } from 'types/common/global';
 
 function BookingCalendar({
 	selectDate,

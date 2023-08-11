@@ -1,5 +1,5 @@
 import React from 'react';
-import { ISubscribe } from 'types/subscribe';
+import { ISubscribe } from 'types/domain/subscribe';
 import SubscribeListItem from '../SubscribeListItem/SubscribeListItem';
 import './SubscribeList.scss';
 

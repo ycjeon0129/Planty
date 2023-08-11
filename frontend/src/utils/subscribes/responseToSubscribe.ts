@@ -1,4 +1,4 @@
-import { ISubscribe, ISubscribeResponse } from 'types/subscribe';
+import { ISubscribe, ISubscribeResponse } from 'types/domain/subscribe';
 import getSubscribeState from './getSubscribeState';
 
 /**

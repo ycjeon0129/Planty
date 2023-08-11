@@ -6,7 +6,7 @@ import moment from 'moment';
  * @param secondDate 두 번째 Date
  * @returns true / false
  */
-const isSameDate = (firstDate: Date, secondDate: Date) => {
+const isSameDate = (firstDate: Date | string, secondDate: Date | string) => {
 	const format = 'YYYY-MM-DD';
 	return moment(firstDate).format(format) === moment(secondDate).format(format);
 };

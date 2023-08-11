@@ -4,7 +4,7 @@ import SubscribeList from 'components/organisms/subscribe/SubscribeList/Subscrib
 import BadgeDescription from 'components/organisms/common/BadgeDescription/BadgeDescription';
 import { CONSULTING_STATUS_DESC_LIST } from 'constants/common/StatusDescList';
 import PageTitleButton from 'components/atoms/common/PageTitleButton/PageTitleButton';
-import { ISubscribe } from 'types/subscribe';
+import { ISubscribe } from 'types/domain/subscribe';
 import useAllSubscribe from 'hooks/subscribes/useAllSubscribe';
 
 function SubscribePage() {
