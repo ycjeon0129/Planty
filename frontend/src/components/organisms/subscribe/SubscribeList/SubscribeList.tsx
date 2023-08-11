@@ -4,7 +4,11 @@ import SubscribeListItem from '../SubscribeListItem/SubscribeListItem';
 import './SubscribeList.scss';
 
 function SubscribeList({ subscribes }: { subscribes: ISubscribe[] }) {
-	return <ul className="subscribe-list-container">{subscribes?.map((v) => <SubscribeListItem subscribe={v} />)}</ul>;
+	return (
+		<ul className="subscribe-list-container">
+			{subscribes && subscribes.map((v) => <SubscribeListItem key={v.sid} subscribe={v} />)}
+		</ul>
+	);
 }
 
 export default SubscribeList;
