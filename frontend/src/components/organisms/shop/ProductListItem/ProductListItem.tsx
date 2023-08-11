@@ -33,7 +33,7 @@ function ProductListItem({ product }: { product: IProduct }) {
 		<ProductListItemLayout>
 			<ListItemTitle title={product.title} url={`detail/${product.pid}`} />
 			<img src={product.thumbnail} alt="" />
-			<InfoList subscribe={product.info} labels={PRODUCT_LIST_ITEM_LABELS} />
+			<InfoList info={product.info} labels={PRODUCT_LIST_ITEM_LABELS} />
 			<Button isActive={false} text="구매하기" handleClick={testFunc} />
 		</ProductListItemLayout>
 	);
