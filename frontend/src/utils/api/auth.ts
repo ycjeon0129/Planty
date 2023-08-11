@@ -1,6 +1,6 @@
 import LocalStorage from 'constants/storage/LocalStorage';
 import jwt_decode from 'jwt-decode';
-import { AccessToken, LoginBody, SetUserBody } from 'types/auth';
+import { AccessToken, LoginBody, SetUserBody } from 'types/domain/user';
 import SessionStorage from 'constants/storage/SessionStorage';
 import { instance } from './instance';
 

@@ -4,7 +4,7 @@ import SubscribeDetailItemLayout from 'components/layout/subscirbe/SubscribeDeta
 // import InfoList from 'components/organisms/common/InfoList/InfoList';
 // import { SUBSCRIBE_DETAIL_ITEM_LABELS } from 'constants/common/Labels';
 import React from 'react';
-import { ISubscribeDetail } from 'types/subscribe';
+import { ISubscribeDetail } from 'types/domain/subscribe';
 
 function SubscribeDetailItem({ subscribe }: { subscribe: ISubscribeDetail }) {
 	console.log(subscribe);

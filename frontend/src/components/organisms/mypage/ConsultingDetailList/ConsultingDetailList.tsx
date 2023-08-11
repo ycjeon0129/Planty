@@ -1,6 +1,6 @@
 import React from 'react';
 import './ConsultingDetailList.scss';
-import { IConsultingHistory } from 'types/consulting';
+import { IConsultingHistory } from 'types/domain/consulting';
 import ConsultingDetail from '../ConsultingDetail/ConsultingDetail';
 
 function ConsultingDetailList({ list }: { list: IConsultingHistory[] }) {

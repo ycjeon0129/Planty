@@ -4,9 +4,9 @@ import './PlantChart.scss';
 
 import ChartButton from 'components/atoms/common/ChartButton/ChartButton';
 import useToggle from 'hooks/useToggle';
-import { IChartData } from 'types/global';
-import makeChartData from 'utils/makeChartData';
-import { IEmbeddedInfo } from 'types/subscribe';
+import { IChartData } from 'types/common/global';
+import makeChartData from 'utils/common/makeChartData';
+import { IEmbeddedInfo } from 'types/domain/subscribe';
 
 function PlantChart({ embeddedInfo }: { embeddedInfo: IEmbeddedInfo[] }) {
 	// 온/습도 토글 버튼 상태변수
