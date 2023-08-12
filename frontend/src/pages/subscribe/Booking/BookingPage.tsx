@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import IconText from 'components/atoms/common/IconText/IconText';
 import BookingPageLayout from 'components/layout/Page/BookingPageLayout/BookingPageLayout';
 import CalendarIcon from 'assets/icons/Calendar.svg';
@@ -9,22 +9,65 @@ import Button from 'components/atoms/common/Button/Button';
 import BookingTimeList from 'components/organisms/booking/BookingTimeList/BookingTimeList';
 import BOOKING_TIME_TEXT_LIST from 'constants/common/Booking';
 import { tempTimeStatusList } from 'dummy';
+import { findIsBookingInDateApi, saveBooking } from 'utils/api/booking';
+import formatDate from 'utils/date/formatDate';
+import { useParams } from 'react-router-dom';
+import { toast } from 'react-hot-toast';
+import convertTime from 'utils/common/convertTime';
+import useMovePage from 'hooks/useMovePage';
+import confirmDialog from 'utils/common/confirmDialog';
 import BookingCalendar from '../../../components/atoms/booking/BookingCalendar/BookingCalendar';
 
 function BookingPage() {
+	const { sid } = useParams();
+	const { movePage } = useMovePage();
 	const [selectDate, setSelectDate] = useState<Value>(new Date());
 	const [selectTime, setSelectTime] = useState<number>(0);
 	const [timeStatusList, setTimeStatusList] = useState<boolean[]>(tempTimeStatusList);
 
+	/**
+	 * 예약하기 버튼 클릭 시
+	 */
 	const onSubmit = () => {
-		alert('클릭');
+		const date = formatDate(selectDate as Date);
+		const timeIdx = selectTime + 1;
+
+		// confirm
+		confirmDialog(`${date} ${convertTime(timeIdx)}\n선택하신 날짜에 예약하시겠습니까?`, async () => {
+			// confirm OK
+			try {
+				const response = await saveBooking(+(sid as string), date, timeIdx);
+				if (response.status === 200) {
+					toast.success(`${date} ${convertTime(timeIdx)}에 예약이 완료되었습니다. \n예약 관리페이지로 이동합니다.`);
+					movePage('/mypage/booking');
+				} else {
+					toast.error(`예약에 실패했습니다. \n잠시 후 다시 시도하시거나, 다른 날짜를 선택해주세요.`);
+				}
+			} catch (error) {
+				console.error(error);
+			}
+		});
 	};
 
+	/**
+	 * selectDate의 예약 현황 Time 배열 받아오기
+	 * 예약이 되어있으면 true, 되어있지않다면 false (false 인 경우에만 예약 가능)
+	 */
+	const fetchData = useCallback(async (reqDate: Value, reqSid: string | undefined) => {
+		try {
+			const date = formatDate(reqDate as Date);
+
+			const response = await findIsBookingInDateApi(date, +(reqSid as string));
+
+			setTimeStatusList(response.data);
+		} catch (error) {
+			console.error(error);
+		}
+	}, []);
+
 	useEffect(() => {
-		// selectDate 이용해 예약 시간 목록 가져오는 API 요청
-		console.log('예약 시간 리스트 바뀜', selectDate);
-		setTimeStatusList(tempTimeStatusList);
-	}, [selectDate]);
+		fetchData(selectDate, sid);
+	}, [selectDate, sid, fetchData]);
 
 	return (
 		<BookingPageLayout>

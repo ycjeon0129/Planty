@@ -14,3 +14,19 @@ export const deleteBooking = async (cid: number) => {
 
 	return response;
 };
+
+export const findIsBookingInDateApi = async (date: string, sid: number) => {
+	const response = await instance.get(`/bookings/${date}/${sid}`);
+	return response;
+};
+
+export const saveBooking = async (sid: number, date: string, time: number) => {
+	const body = {
+		sid,
+		date,
+		timeId: time,
+	};
+	const response = await instance.post(`/bookings`, body);
+
+	return response;
+};
