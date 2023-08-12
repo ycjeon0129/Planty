@@ -68,8 +68,8 @@ function AppRouter() {
 						<Route path="/subscribe/:sid/consulting" element={<ConsultingHistoryPage />} />
 						<Route path="/consulting/video" element={<VideoConsultingPage />} />
 						<Route path="/consultingloading" element={<ConsultingLoadingPageLayout />} />
-						<Route path="/payment" element={<CheckoutPage />} />
-						<Route path="/success" element={<Success />} />
+						<Route path="/payment/:pid" element={<CheckoutPage />} />
+						<Route path="/success/:pid" element={<Success />} />
 					</Route>
 
 					{/* 컴포넌트 개발용 */}

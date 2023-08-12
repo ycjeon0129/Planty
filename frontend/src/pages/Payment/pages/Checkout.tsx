@@ -1,19 +1,21 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { PaymentWidgetInstance, loadPaymentWidget, ANONYMOUS } from '@tosspayments/payment-widget-sdk';
 import './Checkout.scss';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
+import { dummyProduct } from 'dummy';
 
 const selector = '#payment-widget';
 const clientKey = 'test_ck_D5GePWvyJnrK0W0k6q8gLzN97Eoq';
 // const customerKey = 'YbX2HuSlsC9uVJW6NMRMj';
 
 export default function CheckoutPage() {
+	const pid = parseInt(useLocation().pathname.split('/')[2], 10);
 	const paymentWidgetRef = useRef<PaymentWidgetInstance | null>(null);
 	const paymentMethodsWidgetRef = useRef<ReturnType<PaymentWidgetInstance['renderPaymentMethods']> | null>(null);
 	const [price] = useState(25_000);
 	const navigate = useNavigate();
 	const goNext = () => {
-		navigate(`/success/`);
+		navigate(`/success/${pid}`);
 	};
 
 	useEffect(() => {
@@ -53,7 +55,8 @@ export default function CheckoutPage() {
 			<div className="pay-center">
 				<div className="pay-box">
 					<div className="pay-left">총 결제금액</div>
-					<div className="pay-right">{`${price.toLocaleString()}원`}</div>
+					{/* <div className="pay-right">{`${price.toLocaleString()}원`}</div> */}
+					<div className="pay-right">{dummyProduct[pid].info.price}원</div>
 				</div>
 			</div>
 			<div id="agreement" />

@@ -29,7 +29,7 @@ function ShopPay() {
 			<ProductInfo product={dummyProduct[pid]} />
 			<PayCheck product={dummyProduct[pid]} />
 			{/* <EndButton pid={pid} /> */}
-			<EndButton />
+			<EndButton pid={pid} />
 		</ShopPayPageLayout>
 	);
 }
