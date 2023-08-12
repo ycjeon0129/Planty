@@ -23,6 +23,7 @@ import ShopPay from 'pages/Shop/ShopPay';
 import ConsultingLoadingPageLayout from 'components/layout/Page/ConsultingLoadingPageLayout/ConsultingLoadingPageLayout';
 import EmergencyParticipatePage from 'pages/Emergency/EmergencyParticipatePage';
 import ConsultingParticipatePage from 'pages/Consulting/ConsultingParticipatePage';
+import CheckoutPage from 'pages/Payment/pages/Checkout';
 import { Toaster } from 'react-hot-toast';
 import PrivateRoute from './PrivateRoute';
 import 'styles/index.scss';
@@ -66,6 +67,7 @@ function AppRouter() {
 						<Route path="/subscribe/:sid/consulting" element={<ConsultingHistoryPage />} />
 						<Route path="/consulting/video" element={<VideoConsultingPage />} />
 						<Route path="/consultingloading" element={<ConsultingLoadingPageLayout />} />
+						<Route path="/pay" element={<CheckoutPage />} />
 					</Route>
 
 					{/* 컴포넌트 개발용 */}
