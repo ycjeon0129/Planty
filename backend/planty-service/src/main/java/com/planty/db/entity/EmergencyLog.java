@@ -32,7 +32,7 @@ public class EmergencyLog implements Serializable {
     private String name;
 
     @Column(name = "type") // 상담 유형. 화상(0), 채팅(1)
-    private Boolean type;
+    private Integer type;
 
     @Column(name = "content") // 상담 내용
     private String content;
@@ -46,7 +46,7 @@ public class EmergencyLog implements Serializable {
     private String endTime;
 
     @Builder
-    public EmergencyLog(Long eid, UserInfo uid, GmInfo gid, String name, Boolean type, String content,
+    public EmergencyLog(Long eid, UserInfo uid, GmInfo gid, String name, Integer type, String content,
                         String startTime, String endTime) {
         this.eid = eid;
         this.uid = uid;

@@ -1,10 +1,11 @@
 package com.planty.api.gm.emergency.service;
 
 import com.planty.api.consulting.response.UserConsultingResponse;
+import com.planty.api.emergency.response.EmergencyResponse;
 import com.planty.api.gm.consulting.service.GmConsultingService;
-import com.planty.api.gm.emergency.response.GmEmergencyResponse;
 import com.planty.common.exception.handler.ExceptionHandler;
 import com.planty.common.util.SecurityUtil;
+import com.planty.common.util.TimeUtil;
 import com.planty.db.entity.EmergencyLog;
 import com.planty.db.entity.GmInfo;
 import com.planty.db.entity.ViewUserConsulting;
@@ -14,9 +15,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @Slf4j
@@ -32,25 +31,28 @@ public class GmEmergencyServiceImpl implements GmEmergencyService {
     private final EmergencyLogRepository emergencyLogRepository;
 
     @Override
-    public List<GmEmergencyResponse> findConsultingList(){
+    public List<EmergencyResponse> findEmergencyList() throws ParseException {
         Long gid = SecurityUtil.getCurrentGid();
         GmInfo gm = gmInfoRepository.findByGid(gid)
                 .orElseThrow(() -> new NullPointerException(ExceptionHandler.GM_NOT_FOUND));
 
-        List<GmEmergencyResponse> emergencyList = new ArrayList<>();
+        List<EmergencyResponse> emergencyList = new ArrayList<>();
         List<EmergencyLog> list = emergencyLogRepository.findByGid(gm);
 
         for(EmergencyLog item : list) {
+            String timeTaken = TimeUtil.findTimeDiff(item.getStartTime(), item.getEndTime());
+            String date = TimeUtil.findDateOnly(item.getStartTime());
             emergencyList.add(
-                    GmEmergencyResponse.builder()
+                    EmergencyResponse.builder()
                             .eid(item.getEid())
                             .type(item.getType())
-                            .name(item.getName())
+                            .plantName(item.getName())
+                            .date(date)
                             .startTime(item.getStartTime())
                             .endTime(item.getEndTime())
-                            .timeTaken("tmp")
-                            .advice(item.getContent())
-                            .greenmate(gm.getNickname())
+                            .timeTaken(timeTaken)
+                            .content(item.getContent())
+                            .gm(gm.getNickname())
                             .user(item.getUid().getUserName())
                             .build()
             );
