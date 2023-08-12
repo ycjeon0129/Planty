@@ -12,7 +12,7 @@ import java.io.Serializable;
 @DynamicInsert // Apply changed fields only
 @DynamicUpdate // Apply changed fields only
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@Table (name = "consulting_log")
+@Table (name = "emergency_log")
 @Entity
 public class EmergencyLog implements Serializable {
 

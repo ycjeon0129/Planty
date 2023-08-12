@@ -1,8 +1,8 @@
 package com.planty.api.gm.emergency.controller;
 
 import com.planty.api.consulting.response.UserConsultingResponse;
-import com.planty.api.emergency.response.EmergencyResponse;
 import com.planty.api.gm.consulting.service.GmConsultingService;
+import com.planty.api.emergency.response.EmergencyResponse;
 import com.planty.api.gm.emergency.service.GmEmergencyService;
 import io.swagger.annotations.Api;
 import lombok.RequiredArgsConstructor;
@@ -11,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.ParseException;
 import java.util.List;
 
 @RestController
@@ -24,12 +25,12 @@ public class GmEmergencyController {
 
     // 담당 구독 전체 조회
     @GetMapping()
-    public ResponseEntity<List<EmergencyResponse>> findEmergencyList() {
+    public ResponseEntity<?> findEmergencyList() throws ParseException {
         List<EmergencyResponse> list = gmEmergencyService.findEmergencyList();
-        if (list.size() == 0) { // 컨설팅 예약이 없는 경우
-            return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
+        if (list.isEmpty()) { // 컨설팅 예약이 없는 경우
+            return ResponseEntity.noContent().build();
         }
-        return new ResponseEntity<List<EmergencyResponse>>(list, HttpStatus.OK);
+        return ResponseEntity.ok().body(list);
     }
 
 //    // 담당 구독 상세 조회
