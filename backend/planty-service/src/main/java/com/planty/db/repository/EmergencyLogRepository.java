@@ -6,4 +6,5 @@ import java.util.List;
 
 public interface EmergencyLogRepository extends JpaRepository<EmergencyLog, Long> {
     List<EmergencyLog> findByGid(GmInfo gid);
+    List<EmergencyLog> findByUid(UserInfo uid);
 }
