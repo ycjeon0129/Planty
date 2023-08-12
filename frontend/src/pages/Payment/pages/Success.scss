@@ -1,0 +1,10 @@
+@import 'styles/base/variable';
+@import 'styles/mixins/common';
+@import 'styles/mixins/flex';
+
+.complete-container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding-top: 200px;
+}

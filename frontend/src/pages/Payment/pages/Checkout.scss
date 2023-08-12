@@ -1,0 +1,55 @@
+@import 'styles/base/variable';
+@import 'styles/mixins/common';
+@import 'styles/mixins/flex';
+
+#pay-container {
+	text-align: center;
+}
+
+.pay-center {
+	display: flex;
+	justify-content: center;
+}
+
+.pay-box {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	width: 315px;
+	height: 40px;
+	padding-left: 20px;
+	padding-right: 20px;
+	border: 1px solid $black-100;
+	border-radius: 4px;
+}
+
+.pay-right {
+	text-align: right;
+	// padding-right: 40px;
+
+	font-size: 18px;
+	font-weight: bold;
+	color: #222222;
+}
+
+.pay-left {
+	font-size: 15px;
+	color: #222222;
+}
+
+.pay-button {
+	background-color: $primary;
+	color: white;
+	font-size: 15px;
+	height: 35px;
+	width: 250px;
+	border-radius: 4px;
+	font-weight: 500;
+}
+
+// .pay-absolute-center {
+// 	position: absolute;
+// 	top: 50%;
+// 	left: 50%;
+// 	transform: translate(-50%, -50%);
+// }

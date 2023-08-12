@@ -23,6 +23,8 @@ import ShopPay from 'pages/Shop/ShopPay';
 import ConsultingLoadingPageLayout from 'components/layout/Page/ConsultingLoadingPageLayout/ConsultingLoadingPageLayout';
 import EmergencyParticipatePage from 'pages/Emergency/EmergencyParticipatePage';
 import ConsultingParticipatePage from 'pages/Consulting/ConsultingParticipatePage';
+import Success from 'pages/Payment/pages/Success';
+import CheckoutPage from 'pages/Payment/pages/Checkout';
 import { Toaster } from 'react-hot-toast';
 import { SimpleDialogContainer } from 'react-simple-dialogs';
 import 'styles/index.scss';
@@ -67,6 +69,8 @@ function AppRouter() {
 						<Route path="/subscribe/:sid/consulting" element={<ConsultingHistoryPage />} />
 						<Route path="/consulting/video" element={<VideoConsultingPage />} />
 						<Route path="/consultingloading" element={<ConsultingLoadingPageLayout />} />
+						<Route path="/payment/:pid" element={<CheckoutPage />} />
+						<Route path="/success/:pid" element={<Success />} />
 					</Route>
 
 					{/* 컴포넌트 개발용 */}
