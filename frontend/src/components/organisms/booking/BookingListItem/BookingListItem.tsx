@@ -12,9 +12,11 @@ import confirmDialog from 'utils/common/confirmDialog';
 import { deleteBooking } from 'utils/api/booking';
 import { toast } from 'react-hot-toast';
 import useMovePage from 'hooks/useMovePage';
+import moment from 'moment';
 
 function BookingListItem({ booking }: { booking: IBooking }) {
 	const { movePage } = useMovePage();
+	const today = moment(new Date()).format('YYYY-MM-DD');
 
 	const onSubmit = () => {
 		const message = `${booking.date}, ${convertTime(booking.time)}에 진행되는 '${
@@ -52,9 +54,13 @@ function BookingListItem({ booking }: { booking: IBooking }) {
 					<div id="detail">
 						<div id="detail-header">
 							<h3>예약 정보 상세</h3>
-							<button type="button" onClick={onSubmit}>
-								예약 취소
-							</button>
+							{moment(booking.date).isAfter(today) ? (
+								<button type="button" onClick={onSubmit}>
+									예약 취소
+								</button>
+							) : (
+								<div />
+							)}
 						</div>
 						<InfoRow title="가드너" content={booking.user} />
 						<InfoRow title="그린메이트" content={booking.greenmate} />
