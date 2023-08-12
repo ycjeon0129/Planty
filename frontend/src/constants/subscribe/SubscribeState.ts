@@ -26,6 +26,10 @@ const SUBSCRIBE_STATES: ISubscribeStates = {
 		color: 'danger',
 		message: '미참여',
 	},
+	cancel: {
+		color: 'danger',
+		message: '예약취소',
+	},
 };
 
 export default SUBSCRIBE_STATES;

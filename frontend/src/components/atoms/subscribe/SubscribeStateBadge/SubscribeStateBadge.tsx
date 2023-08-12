@@ -4,7 +4,7 @@ import './SubscribeStateBadge.scss';
 
 /**
  * 구독의 상태에 따른 뱃지
- * @param stateKey 뱃지의 상태를 나타내는 변수 (wait | done | end | join | notJoin)
+ * @param stateKey 뱃지의 상태를 나타내는 변수 (wait | done | end | join | notJoin | cancel)
  */
 function SubscribeStateBadge({ stateKey }: { stateKey: string }) {
 	const state = SUBSCRIBE_STATES[`${stateKey}`];

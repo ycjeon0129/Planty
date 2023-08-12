@@ -28,7 +28,8 @@ function ShopPay() {
 			<Address address="광주광역시 광산구 하남산단 6번로 107" name="김싸피" phone="01012345678" />
 			<ProductInfo product={dummyProduct[pid]} />
 			<PayCheck product={dummyProduct[pid]} />
-			<EndButton />
+			{/* <EndButton pid={pid} /> */}
+			<EndButton pid={pid} />
 		</ShopPayPageLayout>
 	);
 }
