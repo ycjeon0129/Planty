@@ -38,7 +38,6 @@ function BookingList() {
 		listElement = <EmptyItem text={`해당 날짜에\n예약된 일정이 없습니다.`} />;
 	}
 
-	// 요소 리턴 returns
 	return <div className="booking-list-container">{listElement}</div>;
 }
 
