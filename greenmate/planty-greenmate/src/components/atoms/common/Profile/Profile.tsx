@@ -18,6 +18,16 @@ function Profile() {
 		setIntroduceInfo(!introduceInfo);
 	};
 
+	const handleKeyPressNickName = (event: { key: string }) => {
+		if (event.key === 'Enter') {
+			nickNameClick();
+		}
+	};
+	const handleKeyPressIntro = (event: { key: string }) => {
+		if (event.key === 'Enter') {
+			introduceClick();
+		}
+	};
 	// 데이터 집어넣기
 	const [nickNameText, setNickNameText] = useState('닉네임');
 	const [introduceText, setIntroduceText] = useState('받아온 소개글 데이터');
@@ -47,7 +57,12 @@ function Profile() {
 						{nickName ? (
 							<div className="navy-text nickname">{nickNameText}</div>
 						) : (
-							<input className="navy-text nickname" value={nickNameText} onChange={handleNickNameChange} />
+							<input
+								className="navy-text nickname"
+								value={nickNameText}
+								onChange={handleNickNameChange}
+								onKeyPress={handleKeyPressNickName}
+							/>
 						)}
 					</div>
 					<div className="greenmate-intro-box">
@@ -60,7 +75,12 @@ function Profile() {
 						{introduceInfo ? (
 							<div className="navy-text introduce">{introduceText}</div>
 						) : (
-							<textarea className="navy-text introduceInput" value={introduceText} onChange={handleIntroduceChange} />
+							<textarea
+								className="navy-text introduceInput"
+								value={introduceText}
+								onChange={handleIntroduceChange}
+								onKeyPress={handleKeyPressIntro}
+							/>
 						)}
 					</div>
 				</div>
