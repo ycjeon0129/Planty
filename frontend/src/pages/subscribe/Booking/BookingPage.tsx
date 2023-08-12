@@ -38,7 +38,7 @@ function BookingPage() {
 			try {
 				const response = await saveBooking(+(sid as string), date, timeIdx);
 				if (response.status === 200) {
-					toast.success(`${date} ${convertTime(timeIdx)}에 예약이 완료되었습니다. \n예약 관리페이지로 이동합니다.`);
+					toast.success(`${date} ${convertTime(timeIdx)}에 예약이 완료되었습니다😊\n예약 관리페이지로 이동합니다.`);
 					movePage('/mypage/booking');
 				} else {
 					toast.error(`예약에 실패했습니다. \n잠시 후 다시 시도하시거나, 다른 날짜를 선택해주세요.`);
