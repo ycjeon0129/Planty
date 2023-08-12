@@ -4,7 +4,7 @@ import OpenViduVideo from 'components/atoms/consulting/OpenViduVideo/OpenViduVid
 import VideoConsultingPageLayout from 'components/layout/Page/VideoConsultingPageLayout/VideoConsultingPageLayout';
 import VideoConsultingMenu from 'components/organisms/consulting/VideoConsultingMenu/VideoConsultingMenu';
 import { OpenVidu, Publisher, Session, StreamEvent, Subscriber } from 'openvidu-browser';
-import { getToken } from 'utils/api/consulting';
+import { getToken } from 'utils/api/openVidu';
 import ConsultingLoadingPageLayout from 'components/layout/Page/ConsultingLoadingPageLayout/ConsultingLoadingPageLayout';
 import { ReactComponent as CamOffIcon } from 'assets/icons/consultingMenu/VideoOff.svg';
 import { ReactComponent as MicOffIcon } from 'assets/icons/consultingMenu/MicOff.svg';
