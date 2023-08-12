@@ -15,5 +15,7 @@ public interface SubscribeProductRepository extends JpaRepository<SubscribeProdu
 
     List<SubscribeProduct> findByGid(GmInfo gmInfo);
 
+
+    List<SubscribeProduct> findAll();
 }
 

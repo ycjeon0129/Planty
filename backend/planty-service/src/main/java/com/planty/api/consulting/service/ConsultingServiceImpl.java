@@ -61,9 +61,13 @@ public class ConsultingServiceImpl implements ConsultingService {
         UserInfo user = userInfoRepository.findByUserEmail(email)
                 .orElseThrow(() -> new NullPointerException(ExceptionHandler.USER_NOT_FOUND));
 
+        UserSubscribe userSubscribe = userSubscribeRepository.findByUidAndSid(user, sid)
+                .orElseThrow(() -> new NullPointerException(ExceptionHandler.USER_SID_NOT_FOUND));
+
         List<UserConsultingResponse> consultingListDetail = new ArrayList<>();
 
         List<ViewUserConsulting> list = viewUserConsultingRepository.findByUidAndSid(user.getUid(), sid);
+        //todo : list 없을때 -> 204 , 유저의 sid 가 없을때 -> null 처리 (500) 바꿔야됨
         for(ViewUserConsulting item : list) {
             UserConsultingResponse consult = UserConsultingResponse.builder()
                     .cid(item.getCid())
