@@ -43,6 +43,8 @@ public class BookingServiceImpl implements BookingService {
                     .time(item.getTimeIdx().getIdx())
                     .greenmate(item.getGid().getNickname())
                     .user(item.getUid().getUserName())
+                    .active(item.getActive())
+                    .cancel(item.getCancel())
                     .build();
             bookingList.add(booking);
         }
@@ -138,8 +140,9 @@ public class BookingServiceImpl implements BookingService {
 //            return false;
 //        }
 
-        if (booking != null) {
-            consultingBookingRepository.delete(booking);
+        if (booking != null) { // 예약 취소 -> cancel 활성화 (취소(1), 미취소(0))
+            booking.setCancel(true);
+            consultingBookingRepository.save(booking);
             log.info(logCurrent(getClassName(), getMethodName(), END));
             return true;
         }
