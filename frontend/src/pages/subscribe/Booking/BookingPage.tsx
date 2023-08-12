@@ -8,7 +8,6 @@ import { Value } from 'types/common/global';
 import Button from 'components/atoms/common/Button/Button';
 import BookingTimeList from 'components/organisms/booking/BookingTimeList/BookingTimeList';
 import BOOKING_TIME_TEXT_LIST from 'constants/common/Booking';
-import { tempTimeStatusList } from 'dummy';
 import { findIsBookingInDateApi, saveBooking } from 'utils/api/booking';
 import formatDate from 'utils/date/formatDate';
 import { useParams } from 'react-router-dom';
@@ -23,7 +22,7 @@ function BookingPage() {
 	const { movePage } = useMovePage();
 	const [selectDate, setSelectDate] = useState<Value>(new Date());
 	const [selectTime, setSelectTime] = useState<number>(0);
-	const [timeStatusList, setTimeStatusList] = useState<boolean[]>(tempTimeStatusList);
+	const [timeStatusList, setTimeStatusList] = useState<boolean[]>([]);
 
 	/**
 	 * 예약하기 버튼 클릭 시

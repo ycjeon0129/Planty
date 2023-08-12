@@ -8,23 +8,18 @@ export interface IConsultingHistory {
 
 // 컨설팅 예약건
 export interface IConsulting {
-	sid: number;
 	cid: number;
-	date: Date;
-	active: boolean;
+	sid: number;
+	time: number;
+	date: string;
 	cancel: boolean;
-	user: string;
-	greenmate: string;
-	subscribe: string;
-	thumbnail: string;
-	log: {
-		times: number;
-		content: string;
-		startTime: Date;
-		endTime: Date;
-		recommendStartDate: Date;
-		recommendEndDate: Date;
-	};
+	active: boolean;
+	subscribeProductName: string;
+	recommendedStartDate: string;
+	recommendedEndDate: string;
+	advice: string;
+	startTime: string;
+	endTime: string;
 }
 
 export interface IConsultingSummary {

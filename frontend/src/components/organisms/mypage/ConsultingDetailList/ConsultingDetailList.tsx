@@ -1,13 +1,13 @@
 import React from 'react';
 import './ConsultingDetailList.scss';
-import { IConsultingHistory } from 'types/domain/consulting';
+import { IConsulting } from 'types/domain/consulting';
 import ConsultingDetail from '../ConsultingDetail/ConsultingDetail';
 
-function ConsultingDetailList({ list }: { list: IConsultingHistory[] }) {
+function ConsultingDetailList({ list }: { list: IConsulting[] }) {
 	return (
 		<ul className="consultin-detail-list-container">
-			{list.map((v) => (
-				<ConsultingDetail key={v.consultingDate} data={v} />
+			{list.map((c) => (
+				<ConsultingDetail key={c.cid} data={c} />
 			))}
 		</ul>
 	);
