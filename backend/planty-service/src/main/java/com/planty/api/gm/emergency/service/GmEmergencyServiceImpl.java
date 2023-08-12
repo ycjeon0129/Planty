@@ -1,6 +1,7 @@
 package com.planty.api.gm.emergency.service;
 
 import com.planty.api.consulting.response.UserConsultingResponse;
+import com.planty.api.emergency.response.EmergencyResponse;
 import com.planty.api.gm.consulting.service.GmConsultingService;
 import com.planty.common.util.SecurityUtil;
 import com.planty.db.entity.ViewUserConsulting;
@@ -15,7 +16,7 @@ import java.util.List;
 @Slf4j
 @Service
 @RequiredArgsConstructor
-public class GmEmergencyServiceImpl implements GmConsultingService {
+public class GmEmergencyServiceImpl implements GmEmergencyService {
 
     private final GmInfoRepository gmInfoRepository;
     private final SubscribeProductRepository subscribeProductRepository;
@@ -24,29 +25,34 @@ public class GmEmergencyServiceImpl implements GmConsultingService {
     private final ViewUserConsultingRepository viewUserConsultingRepository;
 
     @Override
-    public List<UserConsultingResponse> findConsultingList() {
-        List<UserConsultingResponse> consultingList = new ArrayList<>();
-        log.info("1");
-        List<ViewUserConsulting> list = viewUserConsultingRepository.findByGid(SecurityUtil.getCurrentGid());
-        log.info("{}", list);
-        for(ViewUserConsulting item : list) {
-            consultingList.add(
-                    UserConsultingResponse.builder()
-                            .cid(item.getCid())
-                            .sid(item.getSid())
-                            .time(item.getTime())
-                            .date(item.getDate())
-                            .cancel(item.getCancel())
-                            .active(item.getActive())
-                            .subscribeProductName(item.getName())
-                            .recommendedStartDate(item.getRecommendedStartDate())
-                            .recommendedEndDate(item.getRecommendedEndDate())
-                            .advice(item.getContent())
-                            .startTime(item.getStartTime())
-                            .endTime(item.getEndTime())
-                            .build()
-            );
-        }
-        return consultingList;
+    public List<EmergencyResponse> findEmergencyList() {
+        return null;
     }
+
+//    @Override
+//    public List<UserConsultingResponse> findConsultingList() {
+//        List<UserConsultingResponse> consultingList = new ArrayList<>();
+//        log.info("1");
+//        List<ViewUserConsulting> list = viewUserConsultingRepository.findByGid(SecurityUtil.getCurrentGid());
+//        log.info("{}", list);
+//        for(ViewUserConsulting item : list) {
+//            consultingList.add(
+//                    UserConsultingResponse.builder()
+//                            .cid(item.getCid())
+//                            .sid(item.getSid())
+//                            .time(item.getTime())
+//                            .date(item.getDate())
+//                            .cancel(item.getCancel())
+//                            .active(item.getActive())
+//                            .subscribeProductName(item.getName())
+//                            .recommendedStartDate(item.getRecommendedStartDate())
+//                            .recommendedEndDate(item.getRecommendedEndDate())
+//                            .advice(item.getContent())
+//                            .startTime(item.getStartTime())
+//                            .endTime(item.getEndTime())
+//                            .build()
+//            );
+//        }
+//        return consultingList;
+//    }
 }
