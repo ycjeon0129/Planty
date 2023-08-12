@@ -24,8 +24,9 @@ import ConsultingLoadingPageLayout from 'components/layout/Page/ConsultingLoadin
 import EmergencyParticipatePage from 'pages/Emergency/EmergencyParticipatePage';
 import ConsultingParticipatePage from 'pages/Consulting/ConsultingParticipatePage';
 import { Toaster } from 'react-hot-toast';
-import PrivateRoute from './PrivateRoute';
+import { SimpleDialogContainer } from 'react-simple-dialogs';
 import 'styles/index.scss';
+import PrivateRoute from './PrivateRoute';
 
 function AppRouter() {
 	const [isLoading, setIsLoading] = useState(false);
@@ -88,6 +89,7 @@ function AppRouter() {
 						duration: 1500,
 					}}
 				/>
+				<SimpleDialogContainer />
 			</BrowserRouter>
 		</div>
 	);

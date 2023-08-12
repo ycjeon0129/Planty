@@ -20,7 +20,13 @@
 
 
 
-        #detail {}
+        #detail {
+            #detail-header{
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+            }
+        }
 
         #advice {
             font-size: 1.4em;
