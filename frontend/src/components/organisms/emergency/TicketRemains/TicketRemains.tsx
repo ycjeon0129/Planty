@@ -12,7 +12,8 @@ function TicketRemains() {
 	return (
 		<div className="center">
 			<div className="ticketremains-container">
-				<div>Planty 응급실 서비스</div>
+				<h3>응급실 서비스</h3>
+				<div className="service-desc">&quot; 실시간 컨설팅 서비스입니다 &quot;</div>
 				<div className="ticketset">
 					<TicketSet />
 				</div>

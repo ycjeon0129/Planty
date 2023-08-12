@@ -12,12 +12,16 @@ function ConsultingInfo({ sid, info }: { sid: number; info: IConsultingSummary }
 	const tmpInfo = {
 		'총 횟수': info?.consultingCnt,
 		'잔여 횟수': info?.consultingRemainCnt,
-		'컨설팅 일정': info?.consultingDate,
+		'컨설팅 일정': info?.consultingDate === null ? '-' : info.consultingDate,
 	};
+	const consultingStatus = info && [
+		...new Array(info.consultingCnt - info.consultingRemainCnt).fill(0),
+		...new Array(info.consultingRemainCnt).fill(2),
+	];
 
 	return (
 		<ConsultingInfoLayout>
-			<ConsultingStickerList consultingStatus={[0, 1, 0, 0, 2, 2]} />
+			<ConsultingStickerList consultingStatus={consultingStatus} />
 			<InfoList info={tmpInfo} labels={CONSULTING_INFO_LABELS} />
 			<Button isActive text="예약하기" handleClick={() => movePage('booking')} />
 			<Button isActive={false} text="컨설팅 내역보기" handleClick={() => movePage(`/subscribe/${sid}/consulting`)} />

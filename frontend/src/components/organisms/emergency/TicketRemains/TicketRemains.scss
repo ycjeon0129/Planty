@@ -19,6 +19,16 @@
 	width: 90%;
 	padding: 20px;
 	border-radius: $rd-sm;
+
+	h3 {
+		font-size: $h2;
+		margin-bottom: 20px;
+	}
+
+	.service-desc {
+		font-size: $p3;
+		color: $black-300;
+	}
 }
 
 .ticketset {
