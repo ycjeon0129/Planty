@@ -2,22 +2,19 @@
 @import 'styles/mixins/common';
 @import 'styles/mixins/flex';
 
-
 .purchase-button {
-    border: solid var.$primary;
-    background-color: var.$primary;
-    border-radius: var.$rd-sm;
-    width: 25%;
-    height: 40px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-right: var.$mr-lg;
-    
+	border: solid var.$primary;
+	background-color: var.$primary;
+	border-radius: var.$rd-sm;
+	width: 25%;
+	height: 40px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-right: var.$mr-lg;
 }
 
 .text-button {
-    color: var.$white;
-    font-size: var.$h2;
-
+	color: var.$white;
+	font-size: var.$p2;
 }
