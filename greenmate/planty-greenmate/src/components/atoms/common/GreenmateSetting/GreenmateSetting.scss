@@ -7,7 +7,9 @@
   align-items: center;
   padding: 10px;
   border-radius: var.$rd-sm;
+  margin-bottom: 5px;
   @include border-gray
+  
 }
 
 .gray-text {
