@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { IBooking } from 'types/domain/booking';
-import findAllBooking from 'utils/api/booking';
+import { findAllBooking } from 'utils/api/booking';
 
 /**
  * 캘린더 상의 선택일자에 해당하는 예약(컨설팅) 목록을 불러와 리턴하는 커스텀 훅

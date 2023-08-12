@@ -20,7 +20,7 @@ function BookingTimeList({
 					key={timeTextList[idx]}
 					time={timeTextList[idx]}
 					idx={idx}
-					isCanSelect={v}
+					isCanSelect={!v}
 					selectTime={selectTime}
 					setSelectTime={setSelectTime}
 				/>
