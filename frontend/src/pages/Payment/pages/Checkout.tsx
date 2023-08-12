@@ -56,7 +56,7 @@ export default function CheckoutPage() {
 				<div className="pay-box">
 					<div className="pay-left">총 결제금액</div>
 					{/* <div className="pay-right">{`${price.toLocaleString()}원`}</div> */}
-					<div className="pay-right">{dummyProduct[pid].info.price}원</div>
+					<div className="pay-right">{dummyProduct[pid].price}원</div>
 				</div>
 			</div>
 			<div id="agreement" />
