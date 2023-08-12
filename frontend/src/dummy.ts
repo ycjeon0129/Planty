@@ -84,66 +84,57 @@ export const dummybanner: IBanner[] = [
 
 export const dummyProduct: IProduct[] = [
 	{
-		pid: 0,
-		title: '누구나 쉽게 키우는 몬스테라 클래스',
-		thumbnail: 'https://www.flowerrepublic.co.kr/shopimages/sungmo9160/0090010004832.jpg?1665473103',
-		info: {
-			period: 3,
-			level: 3,
-			price: 8000,
-		},
+		spid: 1,
+		name: '방울방울 방울 토마토',
+		imgUrl:
+			'https://i.namu.wiki/i/7CrIrJaPPWRwMaCfZhyjVpjXBL5c7_Nn_lGZBQ-R3JNh_59xwZA92LllKCpGx1yti4Bxn1bt13-GH4ee_8llUA.webp',
+		period: 3,
+		plantName: '토마토',
+		price: 20000,
+		level: 2,
 	},
 	{
-		pid: 1,
-		title: '스투키 일주일 클래스',
-		thumbnail:
-			'https://mblogthumb-phinf.pstatic.net/20160820_73/oneflora_1471684049417Ko98B_JPEG/image_9540627681471684031922.jpg?type=w800',
-		info: {
-			period: 2,
-			level: 2,
-			price: 12000,
-		},
+		spid: 2,
+		name: '테스트테스트 양파',
+		imgUrl:
+			'https://i.namu.wiki/i/7CrIrJaPPWRwMaCfZhyjVpjXBL5c7_Nn_lGZBQ-R3JNh_59xwZA92LllKCpGx1yti4Bxn1bt13-GH4ee_8llUA.webp',
+		period: 5,
+		plantName: '양파',
+		price: 24000,
+		level: 4,
 	},
 	{
-		pid: 2,
-		title: '싸피 방울토마토 짱짱 클래스',
-		thumbnail: 'https://gardening.godohosting.com/2018/mfset/redcherrytomato_01.jpg',
-		info: { period: 1, level: 4, price: 12000 },
+		spid: 3,
+		name: '토마토를 토막내면 토막 토마토',
+		imgUrl:
+			'https://i.namu.wiki/i/7CrIrJaPPWRwMaCfZhyjVpjXBL5c7_Nn_lGZBQ-R3JNh_59xwZA92LllKCpGx1yti4Bxn1bt13-GH4ee_8llUA.webp',
+		period: 2,
+		plantName: '토마토',
+		price: 15000,
+		level: 3,
 	},
 ];
 
-export const ProductDetail: IProductDetail[] = [
-	{
-		pid: 0,
-		title: '누구나 쉽게 키우는 몬스테라 클래스',
-		info: {
-			price: 20000,
-			target: '초심자',
-			consultCount: '총 5회 / 잔여 3회',
-			kitTool: '토양, 영양제, 허브, 삽',
-		},
-	},
-	{
-		pid: 1,
-		title: '스투키 일주일 클래스',
-		info: {
-			price: 12000,
-			target: '중급자',
-			consultCount: '총 5회 / 잔여 4회',
-			kitTool: '토양, 영양제, 허브, 삽',
-		},
-	},
-	{
-		pid: 2,
-		title: '싸피 방울토마토 짱짱 클래스',
-		info: {
-			price: 8000,
-			target: '왕초보',
-			consultCount: '총 8회 / 잔여 4회',
-			kitTool: '토양, 영양제, 허브, 삽',
-		},
-	},
-];
+export const ProductDetail: IProductDetail = {
+	spid: 1, // 구독상품 식별키
+	name: '방울방울 방울 토마토', // 구독상품명
+	imgUrl:
+		'https://i.namu.wiki/i/7CrIrJaPPWRwMaCfZhyjVpjXBL5c7_Nn_lGZBQ-R3JNh_59xwZA92LllKCpGx1yti4Bxn1bt13-GH4ee_8llUA.webp', // 이미지URL
+	period: 3, // 구독 기간
+	plantName: '토마토', // 식물이름
+	price: 20000, // 가격
+	level: 2, // 난이도
+
+	tonicPeriod: 4, // 식물 영양제 제공 주기 (주)
+	size: 0, // 크기. 소(0), 중(1), 대(2)
+	place: 0, // 생육 장소. 무관(0), 실내(1), 실외(2)
+	eatable: 1, // 식용 여부. 식용(1), 비식용(0)
+
+	greenmate: '김싸피', // 담당그린메이트
+	consultingCnt: 4, // 컨설팅 횟수
+	description:
+		'https://thumbnail8.coupangcdn.com/thumbnails/remote/q89/image/retail/images/715188549854504-0eec4459-46be-444d-836a-7cc57cf7f5ff.jpg', // 상세설명
+};
 
 export const dummySubscribeDetail: ISubscribeDetail = {
 	sid: 0,
