@@ -1,8 +1,15 @@
 import { simpleConfirm } from 'react-simple-dialogs';
 
-const confirmDialog = async (text: string, onSuccess: () => void) => {
-	if (await simpleConfirm(text)) {
-		onSuccess();
+interface IConfirmDialogProps {
+	title: string;
+	message: string;
+	confirmLabel: string;
+	cancelLabel: string;
+	onConfirm: () => Promise<void>;
+}
+const confirmDialog = async ({ title, message, confirmLabel, cancelLabel, onConfirm }: IConfirmDialogProps) => {
+	if (await simpleConfirm({ title, message, confirmLabel, cancelLabel })) {
+		onConfirm();
 	}
 };
 

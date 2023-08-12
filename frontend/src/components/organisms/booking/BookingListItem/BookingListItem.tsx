@@ -14,22 +14,28 @@ import { toast } from 'react-hot-toast';
 import useMovePage from 'hooks/useMovePage';
 
 function BookingListItem({ booking }: { booking: IBooking }) {
-	const dialogMessage = `${booking.date} ${convertTime(booking.time)}에 진행되는 '${
-		booking.title
-	}'의 예약을 정말 취소하시겠습니까?`;
 	const { movePage } = useMovePage();
 
-	async function cancelBooking() {
-		try {
-			const response = await deleteBooking(booking.cid);
-			if (response.status === 200) {
-				toast.success('예약을 취소했습니다 😥\n메인페이지로 이동합니다.');
-				movePage('/');
+	const onSubmit = () => {
+		const message = `${booking.date}, ${convertTime(booking.time)}에 진행되는 '${
+			booking.title
+		}'의 예약을 정말 취소하시겠습니까?`;
+
+		const onConfirm = async () => {
+			try {
+				const response = await deleteBooking(booking.cid);
+				if (response.status === 200) {
+					toast.success('예약을 취소했습니다 😥\n메인페이지로 이동합니다.');
+					movePage('/');
+				}
+			} catch (error) {
+				console.error(error);
 			}
-		} catch (error) {
-			console.error(error);
-		}
-	}
+		};
+
+		// confirm
+		confirmDialog({ title: '예약 취소', message, confirmLabel: '예약 취소하기', cancelLabel: '그만두기', onConfirm });
+	};
 
 	return (
 		<Accordion className="booking-list-item-container">
@@ -46,7 +52,7 @@ function BookingListItem({ booking }: { booking: IBooking }) {
 					<div id="detail">
 						<div id="detail-header">
 							<h3>예약 정보 상세</h3>
-							<button type="button" onClick={() => confirmDialog(dialogMessage, cancelBooking)}>
+							<button type="button" onClick={onSubmit}>
 								예약 취소
 							</button>
 						</div>

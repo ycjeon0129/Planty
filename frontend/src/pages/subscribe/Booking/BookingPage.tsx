@@ -31,10 +31,10 @@ function BookingPage() {
 	const onSubmit = () => {
 		const date = formatDate(selectDate as Date);
 		const timeIdx = selectTime + 1;
+		const message = `${date}의 ${convertTime(timeIdx)}\n선택하신 일시에 예약하시겠습니까?`;
 
-		// confirm
-		confirmDialog(`${date} ${convertTime(timeIdx)}\n선택하신 날짜에 예약하시겠습니까?`, async () => {
-			// confirm OK
+		// confirm OK
+		const onConfirm = async () => {
 			try {
 				const response = await saveBooking(+(sid as string), date, timeIdx);
 				if (response.status === 200) {
@@ -46,7 +46,9 @@ function BookingPage() {
 			} catch (error) {
 				console.error(error);
 			}
-		});
+		};
+		// confirm
+		confirmDialog({ title: '예약하기', message, confirmLabel: '예약하기', cancelLabel: '그만두기', onConfirm });
 	};
 
 	/**
