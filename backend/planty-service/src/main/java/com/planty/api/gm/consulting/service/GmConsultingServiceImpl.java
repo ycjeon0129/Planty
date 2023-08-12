@@ -24,11 +24,15 @@ public class GmConsultingServiceImpl implements GmConsultingService {
     private final ViewUserConsultingRepository viewUserConsultingRepository;
 
     @Override
-    public List<UserConsultingResponse> findConsultingList() {
+    public List<UserConsultingResponse> findConsultingList(Long spid) {
         List<UserConsultingResponse> consultingList = new ArrayList<>();
-        log.info("1");
-        List<ViewUserConsulting> list = viewUserConsultingRepository.findByGid(SecurityUtil.getCurrentGid());
-        log.info("{}", list);
+        Long gid = SecurityUtil.getCurrentGid();
+        List<ViewUserConsulting> list = new ArrayList<>();
+        if (spid == null) {
+            list = viewUserConsultingRepository.findByGid(gid);
+        } else {
+            list = viewUserConsultingRepository.findByGidAndSpid(gid, spid);
+        }
         for(ViewUserConsulting item : list) {
             consultingList.add(
                     UserConsultingResponse.builder()

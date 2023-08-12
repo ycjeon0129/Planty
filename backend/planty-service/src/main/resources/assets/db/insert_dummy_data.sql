@@ -11,25 +11,33 @@ VALUES('ssafy', 'ssafy202', 'potato', '말하는 감자'),
 INSERT INTO user_info(user_id, user_name, email, `password`)
 VALUES('ssafyUser','초보 가드너', 'ssafy@gmail.com', "ps1234"), ('ssafyDevelop', '초보 개발자', 'gardener@naver.com', "ps1234");
 
-INSERT INTO plant_info(name, tonic_period, size, place, edible)
-VALUES('토마토', 3, '소','실내',1), ('양파', 4, '소','실내',1);
+INSERT INTO plant_info(name, tonic_period, size, place, eatable)
+VALUES('토마토', 3, 0, 1, 1), ('양파', 4, 1, 1, 1), ('네펜데스', 8, 2, 2, 0);
 
 INSERT INTO subscribe_product(PLANT_INFO_idx, GM_INFO_gid, name, period, consulting_cnt, description, level, price)
 VALUES(1, 1 , '한달동안 토마토 키우기', 4, 4, '토마토를 먹고 싶나요? 당장 구독하세요', 1, 50000)
-,(2, 2 , '두달동안 양파 키우기', 8, 8, '양파는 좋은 식재료입니다!', 1, 80000);
+,(2, 2 , '두달동안 양파 키우기', 8, 8, '양파는 좋은 식재료입니다!', 1, 80000)
+,(3, 1 , '네펜데스와 함께 춤을', 52, 8, '식충 식물과 함께라면 벌레도 무섭지 않아요', 3, 490000);
 
 INSERT INTO user_subscribe(arduino_id, USER_INFO_uid, SUBSCRIBE_PRODUCT_spid, GM_INFO_gid, consulting_remain_cnt, start_date)
-VALUES(101,1,1,1,3,'2023-07-29'), (102,2,2,2,4, '2023-07-28'), (103,2,1,1,3, '2023-07-26'), (104,1,2,2,8, '2023-08-07');
+VALUES(101,1,1,1,3,'2023-07-29'), (102,2,2,2,4, '2023-07-28'), (103,2,1,1,3, '2023-07-26'), (104,1,2,2,8, '2023-08-07'), (105,1,3,1,8, '2023-08-07');
 
 INSERT INTO consulting_booking(USER_SUBSCRIBE_sid, USER_INFO_uid, GM_INFO_gid, TIME_TABLE_idx, date, cancel, active)
 VALUES(1,1,1,2,"2023-08-01", 0, 1), (1,1,1,7,"2023-08-08", 0, 0),
 (2,2,2,2,"2023-08-01", 0, 1), (2,2,2,3,"2023-08-03", 1, 0), (2,2,2,4,"2023-08-11", 0, 0),
-(3,2,1,1,"2023-08-02", 0, 1);
+(3,2,1,1,"2023-08-02", 0, 1), (3,2,1,1,"2023-08-02", 0, 0), (5,1,1,1,"2023-08-03", 0, 1),
+(3,2,1,1,"2023-09-02", 0, 0), (3,2,1,1,"2023-09-02", 1, 0), (5,1,1,1,"2023-09-03", 0, 0);
 
 INSERT INTO consulting_log(cid, RECOMMENDED_START_DATE, RECOMMENDED_END_DATE, times, content, start_time, end_time)
 VALUES(1,"2023-08-11", "2023-08-18", 1, '물 plz', '2023-08-01 10:32:00', '2023-08-01 10:58:00'),
 (3,"2023-08-11", "2023-08-18", 1,'햇빛 plz','2023-08-01 10:36:00', '2023-08-01 10:54:00'),
-(6,"2023-08-12", "2023-08-19", 1,'물 너무 많아요', '2023-08-01 10:04:00', '2023-08-01 10:29:00');
+(6,"2023-08-12", "2023-08-19", 1,'물 너무 많아요', '2023-08-01 10:04:00', '2023-08-01 10:29:00'),
+(8,"2023-08-12", "2023-08-19", 1,'벌레를 더 먹여주세요', '2023-08-03 10:04:00', '2023-08-03 10:29:00');
+
+INSERT INTO emergency_log(USER_INFO_uid, GM_INFO_gid, name, type, content, start_time, end_time)
+VALUES(1, 1, "다육이", 0, "놔두면 잘 큽니다", '2023-08-01 10:32:00', '2023-08-01 10:58:00'),
+(1,  1, "소나무", 1, '햇빛 plz','2023-08-01 10:36:00', '2023-08-01 10:54:00'),
+(2, 1, "동충하초", 1, '여름되면 잘 자랍니다', '2023-08-01 10:04:00', '2023-08-01 10:29:00');
   
 INSERT INTO plant_data(arduino_id, date, time, temp, humidity, soil)
 VALUES (103, '2023-08-07','11:00:00', 28.0,42.0,21.0),
