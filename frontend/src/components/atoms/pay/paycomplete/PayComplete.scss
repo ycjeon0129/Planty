@@ -1,0 +1,43 @@
+@import 'styles/base/_variable.scss';
+
+.pay-complete-box {
+	// border: 1px solid ghostwhite;
+	border-radius: 10px;
+	width: 340px;
+	height: 220px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	font-weight: 500;
+	background-color: white;
+}
+
+.pay-complete-text {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+
+.pay-complete-planty {
+	font-size: $h1;
+	color: #222222;
+	margin-top: 10px;
+}
+
+.pay-complete-cost {
+	font-size: $h1;
+	color: $primary;
+	margin-bottom: 10px;
+}
+.pay-complete-footer {
+	color: $black-200;
+	font-size: 15px;
+}
+
+.pay-gray {
+	background-color: gray;
+	width: 100vh;
+	height: 100vh;
+}
