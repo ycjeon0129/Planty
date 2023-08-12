@@ -1,13 +1,14 @@
 import ListItemTitle from 'components/atoms/common/ListItemTitle/ListItemTitle';
 import SubscribeStateBadge from 'components/atoms/subscribe/SubscribeStateBadge/SubscribeStateBadge';
 import SubscribeDetailItemLayout from 'components/layout/subscirbe/SubscribeDetailItemLayout/SubscribeDetailItemLayout';
-// import InfoList from 'components/organisms/common/InfoList/InfoList';
-// import { SUBSCRIBE_DETAIL_ITEM_LABELS } from 'constants/common/Labels';
+import InfoList from 'components/organisms/common/InfoList/InfoList';
+import { SUBSCRIBE_DETAIL_ITEM_LABELS } from 'constants/common/Labels';
 import React from 'react';
 import { ISubscribeDetail } from 'types/domain/subscribe';
 
 function SubscribeDetailItem({ subscribe }: { subscribe: ISubscribeDetail }) {
-	console.log(subscribe);
+	const detailInfo: string[] = [subscribe.startDate, subscribe.endDate, subscribe.greenmate];
+
 	return (
 		<SubscribeDetailItemLayout>
 			{/* 제목 & 구독상태뱃지 */}
@@ -20,8 +21,7 @@ function SubscribeDetailItem({ subscribe }: { subscribe: ISubscribeDetail }) {
 			{/* 작물명 */}
 			<h3>{subscribe.plant}</h3>
 			{/* 구독 정보(구독 시작일/종료일, 담당 GM, 영양제수) */}
-			{/* TODO : infoList 자료형이 맞지않아서 추후 수정해야함 */}
-			{/* <InfoList info={subscribe.detailInfo}  labels={SUBSCRIBE_DETAIL_ITEM_LABELS} /> */}
+			<InfoList info={detailInfo} labels={SUBSCRIBE_DETAIL_ITEM_LABELS} />
 		</SubscribeDetailItemLayout>
 	);
 }
