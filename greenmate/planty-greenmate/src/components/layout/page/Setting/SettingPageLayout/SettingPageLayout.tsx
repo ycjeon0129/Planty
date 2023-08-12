@@ -8,12 +8,9 @@ function SettingPageLayout({ children }: { children: ReactNode[] }) {
 		<PageLayout>
 			{children[0]}
 			<div className="setting-page-layout-container">
-				<div id="left">
+				<div id="center">
 					<ContentsLayout id="now-consulting-area">{children[1]}</ContentsLayout>
 					<ContentsLayout id="my-subscribe-area">{children[2]}</ContentsLayout>
-				</div>
-				<div id="right">
-					<ContentsLayout id="soon-booking-area">{children[3]}</ContentsLayout>
 				</div>
 			</div>
 		</PageLayout>

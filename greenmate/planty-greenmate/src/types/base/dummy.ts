@@ -53,3 +53,7 @@ export interface IProductDetail {
 		kitTool: string;
 	};
 }
+
+export interface ISettingMenu {
+	title: string;
+}
