@@ -6,8 +6,18 @@ import javax.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.DynamicInsert;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+
 @Getter
+@Setter
 @Builder
+@ToString
 @AllArgsConstructor
 @NoArgsConstructor
 @DynamicInsert
@@ -26,11 +36,14 @@ public class UserInfo extends BaseEntity {
     @Column(name = "user_name", length = 32, nullable = false)
     private String userName;
 
+    @Column(name = "password", length = 32, nullable = false)
+    private String password;
+
     @Column(name = "email", length = 64, unique = true, nullable = false)
     private String userEmail;
 
-    @Column(name = "auth", length = 1024, nullable = true)
-    private String auth;
+    @Column(name = "token", length = 1024, nullable = true)
+    private String token;
 
     @Column(name = "photo", length = 256, nullable = true)
     private String photo;
@@ -45,6 +58,7 @@ public class UserInfo extends BaseEntity {
     @Column(columnDefinition = "ENUM('KAKAO', 'NAVER', 'FACEBOOK', 'GOOGLE', 'PAYCO', 'NORMAL') DEFAULT 'NORMAL'")
     @Enumerated(EnumType.STRING)
     private UserType userType;
+
 
 //    public UserInfo update(OAuth2UserInfo oAuth2UserInfo) {
 //        this.nickname = oAuth2UserInfo.getNickname();

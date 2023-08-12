@@ -1,8 +1,10 @@
 package com.planty.api.consulting.service;
 
 import com.planty.api.consulting.response.UserConsultingResponse;
-import com.planty.db.entity.ViewUserConsulting;
-import com.planty.db.repository.UserConsultingRepository;
+import com.planty.common.exception.handler.ExceptionHandler;
+import com.planty.common.util.SecurityUtil;
+import com.planty.db.entity.*;
+import com.planty.db.repository.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -10,15 +12,28 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.planty.common.util.LogCurrent.*;
+import static com.planty.common.util.LogCurrent.START;
+
 @Slf4j
 @Service
 @RequiredArgsConstructor
 public class ConsultingServiceImpl implements ConsultingService {
-    private final UserConsultingRepository userConsultingRepository;
-    @Override
-    public List<UserConsultingResponse> getUserConsultingUid(Integer userId) {
+    private final ViewUserConsultingRepository viewUserConsultingRepository;
+    private final UserInfoRepository userInfoRepository;
+    private final TimeTableRepository timeTableRepository;
+    private final UserSubscribeRepository userSubscribeRepository;
+    private final ConsultingBookingRepository consultingBookingRepository;
+    private final GmInfoRepository gmInfoRepository;
+    @Override // 사용자 컨설팅 조회
+    public List<UserConsultingResponse> getUserConsultingUid() {
+        log.info(logCurrent(getClassName(), getMethodName(), START));
+        String email = SecurityUtil.getCurrentUserEmail();
+        UserInfo user = userInfoRepository.findByUserEmail(email)
+                .orElseThrow(() -> new NullPointerException(ExceptionHandler.USER_NOT_FOUND));
+
         List<UserConsultingResponse> consultingList = new ArrayList<>();
-        List<ViewUserConsulting> list = userConsultingRepository.findByUid(userId);
+        List<ViewUserConsulting> list = viewUserConsultingRepository.findByUid(user.getUid());
         for(ViewUserConsulting item : list) {
             UserConsultingResponse consult = UserConsultingResponse.builder()
                     .cid(item.getCid())
@@ -39,11 +54,16 @@ public class ConsultingServiceImpl implements ConsultingService {
         return consultingList;
     }
 
-    @Override
-    public List<UserConsultingResponse> getUserConsultingDetail(Integer sid) {
+    @Override // 사용자 컨설팅 상세 조회
+    public List<UserConsultingResponse> getUserConsultingDetail(Long sid) {
+        log.info(logCurrent(getClassName(), getMethodName(), START));
+        String email = SecurityUtil.getCurrentUserEmail();
+        UserInfo user = userInfoRepository.findByUserEmail(email)
+                .orElseThrow(() -> new NullPointerException(ExceptionHandler.USER_NOT_FOUND));
+
         List<UserConsultingResponse> consultingListDetail = new ArrayList<>();
 
-        List<ViewUserConsulting> list = userConsultingRepository.findBySid(sid);
+        List<ViewUserConsulting> list = viewUserConsultingRepository.findByUidAndSid(user.getUid(), sid);
         for(ViewUserConsulting item : list) {
             UserConsultingResponse consult = UserConsultingResponse.builder()
                     .cid(item.getCid())

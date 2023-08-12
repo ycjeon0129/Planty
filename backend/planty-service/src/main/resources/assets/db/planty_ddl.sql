@@ -61,8 +61,9 @@ CREATE TABLE IF NOT EXISTS `planty`.`user_info` (
   `uid` INT UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '사용자 식별키',
   `user_id` VARCHAR(32) NOT NULL COMMENT '사용자 id',
   `user_name` VARCHAR(32) NOT NULL COMMENT '사용자 이름',
+  `password` VARCHAR(32) NOT NULL COMMENT '비밀번호',
   `email` VARCHAR(64) NOT NULL COMMENT '사용자 이메일',
-  `auth` VARCHAR(1024) NULL DEFAULT NULL COMMENT '사용자 인증',
+  `token` VARCHAR(1024) NULL DEFAULT NULL COMMENT '사용자 인증 토큰',
   `photo` VARCHAR(256) NULL DEFAULT NULL COMMENT '사용자 프로필 사진',
   `join_date` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '사용자 가입일시',
   `modified_date` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '사용자 정보 수정일시',
@@ -85,9 +86,9 @@ CREATE TABLE IF NOT EXISTS `planty`.`plant_info` (
   `idx` INT UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '식물 식별키',
   `name` VARCHAR(128) NOT NULL COMMENT '식물 이름',
   `tonic_period` INT NULL DEFAULT NULL COMMENT '식물 영양제 제공 주기 (주)',
-  `size` VARCHAR(16) NULL DEFAULT NULL COMMENT '크기',
-  `place` VARCHAR(16) NULL DEFAULT NULL COMMENT '생육 장소',
-  `edible` TINYINT(1) NULL DEFAULT '0' COMMENT '식용 여부. 식용(1), 비식용(0)',
+  `size` INT NULL DEFAULT NULL COMMENT '크기. 소(0), 중(1), 대(2)',
+  `place` INT NULL DEFAULT NULL COMMENT '생육 장소. 무관(0), 실내(1), 실외(2)',
+  `eatable` TINYINT(1) NULL DEFAULT '0' COMMENT '식용 여부. 식용(1), 비식용(0)',
   PRIMARY KEY (`idx`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
@@ -106,8 +107,9 @@ CREATE TABLE IF NOT EXISTS `planty`.`subscribe_product` (
   `name` VARCHAR(128) NOT NULL COMMENT '구독 상품명',
   `period` INT NOT NULL COMMENT '구독 기간 (주)',
   `consulting_cnt` INT UNSIGNED NOT NULL DEFAULT '0' COMMENT '컨설팅 횟수',
+  `thumbnail` VARCHAR(256) NULL DEFAULT NULL COMMENT '썸네일 이미지 : CDN 링크',
   `description` VARCHAR(256) NULL DEFAULT NULL COMMENT '상세설명 : CDN 링크',
-  `level` INT UNSIGNED NOT NULL COMMENT '구독 상품 난이도, level : 1,2,3',
+  `level` INT UNSIGNED NOT NULL COMMENT '구독 상품 난이도, level : 1~5',
   `price` INT NOT NULL COMMENT '구독 상품 가격',
   PRIMARY KEY (`spid`),
   INDEX `SUBSCRIBE_PRODUCT_TO_PLANT_INFO_FK_idx` (`PLANT_INFO_idx` ASC) VISIBLE,
@@ -130,7 +132,7 @@ DROP TABLE IF EXISTS `planty`.`user_subscribe` ;
 
 CREATE TABLE IF NOT EXISTS `planty`.`user_subscribe` (
   `sid` INT UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '사용자 구독정보 식별키',
-  `arduino_id` INT UNSIGNED NOT NULL COMMENT '아두이노 id - UNIQUE',
+  `arduino_id` INT UNSIGNED DEFAULT NULL COMMENT '아두이노 id - UNIQUE',
   `USER_INFO_uid` INT UNSIGNED NOT NULL COMMENT '사용자 식별키(외래키)',
   `SUBSCRIBE_PRODUCT_spid` INT UNSIGNED NOT NULL COMMENT '구독상품 식별키(외래키)',
   `GM_INFO_gid` INT UNSIGNED NOT NULL COMMENT 'GM 식별키(외래키)',
@@ -224,7 +226,7 @@ CREATE TABLE IF NOT EXISTS `planty`.`emergency_log` (
   `USER_INFO_uid` INT UNSIGNED NOT NULL COMMENT '사용자 식별키(외래키)',
   `GM_INFO_gid` INT UNSIGNED NOT NULL COMMENT 'GM 식별키(외래키)',
   `name` VARCHAR(32) NULL DEFAULT NULL COMMENT '식물 이름',
-  `type` TINYINT(1) NOT NULL DEFAULT '0' COMMENT '상담 유형. 화상(0), 채팅(1)',
+  `type` TINYINT(1) NOT NULL DEFAULT '0' COMMENT '상담 유형. 채팅(0), 화상(1)',
   `content` TEXT NULL DEFAULT NULL COMMENT '상담 내용',
   `start_time` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '실제 시작 시간',
   `end_time` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '실제 종료 시간',
@@ -291,18 +293,16 @@ COLLATE = utf8mb4_unicode_ci;
 DROP TABLE IF EXISTS `planty`.`plant_data` ;
 
 CREATE TABLE IF NOT EXISTS `planty`.`plant_data` (
-  `arduino_id` INT UNSIGNED NOT NULL COMMENT '사용자 구독정보 식별키(외래키)',
-  `GM_INFO_gid` INT UNSIGNED NOT NULL COMMENT 'GM 식별키(외래키)',
-  `date` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '측정 일시',
-  `temp` FLOAT NULL DEFAULT NULL COMMENT '온도',
-  `humidity` FLOAT NULL DEFAULT NULL COMMENT '습도',
-  `soil` FLOAT NULL DEFAULT NULL COMMENT '토양습도',
-  INDEX `PLANT_DATA_TO_USER_SUBSCRIBE_FK_arduino_id` (`arduino_id` ASC) VISIBLE,
-  INDEX `PLANT_DATA_TO_GM_INFO_FK_gid` (`GM_INFO_gid` ASC) VISIBLE,
-  CONSTRAINT `PLANT_DATA_TO_GM_INFO_FK_gid`
-    FOREIGN KEY (`GM_INFO_gid`)
-    REFERENCES `planty`.`gm_info` (`gid`),
-  CONSTRAINT `PLANT_DATA_TO_USER_SUBSCRIBE_FK_arduino_id`
+    `idx` INT UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '식물 데이터 식별키',
+    `arduino_id` INT UNSIGNED NOT NULL COMMENT '사용자 구독정보 식별키(외래키)',
+    `date` DATE NOT NULL DEFAULT (CURRENT_DATE) COMMENT '측정일',
+    `time` TIME NOT NULL DEFAULT (CURRENT_TIME) COMMENT '측정시간',
+    `temp` FLOAT NULL DEFAULT NULL COMMENT '온도',
+    `humidity` FLOAT NULL DEFAULT NULL COMMENT '습도',
+    `soil` FLOAT NULL DEFAULT NULL COMMENT '토양습도',
+    PRIMARY KEY (`idx`),
+    INDEX `PLANT_DATA_TO_USER_SUBSCRIBE_FK_arduino_id` (`arduino_id` ASC) VISIBLE,
+    CONSTRAINT `PLANT_DATA_TO_USER_SUBSCRIBE_FK_arduino_id`
     FOREIGN KEY (`arduino_id`)
     REFERENCES `planty`.`user_subscribe` (`arduino_id`))
 ENGINE = InnoDB
@@ -331,14 +331,19 @@ COLLATE = utf8mb4_unicode_ci;
 DROP TABLE IF EXISTS `planty`.`view_user_consulting`;
 DROP VIEW IF EXISTS `planty`.`view_user_consulting` ;
 USE `planty`;
-CREATE  OR REPLACE ALGORITHM=UNDEFINED DEFINER=`planty`@`localhost`
+CREATE  OR REPLACE ALGORITHM=UNDEFINED DEFINER=`planty`@`%`
 SQL SECURITY DEFINER VIEW `planty`.`view_user_consulting`
 AS select `cb`.`USER_INFO_uid` AS `uid`,`us`.`sid` AS `sid`,`cb`.`cid` AS `cid`,
-      `cb`.`TIME_TABLE_idx` AS `time`,`cb`.`date` AS `date`,`cb`.`cancel` AS `cancel`,
-      `cb`.`active` AS `active`,`sp`.`name` AS `name`,
-      `cl`.`RECOMMENDED_START_DATE` AS `RECOMMENDED_START_DATE`,`cl`.`RECOMMENDED_END_DATE` AS `RECOMMENDED_END_DATE`,
-      `cl`.`content` AS `content`,`cl`.`start_time` AS `start_time`,
-      `cl`.`end_time` AS `end_time` from (((`planty`.`consulting_booking` `cb` left join `planty`.`consulting_log` `cl` on((`cl`.`cid` = `cb`.`cid`))) join `planty`.`user_subscribe` `us` on((`cb`.`USER_SUBSCRIBE_sid` = `us`.`sid`))) join `planty`.`subscribe_product` `sp` on((`us`.`SUBSCRIBE_PRODUCT_spid` = `sp`.`spid`))) order by `cb`.`cid`;
+          `sp`.`spid` AS `spid`,`gi`.`gid` AS `gid`,`cb`.`TIME_TABLE_idx` AS `time`,`cb`.`date` AS `date`,`cb`.`cancel` AS `cancel`,
+          `cb`.`active` AS `active`,`sp`.`name` AS `name`,`gi`.`nickname` AS `gm_name`,
+          `cl`.`RECOMMENDED_START_DATE` AS `RECOMMENDED_START_DATE`,`cl`.`RECOMMENDED_END_DATE` AS `RECOMMENDED_END_DATE`,
+          `cl`.`content` AS `content`,`cl`.`start_time` AS `start_time`,
+          `cl`.`end_time` AS `end_time`
+   from ((((`planty`.`consulting_booking` `cb` left join `planty`.`consulting_log` `cl` on((`cb`.`cid` = `cl`.`cid`)))
+       join `planty`.`user_subscribe` `us` on((`cb`.`USER_SUBSCRIBE_sid` = `us`.`sid`)))
+       join `planty`.`subscribe_product` `sp` on((`us`.`SUBSCRIBE_PRODUCT_spid` = `sp`.`spid`)))
+       join `planty`.`gm_info` `gi` on((`sp`.`GM_INFO_gid` = `gi`.`gid`))) order by `cb`.`cid`;
+
 
 -- -----------------------------------------------------
 -- View `planty`.`view_user_subscribe`
@@ -346,14 +351,43 @@ AS select `cb`.`USER_INFO_uid` AS `uid`,`us`.`sid` AS `sid`,`cb`.`cid` AS `cid`,
 DROP TABLE IF EXISTS `planty`.`view_user_subscribe`;
 DROP VIEW IF EXISTS `planty`.`view_user_subscribe` ;
 USE `planty`;
-CREATE  OR REPLACE ALGORITHM=UNDEFINED DEFINER=`planty`@`localhost`
+CREATE  OR REPLACE ALGORITHM=UNDEFINED DEFINER=`planty`@`%`
 SQL SECURITY DEFINER VIEW `planty`.`view_user_subscribe`
-    AS select `us`.`sid` AS `sid`,
-   `us`.`USER_INFO_uid` AS `uid`,`us`.`arduino_id` AS `arduino_id`,`us`.`consulting_remain_cnt` AS `consulting_remain_cnt`,
-   `us`.`start_date` AS `start_date`,`us`.`end_date` AS `end_date`,`sp`.`name` AS `sp_name`,
-   `sp`.`period` AS `period`,`sp`.`consulting_cnt` AS `consulting_cnt`,`sp`.`description` AS `description`,
-   `pi`.`name` AS `pi_name`,`pi`.`tonic_period` AS `tonic_period`,`gm`.`nickname` AS `nickname` from (((`planty`.`subscribe_product` `sp` join `planty`.`gm_info` `gm` on((`gm`.`gid` = `sp`.`GM_INFO_gid`))) join `planty`.`user_subscribe` `us` on((`us`.`SUBSCRIBE_PRODUCT_spid` = `sp`.`spid`))) join `planty`.`plant_info` `pi` on((`pi`.`idx` = `sp`.`PLANT_INFO_idx`)));
-
+AS select `us`.`sid` AS `sid`,`us`.`USER_INFO_uid` AS `uid`,
+          `us`.`arduino_id` AS `arduino_id`,`us`.`consulting_remain_cnt` AS `consulting_remain_cnt`,
+          `us`.`start_date` AS `start_date`,`us`.`end_date` AS `end_date`,
+          `sp`.`name` AS `sp_name`,`sp`.`period` AS `period`,
+          `sp`.`consulting_cnt` AS `consulting_cnt`,`sp`.`description` AS `description`,
+          `pi`.`name` AS `pi_name`,`pi`.`tonic_period` AS `tonic_period`,
+          `gm`.`nickname` AS `nickname`,`cb`.`date` AS `cb_date`,
+          `cb`.`TIME_TABLE_idx` AS `cb_time`,`cb`.`cancel` AS `cancel`,
+          `cb`.`active` AS `active` from
+                   ((((`planty`.`subscribe_product` `sp` join `planty`.`gm_info` `gm` on((`gm`.`gid` = `sp`.`GM_INFO_gid`)))
+                       join `planty`.`user_subscribe` `us` on((`us`.`SUBSCRIBE_PRODUCT_spid` = `sp`.`spid`)))
+                       join `planty`.`plant_info` `pi` on((`pi`.`idx` = `sp`.`PLANT_INFO_idx`)))
+                       left join `planty`.`consulting_booking` `cb` on(((`us`.`sid` = `cb`.`USER_SUBSCRIBE_sid`)
+                       and `cb`.`cid` in (select max(`planty`.`consulting_booking`.`cid`)
+                                          from `planty`.`consulting_booking` group by `planty`.`consulting_booking`.`USER_SUBSCRIBE_sid`)))) order by `us`.`sid`;
+                                          
+                                          
+-- -----------------------------------------------------
+-- View `planty`.`view_user_emergency`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `planty`.`view_user_emergency`;
+DROP VIEW IF EXISTS `planty`.`view_user_emergency` ;
+USE `planty`;
+CREATE  OR REPLACE ALGORITHM=UNDEFINED DEFINER=`planty`@`%`
+SQL SECURITY DEFINER VIEW `planty`.`view_user_emergency`
+AS select `el`.`eid` AS `eid`,
+		  `el`.`type` AS `type`,
+          `el`.`name` AS `name`,
+          `el`.`start_time` AS `start_date`,
+          `el`.`end_time` AS `end_date`,
+          `el`.`content` AS `advice`,
+          `gm`.`nickname` AS `greenmate`,
+          `ui`.`user_name` AS `user` from
+			   ((`planty`.`emergency_log` `el` join `planty`.`gm_info` `gm` on (`gm`.`gid` = `el`.`GM_INFO_gid`))
+					join `planty`.`user_info` `ui` on(`ui`.`uid` = `el`.`USER_INFO_uid`));
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
