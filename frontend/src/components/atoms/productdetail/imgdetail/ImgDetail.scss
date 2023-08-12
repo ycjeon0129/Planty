@@ -44,14 +44,16 @@
 	position: absolute;
 	bottom: 0;
 	width: 100%;
-	height: 40px;
-	font-size: var.$h5;
+	padding: 10px;
+	font-size: var.$p3;
+	color: var.$black-300;
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	cursor: pointer;
 	background-color: var.$white;
 	border-radius: 0 0 var.$rd-sm var.$rd-sm;
+	border-top: 1px solid var.$border-100;
 }
 
 .expanded .button-box {
