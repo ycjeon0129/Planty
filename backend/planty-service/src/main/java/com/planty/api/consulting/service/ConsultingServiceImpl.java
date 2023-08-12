@@ -1,5 +1,6 @@
 package com.planty.api.consulting.service;
 
+import com.planty.api.booking.response.BookingResponse;
 import com.planty.api.consulting.response.UserConsultingResponse;
 import com.planty.common.exception.handler.ExceptionHandler;
 import com.planty.common.util.SecurityUtil;
@@ -51,6 +52,7 @@ public class ConsultingServiceImpl implements ConsultingService {
                     .build();
             consultingList.add(consult);
         }
+        log.info(logCurrent(getClassName(), getMethodName(), END));
         return consultingList;
     }
 
@@ -85,6 +87,7 @@ public class ConsultingServiceImpl implements ConsultingService {
                     .build();
             consultingListDetail.add(consult);
         }
+        log.info(logCurrent(getClassName(), getMethodName(), END));
         return consultingListDetail;
     }
 }

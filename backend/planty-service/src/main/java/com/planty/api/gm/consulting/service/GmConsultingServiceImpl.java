@@ -3,6 +3,7 @@ package com.planty.api.gm.consulting.service;
 import com.planty.api.consulting.response.UserConsultingResponse;
 import com.planty.common.exception.handler.ExceptionHandler;
 import com.planty.common.util.SecurityUtil;
+import com.planty.db.entity.GmInfo;
 import com.planty.db.entity.ViewUserConsulting;
 import com.planty.db.repository.*;
 import lombok.RequiredArgsConstructor;
@@ -27,11 +28,14 @@ public class GmConsultingServiceImpl implements GmConsultingService {
     public List<UserConsultingResponse> findConsultingList(Long spid) {
         List<UserConsultingResponse> consultingList = new ArrayList<>();
         Long gid = SecurityUtil.getCurrentGid();
+        GmInfo gm = gmInfoRepository.findByGid(gid)
+                .orElseThrow(() -> new NullPointerException(ExceptionHandler.GM_NOT_FOUND));
+
         List<ViewUserConsulting> list = new ArrayList<>();
         if (spid == null) {
-            list = viewUserConsultingRepository.findByGid(gid);
+            list = viewUserConsultingRepository.findByGid(gm.getGid());
         } else {
-            list = viewUserConsultingRepository.findByGidAndSpid(gid, spid);
+            list = viewUserConsultingRepository.findByGidAndSpid(gm.getGid(), spid);
         }
         for(ViewUserConsulting item : list) {
             consultingList.add(
