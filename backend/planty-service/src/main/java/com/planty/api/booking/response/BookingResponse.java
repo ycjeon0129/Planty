@@ -7,7 +7,7 @@ import javax.validation.constraints.NotNull;
 @Getter
 @Builder
 @ToString
-public class UserBookingResponse {
+public class BookingResponse {
     @NotNull
     private Long sid; //사용자 구독정보 식별키
     @NotNull

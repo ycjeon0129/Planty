@@ -1,7 +1,7 @@
 package com.planty.api.booking.service;
 
 import com.planty.api.booking.request.UserBookingRequest;
-import com.planty.api.booking.response.UserBookingResponse;
+import com.planty.api.booking.response.BookingResponse;
 import com.planty.common.exception.handler.ExceptionHandler;
 import com.planty.common.util.SecurityUtil;
 import com.planty.db.entity.*;
@@ -19,7 +19,6 @@ import static com.planty.common.util.LogCurrent.END;
 @Service
 @RequiredArgsConstructor
 public class BookingServiceImpl implements BookingService {
-    private final ViewUserConsultingRepository viewUserConsultingRepository;
     private final UserInfoRepository userInfoRepository;
     private final TimeTableRepository timeTableRepository;
     private final UserSubscribeRepository userSubscribeRepository;
@@ -27,23 +26,23 @@ public class BookingServiceImpl implements BookingService {
     private final GmInfoRepository gmInfoRepository;
 
     @Override // 사용자 예약 조회
-    public List<UserBookingResponse> getUserBooking() {
+    public List<BookingResponse> getUserBooking() {
         log.info(logCurrent(getClassName(), getMethodName(), START));
         String email = SecurityUtil.getCurrentUserEmail();
         UserInfo user = userInfoRepository.findByUserEmail(email)
                 .orElseThrow(() -> new NullPointerException(ExceptionHandler.USER_NOT_FOUND));
 
-        List<UserBookingResponse> bookingList = new ArrayList<>();
-        List<ViewUserConsulting> list = viewUserConsultingRepository.findByUid(user.getUid());
-        for(ViewUserConsulting item : list) {
-            UserBookingResponse booking = UserBookingResponse.builder()
-                    .sid(item.getSid())
+        List<BookingResponse> bookingList = new ArrayList<>();
+        List<ConsultingBooking> list = consultingBookingRepository.findByUid(user);
+        for (ConsultingBooking item : list) {
+            BookingResponse booking = BookingResponse.builder()
+                    .sid(item.getSid().getSid())
                     .cid(item.getCid())
-                    .title(item.getName())
+                    .title(item.getSid().getSpid().getName())
                     .date(item.getDate())
-                    .time(item.getTime())
-                    .greenmate(item.getGmName())
-                    .user(user.getUserName())
+                    .time(item.getTimeIdx().getIdx())
+                    .greenmate(item.getGid().getNickname())
+                    .user(item.getUid().getUserName())
                     .build();
             bookingList.add(booking);
         }
