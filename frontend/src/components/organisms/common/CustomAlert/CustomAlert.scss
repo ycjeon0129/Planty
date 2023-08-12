@@ -1,40 +1,50 @@
+@use 'styles/base/variable' as var;
+
 .react-confirm-alert-overlay {
-	background-color: rgba(0, 0, 0, 0.7);
+	background: var.$ap-black-50;
 	z-index: 9999;
 }
 
 .popup-overlay {
-	padding: 20px 30px;
-	background: rgb(255, 255, 255);
-	color: #222;
+	margin: 0 30px;
+	max-width: 500px;
+	padding: 20px 20px;
+	background: var.$white;
+	border-radius: 10px;
 
 	h1 {
 		margin-bottom: 14px;
-		font-size: 18px;
 		font-weight: bold;
 	}
 
 	p {
-		margin-bottom: 14px;
+		margin-bottom: 20px;
+		font-size: 1.25rem;
 	}
 
 	.btn-group {
 		text-align: right;
 
 		button {
-			padding: 2px 12px 0 12px;
+			padding: 3px 14px 0 14px;
 			text-align: center;
 			font-size: 14px;
-			font-weight: bold;
-			line-height: 30px;
+			line-height: 24px;
+			border-radius: 20px;
 
 			&:first-child {
+				background-color: var.$light-400;
 				margin-right: 10px;
 			}
 
 			&.btn-confirm {
-				background-color: #ff5b59;
-				color: #fff;
+				background-color: var.$primary;
+				color: white;
+			}
+
+			.txt-wrap {
+				display: inline-block;
+				padding-bottom: 4px;
 			}
 		}
 	}
