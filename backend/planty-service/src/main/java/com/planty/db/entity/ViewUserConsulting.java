@@ -14,15 +14,29 @@ import lombok.*;
 public class ViewUserConsulting {
     @Id
     @Column(name = "cid", nullable = false) // 컨설팅 예약 식별키
-    private Integer cid;
+    private Long cid;
 
     @NonNull
     @Column(name = "uid")  // 사용자 식별키
-    private Integer uid;
+    private Long uid;
 
     @NonNull
     @Column(name = "sid")  // 사용자 구독정보 식별키
-    private Integer sid;
+    private Long sid;
+
+//    @ManyToOne(fetch = FetchType.LAZY)
+//    @JoinColumn(referencedColumnName = "spid", name = "spid")
+    @NonNull
+    @Column(name = "spid")  // 구독 상품 식별키
+    private Long spid;
+
+    @NonNull
+    @Column(name = "gid") // 그린메이트 식별키
+    private Long gid;
+
+    @NonNull
+    @Column(name = "gm_name") // Gm nickname
+    private String gmName;
 
     @NonNull
     @Column(name = "time") // 시간 식별기

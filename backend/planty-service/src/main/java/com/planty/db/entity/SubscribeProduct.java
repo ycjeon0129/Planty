@@ -20,7 +20,7 @@ public class SubscribeProduct {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "spid", nullable = false) // 식별키
-    private Integer spid;
+    private Long spid;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(referencedColumnName = "idx", name = "PLANT_INFO_idx") // 식물 식별키
@@ -28,7 +28,7 @@ public class SubscribeProduct {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(referencedColumnName = "gid", name = "GM_INFO_gid") // GM 식별키
-    private GmInfo GMInfoGid;
+    private GmInfo gid;
 
     @NonNull
     @Column(name = "name", length = 128, nullable = false) // 구독 상품명
@@ -41,6 +41,9 @@ public class SubscribeProduct {
     @NonNull
     @Column(name = "consulting_cnt", nullable = false) // 컨설팅 횟수
     private Integer consultingCnt;
+
+    @Column(name = "thumbnail") // 썸네일 이미지 : CDN 링크
+    private String thumbnail;
 
     @Column(name = "description") // 상세설명 : CDN 링크
     private String description;

@@ -3,6 +3,8 @@ package com.planty.db.entity;
 import javax.persistence.*;
 import lombok.*;
 
+import java.io.Serializable;
+
 @ToString
 @Getter
 @Setter
@@ -11,16 +13,18 @@ import lombok.*;
 @RequiredArgsConstructor
 @Table(name = "view_user_subscribe")
 @Entity
-public class ViewUserSubscribe {
+public class ViewUserSubscribe{
     @Id
     @Column(name = "sid", nullable = false) // 사용자 구독정보 식별키
-    private Integer sid;
+    private Long sid;
 
     @Column(name = "uid") // 사용자 식별키
-    private Integer uid;
+    private Long uid;
 
-    @Column(name = "arduino_id") // 아두이노 id
-    private Integer arduinoId;
+//    @OneToOne(fetch = FetchType.LAZY)
+//    @JoinColumn(referencedColumnName = "arduino_id", name = "arduino_id") // 아두이노 id
+    @Column(name = "arduino_id")
+    private Integer arduinoId; //아두이노 id
 
     @Column(name = "consulting_remain_cnt") // 남은 컨설팅 횟수
     private Integer consultingRemainCnt;
@@ -51,4 +55,17 @@ public class ViewUserSubscribe {
 
     @Column(name = "nickname") // Gm 닉네임
     private String GMNickname;
+
+    @Column(name = "cb_date") // 예약 날짜
+    private String cbDate;
+
+    @Column(name = "cancel") // 취소여부. 취소(1), 미취소(0)
+    private Boolean cbCancel;
+
+    @Column(name = "active") // 실행여부. 실행(1), 미실행(0)
+    private Boolean cbActive;
+
+    @Column(name = "cb_time") // 시간 식별키
+    private Integer cbTime;
+
 }

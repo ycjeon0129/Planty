@@ -12,9 +12,9 @@ import javax.validation.constraints.NotNull;
 @Setter
 public class UserConsultingResponse {
     @NonNull
-    private Integer cid; // 컨설팅 예약 식별키
+    private Long cid; // 컨설팅 예약 식별키
 
-    private Integer sid; // 사용자 구독정보 식별키
+    private Long sid; // 사용자 구독정보 식별키
 
     @NonNull
     private Integer time; // 시간 식별기
@@ -42,7 +42,7 @@ public class UserConsultingResponse {
     private String endTime; // 실제 종료 시간
 
     @Builder
-    public UserConsultingResponse(Integer cid, Integer sid, Integer time
+    public UserConsultingResponse(Long cid, Long sid, Integer time
     , String date, Boolean cancel, Boolean active, String subscribeProductName
     , String recommendedStartDate, String recommendedEndDate, String advice, String startTime, String endTime) {
         this.cid = cid;

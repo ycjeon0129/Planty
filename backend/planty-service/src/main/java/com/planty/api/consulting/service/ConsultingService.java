@@ -5,6 +5,6 @@ import com.planty.api.consulting.response.UserConsultingResponse;
 import java.util.List;
 
 public interface ConsultingService {
-    List<UserConsultingResponse> getUserConsultingUid(Integer uid);
-    List<UserConsultingResponse> getUserConsultingDetail(Integer sid);
+    List<UserConsultingResponse> getUserConsultingUid();
+    List<UserConsultingResponse> getUserConsultingDetail(Long sid);
 }

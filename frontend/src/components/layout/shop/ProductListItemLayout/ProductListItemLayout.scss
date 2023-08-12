@@ -23,7 +23,8 @@
 
 	#bottom {
 		display: flex;
-		
+		gap: 10px;
+
 		img {
 			border-radius: var.$rd-sm;
 			min-width: var.$img-size-sm;
@@ -34,7 +35,6 @@
 
 		#right {
 			@include flex-column;
-			padding: 0 var.$pd-lg;
 			width: 100%;
 			justify-content: space-between;
 
@@ -48,8 +48,8 @@
 		}
 		#leaf {
 			img {
-				min-width: 18px;
-				height: 18px;
+				min-width: 16px;
+				height: 16px;
 			}
 		}
 

@@ -3,21 +3,20 @@
 @import 'styles/mixins/flex';
 
 .price-final-box {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    height: 60px;
-    border-radius: var.$rd-sm;
-    background-color: var.$white;
-    position: sticky;
-    bottom: 56px;
-    left: 10px;
-    right: 10px;
-    padding: 0 10px;
-    @include border-gray;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	height: 60px;
+	border-radius: var.$rd-sm var.$rd-sm 0 0;
+	background-color: var.$white;
+	position: sticky;
+	bottom: 56px;
+	left: 10px;
+	right: 10px;
+	padding: 0 10px;
 }
 
 .price {
-    font-size: var.$h2;
-    margin-left: var.$mr-lg;
+	font-size: var.$h2;
+	margin-left: var.$mr-lg;
 }
