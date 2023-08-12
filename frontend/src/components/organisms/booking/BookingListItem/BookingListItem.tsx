@@ -62,8 +62,10 @@ function BookingListItem({ booking }: { booking: IBooking }) {
 								<div />
 							)}
 						</div>
-						<InfoRow title="가드너" content={booking.user} />
-						<InfoRow title="그린메이트" content={booking.greenmate} />
+						<div id="detail-content">
+							<InfoRow title="가드너" content={booking.user} />
+							<InfoRow title="그린메이트" content={booking.greenmate} />
+						</div>
 					</div>
 				</div>
 			</AccordionDetails>
