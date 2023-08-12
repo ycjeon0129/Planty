@@ -56,8 +56,8 @@ function BookingListItem({ booking }: { booking: IBooking }) {
 								예약 취소
 							</button>
 						</div>
-						<InfoRow title="- 가드너" content={booking.user} />
-						<InfoRow title="- 그린메이트" content={booking.greenmate} />
+						<InfoRow title="가드너" content={booking.user} />
+						<InfoRow title="그린메이트" content={booking.greenmate} />
 					</div>
 				</div>
 			</AccordionDetails>
