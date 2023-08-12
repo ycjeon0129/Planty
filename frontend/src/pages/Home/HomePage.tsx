@@ -8,6 +8,7 @@ import SquareShortcutButton from 'components/atoms/common/SquareShortcutButton/S
 import RectShortcutButton from 'components/atoms/common/RectShortcutButton/RectShortcutButton';
 import Header from 'components/organisms/common/Header/Header';
 import useMovePage from 'hooks/useMovePage';
+import CustomAlert from 'components/organisms/common/CustomAlert/CustomAlert';
 
 function HomePage() {
 	const { movePage } = useMovePage();
@@ -29,7 +30,15 @@ function HomePage() {
 			<RectShortcutButton
 				text="채팅 컨설팅"
 				handleClick={() => {
-					toast.success('채팅 컨설팅 입니다');
+					CustomAlert({
+						title: '주문 취소',
+						desc: '주문을 취소하시겠습니까? 주문 확인 전까지 취소가 가능합니다.',
+						btnTitle: '주문 취소하기',
+						params: { id: 0 },
+						onAction: () => {
+							toast.success('채팅 컨설팅 입니다');
+						},
+					});
 				}}
 				type="consulting-chat"
 			/>
