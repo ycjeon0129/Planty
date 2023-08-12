@@ -23,4 +23,7 @@ public class BookingResponse {
     @NotNull
     private String user; // 사용자 이름
 
+    private Boolean cancel; // 취소여부. 취소(1), 미취소(0)
+
+    private Boolean active;  // 실행여부. 실행(1), 미실행(0)
 }
