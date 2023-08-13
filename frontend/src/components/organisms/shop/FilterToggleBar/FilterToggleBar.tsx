@@ -7,12 +7,12 @@ import FilterToggle from 'components/atoms/common/FilterToggle/FilterToggle';
  * @param isActive 활성화상태[초록or회색]
  * @param handleClick 클릭함수
  */
-function FilterToggleBar({ clickFunc }: { clickFunc: () => void }) {
+function FilterToggleBar({ clickFunc }: { clickFunc: (idx: number) => void }) {
 	const [activeIndex, setActiveIndex] = useState(0);
 	const textbox = ['실내', '실외', '식용', '비식용'];
 	const setNumber = (idx: number) => {
 		setActiveIndex(idx); // 클릭시 activeIndex
-		clickFunc(); // recoil로 idx받아서 사용해야 할듯
+		clickFunc(idx);
 	};
 
 	return (
