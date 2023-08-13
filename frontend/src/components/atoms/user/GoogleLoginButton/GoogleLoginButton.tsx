@@ -12,7 +12,7 @@ function GoogleLoginButton() {
 		onSuccess: () => {
 			// TODO : 임의로 AT 대신, uid 1 저장
 			LocalStorage.setItem('AccessToken', '1');
-			movePage('/');
+			movePage('/', null);
 		},
 		flow: 'auth-code',
 	});
