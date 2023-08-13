@@ -16,3 +16,11 @@ export const findSubscribeApi = async (sid: number) => {
 
 	return response;
 };
+
+export const saveSubscribeApi = async (spid: number) => {
+	const body = JSON.stringify({
+		spid,
+	});
+	const response = await instance.post(`/subscribes`, body);
+	return response;
+};

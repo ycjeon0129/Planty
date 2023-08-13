@@ -1,11 +1,12 @@
 import React from 'react';
 import './EndButton.scss';
 import { useNavigate } from 'react-router-dom';
+import { IProductDetail } from 'types/domain/product';
 
-function EndButton({ pid }: { pid: number }) {
+function EndButton({ product }: { product: IProductDetail }) {
 	const navigate = useNavigate(); // Get
 	const handlePurchaseClick = () => {
-		navigate(`/payment/${pid}`);
+		navigate(`/payment/${product.spid}`, { state: { product } });
 	};
 	return (
 		<div className="btn-outer-container">

@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import PayComplete from 'components/atoms/pay/paycomplete/PayComplete';
-import { dummyProduct } from 'dummy';
 import './Success.scss';
 import { useLocation } from 'react-router-dom';
 import PayLoadingPageLayout from 'components/layout/Page/PayLoadingPageLayout/PayLoadingPageLayout';
 
 function Success() {
-	const pid = parseInt(useLocation().pathname.split('/')[2], 10);
+	const { state } = useLocation();
 	const [isLoading, setIsLoading] = useState(true);
 
 	useEffect(() => {
@@ -21,7 +20,7 @@ function Success() {
 
 	return (
 		<div className="complete-container">
-			{isLoading ? <PayLoadingPageLayout /> : <PayComplete product={dummyProduct[pid]} />}
+			{isLoading ? <PayLoadingPageLayout /> : <PayComplete price={state.price} />}
 		</div>
 	);
 }

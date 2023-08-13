@@ -18,9 +18,9 @@ function TicketInfo() {
 			</div>
 
 			<div>
-				{user?.ticketCount ? (
+				{user?.emergencyCount ? (
 					<span className="ticket-info-msg">
-						현재 <span>{user?.ticketCount}개의 이용권</span>을 <br />
+						현재 <span>{user?.emergencyCount}개의 이용권</span>을 <br />
 						보유하고 있습니다.
 					</span>
 				) : (
@@ -32,7 +32,7 @@ function TicketInfo() {
 				)}
 				<Button
 					isActive
-					text={`이용권 ${user?.ticketCount ? '추가' : ''}구매하기`}
+					text={`이용권 ${user?.emergencyCount ? '추가' : ''}구매하기`}
 					handleClick={() => {
 						alert('이용권 구매하기');
 					}}
