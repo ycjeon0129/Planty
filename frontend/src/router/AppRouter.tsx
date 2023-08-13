@@ -28,6 +28,8 @@ import CheckoutPage from 'pages/Payment/pages/Checkout';
 import { Toaster } from 'react-hot-toast';
 import { SimpleDialogContainer } from 'react-simple-dialogs';
 import 'styles/index.scss';
+import EmergencyHistoryPage from 'pages/Emergency/EmergencyHistoryPage';
+import SubConsultingHistoryPage from 'pages/Mypage/SubConsultingHistoryPage';
 import PrivateRoute from './PrivateRoute';
 
 function AppRouter() {
@@ -63,6 +65,8 @@ function AppRouter() {
 						<Route path="/mypage" element={<MypagePage />} />
 						<Route path="/mypage/booking" element={<BookingManagementPage />} />
 						<Route path="/mypage/:menu" element={<MypageSubMenuDetailPage />} />
+						<Route path="/mypage/:menu/emergencies" element={<EmergencyHistoryPage />} />
+						<Route path="/mypage/:menu/consultings" element={<SubConsultingHistoryPage />} />
 						<Route path="/subscribe" element={<SubscribePage />} />
 						<Route path="/subscribe/:sid" element={<SubscribeDetailPage />} />
 						<Route path="/subscribe/:sid/booking" element={<BookingPage />} />
