@@ -2,6 +2,8 @@ import { instance } from './instance';
 
 export const findAllConsultingApi = async () => {
 	const response = await instance.get('/consultings');
+	// const answer = response.data;
+
 	return response;
 };
 
