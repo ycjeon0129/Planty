@@ -16,8 +16,8 @@ function ProductListItem({ product }: { product: IProduct }) {
 	const { movePage } = useMovePage();
 	const info: IProductInfo = { period: product.period, level: product.level, price: product.price };
 
-	const handleBuy = () => {
-		movePage(`/shop/pay/${product.spid}`);
+	const handleClick = () => {
+		movePage(`/shop/detail/${product.spid}`);
 	};
 
 	return (
@@ -25,7 +25,7 @@ function ProductListItem({ product }: { product: IProduct }) {
 			<ListItemTitle title={product.name} url={`detail/${product.spid}`} />
 			<img src={product.imgUrl ?? require('assets/images/defaultImage.png')} alt={product.plantName} />
 			<InfoList info={info} labels={PRODUCT_LIST_ITEM_LABELS} />
-			<Button isActive text="구매하기" handleClick={handleBuy} />
+			<Button isActive text="자세히 보기" handleClick={handleClick} />
 		</ProductListItemLayout>
 	);
 }

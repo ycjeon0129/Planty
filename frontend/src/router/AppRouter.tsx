@@ -32,6 +32,7 @@ import 'styles/index.scss';
 import { useRecoilState } from 'recoil';
 import userState from 'recoil/user';
 import { findUserApi } from 'utils/api/auth';
+import FailPage from 'pages/Payment/pages/Fail';
 import PrivateRoute from './PrivateRoute';
 
 function AppRouter() {
@@ -89,7 +90,8 @@ function AppRouter() {
 						<Route path="/consulting/video" element={<VideoConsultingPage />} />
 						<Route path="/consultingloading" element={<ConsultingLoadingPageLayout />} />
 						<Route path="/payment/:pid" element={<CheckoutPage />} />
-						<Route path="/success/:pid" element={<Success />} />
+						<Route path="/payment/success/:spid" element={<Success />} />
+						<Route path="/payment/fail" element={<FailPage />} />
 					</Route>
 
 					{/* 컴포넌트 개발용 */}

@@ -42,7 +42,7 @@ function ShopDetail() {
 				<Title name={product.name} />
 				<InfoList product={product as IProductDetail} />
 				<ImgDetail descImgUrl={product.imgUrl ?? defaultDetailImg} />
-				<Price price={product.price} spid={product.spid} />
+				<Price product={product} />
 			</ShopDetailPageLayout>
 		);
 	return <div />;
