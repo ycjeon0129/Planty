@@ -16,7 +16,7 @@ function ProductInfo({ product }: { product: IProduct }) {
 				</div>
 				<div className="text-info">
 					{/* 구독개월수 */}
-					<div className="gray-font-color">{product.period} 개월</div>
+					<div className="gray-font-color">{product.period ? `${product.period} 개월` : `구매일로부터 1년 이내`}</div>
 					{/* 구독상품명 */}
 					<div className="gray-font-color">{product.name}</div>
 					{/* 구독상품가격 */}
