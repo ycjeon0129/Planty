@@ -11,7 +11,7 @@ function ClassInfoList() {
 		return (
 			<div>
 				{subscribes.map((s) => (
-					<SubscribesListItem key={s.spid} subscribe={s} handleClick={() => {}} />
+					<SubscribesListItem key={s.sid} subscribe={s} handleClick={() => {}} />
 				))}
 			</div>
 		);

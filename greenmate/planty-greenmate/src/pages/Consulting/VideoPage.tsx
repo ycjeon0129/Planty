@@ -12,9 +12,6 @@ import { getToken } from 'utils/api/openVidu';
 import { Link } from 'react-router-dom';
 import LoadingPage from './LoadingPage';
 
-const mySessionId = 'TESTEST';
-const myName = 'Test1';
-
 function VideoPage() {
 	const { goBack } = useMovePage();
 	const [session, setSession] = useState<Session | undefined>(undefined); // 가상 룸
@@ -73,8 +70,8 @@ function VideoPage() {
 			const newSession = OV.initSession();
 			setSession(newSession);
 
-			const token = await getToken(mySessionId);
-			await newSession.connect(token, { clientData: myName });
+			const token = await getToken();
+			await newSession.connect(token);
 
 			const initPublisher = await OV.initPublisherAsync(undefined, {
 				audioSource: undefined, // The source of audio. If undefined default microphone

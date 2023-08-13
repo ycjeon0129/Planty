@@ -13,7 +13,7 @@ function SubscribesListItem({ subscribe, handleClick }: { subscribe: ISubscribe;
 	const sid = useLocationIdx(3);
 
 	useEffect(() => {
-		if (sid === subscribe.spid) setActive(true);
+		if (sid === subscribe.sid) setActive(true);
 		else setActive(false);
 	}, [subscribe, sid]);
 

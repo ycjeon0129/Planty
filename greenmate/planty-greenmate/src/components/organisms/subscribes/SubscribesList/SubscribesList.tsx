@@ -10,18 +10,19 @@ function SubscribesList() {
 	const { movePage } = useMovePage();
 	const pathname = useLocation().pathname.split('/')[1];
 
-	const handleClick = (spid: number) => {
+	const handleClick = (sid: number) => {
 		if (pathname === 'history') {
-			return movePage(`/history/consulting/${spid}`);
+			return movePage(`/admin/history/consulting/${sid}`);
 		}
-		return movePage(`/subscribes/list/${spid}`);
+		return movePage(`/admin/subscribes/list/${sid}`);
 	};
 
 	if (subscribes.length) {
+		console.log('subscribes', subscribes);
 		return (
 			<div className="subscribes-list-container">
 				{subscribes.map((s) => (
-					<SubscribesListItem key={s.spid} subscribe={s} handleClick={() => handleClick(s.spid)} />
+					<SubscribesListItem key={s.sid} subscribe={s} handleClick={() => handleClick(s.sid)} />
 				))}
 			</div>
 		);

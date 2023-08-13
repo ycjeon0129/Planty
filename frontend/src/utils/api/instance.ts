@@ -34,7 +34,7 @@ instance.interceptors.response.use(
 );
 
 export const openviduInstance: AxiosInstance = axios.create({
-	baseURL: process.env.REACT_APP_OPEN_VIDU_SERVER_URL,
+	baseURL: process.env.REACT_APP_SERVER_BASE_URL,
 	headers: {
 		'Content-Type': 'application/json',
 	},
