@@ -46,11 +46,13 @@ function MypageConsultingDetail({ data }: { data: IConsulting }) {
 						<span className="h3">컨설팅 상세정보</span>
 						<div className="dates">
 							<div className="leftdate">
+								<div>컨설팅 받은 날</div>
 								<div>시작 시간</div>
 								<div className="mt-5">종료 시간</div>
 								<div className="mt-5">다음 컨설팅 권장일</div>
 							</div>
 							<div className="rightdate">
+								<div>{data.date}</div>
 								<div>{data.startTime ?? '-'}</div>
 								<div className="mt-5">{data.endTime ?? '-'}</div>
 								<div className="mt-5">
