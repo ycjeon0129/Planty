@@ -25,7 +25,7 @@ public class SubscribeServiceImpl implements SubscribeService {
     private final ViewUserSubscribeRepository viewUserSubscribeRepository;
     private final ViewUserConsultingRepository userConsultingRepository;
     private final UserInfoRepository userInfoRepository;
-    private final UserEmbeddedRepository userEmbeddedRepository;
+    private final PlantDataRepository plantDataRepository;
     private final SubscribeProductRepository subscribeProductRepository;
     private final UserSubscribeRepository userSubscribeRepository;
 
@@ -69,7 +69,7 @@ public class SubscribeServiceImpl implements SubscribeService {
         ViewUserSubscribe sub = viewUserSubscribeRepository.findByUidAndSid(user.getUid(), sid)
                 .orElseThrow(() -> new NullPointerException(ExceptionHandler.USER_SID_NOT_FOUND));
 
-        List<PlantData> plantDataList = userEmbeddedRepository.findByArduinoId(sub.getArduinoId());
+        List<PlantData> plantDataList = plantDataRepository.findByArduinoId(sub.getArduinoId());
         List<UserSubscribeEmbeddedResponse> embeddedList = new ArrayList<>();
 
         for(PlantData item : plantDataList) {
