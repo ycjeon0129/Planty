@@ -13,7 +13,7 @@
 
 		.price-box {
 			@include flex-row(20px);
-			@include flex-align;
+			@include flex-align(start, start);
 
 			span {
 				font-size: 1.25rem;

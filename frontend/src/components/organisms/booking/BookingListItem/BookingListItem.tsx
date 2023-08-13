@@ -28,7 +28,7 @@ function BookingListItem({ booking }: { booking: IBooking }) {
 				const response = await deleteBooking(booking.cid);
 				if (response.status === 200) {
 					toast.success('예약을 취소했습니다 😥\n메인페이지로 이동합니다.');
-					movePage('/');
+					movePage('/', null);
 				}
 			} catch (error) {
 				console.error(error);

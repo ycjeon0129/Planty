@@ -23,7 +23,7 @@ function HomePage() {
 			<SquareShortcutButton
 				text="예약 관리"
 				handleClick={() => {
-					movePage('/mypage/booking');
+					movePage('/mypage/booking', null);
 				}}
 				type="booking"
 			/>
@@ -45,7 +45,7 @@ function HomePage() {
 			<RectShortcutButton
 				text="화상 컨설팅"
 				handleClick={() => {
-					movePage('/consulting/video');
+					movePage('/consulting/video', null);
 				}}
 				type="consulting-video"
 			/>

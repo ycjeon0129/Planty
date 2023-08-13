@@ -17,7 +17,7 @@ function ProductListItem({ product }: { product: IProduct }) {
 	const info: IProductInfo = { period: product.period, level: product.level, price: product.price };
 
 	const handleClick = () => {
-		movePage(`/shop/detail/${product.spid}`);
+		movePage(`/shop/detail/${product.spid}`, null);
 	};
 
 	return (

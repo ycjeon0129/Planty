@@ -1,10 +1,10 @@
 import { useNavigate } from 'react-router';
 
-const useMovePage = (): { movePage: (url: string) => void; goBack: () => void } => {
+const useMovePage = (): { movePage: (url: string, state: object | null) => void; goBack: () => void } => {
 	const navigate = useNavigate();
 
-	const movePage = (url: string) => {
-		navigate(url);
+	const movePage = (url: string, state: object | null) => {
+		navigate(url, { state });
 	};
 
 	const goBack = () => {

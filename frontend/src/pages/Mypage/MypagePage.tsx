@@ -20,8 +20,8 @@ function MypagePage() {
 
 			{/* 마이페이지 메뉴 목록 */}
 			{/* 메인 메뉴 */}
-			<MiniShortcutButton handleClick={() => movePage('/subscribe')} text="내 구독 목록" type="subscribeList" />
-			<MiniShortcutButton handleClick={() => movePage('/mypage/booking')} text="예약 관리" type="booking" />
+			<MiniShortcutButton handleClick={() => movePage('/subscribe', null)} text="내 구독 목록" type="subscribeList" />
+			<MiniShortcutButton handleClick={() => movePage('/mypage/booking', null)} text="예약 관리" type="booking" />
 
 			{/* 서브 메뉴 */}
 			<MypageSubmenuList />

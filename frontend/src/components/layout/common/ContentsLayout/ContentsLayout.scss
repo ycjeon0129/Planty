@@ -2,5 +2,9 @@
 
 .contentslayout-container {
 	width: 100%;
-	margin-bottom: var.$mb-content-lg;
+	margin-bottom: var.$mb-content-md;
+}
+
+.contentslayout-container:last-child {
+	margin-bottom: 0;
 }

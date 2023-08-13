@@ -29,14 +29,14 @@ function EmergencyPage() {
 				type="consulting-chat"
 				text="채팅 응급실"
 				handleClick={() => {
-					movePage('/emergency/participate');
+					movePage('/emergency/participate', null);
 				}}
 			/>
 			<SquareShortcutButton
 				type="consulting-video"
 				text="화상 응급실"
 				handleClick={() => {
-					movePage('/consulting/participate');
+					movePage('/consulting/participate', null);
 				}}
 			/>
 		</EmergencyPageLayout>
