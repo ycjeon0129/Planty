@@ -53,6 +53,12 @@ h6 {
 	box-shadow: rgb(219, 219, 219) 0px 0px 10px;
 }
 
+
+// 스크롤 바
+::-webkit-scrollbar {
+	display: none;
+}
+
 // react-simple-dialog
 #simple-dialog-container  {
 
