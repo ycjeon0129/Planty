@@ -8,13 +8,14 @@ import { instance } from './instance';
  * JWT AccessToken을 해석하여, uid를 추출하는 함수.
  * @returns 현재 로그인된 사용자의 uid
  */
-const getUidFromAccessToken = (): number => {
-	// const token = LocalStorage.getItem('accessToken') as string;
+const getUidFromAccessToken = (): number | null => {
+	const token = LocalStorage.getItem('AccessToken') as string;
 	// const decoded: AccessToken = jwt_decode(token);
 	// console.log(decoded);
 
 	// TODO : 임시 uid
-	return 1;
+	if (token) return 1;
+	return null;
 	// return decoded.uid;
 };
 
@@ -24,9 +25,8 @@ const getUidFromAccessToken = (): number => {
  */
 export const findUserApi = async () => {
 	const uid = getUidFromAccessToken();
-	const response = await instance.get(`/users/${uid}`);
-
-	return response;
+	if (uid) return instance.get(`/users/${uid}`);
+	return null;
 };
 
 /**

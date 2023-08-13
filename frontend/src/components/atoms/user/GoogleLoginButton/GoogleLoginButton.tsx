@@ -2,17 +2,14 @@ import React from 'react';
 import { useGoogleLogin } from '@react-oauth/google';
 import { ReactComponent as GoogleIcon } from 'assets/icons/Google.svg';
 import './GoogleLoginButton.scss';
-import useMovePage from 'hooks/useMovePage';
 import LocalStorage from 'constants/storage/LocalStorage';
 
 function GoogleLoginButton() {
-	const { movePage } = useMovePage();
-
 	const login = useGoogleLogin({
 		onSuccess: () => {
 			// TODO : 임의로 AT 대신, uid 1 저장
 			LocalStorage.setItem('AccessToken', '1');
-			movePage('/');
+			window.location.href = '/';
 		},
 		flow: 'auth-code',
 	});
