@@ -47,6 +47,14 @@ dependencies {
 	implementation group: 'io.springfox', name: 'springfox-swagger-ui', version: '2.9.2'
 	implementation group: 'io.springfox', name: 'springfox-swagger2', version: '2.9.2'
 
+	//WebRTC 클라이언트 의존성 추가
+	implementation('org.webjars.bower:webrtc-adapter:7.4.0')
+	//Kurento (미디어서버) 관련 의존성 추가
+	implementation('org.kurento:kurento-client:6.16.0')
+	implementation('org.kurento:kurento-utils-js:6.15.0')
+	// Openvidu 의존성
+	implementation group: 'io.openvidu', name: 'openvidu-java-client', version: '2.28.0'
+
 
 //	compile 'io.jsonwebtoken:jjwt-api:0.11.5'
 //	runtime 'io.jsonwebtoken:jjwt-impl:0.11.5',
