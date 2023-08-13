@@ -8,6 +8,6 @@ import lombok.ToString;
 @ToString
 public class ConnectionCountResponse {
 
-    private Long gmCnt;      // 활성화된 gm 수
+    private Long gmCnt;      // 활성화된 그린메이트 수
 
 }
