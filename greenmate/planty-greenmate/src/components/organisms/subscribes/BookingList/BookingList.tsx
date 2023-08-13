@@ -3,12 +3,20 @@ import React from 'react';
 import BookingListItem from 'components/atoms/subscribes/BookingListItem/BookingListItem';
 import './BookingList.scss';
 import useAllBooking from 'hooks/api/useAllBooking';
+import { Value } from 'types/base/global';
+import isSameDate from 'utils/isSameDate';
 
-function BookingList() {
-	const bookings = useAllBooking();
+function BookingList({ selectedDate }: { selectedDate?: Value }) {
+	let bookings = useAllBooking().sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
+
+	if (selectedDate) {
+		bookings = bookings.filter((el) => isSameDate(selectedDate as Date, el.date));
+	}
 
 	if (bookings.length)
-		return <div className="booking-list-container">{bookings?.map((b) => <BookingListItem booking={b} />)}</div>;
+		return (
+			<div className="booking-list-container">{bookings?.map((b) => <BookingListItem key={b.cid} booking={b} />)}</div>
+		);
 
 	return (
 		<div className="booking-list-container no-content">

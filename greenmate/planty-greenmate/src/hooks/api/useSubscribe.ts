@@ -2,12 +2,12 @@ import { useState, useEffect } from 'react';
 import { ISubscribeDetail } from 'types/subscribe';
 import { findSubscribeApi } from 'utils/api/subscribe';
 
-const useSubscribe = (sid: number) => {
+const useSubscribe = (spid: number) => {
 	const [subscribe, setSubscribe] = useState<ISubscribeDetail>();
 
-	const fetchData = async (reqSid: number) => {
+	const fetchData = async (reqSpid: number) => {
 		try {
-			const response = await findSubscribeApi(reqSid);
+			const response = await findSubscribeApi(reqSpid);
 			setSubscribe(response.data);
 		} catch (error) {
 			console.error('에러', error);
@@ -15,8 +15,8 @@ const useSubscribe = (sid: number) => {
 	};
 
 	useEffect(() => {
-		fetchData(sid);
-	}, [sid]);
+		fetchData(spid);
+	}, [spid]);
 
 	return subscribe;
 };
