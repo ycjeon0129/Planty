@@ -17,7 +17,7 @@ function TicketRemains() {
 				<div className="ticketset">
 					<TicketSet />
 				</div>
-				남은 이용권 갯수 : {user?.ticketCount}
+				남은 이용권 갯수 : {user?.emergencyCount}
 			</div>
 		</div>
 	);

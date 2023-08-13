@@ -14,10 +14,12 @@ export type LoginBody = {
 };
 
 export type IUser = {
-	nickname: string;
-	auth: string;
-	profilePhoto: string;
-	joinDate: Date;
-	ticketCount: number;
-	address: string;
+	email: string;
+	emergencyCount: number;
+	joinDate: string;
+	photo: null | string;
+	shipping_address: null | string;
+	userId: string;
+	userName: string;
+	userType: null | string;
 };

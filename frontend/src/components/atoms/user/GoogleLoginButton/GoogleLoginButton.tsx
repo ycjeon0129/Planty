@@ -1,15 +1,18 @@
 import React from 'react';
 import { useGoogleLogin } from '@react-oauth/google';
-import axios from 'axios';
 import { ReactComponent as GoogleIcon } from 'assets/icons/Google.svg';
 import './GoogleLoginButton.scss';
+import useMovePage from 'hooks/useMovePage';
+import LocalStorage from 'constants/storage/LocalStorage';
 
 function GoogleLoginButton() {
+	const { movePage } = useMovePage();
+
 	const login = useGoogleLogin({
-		onSuccess: (tokenResponse) => {
-			axios
-				.post(`http://localhost:8080/api/users/social-local`, { code: tokenResponse.code })
-				.then((res) => console.log(res));
+		onSuccess: () => {
+			// TODO : 임의로 AT 대신, uid 1 저장
+			LocalStorage.setItem('AccessToken', '1');
+			movePage('/');
 		},
 		flow: 'auth-code',
 	});

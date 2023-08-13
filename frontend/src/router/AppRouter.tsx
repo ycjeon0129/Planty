@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
 import TabBarLayout from 'components/layout/common/TabBarLayout/TabBarLayout';
@@ -28,19 +29,35 @@ import CheckoutPage from 'pages/Payment/pages/Checkout';
 import { Toaster } from 'react-hot-toast';
 import { SimpleDialogContainer } from 'react-simple-dialogs';
 import 'styles/index.scss';
+import { useRecoilState } from 'recoil';
+import userState from 'recoil/user';
+import { findUserApi } from 'utils/api/auth';
 import PrivateRoute from './PrivateRoute';
 
 function AppRouter() {
-	const [isLoading, setIsLoading] = useState(false);
+	// TODO : (로딩) 배포 후 true로 변경
+	const [isLoading, setIsLoading] = useState(true);
+	const [user, setUser] = useRecoilState(userState);
 
 	const loading = () => {
 		setTimeout(() => {
 			setIsLoading(false);
 		}, 2000);
 	};
+
+	// 앱 렌더링 시, AT사용하여 유저정보 불러오기
+	const fetchUserData = async () => {
+		const response = await findUserApi();
+
+		if (response.status === 200) {
+			setUser(response.data);
+		}
+	};
+
 	useEffect(() => {
 		loading();
-	});
+		fetchUserData();
+	}, []);
 
 	if (isLoading) {
 		return <LoadingPage />;
@@ -50,7 +67,9 @@ function AppRouter() {
 		<div className="container">
 			<BrowserRouter>
 				<Routes>
-					<Route path="/" element={<Navigate replace to="/home" />} />
+					{/* 로그인 상태라면 home으로, 로그인이 안된 상태라면 login으로 */}
+					<Route path="/" element={<Navigate replace to={user ? '/home' : '/login'} />} />
+
 					<Route path="/login" element={<LoginPage />} />
 					<Route path="/" element={<PrivateRoute />}>
 						<Route path="/home" element={<HomePage />} />
