@@ -31,7 +31,7 @@ function WaitPage() {
 			});
 		}
 
-		getToken(`TTTTEST`).then((token) => {
+		getToken().then((token) => {
 			const clientData = { clientData: '전인혁' }; // 유저 닉네임
 			session
 				.connect(token, clientData)

@@ -13,6 +13,11 @@ import CustomAlert from 'components/organisms/common/CustomAlert/CustomAlert';
 function HomePage() {
 	const { movePage } = useMovePage();
 
+	const handleConsulting = () => {
+		toast.error('현재 예약된 컨설팅이 없습니다.');
+		// movePage('/consulting/video', null);
+	};
+
 	return (
 		<HomePageLayout>
 			<Header />
@@ -34,7 +39,7 @@ function HomePage() {
 						title: '주문 취소',
 						desc: '주문을 취소하시겠습니까? 주문 확인 전까지 취소가 가능합니다.',
 						btnTitle: '주문 취소하기',
-						params: { id: 0 },
+						params: {},
 						onAction: () => {
 							toast.success('채팅 컨설팅 입니다');
 						},
@@ -42,13 +47,7 @@ function HomePage() {
 				}}
 				type="consulting-chat"
 			/>
-			<RectShortcutButton
-				text="화상 컨설팅"
-				handleClick={() => {
-					movePage('/consulting/video', null);
-				}}
-				type="consulting-video"
-			/>
+			<RectShortcutButton text="화상 컨설팅" handleClick={handleConsulting} type="consulting-video" />
 		</HomePageLayout>
 	);
 }

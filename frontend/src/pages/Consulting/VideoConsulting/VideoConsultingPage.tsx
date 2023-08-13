@@ -9,12 +9,13 @@ import ConsultingLoadingPageLayout from 'components/layout/Page/ConsultingLoadin
 import { ReactComponent as CamOffIcon } from 'assets/icons/consultingMenu/VideoOff.svg';
 import { ReactComponent as MicOffIcon } from 'assets/icons/consultingMenu/MicOff.svg';
 import useMovePage from 'hooks/useMovePage';
+// import useUser from 'hooks/useUser';
 // import PlantChart from 'components/organisms/subscribe/PlantChart/PlantChart';
 
-const mySessionId = 'TTTTT';
-const myName = 'Test1';
+const userName = 'user1';
 
 function VideoConsultingPage() {
+	// const user = useUser();
 	const { goBack } = useMovePage();
 	const [session, setSession] = useState<Session | undefined>(undefined); // 가상 룸
 	const [subscriber, setSubscriber] = useState<Subscriber | undefined>(undefined);
@@ -77,8 +78,8 @@ function VideoConsultingPage() {
 			const newSession = OV.initSession();
 			setSession(newSession);
 
-			const token = await getToken(mySessionId);
-			await newSession.connect(token, { clientData: myName });
+			const token = await getToken();
+			await newSession.connect(token, { clientData: userName });
 
 			const initPublisher = await OV.initPublisherAsync(undefined, {
 				audioSource: undefined, // The source of audio. If undefined default microphone
