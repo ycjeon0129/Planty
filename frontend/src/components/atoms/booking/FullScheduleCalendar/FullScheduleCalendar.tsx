@@ -21,11 +21,7 @@ interface ICustomCaledarProps {
 const checkTile = (bookings: IBooking[], date: Date) => {
 	const dot = <div className="booking-dot-container" />;
 
-	return bookings.find((el) => {
-		return isSameDate(date, el.date);
-	})
-		? dot
-		: null;
+	return bookings.find((el) => isSameDate(date, el.date) && !el.cancel) ? dot : null;
 };
 
 function FullScheduleCalendar({ selectedDate, setSelectedDate }: ICustomCaledarProps) {
