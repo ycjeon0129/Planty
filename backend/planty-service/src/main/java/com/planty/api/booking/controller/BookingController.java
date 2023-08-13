@@ -55,7 +55,7 @@ public class BookingController {
             return ResponseEntity.status(200).build();
         }
         log.info(logCurrent(getClassName(), getMethodName(), END));
-        return ResponseEntity.status(500).build();
+        return ResponseEntity.status(404).build();
     }
 
     @DeleteMapping("/{cid}") // 사용자 예약 삭제

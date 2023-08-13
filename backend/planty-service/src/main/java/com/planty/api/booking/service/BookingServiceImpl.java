@@ -94,7 +94,7 @@ public class BookingServiceImpl implements BookingService {
         GmInfo gm = gmInfoRepository.findByGid(subscribe.getGid().getGid())
                 .orElseThrow(() -> new NullPointerException(ExceptionHandler.GM_NOT_FOUND));
 
-        if(consultingBookingRepository.findBySidAndTimeIdxAndDate(subscribe, time, userBookingRequest.getDate()).isPresent()) {
+        if(consultingBookingRepository.findBySidAndTimeIdxAndDateAndCancelFalseAndActiveFalse(subscribe, time, userBookingRequest.getDate()).isPresent()) {
             log.info(logCurrent(getClassName(), getMethodName(), END));
             return false;
         }
