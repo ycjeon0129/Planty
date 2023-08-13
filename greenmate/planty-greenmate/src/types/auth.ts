@@ -17,7 +17,6 @@ export type LoginBody = {
 export type IAuth = {
 	nickname: string;
 	id: string;
-	status: boolean;
 	profilePhoto: string;
 	joinDate: string;
 	introduce: string;

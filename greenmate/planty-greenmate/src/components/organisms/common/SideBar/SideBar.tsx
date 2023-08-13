@@ -14,7 +14,7 @@ import PlantyLogo from 'assets/icons/logo/PlantyLogo.svg';
 import useMovePage from 'hooks/useMovePage';
 import { useRecoilState } from 'recoil';
 import './SideBar.scss';
-import authState from 'recoil/auth';
+import { authState } from 'recoil/auth';
 import RequestList from '../RequestList/RequestList';
 
 function SideBar() {
@@ -29,7 +29,7 @@ function SideBar() {
 						<img src={PlantyLogo} alt="planty" onClick={() => movePage('/dashboard')} role="presentation" />
 					</div>
 					<div id="profile" onClick={() => movePage('/settings')} role="presentation">
-						<GreenmateInfo img={greenmateImg} text="영국남자" />
+						<GreenmateInfo img={(auth?.profilePhoto as string) ?? greenmateImg} text={auth?.nickname as string} />
 					</div>
 					<div id="menu">
 						{/* 현재 진행중인 컨설팅이 있다면, 메뉴 추가 */}

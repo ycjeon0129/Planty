@@ -3,9 +3,13 @@ import './Profile.scss';
 import ProfileImg from 'assets/icons/GreenmateProfile.svg';
 import EditIcon from '@mui/icons-material/Edit';
 import IconButton from '@mui/material/IconButton';
+import { useRecoilState } from 'recoil';
+import { authState } from 'recoil/auth';
 
 // 데이터 받아서 데이터 타입 맞추고 프롭스에 넣어주기
 function Profile() {
+	const [auth] = useRecoilState(authState);
+
 	// 수정 아이콘 눌렀을 때 토글
 	const [nickName, setNickName] = useState(true);
 	const [introduceInfo, setIntroduceInfo] = useState(true);
@@ -29,8 +33,8 @@ function Profile() {
 		}
 	};
 	// 데이터 집어넣기
-	const [nickNameText, setNickNameText] = useState('닉네임');
-	const [introduceText, setIntroduceText] = useState('받아온 소개글 데이터');
+	const [nickNameText, setNickNameText] = useState(auth?.nickname as string);
+	const [introduceText, setIntroduceText] = useState(auth?.introduce as string);
 	// 데이터 수정 정보 뽑아서
 	const handleNickNameChange = (event: { target: { value: React.SetStateAction<string> } }) => {
 		setNickNameText(event.target.value);
@@ -44,7 +48,7 @@ function Profile() {
 		<div className="profile-entire-box">
 			<div className="profile-box">
 				<div className="profile-left-box">
-					<img src={ProfileImg} alt="프로필사진" />
+					<img src={auth?.profilePhoto ?? ProfileImg} alt="프로필사진" />
 				</div>
 				<div className="profile-right-box">
 					<div className="greenmate-nickname-box">
