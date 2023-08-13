@@ -1,35 +1,18 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import './CheckOnlineItem.scss';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import IOSSwitch from 'components/atoms/common/ToggleButton/ToggleButton';
 import { useRecoilState } from 'recoil';
-import authState from 'recoil/auth';
-import { IAuth } from 'types/auth';
-import { toast } from 'react-hot-toast';
+import { activeState } from 'recoil/auth';
 
 function CheckOnline() {
-	const [auth, setAuth] = useRecoilState(authState);
+	const [active, setActive] = useRecoilState(activeState);
 	const [isActive, SetIsActive] = useState<boolean>(false);
 
 	const onClick = () => {
 		SetIsActive(!isActive);
-
-		if (auth) {
-			setAuth((prev: IAuth) => ({
-				...prev,
-				status: !prev.status,
-			}));
-		}
+		setActive(!active);
 	};
-
-	useEffect(() => {
-		if (auth) SetIsActive(auth.status);
-		if (auth.status) {
-			toast.success('활동 상태 변경! 모든 컨설팅 요청을 수신합니다.');
-		} else {
-			toast.error('활동 상태 변경! 모든 컨설팅 요청을 차단합니다.');
-		}
-	}, [auth]);
 
 	return (
 		<div className="check-online-outer-box">

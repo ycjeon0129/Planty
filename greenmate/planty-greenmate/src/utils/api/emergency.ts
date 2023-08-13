@@ -7,7 +7,7 @@ export const findAllEmergencyApi = async () => {
 };
 
 export const findEmergencyApi = async (eid: number) => {
-	const response = await instance.get(`/emergency/${eid}`);
+	const response = await instance.get(`/emergencies/${eid}`);
 
 	return response;
 };

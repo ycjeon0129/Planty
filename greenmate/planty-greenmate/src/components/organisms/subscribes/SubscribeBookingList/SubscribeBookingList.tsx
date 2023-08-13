@@ -5,13 +5,13 @@ import React from 'react';
 
 function SubscribeBookingList() {
 	const spid = useLocationIdx(3);
-	const bookings = useAllBookingBySpid(spid);
+	const bookings = useAllBookingBySpid(spid).sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
 
 	if (bookings.length)
 		return (
 			<div className="subscribe-booking-list-container">
 				{bookings.map((b) => (
-					<BookingListItem booking={b} />
+					<BookingListItem key={b.cid} booking={b} />
 				))}
 			</div>
 		);

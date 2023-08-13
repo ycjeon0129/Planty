@@ -12,12 +12,13 @@ import ClearIcon from '@mui/icons-material/Clear';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import Button from 'components/atoms/common/Button/Button';
-import { loginApi } from 'utils/api/auth';
+// import { loginApi } from 'utils/api/auth';
 import { useRecoilState } from 'recoil';
-import authState from 'recoil/auth';
+import { authState } from 'recoil/auth';
 import useMovePage from 'hooks/useMovePage';
 import { IAuth } from 'types/auth';
 import { toast } from 'react-hot-toast';
+import LocalStorage from 'constants/storage/LocalStorage';
 
 function LoginForm() {
 	const [, setAuth] = useRecoilState(authState);
@@ -42,25 +43,28 @@ function LoginForm() {
 
 		try {
 			console.log('로그인 시도 :', body);
-			const response = await loginApi(body);
-			console.log(response);
+			// const response = await loginApi(body);
+			// console.log(response);
 
 			// 로그인 성공 시
-			if (response.status === 200) {
+			// TODO : 일단 더미 로그인.
+			// if (response.status === 200) {
+			if (body.id === 'greenmate1' && body.password === 'greenmate1') {
 				const info: IAuth = {
-					nickname: '',
-					id: '',
-					status: false,
-					profilePhoto: '',
-					joinDate: '',
-					introduce: '',
+					nickname: '식물왕 전식물',
+					id: 'greenmate1',
+					profilePhoto: 'https://kuku-keke.com/wp-content/uploads/2022/11/13986_3.png',
+					joinDate: '2023-08-13',
+					introduce: '안녕하세요. 당신의 식물이 잘! 자랄 수 있도록 도와드릴게요.',
 					currentConsulting: null,
 				};
-
+				LocalStorage.setItem('loginUser', JSON.stringify(info));
 				setAuth(info);
 				toast.success('로그인 완료! 대시보드로 이동합니다.');
 
 				movePage('/');
+			} else {
+				toast.error('로그인에 실패했습니다! 잠시 후 다시 시도하세요.');
 			}
 		} catch (error) {
 			console.error('에러', error);

@@ -1,17 +1,12 @@
 import { atom } from 'recoil';
 import { IAuth } from 'types/auth';
 
-const authState = atom<IAuth>({
+export const authState = atom<IAuth | null>({
 	key: 'authState',
-	default: {
-		nickname: '',
-		id: '',
-		status: false,
-		profilePhoto: '',
-		joinDate: '',
-		introduce: '',
-		currentConsulting: null,
-	},
+	default: null,
 });
 
-export default authState;
+export const activeState = atom<boolean>({
+	key: 'activeState',
+	default: false,
+});

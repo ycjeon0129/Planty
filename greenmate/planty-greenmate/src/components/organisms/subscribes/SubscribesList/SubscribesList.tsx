@@ -29,7 +29,7 @@ function SubscribesList() {
 
 	return (
 		<div className="subscribes-list-container no-content">
-			<div>현재 구독한 상품이 없습니다.</div>
+			<div>현재 관리중인 구독상품이 없습니다.</div>
 		</div>
 	);
 }
