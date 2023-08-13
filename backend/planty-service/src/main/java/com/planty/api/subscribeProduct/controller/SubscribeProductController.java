@@ -1,8 +1,10 @@
 package com.planty.api.subscribeProduct.controller;
 
+import com.planty.api.subscribe.request.UserSubscribeRequest;
 import com.planty.api.subscribe.response.UserSubscribeDatailResponse;
 import com.planty.api.subscribe.response.UserSubscribeResponse;
 import com.planty.api.subscribe.service.SubscribeService;
+import com.planty.api.subscribeProduct.request.SubscribeProductRequest;
 import com.planty.api.subscribeProduct.response.SubscribeProductDetailResponse;
 import com.planty.api.subscribeProduct.response.SubscribeProductResponse;
 import com.planty.api.subscribeProduct.service.SubscribeProductService;
@@ -52,5 +54,17 @@ public class SubscribeProductController {
             return ResponseEntity.status(200).body(response);
         }
         return ResponseEntity.status(403).build();
+    }
+
+    @PostMapping() // 사용자 구독 등록
+    public ResponseEntity<?> postSubscribeProduct(@RequestBody SubscribeProductRequest subscribeProductRequest) {
+        log.info(logCurrent(getClassName(), getMethodName(), START));
+//        System.out.println(userSubscribeRequest.toString());
+        if(subscribeProductService.regSubscribeProduct(subscribeProductRequest)){
+            log.info(logCurrent(getClassName(), getMethodName(), END));
+            return ResponseEntity.status(200).build();
+        }
+        log.info(logCurrent(getClassName(), getMethodName(), END));
+        return ResponseEntity.status(406).build();
     }
 }

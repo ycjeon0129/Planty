@@ -3,17 +3,17 @@ package com.planty.api.subscribeProduct.service;
 import com.planty.api.consulting.response.UserConsultingResponse;
 import com.planty.api.consulting.service.ConsultingService;
 import com.planty.api.subscribe.response.UserSubscribeDatailResponse;
+import com.planty.api.subscribeProduct.request.SubscribeProductRequest;
 import com.planty.api.subscribeProduct.response.SubscribeProductDetailResponse;
 import com.planty.api.subscribeProduct.response.SubscribeProductResponse;
 import com.planty.common.exception.handler.ExceptionHandler;
 import com.planty.common.util.SecurityUtil;
-import com.planty.db.entity.SubscribeProduct;
-import com.planty.db.entity.UserInfo;
-import com.planty.db.entity.ViewUserConsulting;
+import com.planty.db.entity.*;
 import com.planty.db.repository.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,6 +31,7 @@ public class SubscribeProductServiceImpl implements SubscribeProductService {
     private final ConsultingBookingRepository consultingBookingRepository;
     private final GmInfoRepository gmInfoRepository;
     private final SubscribeProductRepository subscribeProductRepository;
+    private final PlantyInfoRepository plantyInfoRepository;
     @Override // 구독 상품 조회
     public List<SubscribeProductResponse> getSubscribeProduct(int size, int place, int eatable) {
         log.info(logCurrent(getClassName(), getMethodName(), START));
@@ -81,5 +82,42 @@ public class SubscribeProductServiceImpl implements SubscribeProductService {
                 .consultingCnt(item.getConsultingCnt())
                 .build();
 
+    }
+
+    @Override
+    @Transactional
+    public boolean regSubscribeProduct(SubscribeProductRequest spr) {
+        log.info(logCurrent(getClassName(), getMethodName(), START));
+        GmInfo gm = gmInfoRepository.findByGid(spr.getGid())
+                .orElseThrow(() -> new NullPointerException(ExceptionHandler.GM_NOT_FOUND));
+        if(!(spr.getSize() >= 0 && spr.getSize() <= 2
+        && spr.getPlace() >= 0 && spr.getPlace() <= 2
+        && spr.getEatable() >= 0 && spr.getEatable() <= 1
+        && spr.getLevel() >= 1 && spr.getLevel() <= 3)) {
+            return false;
+        }
+        PlantInfo plant = PlantInfo.builder()
+                .name(spr.getPlantName())
+                .tonicPeriod(spr.getTonic())
+                .size(spr.getSize())
+                .place(spr.getPlace())
+                .eatable(spr.getEatable())
+                .build();
+
+        PlantInfo newPlant = plantyInfoRepository.save(plant);
+        SubscribeProduct subscribeProduct = SubscribeProduct.builder()
+                .plantInfoIdx(newPlant)
+                .gid(gm)
+                .name(spr.getProductName())
+                .period(spr.getPeriod())
+                .consultingCnt(spr.getConsultingCnt())
+                .thumbnail(spr.getThumbnail())
+                .description(spr.getDescription())
+                .level(spr.getLevel())
+                .price(spr.getPrice())
+                .build();
+        subscribeProductRepository.save(subscribeProduct);
+
+        return false;
     }
 }
