@@ -2,10 +2,13 @@
 @use 'styles/mixins/responsive' as r;
 
 .page-layout {
+	position: relative;
 	padding-left: var.$pd-lg;
 	padding-right: var.$pd-lg;
 	padding-bottom: 40px;
 	min-height: 100vh;
+	max-height: 100vh;
+	overflow-y: scroll;
 
 	&.full-page-layout {
 		padding-bottom: 1px;
