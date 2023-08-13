@@ -7,5 +7,5 @@ export interface IEmergency {
 	timeTaken: string;
 	user: string;
 	greenmate: string;
-	advice: string;
+	content: string;
 }

@@ -12,7 +12,7 @@ function CalendarPage() {
 			<FullScheduleCalendar selectedDate={date} setSelectedDate={setDate} />
 			<div>
 				<h3>{formatDate}</h3>
-				<BookingList />
+				<BookingList selectedDate={date} />
 			</div>
 		</CalendarPageLayout>
 	);

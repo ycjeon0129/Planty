@@ -1,5 +1,6 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import App from 'App';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { BrowserRouter, Navigate, Outlet, Route, Routes } from 'react-router-dom';
 import SideBar from 'components/organisms/common/SideBar/SideBar';
 import Develop from 'pages/Develop';
@@ -22,16 +23,29 @@ import EmergencyDetail from 'components/organisms/history/EmergencyDetail/Emerge
 import ConsultingList from 'components/organisms/history/ConsultingList/ConsultingList';
 import ScrollToTop from 'components/atoms/common/ScrollToTop/ScrollToTop';
 import { Toaster } from 'react-hot-toast';
+import { useRecoilState } from 'recoil';
+import { authState } from 'recoil/auth';
+import LocalStorage from 'constants/storage/LocalStorage';
 import PrivateRoute from './PrivateRoute';
 
 function AppRouter() {
+	const [auth, setAuth] = useRecoilState(authState);
+
+	useEffect(() => {
+		const loginUser = LocalStorage.getItem('loginUser');
+
+		if (loginUser) {
+			setAuth(JSON.parse(loginUser));
+		}
+	}, []);
+
 	return (
 		<div className="container">
 			<BrowserRouter>
 				<SideBar />
 				<Routes>
 					{/* 로그인이 필요하지 않은 경로 */}
-					<Route path="/" element={<Navigate replace to="/dashboard" />} />
+					<Route path="/" element={<Navigate replace to={auth ? '/dashboard' : 'login'} />} />
 					<Route path="/app" element={<App />} />
 					<Route path="/login" element={<LoginPage />} />
 

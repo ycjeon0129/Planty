@@ -27,7 +27,7 @@ function SubscribesDetailPage() {
 			<Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
 				<Tabs value={value} onChange={handleChange} textColor="primary" indicatorColor="primary">
 					<Tab label="구독 상세정보" {...a11yProps(0)} />
-					<Tab label="컨설팅 예약 목록" {...a11yProps(1)} />
+					<Tab label="예약된 컨설팅 목록" {...a11yProps(1)} />
 				</Tabs>
 			</Box>
 			{/* 탭 패널 1 : 구독 상세정보 */}

@@ -6,8 +6,8 @@ import useLocationIdx from 'hooks/common/useSid';
 import InfoRow from 'components/atoms/common/InfoRow/InfoRow';
 
 function SubScribeDetail() {
-	const sid = useLocationIdx(3);
-	const subscribe = useSubscribe(sid);
+	const spid = useLocationIdx(3);
+	const subscribe = useSubscribe(spid);
 
 	return (
 		<div className="subscribe-detail-container">
