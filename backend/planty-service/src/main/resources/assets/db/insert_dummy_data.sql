@@ -52,7 +52,12 @@ VALUES (103, '2023-08-07','11:00:00', 28.0,42.0,21.0),
 (101, '2023-08-02','22:00:00', 23.0,33.0,2.0),
 (101, '2023-08-02','00:00:00', 24.0,34.0,3.0),
 (101, '2023-08-03','02:00:00', 25.0,35.0,4.0);
-  
+
+INSERT INTO ticket_product (name, count, price)
+VALUES ("1회 이용권", 1, 9900),
+       ("3회 이용권", 3, 24000),
+       ("5회 이용권", 5, 36000),
+       ("7회 이용권", 7, 45000);
 -- [user_subscribe_list -> [user_subscribe, subscribe_product, plant_info, gm_info] join view / 사용자 구독 목록 리스트]
 -- Create View view_user_subscribe AS
 -- select  us.sid, us.USER_INFO_uid as uid, us.arduino_id, us.consulting_remain_cnt,
@@ -71,19 +76,6 @@ VALUES (103, '2023-08-07','11:00:00', 28.0,42.0,21.0),
 -- cb.cid in (select max(cid) from consulting_booking 
 -- group by USER_SUBSCRIBE_sid) order by us.sid;
 
--- desc view_user_subscribe;
--- SELECT * FROM planty.view_user_subscribe;
-
--- consulting_booking -> sid 접근
-select *
-from consulting_booking
-where USER_SUBSCRIBE_sid = 2;
-
--- plant_data -> arduino id 접근
-select *
-from plant_data
-where arduino_id = 21;
-
 -- [view_user_consulting -> [consulting_booking, consulting_log, user_subscribe, subscribe_product] join view / 사용자 예약 목록 리스트]
 -- Create View view_user_consulting AS
 -- select cb.USER_INFO_uid as uid, us.sid, cb.cid, cb.TIME_TABLE_idx as time, cb.date, cb.cancel, cb.active,
@@ -96,43 +88,3 @@ where arduino_id = 21;
 -- join subscribe_product sp
 -- on us.SUBSCRIBE_PRODUCT_spid = sp.spid
 -- order by cb.cid;
-
-SELECT * FROM planty.view_user_consulting
-where sid = 2;
-
-SELECT * FROM planty.view_user_subscribe
-where uid = 1;
-
-select * from consulting_booking cb where cb.cid in (select max(cid) from consulting_booking
-group by USER_SUBSCRIBE_sid) and cb.user_info_uid = 2;
-
-select * from consulting_booking where cid in (select max(cid) from consulting_booking 
-group by USER_SUBSCRIBE_sid) and user_info_uid = 2 and USER_SUBSCRIBE_sid = 3;
-
-select * from plant_data where arduino_id = 21;
--- 일간통계
-SELECT date, avg(temp), avg(humidity), avg(soil)
-FROM plant_data
-where arduino_id = 102
-GROUP BY date;
-
-SELECT *
-FROM plant_data
-where arduino_id = 101;
-
--- 주간통계
--- SELECT DATE_FORMAT(DATE_SUB(date, INTERVAL (DAYOFWEEK(date)-1) DAY), '%Y/%m/%d') as start,
---        DATE_FORMAT(DATE_SUB(date, INTERVAL (DAYOFWEEK(date)-7) DAY), '%Y/%m/%d') as end,
---        DATE_FORMAT(date, '%Y%U') AS `date`,
---        avg(temp)
--- FROM plant_data
--- where arduino_id = 21
--- GROUP BY date;
-
--- 월간통계
--- SELECT MONTH(date),
---        avg(temp)
--- FROM plant_data
--- where arduino_id = 21
--- GROUP BY date;
-

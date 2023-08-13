@@ -18,6 +18,7 @@ public class ExceptionHandler {
     public static final String BOOKING_NOT_FOUNT = "존재하지 않는 예약 번호입니다.";
     public static final String PLANT_NOT_FOUND = "존재하지 않는 식물입니다.";
     public static final String GM_NOT_FOUND = "존재하지 않는 그린메이트입니다.";
+    public static final String TICKET_PRODUCT_NOT_FOUND = "존재하지 않는 응급실 묶음상품입니다.";
 
     @org.springframework.web.bind.annotation.ExceptionHandler(NullPointerException.class)
     public ResponseEntity exNullHandle(NullPointerException e) {

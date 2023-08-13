@@ -12,7 +12,6 @@ import javax.persistence.*;
 @Builder
 @AllArgsConstructor
 @RequiredArgsConstructor
-@NoArgsConstructor
 @DynamicInsert
 @DynamicUpdate
 @Table(name = "consulting_booking")
@@ -39,7 +38,6 @@ public class ConsultingBooking {
     @JoinColumn(referencedColumnName = "idx", name = "TIME_TABLE_idx") // 시간 식별키
     private TimeTable timeIdx;
 
-    @NonNull
     @Column(name = "date", length = 128) // 예약 날짜
     private String date;
 
@@ -48,5 +46,8 @@ public class ConsultingBooking {
 
     @Column(name = "active") // 실행여부. 실행(1), 미실행(0)
     private Boolean active;
+
+    @Column(name = "connection", length = 512) // OpenVidu Session Token
+    private String connection;
 
 }

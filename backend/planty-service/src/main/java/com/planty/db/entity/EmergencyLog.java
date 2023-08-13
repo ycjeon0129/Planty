@@ -3,12 +3,16 @@ package com.planty.db.entity;
 import lombok.*;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
+import org.hibernate.annotations.NotFound;
+import org.hibernate.annotations.NotFoundAction;
 
 import javax.persistence.*;
 import java.io.Serializable;
 
 @ToString
 @Getter
+@Builder
+@AllArgsConstructor
 @DynamicInsert // Apply changed fields only
 @DynamicUpdate // Apply changed fields only
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -24,6 +28,7 @@ public class EmergencyLog implements Serializable {
     @JoinColumn(referencedColumnName = "uid", name = "USER_INFO_uid") // 사용자 식별키
     private UserInfo uid;
 
+    @NotFound(action = NotFoundAction.IGNORE)
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(referencedColumnName = "gid", name = "GM_INFO_gid") // GM 식별키
     private GmInfo gid;
@@ -37,24 +42,13 @@ public class EmergencyLog implements Serializable {
     @Column(name = "content") // 상담 내용
     private String content;
 
-    @NonNull
     @Column(name = "start_time") // 실제 시작 시간
     private String startTime;
 
-    @NonNull
     @Column(name = "end_time") // 실제 종료 시간
     private String endTime;
 
-    @Builder
-    public EmergencyLog(Long eid, UserInfo uid, GmInfo gid, String name, Integer type, String content,
-                        String startTime, String endTime) {
-        this.eid = eid;
-        this.uid = uid;
-        this.gid = gid;
-        this.name = name;
-        this.type = type;
-        this.content = content;
-        this.startTime = startTime;
-        this.endTime = endTime;
-    }
+    @Column(name = "connection", length = 512) // OpenVidu Session Token
+    private String connection;
+
 }
