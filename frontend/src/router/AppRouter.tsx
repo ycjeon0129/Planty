@@ -50,6 +50,7 @@ function AppRouter() {
 	const fetchUserData = async () => {
 		const response = await findUserApi();
 
+		if (response === null) return;
 		if (response.status === 200) {
 			setUser(response.data);
 		}
