@@ -1,17 +1,21 @@
 package com.planty.api.consulting.service;
 
-import com.planty.api.booking.response.BookingResponse;
+import com.planty.api.consulting.request.ConsultingConnectionRequest;
 import com.planty.api.consulting.response.UserConsultingResponse;
 import com.planty.common.exception.handler.ExceptionHandler;
+import com.planty.common.util.OpenViduUtil;
 import com.planty.common.util.SecurityUtil;
 import com.planty.db.entity.*;
 import com.planty.db.repository.*;
+import io.openvidu.java.client.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 import static com.planty.common.util.LogCurrent.*;
 import static com.planty.common.util.LogCurrent.START;
@@ -20,12 +24,15 @@ import static com.planty.common.util.LogCurrent.START;
 @Service
 @RequiredArgsConstructor
 public class ConsultingServiceImpl implements ConsultingService {
+
     private final ViewUserConsultingRepository viewUserConsultingRepository;
     private final UserInfoRepository userInfoRepository;
     private final TimeTableRepository timeTableRepository;
     private final UserSubscribeRepository userSubscribeRepository;
     private final ConsultingBookingRepository consultingBookingRepository;
     private final GmInfoRepository gmInfoRepository;
+    @Autowired
+    private OpenViduUtil openViduUtil;
     @Override // 사용자 컨설팅 조회
     public List<UserConsultingResponse> getUserConsultingUid() {
         log.info(logCurrent(getClassName(), getMethodName(), START));
@@ -89,5 +96,31 @@ public class ConsultingServiceImpl implements ConsultingService {
         }
         log.info(logCurrent(getClassName(), getMethodName(), END));
         return consultingListDetail;
+    }
+
+    @Override
+    public String initializeSession(Long cid) throws OpenViduJavaClientException, OpenViduHttpException {
+        Map<String, Object> params = new HashMap<>();
+        params.put("cid", cid);
+        String sessionId = openViduUtil.initializeSession(params);
+        return sessionId;
+    }
+
+    @Override
+    public String createConnection(ConsultingConnectionRequest connectionInfo) throws OpenViduJavaClientException, OpenViduHttpException {
+        Map<String, Object> params = new HashMap<>();
+        params.put("cid", connectionInfo.getCid());
+        params.put("sessionId", connectionInfo.getSessionId());
+        String token = openViduUtil.createConnection(params);
+        if (token == null) {
+            throw new NullPointerException(ExceptionHandler.CONSULTING_SESSION_NOT_FOUND);
+        }
+
+        ConsultingBooking bookingInfo = consultingBookingRepository.findByCid(connectionInfo.getCid())
+                .orElseThrow(() -> new NullPointerException(ExceptionHandler.BOOKING_NOT_FOUNT));
+        bookingInfo.setConnection(token);
+        consultingBookingRepository.save(bookingInfo);
+
+        return token;
     }
 }
