@@ -1,11 +1,11 @@
 package com.planty.api.emergency.service;
 
+import com.planty.api.emergency.response.ConnectionCountResponse;
 import com.planty.api.emergency.response.EmergencyResponse;
 import com.planty.common.exception.handler.ExceptionHandler;
 import com.planty.common.util.SecurityUtil;
 import com.planty.common.util.TimeUtil;
 import com.planty.db.entity.EmergencyLog;
-import com.planty.db.entity.GmInfo;
 import com.planty.db.entity.UserInfo;
 import com.planty.db.repository.*;
 import lombok.RequiredArgsConstructor;
@@ -15,6 +15,9 @@ import org.springframework.stereotype.Service;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.planty.common.util.LogCurrent.*;
+import static com.planty.common.util.LogCurrent.START;
 
 @Slf4j
 @Service
@@ -76,5 +79,13 @@ public class EmergencyServiceImpl implements EmergencyService {
 //            );
 //        }
 
+    }
+
+    @Override
+    public ConnectionCountResponse getGmCnt() {
+        log.info(logCurrent(getClassName(), getMethodName(), START));
+        log.info(logCurrent(getClassName(), getMethodName(), END));
+        return ConnectionCountResponse.builder()
+                .gmCnt(gmInfoRepository.countByActivateTrue()).build();
     }
 }

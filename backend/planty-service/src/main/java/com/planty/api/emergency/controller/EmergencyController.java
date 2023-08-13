@@ -1,5 +1,6 @@
 package com.planty.api.emergency.controller;
 
+import com.planty.api.emergency.response.ConnectionCountResponse;
 import com.planty.api.emergency.response.EmergencyResponse;
 import com.planty.api.emergency.service.EmergencyService;
 import io.swagger.annotations.Api;
@@ -13,6 +14,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.text.ParseException;
 import java.util.List;
+
+import static com.planty.common.util.LogCurrent.*;
+import static com.planty.common.util.LogCurrent.END;
 
 @RestController
 @Slf4j
@@ -43,5 +47,13 @@ public class EmergencyController {
 //        }
 //        return new ResponseEntity<GmSubscribeDetailResponse>(subsInfo, HttpStatus.OK);
 //    }
+
+    @GetMapping("/greenmates-connection")
+    public ResponseEntity<?> getGmCnt(){
+        log.info(logCurrent(getClassName(), getMethodName(), START));
+        ConnectionCountResponse cnt = emergencyService.getGmCnt();
+        log.info(logCurrent(getClassName(), getMethodName(), END));
+        return ResponseEntity.status(200).body(cnt);
+    }
 
 }

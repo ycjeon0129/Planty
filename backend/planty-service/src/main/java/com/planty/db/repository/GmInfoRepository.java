@@ -11,4 +11,6 @@ public interface GmInfoRepository extends JpaRepository<GmInfo, Long> {
     /* OAuth */
     Optional<GmInfo> findByGid(Long gid);
 
+    long countByActivateTrue();
+
 }
