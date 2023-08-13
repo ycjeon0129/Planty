@@ -7,6 +7,8 @@ export interface IBooking {
 	title: string;
 	date: string;
 	time: number;
+	cancel: boolean;
+	active: boolean;
 }
 
 export type SelectedDate = Date;

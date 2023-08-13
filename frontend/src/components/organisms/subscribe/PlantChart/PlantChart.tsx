@@ -27,7 +27,7 @@ function PlantChart({ embeddedInfo }: { embeddedInfo: IEmbeddedInfo[] }) {
 				<ChartButton type="danger" isActive={tempState} message="온도" onClick={tempToggle} />
 				<ChartButton type="success" isActive={hudiState} message="습도" onClick={hudiToggle} />
 			</div>
-			<Chart type="line" data={chartData} />
+			<Chart type="line" data={chartData} options={{ plugins: { legend: { display: false } } }} />
 		</div>
 	);
 }

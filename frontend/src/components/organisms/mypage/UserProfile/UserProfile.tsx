@@ -9,7 +9,7 @@ function UserProfile() {
 	return (
 		<div className="user-profile-container">
 			<UserProfilePhoto />
-			<span>{user?.nickname}</span>
+			<span>{user?.userName}</span>
 		</div>
 	);
 }

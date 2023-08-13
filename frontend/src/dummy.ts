@@ -1,5 +1,5 @@
 import { IBanner } from 'types/common/global';
-import { IProduct, IProductDetail } from 'types/domain/product';
+import { IProduct } from 'types/domain/product';
 import { ISubscribeDetail } from 'types/domain/subscribe';
 
 export const dummybanner: IBanner[] = [
@@ -53,27 +53,6 @@ export const dummyProduct: IProduct[] = [
 		level: 3,
 	},
 ];
-
-export const ProductDetail: IProductDetail = {
-	spid: 1, // 구독상품 식별키
-	name: '방울방울 방울 토마토', // 구독상품명
-	imgUrl:
-		'https://i.namu.wiki/i/7CrIrJaPPWRwMaCfZhyjVpjXBL5c7_Nn_lGZBQ-R3JNh_59xwZA92LllKCpGx1yti4Bxn1bt13-GH4ee_8llUA.webp', // 이미지URL
-	period: 3, // 구독 기간
-	plantName: '토마토', // 식물이름
-	price: 20000, // 가격
-	level: 2, // 난이도
-
-	tonicPeriod: 4, // 식물 영양제 제공 주기 (주)
-	size: 0, // 크기. 소(0), 중(1), 대(2)
-	place: 0, // 생육 장소. 무관(0), 실내(1), 실외(2)
-	eatable: 1, // 식용 여부. 식용(1), 비식용(0)
-
-	greenmate: '김싸피', // 담당그린메이트
-	consultingCnt: 4, // 컨설팅 횟수
-	description:
-		'https://thumbnail8.coupangcdn.com/thumbnails/remote/q89/image/retail/images/715188549854504-0eec4459-46be-444d-836a-7cc57cf7f5ff.jpg', // 상세설명
-};
 
 export const dummySubscribeDetail: ISubscribeDetail = {
 	sid: 0,

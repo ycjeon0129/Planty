@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
 import TabBarLayout from 'components/layout/common/TabBarLayout/TabBarLayout';
@@ -30,19 +31,37 @@ import { SimpleDialogContainer } from 'react-simple-dialogs';
 import 'styles/index.scss';
 import EmergencyHistoryPage from 'pages/Emergency/EmergencyHistoryPage';
 import SubConsultingHistoryPage from 'pages/Mypage/SubConsultingHistoryPage';
+import { useRecoilState } from 'recoil';
+import userState from 'recoil/user';
+import { findUserApi } from 'utils/api/auth';
+import FailPage from 'pages/Payment/pages/Fail';
 import PrivateRoute from './PrivateRoute';
 
 function AppRouter() {
-	const [isLoading, setIsLoading] = useState(false);
+	// TODO : (로딩) 배포 후 true로 변경
+	const [isLoading, setIsLoading] = useState(true);
+	const [user, setUser] = useRecoilState(userState);
 
 	const loading = () => {
 		setTimeout(() => {
 			setIsLoading(false);
 		}, 2000);
 	};
+
+	// 앱 렌더링 시, AT사용하여 유저정보 불러오기
+	const fetchUserData = async () => {
+		const response = await findUserApi();
+
+		if (response === null) return;
+		if (response.status === 200) {
+			setUser(response.data);
+		}
+	};
+
 	useEffect(() => {
 		loading();
-	});
+		fetchUserData();
+	}, []);
 
 	if (isLoading) {
 		return <LoadingPage />;
@@ -52,13 +71,15 @@ function AppRouter() {
 		<div className="container">
 			<BrowserRouter>
 				<Routes>
-					<Route path="/" element={<Navigate replace to="/home" />} />
+					{/* 로그인 상태라면 home으로, 로그인이 안된 상태라면 login으로 */}
+					<Route path="/" element={<Navigate replace to={user ? '/home' : '/login'} />} />
+
 					<Route path="/login" element={<LoginPage />} />
 					<Route path="/" element={<PrivateRoute />}>
 						<Route path="/home" element={<HomePage />} />
 						<Route path="/shop" element={<ShopPage />} />
-						<Route path="/shop/detail/:pid" element={<ShopDetail />} />
-						<Route path="/shop/pay/:pid" element={<ShopPay />} />
+						<Route path="/shop/detail/:spid" element={<ShopDetail />} />
+						<Route path="/shop/pay/:spid" element={<ShopPay />} />
 						<Route path="/emergency" element={<EmergencyPage />} />
 						<Route path="/emergency/participate" element={<EmergencyParticipatePage />} />
 						<Route path="/consulting/participate" element={<ConsultingParticipatePage />} />
@@ -74,7 +95,8 @@ function AppRouter() {
 						<Route path="/consulting/video" element={<VideoConsultingPage />} />
 						<Route path="/consultingloading" element={<ConsultingLoadingPageLayout />} />
 						<Route path="/payment/:pid" element={<CheckoutPage />} />
-						<Route path="/success/:pid" element={<Success />} />
+						<Route path="/payment/success/:spid" element={<Success />} />
+						<Route path="/payment/fail" element={<FailPage />} />
 					</Route>
 
 					{/* 컴포넌트 개발용 */}
