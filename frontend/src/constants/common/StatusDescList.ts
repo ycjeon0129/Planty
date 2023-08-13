@@ -13,3 +13,14 @@ export const CONSULTING_HISTORY_STATUS_DESC_LIST = [
 	"※ 예약 시간에 컨설팅을 진행했을 경우, '진행완료'로 표시됩니다.",
 	'※ 예약을 취소하지 않고 참여하지 않았을 경우 미참여로 표시됩니다.',
 ];
+
+export const SUB_CONSULTING_HISTORY_STATUS_DESC_LIST = [
+	"※ 예약 시간에 컨설팅을 진행했을 경우, '진행완료'로 표시됩니다.",
+	'※ 예약을 취소하지 않고 참여하지 않았을 경우 미참여로 표시됩니다.',
+	'※ 예약을 취소했을 경우 취소로 표시됩니다.',
+];
+
+export const EMERGENCY_HISTORY_STATUS_DESC_LIST = [
+	"※ 예약 시간에 응급실을 채팅으로 진행했을 경우, '채팅'로 표시됩니다.",
+	"※ 예약 시간에 응급실을 화상으로 진행했을 경우, '화상'로 표시됩니다.",
+];
