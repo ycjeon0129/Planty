@@ -33,33 +33,33 @@ export const MENU_ICON_LIST: IMenuList = {
 };
 
 export const MENU_URL_LIST: IMenuList = {
-	[MAIN_MENU_LIST[0]]: '/mypage/booking',
-	[MAIN_MENU_LIST[1]]: '/mypage/subscribe',
-	[SUB_MENU_LIST[0]]: '/mypage/service-history',
-	[SUB_MENU_LIST[1]]: '/mypage/pay-history',
-	[SUB_MENU_LIST[2]]: '/mypage/setting',
-	[SUB_MENU_LIST[3]]: '/mypage/service-info',
+	[MAIN_MENU_LIST[0]]: '/admin/mypage/booking',
+	[MAIN_MENU_LIST[1]]: '/admin/mypage/subscribe',
+	[SUB_MENU_LIST[0]]: '/admin/mypage/service-history',
+	[SUB_MENU_LIST[1]]: '/admin/mypage/pay-history',
+	[SUB_MENU_LIST[2]]: '/admin/mypage/setting',
+	[SUB_MENU_LIST[3]]: '/admin/mypage/service-info',
 };
 
 export const SUB_MENU_DETAIL_LIST: ISubMenuDetailList = {
 	[SUB_MENU_LIST[0]]: [
 		{
 			text: '응급실 이용 내역',
-			url: '/develop',
+			url: '/admin/develop',
 		},
 		{
 			text: '구독 컨설팅 이용 내역',
-			url: '/develop',
+			url: '/admin/develop',
 		},
 	],
 	[SUB_MENU_LIST[1]]: [
 		{
 			text: '구독 상품 결제 내역',
-			url: '/',
+			url: '/admin',
 		},
 		{
 			text: '응급실 결제 내역',
-			url: '/',
+			url: '/admin',
 		},
 	],
 	[SUB_MENU_LIST[2]]: [
@@ -75,19 +75,19 @@ export const SUB_MENU_DETAIL_LIST: ISubMenuDetailList = {
 	[SUB_MENU_LIST[3]]: [
 		{
 			text: '이용 약관',
-			url: '/',
+			url: '/admin',
 		},
 		{
 			text: '개인 정보 처리 방침',
-			url: '/',
+			url: '/admin',
 		},
 		{
 			text: '자주 묻는 질문',
-			url: '/',
+			url: '/admin',
 		},
 		{
 			text: '버전 정보',
-			url: '/',
+			url: '/admin',
 		},
 	],
 };
