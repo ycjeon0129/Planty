@@ -5,12 +5,12 @@ const HISTORY_MENU: IMenu = {
 	default: [
 		{
 			idx: 0,
-			title: '응급실 컨설팅 내역',
+			title: '지난 응급실 컨설팅',
 			url: '/history/emergency',
 		},
 		{
 			idx: 1,
-			title: '구독 컨설팅 내역',
+			title: '지난 구독 컨설팅',
 			url: '/history/consulting',
 		},
 	],
