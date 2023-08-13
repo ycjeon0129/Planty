@@ -11,6 +11,8 @@ import java.io.Serializable;
 //@Builder
 @ToString
 @Getter
+@Builder
+@AllArgsConstructor
 @DynamicInsert // Apply changed fields only
 @DynamicUpdate // Apply changed fields only
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -44,16 +46,4 @@ public class ConsultingLog implements Serializable {
     @NonNull
     @Column(name = "end_time") // 실제 종료 시간
     private String endTime;
-
-    @Builder
-    public ConsultingLog(ConsultingBooking cid, String recommendedStartDate, String recommendedEndDate,
-                         Integer times, String content, String startTime, String endTime) {
-        this.cid = cid;
-        this.recommendedStartDate = recommendedStartDate;
-        this.recommendedEndDate = recommendedEndDate;
-        this.times = times;
-        this.content = content;
-        this.startTime = startTime;
-        this.endTime = endTime;
-    }
 }
