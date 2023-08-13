@@ -74,8 +74,8 @@ function AppRouter() {
 					<Route path="/" element={<PrivateRoute />}>
 						<Route path="/home" element={<HomePage />} />
 						<Route path="/shop" element={<ShopPage />} />
-						<Route path="/shop/detail/:pid" element={<ShopDetail />} />
-						<Route path="/shop/pay/:pid" element={<ShopPay />} />
+						<Route path="/shop/detail/:spid" element={<ShopDetail />} />
+						<Route path="/shop/pay/:spid" element={<ShopPay />} />
 						<Route path="/emergency" element={<EmergencyPage />} />
 						<Route path="/emergency/participate" element={<EmergencyParticipatePage />} />
 						<Route path="/consulting/participate" element={<ConsultingParticipatePage />} />
