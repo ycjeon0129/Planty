@@ -1,6 +1,7 @@
 package com.planty.api.gm.consulting.service;
 
 import com.planty.api.consulting.response.UserConsultingResponse;
+import com.planty.api.gm.consulting.request.GmConsultingRecordRequest;
 import com.planty.common.exception.handler.ExceptionHandler;
 import com.planty.common.util.SecurityUtil;
 import com.planty.common.util.TimeUtil;
@@ -71,15 +72,26 @@ public class GmConsultingServiceImpl implements GmConsultingService {
     }
 
     @Override
-    public void deleteSession(Long cid) {
+    public void deleteSession(GmConsultingRecordRequest recordInfo) {
+        ConsultingBooking bookingInfo = consultingBookingRepository.findByCid(recordInfo.getCid())
+                .orElseThrow(() -> new NullPointerException(ExceptionHandler.BOOKING_NOT_FOUND));
+        ConsultingLog skeleton = consultingLogRepository.findByCid(bookingInfo)
+                .orElseThrow(() -> new NullPointerException(ExceptionHandler.CONSULTING_LOG_NOT_FOUND));
+        List<ConsultingBooking> list = consultingBookingRepository.findAllByCidLessThanAndSidAndCancelFalse(bookingInfo.getCid(), bookingInfo.getSid());
 
+        skeleton.setRecommendedStartDate(recordInfo.getRecommendedStartDate());
+        skeleton.setRecommendedEndDate(recordInfo.getRecommendedEndDate());
+        skeleton.setTimes(list.size());
+        skeleton.setContent(recordInfo.getContent());
+        skeleton.setEndTime(TimeUtil.findCurrentTimestamp());
+
+        consultingLogRepository.save(skeleton);
     }
 
     @Override
     public void setStartTime(Long cid) {
         ConsultingBooking bookingInfo = consultingBookingRepository.findByCid(cid)
                 .orElseThrow(() -> new NullPointerException(ExceptionHandler.BOOKING_NOT_FOUND));
-        System.out.println(TimeUtil.findCurrentTimestamp());
         ConsultingLog consultingInfo = ConsultingLog.builder()
                 .cid(bookingInfo)
                 .startTime(TimeUtil.findCurrentTimestamp())

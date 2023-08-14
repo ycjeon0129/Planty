@@ -1,6 +1,7 @@
 package com.planty.api.gm.consulting.controller;
 
 import com.planty.api.consulting.response.UserConsultingResponse;
+import com.planty.api.gm.consulting.request.GmConsultingRecordRequest;
 import com.planty.api.gm.consulting.service.GmConsultingService;
 import io.swagger.annotations.Api;
 import lombok.RequiredArgsConstructor;
@@ -43,9 +44,9 @@ public class GmConsultingController {
         return new ResponseEntity<>(token, HttpStatus.OK);
     }
 
-    @DeleteMapping("/session/{cid}")
-    public ResponseEntity<?> deleteSession(@PathVariable Long cid) {
-        gmConsultingsService.deleteSession(cid);
+    @PostMapping("/session/record")
+    public ResponseEntity<?> deleteSession(@RequestBody GmConsultingRecordRequest recordInfo) {
+        gmConsultingsService.deleteSession(recordInfo);
 
         return new ResponseEntity<>(null, HttpStatus.OK);
     }
