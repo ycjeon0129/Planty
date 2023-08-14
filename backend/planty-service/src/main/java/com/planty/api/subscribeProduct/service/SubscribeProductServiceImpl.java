@@ -24,11 +24,6 @@ import static com.planty.common.util.LogCurrent.START;
 @Service
 @RequiredArgsConstructor
 public class SubscribeProductServiceImpl implements SubscribeProductService {
-    private final ViewUserConsultingRepository viewUserConsultingRepository;
-    private final UserInfoRepository userInfoRepository;
-    private final TimeTableRepository timeTableRepository;
-    private final UserSubscribeRepository userSubscribeRepository;
-    private final ConsultingBookingRepository consultingBookingRepository;
     private final GmInfoRepository gmInfoRepository;
     private final SubscribeProductRepository subscribeProductRepository;
     private final PlantyInfoRepository plantyInfoRepository;
@@ -37,7 +32,7 @@ public class SubscribeProductServiceImpl implements SubscribeProductService {
         log.info(logCurrent(getClassName(), getMethodName(), START));
 
         List<SubscribeProductResponse> subscribeProductList = new ArrayList<>();
-        List<SubscribeProduct> list = subscribeProductRepository.findAll();
+        List<SubscribeProduct> list = subscribeProductRepository.findAllByOrderBySpidDesc();
         for(SubscribeProduct item : list) {
             if(size >= 0 && size <= 2 && item.getPlantInfoIdx().getSize() != size) continue; // 식용 여부. 식용(1), 비식용(0)
             if(place >= 0 && place <= 2 && item.getPlantInfoIdx().getPlace()!= place) continue; //크기. 소(0), 중(1), 대(2)
