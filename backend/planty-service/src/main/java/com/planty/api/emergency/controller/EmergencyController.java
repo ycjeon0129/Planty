@@ -58,9 +58,9 @@ public class EmergencyController {
         return ResponseEntity.status(200).body(cnt);
     }
 
-    @PostMapping()
-    public ResponseEntity<EmergencySessionResponse> initializeSession() throws OpenViduJavaClientException, OpenViduHttpException {
-        EmergencySessionResponse sessionInfo = emergencyService.initializeSession();
+    @PostMapping("/{type}")
+    public ResponseEntity<EmergencySessionResponse> initializeSession(@PathVariable("type") int type) throws OpenViduJavaClientException, OpenViduHttpException {
+        EmergencySessionResponse sessionInfo = emergencyService.initializeSession(type);
 
         return new ResponseEntity<EmergencySessionResponse>(sessionInfo, HttpStatus.OK);
     }

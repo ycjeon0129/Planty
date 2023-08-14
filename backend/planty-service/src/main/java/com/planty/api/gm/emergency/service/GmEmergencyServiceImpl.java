@@ -7,9 +7,7 @@ import com.planty.api.gm.emergency.request.GmEmergencyRecordRequest;
 import com.planty.common.exception.handler.ExceptionHandler;
 import com.planty.common.util.SecurityUtil;
 import com.planty.common.util.TimeUtil;
-import com.planty.db.entity.EmergencyLog;
-import com.planty.db.entity.GmInfo;
-import com.planty.db.entity.ViewUserConsulting;
+import com.planty.db.entity.*;
 import com.planty.db.repository.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -82,16 +80,28 @@ public class GmEmergencyServiceImpl implements GmEmergencyService {
 
     @Override
     public String findSessionToken(Long eid) {
-        return null;
+        EmergencyLog emergencyInfo = emergencyLogRepository.findByEid(eid)
+                .orElseThrow(() -> new NullPointerException(ExceptionHandler.EMERGENCY_NOT_FOUND));
+        return emergencyInfo.getConnection();
     }
 
     @Override
     public void deleteSession(GmEmergencyRecordRequest recordInfo) {
+        EmergencyLog emergencyInfo = emergencyLogRepository.findByEid(recordInfo.getEid())
+                .orElseThrow(() -> new NullPointerException(ExceptionHandler.EMERGENCY_NOT_FOUND));
+        emergencyInfo.setName(recordInfo.getName());
+        emergencyInfo.setContent(recordInfo.getContent());
+        emergencyInfo.setEndTime(TimeUtil.findCurrentTimestamp());
+        emergencyInfo.setConnection(null);
 
+        emergencyLogRepository.save(emergencyInfo);
     }
 
     @Override
     public void setStartTime(Long eid) {
-
+        EmergencyLog emergencyInfo = emergencyLogRepository.findByEid(eid)
+                .orElseThrow(() -> new NullPointerException(ExceptionHandler.EMERGENCY_NOT_FOUND));
+        emergencyInfo.setStartTime(TimeUtil.findCurrentTimestamp());
+        emergencyLogRepository.save(emergencyInfo);
     }
 }

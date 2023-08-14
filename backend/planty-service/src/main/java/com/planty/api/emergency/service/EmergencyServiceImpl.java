@@ -103,12 +103,13 @@ public class EmergencyServiceImpl implements EmergencyService {
 
     @Override
     @Transactional
-    public EmergencySessionResponse initializeSession() throws OpenViduJavaClientException, OpenViduHttpException {
+    public EmergencySessionResponse initializeSession(int type) throws OpenViduJavaClientException, OpenViduHttpException {
         Map<String, Object> params = new HashMap<>();
         UserInfo userInfo = userInfoRepository.findByUserEmail(SecurityUtil.getCurrentUserEmail())
                 .orElseThrow(() -> new NullPointerException(ExceptionHandler.USER_NOT_FOUND));
         EmergencyLog emergencyInfo = EmergencyLog.builder()
                 .uid(userInfo)
+                .type(type)
                 .build();
         Long eid = emergencyLogRepository.save(emergencyInfo).getEid();
         params.put("eid", eid);

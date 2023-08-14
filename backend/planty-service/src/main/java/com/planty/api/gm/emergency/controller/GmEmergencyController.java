@@ -4,6 +4,7 @@ import com.planty.api.consulting.response.UserConsultingResponse;
 import com.planty.api.gm.consulting.request.GmConsultingRecordRequest;
 import com.planty.api.gm.consulting.service.GmConsultingService;
 import com.planty.api.emergency.response.EmergencyResponse;
+import com.planty.api.gm.emergency.request.GmEmergencyRecordRequest;
 import com.planty.api.gm.emergency.service.GmEmergencyService;
 import io.swagger.annotations.Api;
 import lombok.RequiredArgsConstructor;
@@ -32,7 +33,7 @@ public class GmEmergencyController {
             return ResponseEntity.noContent().build();
         }
         return ResponseEntity.ok().body(list);
-    }// 컨설팅 세션 토큰 조회
+    }// 응급실 세션 토큰 조회
     @GetMapping("/session/{eid}")
     public ResponseEntity<String> findSessionToken(@PathVariable Long eid) {
         String token = gmEmergencyService.findSessionToken(eid);
@@ -43,12 +44,12 @@ public class GmEmergencyController {
         return new ResponseEntity<>(token, HttpStatus.OK);
     }
 
-//    @PostMapping("/session/record")
-//    public ResponseEntity<?> deleteSession(@RequestBody GmEmergencyRecordRequest recordInfo) {
-//        gmEmergencyService.deleteSession(recordInfo);
-//
-//        return new ResponseEntity<>(null, HttpStatus.OK);
-//    }
+    @PostMapping("/session/record")
+    public ResponseEntity<?> deleteSession(@RequestBody GmEmergencyRecordRequest recordInfo) {
+        gmEmergencyService.deleteSession(recordInfo);
+
+        return new ResponseEntity<>(null, HttpStatus.OK);
+    }
 
 //    // 담당 구독 상세 조회
 //    @GetMapping("/{spid}")
