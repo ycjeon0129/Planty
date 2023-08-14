@@ -9,13 +9,12 @@ import dashboard from 'assets/icons/greenmatesidebar/Dashboard.svg';
 import counsulting from 'assets/icons/greenmatesidebar/Consulting.svg';
 import GreenmateInfo from 'components/atoms/sidebar/greenmateinfo/GreenmateInfo';
 import greenmateImg from 'assets/icons/Greenmate.svg';
-import CheckOnline from 'components/atoms/sidebar/checkOnline/CheckOnlineItem';
 import PlantyLogo from 'assets/icons/logo/PlantyLogo.svg';
 import useMovePage from 'hooks/useMovePage';
 import { useRecoilState } from 'recoil';
 import './SideBar.scss';
 import { authState } from 'recoil/auth';
-import RequestList from '../RequestList/RequestList';
+import RequestArea from '../RequestArea/RequestArea';
 
 function SideBar() {
 	const [auth] = useRecoilState(authState);
@@ -59,8 +58,7 @@ function SideBar() {
 						<MenuItem img={setting} text="설정" handleClick={() => movePage('/settings')} pathname="settings" />
 					</div>
 					<div id="active-manage">
-						<CheckOnline />
-						<RequestList />
+						<RequestArea />
 					</div>
 				</div>
 			</SideBarLayout>
