@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { IEmergencyHistory } from 'types/domain/Emergency';
-import findAllEmergencyHistoryApi from 'utils/api/emergency';
+import { findAllEmergencyHistoryApi } from 'utils/api/emergency';
 
 const useEmergency = (): IEmergencyHistory[] | null => {
 	const [emergencies, setEmergencies] = useState<IEmergencyHistory[] | null>(null);
