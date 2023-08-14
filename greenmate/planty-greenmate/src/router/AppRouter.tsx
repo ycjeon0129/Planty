@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import App from 'App';
 import React, { useEffect } from 'react';
 import { BrowserRouter, Navigate, Outlet, Route, Routes } from 'react-router-dom';
@@ -44,6 +45,7 @@ function AppRouter() {
 				<SideBar />
 				<Routes>
 					{/* 로그인이 필요하지 않은 경로 */}
+					<Route path="/" element={<Navigate replace to="/admin" />} />
 					<Route path="/admin" element={<Navigate replace to={auth ? '/admin/dashboard' : '/admin/login'} />} />
 					<Route path="/admin/app" element={<App />} />
 					<Route path="/admin/login" element={<LoginPage />} />

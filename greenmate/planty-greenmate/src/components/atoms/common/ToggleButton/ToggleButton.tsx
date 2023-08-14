@@ -2,10 +2,13 @@ import React from 'react';
 import { styled } from '@mui/material/styles';
 import Switch, { SwitchProps } from '@mui/material/Switch';
 
-const IOSSwitch = styled((props: SwitchProps) => (
-	// eslint-disable-next-line react/jsx-props-no-spreading
-	<Switch focusVisibleClassName=".Mui-focusVisible" disableRipple {...props} />
-))(({ theme }) => ({
+const IOSSwitch = styled((props: SwitchProps) => {
+	console.log(props.defaultChecked);
+	return (
+		// eslint-disable-next-line react/jsx-props-no-spreading
+		<Switch focusVisibleClassName=".Mui-focusVisible" defaultChecked={props.defaultChecked} disableRipple {...props} />
+	);
+})(({ theme }) => ({
 	width: 42,
 	height: 26,
 	padding: 0,

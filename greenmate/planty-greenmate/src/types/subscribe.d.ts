@@ -2,7 +2,7 @@ export interface ISubscribe {
 	consultingCnt: number;
 	name: string;
 	period: number;
-	sid: number;
+	spid: number;
 	thumbnail: string;
 	subscriberCnt: number;
 }

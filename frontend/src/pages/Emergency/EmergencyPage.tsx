@@ -7,6 +7,7 @@ import SquareShortcutButton from 'components/atoms/common/SquareShortcutButton/S
 import CurrentGreenmateCount from 'components/atoms/emergency/CurrentGreenmateCount/CurrentGreenmateCount';
 import TicketInfo from 'components/organisms/emergency/TicketInfo/TicketInfo';
 import useMovePage from 'hooks/useMovePage';
+import { toast } from 'react-hot-toast';
 
 function EmergencyPage() {
 	const { movePage } = useMovePage();
@@ -29,14 +30,14 @@ function EmergencyPage() {
 				type="consulting-chat"
 				text="채팅 응급실"
 				handleClick={() => {
-					movePage('/emergency/participate', null);
+					toast.error('준비 중인 서비스입니다 😥');
 				}}
 			/>
 			<SquareShortcutButton
 				type="consulting-video"
 				text="화상 응급실"
 				handleClick={() => {
-					movePage('/consulting/participate', null);
+					movePage('/emergency/participate', null);
 				}}
 			/>
 		</EmergencyPageLayout>

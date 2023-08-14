@@ -1,33 +1,51 @@
-import React, { useState } from 'react';
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useState, useEffect } from 'react';
 import './CheckOnlineItem.scss';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import IOSSwitch from 'components/atoms/common/ToggleButton/ToggleButton';
 import { useRecoilState } from 'recoil';
-import { activeState } from 'recoil/auth';
+import { activityState } from 'recoil/auth';
+import { Switch } from '@mui/material';
+import { saveActivityStateApi } from 'utils/api/auth';
+import { toast } from 'react-hot-toast';
 
 function CheckOnline() {
-	const [active, setActive] = useRecoilState(activeState);
-	const [isActive, SetIsActive] = useState<boolean>(false);
+	const [activity] = useRecoilState(activityState);
+	const [message, setMessage] = useState('');
 
-	const onClick = () => {
-		SetIsActive(!isActive);
-		setActive(!active);
+	const changeMessage = (state: boolean) => {
+		if (state) {
+			setMessage('현재 활동 중 입니다. \n모든 컨설팅 요청을 수신합니다.');
+		} else {
+			setMessage('현재 활동 중이 아닙니다.\n모든 컨설팅 요청을 수신하지 않습니다.');
+		}
 	};
+
+	const changeActivityState = async () => {
+		try {
+			const response = await saveActivityStateApi();
+			if (response.status === 200) {
+				changeMessage(response.data.active);
+				console.log('활동상태 변경', response.data.active);
+				toast.success('활동 상태 변경 완료😀');
+			}
+		} catch (error) {
+			toast.error('활동 상태 변경에 실패했습니다😥 잠시 후 다시 시도하세요.');
+			console.error(error);
+		}
+	};
+
+	useEffect(() => {
+		changeMessage(activity);
+	}, [activity]);
 
 	return (
 		<div className="check-online-outer-box">
 			<div className="check-online-box">
 				<div className="active-management">
 					<div className="bold-text">활동 관리</div>
-					<FormControlLabel control={<IOSSwitch sx={{ m: 1 }} />} label="" onClick={onClick} />
+					<Switch defaultChecked={activity} onClick={changeActivityState} />
 				</div>
 				<div>
-					{isActive ? <div className="gray-text">현재 활동 중입니다.</div> : <div>현재 활동 중이 아닙니다.</div>}
-					{isActive ? (
-						<div className="gray-text">모든 컨설팅 요청을 수신합니다.</div>
-					) : (
-						<div>모든 컨설팅 요청을 수신하지 않습니다.</div>
-					)}
+					<div className="gray-text">{message}</div>
 				</div>
 			</div>
 		</div>
