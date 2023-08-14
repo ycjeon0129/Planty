@@ -12,6 +12,7 @@ export interface ISubscribeResponse {
 	consultingCancel: boolean;
 	consultingActive: boolean;
 	consultingTime: number;
+	thumbnail: string;
 }
 
 /**

@@ -14,7 +14,7 @@ import { useParams } from 'react-router-dom';
 import { toast } from 'react-hot-toast';
 import convertTime from 'utils/common/convertTime';
 import useMovePage from 'hooks/useMovePage';
-import confirmDialog from 'utils/common/confirmDialog';
+import CustomAlert from 'components/organisms/common/CustomAlert/CustomAlert';
 import BookingCalendar from '../../../components/atoms/booking/BookingCalendar/BookingCalendar';
 
 function BookingPage() {
@@ -46,8 +46,15 @@ function BookingPage() {
 				console.error(error);
 			}
 		};
+
 		// confirm
-		confirmDialog({ title: '예약하기', message, confirmLabel: '예약하기', cancelLabel: '그만두기', onConfirm });
+		CustomAlert({
+			title: '예약하기',
+			desc: message,
+			btnTitle: '예약하기',
+			params: {},
+			onAction: onConfirm,
+		});
 	};
 
 	/**

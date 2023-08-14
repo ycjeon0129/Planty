@@ -33,6 +33,7 @@
 		#booking {
 			@include border-gray;
 			flex-basis: 50%;
+			border-radius: var.$rd-sm;
 		}
 
 		#emergency {
@@ -43,6 +44,7 @@
 
 			div {
 				@include border-gray;
+				border-radius: var.$rd-sm;
 			}
 		}
 	}

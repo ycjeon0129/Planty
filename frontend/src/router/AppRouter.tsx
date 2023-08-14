@@ -27,7 +27,6 @@ import ConsultingParticipatePage from 'pages/Consulting/ConsultingParticipatePag
 import Success from 'pages/Payment/pages/Success';
 import CheckoutPage from 'pages/Payment/pages/Checkout';
 import { Toaster } from 'react-hot-toast';
-import { SimpleDialogContainer } from 'react-simple-dialogs';
 import 'styles/index.scss';
 import EmergencyHistoryPage from 'pages/Emergency/EmergencyHistoryPage';
 import SubConsultingHistoryPage from 'pages/Mypage/SubConsultingHistoryPage';
@@ -119,7 +118,6 @@ function AppRouter() {
 						duration: 1500,
 					}}
 				/>
-				<SimpleDialogContainer />
 			</BrowserRouter>
 		</div>
 	);

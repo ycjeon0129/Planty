@@ -8,11 +8,11 @@ import 'moment/locale/ko';
 import { IBooking } from 'types/domain/booking';
 import convertTime from 'utils/common/convertTime';
 import InfoRow from 'components/atoms/common/InfoRow/InfoRow';
-import confirmDialog from 'utils/common/confirmDialog';
 import { deleteBooking } from 'utils/api/booking';
 import { toast } from 'react-hot-toast';
 import useMovePage from 'hooks/useMovePage';
 import moment from 'moment';
+import CustomAlert from 'components/organisms/common/CustomAlert/CustomAlert';
 
 function BookingListItem({ booking }: { booking: IBooking }) {
 	const { movePage } = useMovePage();
@@ -36,7 +36,13 @@ function BookingListItem({ booking }: { booking: IBooking }) {
 		};
 
 		// confirm
-		confirmDialog({ title: '예약 취소', message, confirmLabel: '예약 취소하기', cancelLabel: '그만두기', onConfirm });
+		CustomAlert({
+			title: '예약 취소',
+			desc: message,
+			btnTitle: '예약 취소하기',
+			params: {},
+			onAction: onConfirm,
+		});
 	};
 
 	return (

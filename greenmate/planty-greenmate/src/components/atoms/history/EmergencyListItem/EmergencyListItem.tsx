@@ -10,7 +10,7 @@ import useLocationIdx from 'hooks/common/useSid';
 function EmergencyListItem({ emergency, handleClick }: { emergency: IEmergency; handleClick: () => void }) {
 	const [active, setActive] = useState(false);
 	const className = classNames('emergency-list-item-container', { active });
-	const eid = useLocationIdx(3);
+	const eid = useLocationIdx(4);
 
 	useEffect(() => {
 		if (eid === emergency.eid) setActive(true);
