@@ -117,7 +117,7 @@ public class ConsultingServiceImpl implements ConsultingService {
         }
 
         ConsultingBooking bookingInfo = consultingBookingRepository.findByCid(connectionInfo.getCid())
-                .orElseThrow(() -> new NullPointerException(ExceptionHandler.BOOKING_NOT_FOUNT));
+                .orElseThrow(() -> new NullPointerException(ExceptionHandler.BOOKING_NOT_FOUND));
         bookingInfo.setConnection(token);
         consultingBookingRepository.save(bookingInfo);
 

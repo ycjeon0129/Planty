@@ -61,7 +61,7 @@ public class ConsultingController {
     public ResponseEntity<String> initializeSession(@RequestBody ConsultingSessionRequest sessionInfo) throws OpenViduJavaClientException, OpenViduHttpException {
         String sessionId = consultingServiceImpl.initializeSession(sessionInfo.getCid());
 
-        return new ResponseEntity<String>(sessionId, HttpStatus.OK);
+        return new ResponseEntity<>(sessionId, HttpStatus.OK);
     }
 
     @PostMapping("/connections")
