@@ -6,7 +6,7 @@ import { instance } from './instance';
  * @returns response
  */
 const findGreenmateCountApi = async () => {
-	const response = await instance.get('/greenmate/connection');
+	const response = await instance.get('/emergencies/greenmates-connection');
 
 	return response;
 };

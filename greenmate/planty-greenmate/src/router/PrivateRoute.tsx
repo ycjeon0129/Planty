@@ -5,6 +5,6 @@ import { Navigate, Outlet } from 'react-router-dom';
 function PrivateRoute() {
 	const loginUser = LocalStorage.getItem('loginUser');
 
-	return loginUser ? <Outlet /> : <Navigate to="/admin/login" />;
+	return loginUser ? <Outlet /> : <Navigate to="/login" />;
 }
 export default PrivateRoute;

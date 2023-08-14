@@ -10,7 +10,7 @@ const useGreenmateCount = (): number => {
 	const fetchData = async () => {
 		try {
 			const response = await getGreenmateCountApi();
-			setGreenmateCount(response.data.count);
+			setGreenmateCount(response.data.gmCnt);
 		} catch (error) {
 			console.error('에러', error);
 		}

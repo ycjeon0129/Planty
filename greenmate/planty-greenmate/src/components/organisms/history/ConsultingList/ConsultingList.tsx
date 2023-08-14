@@ -7,7 +7,7 @@ import useLocationIdx from 'hooks/common/useSid';
 import useAllConsultingBySpid from 'hooks/api/useAllConsultingBySpid';
 
 function ConsultingList() {
-	const spid = useLocationIdx(4);
+	const spid = useLocationIdx(3);
 	const consultings = useAllConsultingBySpid(spid)
 		.filter((el) => el.active)
 		.sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
