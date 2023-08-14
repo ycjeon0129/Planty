@@ -12,7 +12,7 @@ public interface GmEmergencyService {
 
     String findSessionToken(Long eid);
 
-    void deleteSession(GmEmergencyRecordRequest recordInfo);
+    void deleteSession(GmEmergencyRecordRequest recordInfo) throws IllegalAccessException;
 
     void setStartTime(Long eid);
 }

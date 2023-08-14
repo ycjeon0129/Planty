@@ -34,11 +34,13 @@ public class GmEmergencyController {
             return ResponseEntity.noContent().build();
         }
         return ResponseEntity.ok().body(list);
-    }// 응급실 세션 토큰 조회
-    @GetMapping("/session/{eid}")
+    }
+
+    // 응급실 세션 토큰 조회
+    @GetMapping("/sessions/{eid}")
     public ResponseEntity<SessionTokenResponse> findSessionToken(@PathVariable Long eid) {
         String token = gmEmergencyService.findSessionToken(eid);
-        if (token == null) { // 아직 생성된 세션이 없는 경우
+        if (token == null) { // 이미 다른 GM이 수락한 응급실 요청인 경우
             return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
         }
         SessionTokenResponse tokenResponse = new SessionTokenResponse();
@@ -47,8 +49,8 @@ public class GmEmergencyController {
         return new ResponseEntity<>(tokenResponse, HttpStatus.OK);
     }
 
-    @PostMapping("/session/record")
-    public ResponseEntity<?> deleteSession(@RequestBody GmEmergencyRecordRequest recordInfo) {
+    @PostMapping("/sessions/record")
+    public ResponseEntity<?> deleteSession(@RequestBody GmEmergencyRecordRequest recordInfo) throws IllegalAccessException {
         gmEmergencyService.deleteSession(recordInfo);
 
         return new ResponseEntity<>(null, HttpStatus.OK);

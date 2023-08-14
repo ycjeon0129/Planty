@@ -5,8 +5,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.client.HttpClientErrorException;
 
-import static org.springframework.http.HttpStatus.FORBIDDEN;
-import static org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR;
+import static org.springframework.http.HttpStatus.*;
 
 @Slf4j
 @ControllerAdvice
@@ -24,16 +23,21 @@ public class ExceptionHandler {
     public static final String CONSULTING_LOG_NOT_FOUND = "존재하지 않는 컨설팅 기록입니다.";
     public static final String EMERGENCY_SESSION_NOT_FOUND = "존재하지 않는 응급실 세션입니다.";
 
+    // 403
+    public static final String EMERGENCY_UNAUTHORIZED = "권한이 없는 응급실 세션입니다.";
+
+
     @org.springframework.web.bind.annotation.ExceptionHandler(NullPointerException.class)
     public ResponseEntity exNullHandle(NullPointerException e) {
         log.info("[exceptionHandle] {}",e.getMessage());
         return new ResponseEntity(new ErrorResponse(INTERNAL_SERVER_ERROR.value(), e.getMessage()), INTERNAL_SERVER_ERROR);
     }
 
-//    @org.springframework.web.bind.annotation.ExceptionHandler(HttpClientErrorException.Forbidden.class)
-//    public ResponseEntity exUnAuthHandle(HttpClientErrorException.Forbidden e) {
-//        log.info("[exceptionHandle] {}",e.getMessage());
-//        return new ResponseEntity(new ErrorResponse(FORBIDDEN.value(), "인증 권한 오류"), FORBIDDEN);
-//    }
+    @org.springframework.web.bind.annotation.ExceptionHandler(IllegalAccessException.class)
+    public ResponseEntity exNullHandle(IllegalAccessException e) {
+        log.info("[exceptionHandle] {}",e.getMessage());
+        return new ResponseEntity(new ErrorResponse(FORBIDDEN.value(), e.getMessage()), INTERNAL_SERVER_ERROR);
+    }
+
 
 }

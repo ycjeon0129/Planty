@@ -82,13 +82,27 @@ public class GmEmergencyServiceImpl implements GmEmergencyService {
     public String findSessionToken(Long eid) {
         EmergencyLog emergencyInfo = emergencyLogRepository.findByEid(eid)
                 .orElseThrow(() -> new NullPointerException(ExceptionHandler.EMERGENCY_NOT_FOUND));
-        return emergencyInfo.getConnection();
+        Long gid = SecurityUtil.getCurrentGid();
+        if (emergencyInfo.getGid() == null) {   // 해당 응급실에 대해 첫 GM 응답일 경우
+            GmInfo gmInfo = gmInfoRepository.findByGid(gid)
+                    .orElseThrow(() -> new NullPointerException(ExceptionHandler.GM_NOT_FOUND));
+            emergencyInfo.setGid(gmInfo);
+            emergencyLogRepository.save(emergencyInfo);
+            return emergencyInfo.getConnection();
+        } else if (emergencyInfo.getGid().getGid() == gid) {    // 해당 요청을 수락한 GM의 재요청인 경우
+            return emergencyInfo.getConnection();
+        } else {    // 해당 요청을 먼저 수락한 GM이 아닌 다른 GM인 경우
+            return null;
+        }
     }
 
     @Override
-    public void deleteSession(GmEmergencyRecordRequest recordInfo) {
+    public void deleteSession(GmEmergencyRecordRequest recordInfo) throws IllegalAccessException {
         EmergencyLog emergencyInfo = emergencyLogRepository.findByEid(recordInfo.getEid())
                 .orElseThrow(() -> new NullPointerException(ExceptionHandler.EMERGENCY_NOT_FOUND));
+        if (emergencyInfo.getGid().getGid() != SecurityUtil.getCurrentGid()) {
+            throw new IllegalAccessException(ExceptionHandler.EMERGENCY_UNAUTHORIZED);
+        }
         emergencyInfo.setName(recordInfo.getName());
         emergencyInfo.setContent(recordInfo.getContent());
         emergencyInfo.setEndTime(TimeUtil.findCurrentTimestamp());
