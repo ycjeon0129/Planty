@@ -1,13 +1,14 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from 'react';
-import './CheckOnlineItem.scss';
+import './ActivityManagement.scss';
+import { ReactComponent as Refresh } from 'assets/icons/Refresh.svg';
 import { useRecoilState } from 'recoil';
 import { activityState } from 'recoil/auth';
 import { Switch } from '@mui/material';
 import { findActivityStateApi, saveActivityStateApi } from 'utils/api/auth';
 import { toast } from 'react-hot-toast';
 
-function CheckOnline() {
+function ActivityManagement({ refreshRequests }: { refreshRequests: () => void }) {
 	const [activity, setActivity] = useRecoilState(activityState);
 	const [message, setMessage] = useState('');
 
@@ -57,7 +58,16 @@ function CheckOnline() {
 		<div className="check-online-outer-box">
 			<div className="check-online-box">
 				<div className="active-management">
-					<div className="bold-text">활동 관리</div>
+					<div className="bold-text flex">
+						활동 관리
+						{activity ? (
+							<button type="button" onClick={refreshRequests}>
+								<Refresh />
+							</button>
+						) : (
+							<div />
+						)}
+					</div>
 					<Switch checked={activity} onChange={changeActivityState} inputProps={{ 'aria-label': 'controlled' }} />
 				</div>
 				<div>
@@ -68,4 +78,4 @@ function CheckOnline() {
 	);
 }
 
-export default CheckOnline;
+export default ActivityManagement;
