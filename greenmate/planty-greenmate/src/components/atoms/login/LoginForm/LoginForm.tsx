@@ -14,7 +14,7 @@ import Checkbox from '@mui/material/Checkbox';
 import Button from 'components/atoms/common/Button/Button';
 // import { loginApi } from 'utils/api/auth';
 import { useRecoilState } from 'recoil';
-import { authState } from 'recoil/auth';
+import { authState } from 'recoil/store';
 import useMovePage from 'hooks/useMovePage';
 import { IAuth } from 'types/auth';
 import { toast } from 'react-hot-toast';
@@ -62,7 +62,7 @@ function LoginForm() {
 				setAuth(info);
 				toast.success('로그인 완료! 대시보드로 이동합니다.');
 
-				movePage('/');
+				movePage('/', null);
 			} else {
 				toast.error('로그인에 실패했습니다! 잠시 후 다시 시도하세요.');
 			}

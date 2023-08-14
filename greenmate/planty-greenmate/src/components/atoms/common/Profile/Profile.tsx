@@ -4,7 +4,7 @@ import ProfileImg from 'assets/icons/GreenmateProfile.svg';
 import EditIcon from '@mui/icons-material/Edit';
 import IconButton from '@mui/material/IconButton';
 import { useRecoilState } from 'recoil';
-import { authState } from 'recoil/auth';
+import { authState } from 'recoil/store';
 
 // 데이터 받아서 데이터 타입 맞추고 프롭스에 넣어주기
 function Profile() {

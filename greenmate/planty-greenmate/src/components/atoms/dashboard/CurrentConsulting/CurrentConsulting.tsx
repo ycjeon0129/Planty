@@ -4,7 +4,7 @@ import GreenmateImg from 'assets/icons/Greenmate.svg';
 import ProgressImg from 'assets/icons/CurrentProgress.svg';
 import AreaTitle from 'components/atoms/common/AreaTitle/AreaTitle';
 import { useRecoilState } from 'recoil';
-import { authState } from 'recoil/auth';
+import { authState } from 'recoil/store';
 import InfoRow from 'components/atoms/common/InfoRow/InfoRow';
 
 function CurrentConsulting() {

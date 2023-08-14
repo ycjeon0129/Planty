@@ -12,7 +12,7 @@ function EmergencyList() {
 		return (
 			<div className="emergency-list-container">
 				{emergencies?.map((e) => (
-					<EmergencyListItem key={e.eid} emergency={e} handleClick={() => movePage(`${e.eid}`)} />
+					<EmergencyListItem key={e.eid} emergency={e} handleClick={() => movePage(`${e.eid}`, null)} />
 				))}
 			</div>
 		);

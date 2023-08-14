@@ -13,7 +13,7 @@ import PlantyLogo from 'assets/icons/logo/PlantyLogo.svg';
 import useMovePage from 'hooks/useMovePage';
 import { useRecoilState } from 'recoil';
 import './SideBar.scss';
-import { authState } from 'recoil/auth';
+import { authState } from 'recoil/store';
 import RequestArea from '../RequestArea/RequestArea';
 
 function SideBar() {
@@ -25,9 +25,9 @@ function SideBar() {
 			<SideBarLayout>
 				<div className="sidebar-container">
 					<div id="logo">
-						<img src={PlantyLogo} alt="planty" onClick={() => movePage('/dashboard')} role="presentation" />
+						<img src={PlantyLogo} alt="planty" onClick={() => movePage('/dashboard', null)} role="presentation" />
 					</div>
-					<div id="profile" onClick={() => movePage('/settings')} role="presentation">
+					<div id="profile" onClick={() => movePage('/settings', null)} role="presentation">
 						<GreenmateInfo img={(auth?.profilePhoto as string) ?? greenmateImg} text={auth?.nickname as string} />
 					</div>
 					<div id="menu">
@@ -36,26 +36,33 @@ function SideBar() {
 							<MenuItem
 								img={Ing}
 								text="현재 진행중인 컨설팅"
-								handleClick={() => movePage(auth?.currentConsulting?.type ? '/consulting/video' : '/consulting/chat')}
+								handleClick={() =>
+									movePage(auth?.currentConsulting?.type ? '/consulting/video' : '/consulting/chat', null)
+								}
 								isIng
 							/>
 						) : (
 							<div />
 						)}
-						<MenuItem img={dashboard} text="대시보드" handleClick={() => movePage('/dashboard')} pathname="dashboard" />
+						<MenuItem
+							img={dashboard}
+							text="대시보드"
+							handleClick={() => movePage('/dashboard', null)}
+							pathname="dashboard"
+						/>
 						<MenuItem
 							img={classImg}
 							text="구독 관리"
-							handleClick={() => movePage('/subscribes/list')}
+							handleClick={() => movePage('/subscribes/list', null)}
 							pathname="subscribes"
 						/>
 						<MenuItem
 							img={counsulting}
 							text="컨설팅 내역 조회"
-							handleClick={() => movePage('/history/emergency')}
+							handleClick={() => movePage('/history/emergency', null)}
 							pathname="history"
 						/>
-						<MenuItem img={setting} text="설정" handleClick={() => movePage('/settings')} pathname="settings" />
+						<MenuItem img={setting} text="설정" handleClick={() => movePage('/settings', null)} pathname="settings" />
 					</div>
 					<div id="active-manage">
 						<RequestArea />

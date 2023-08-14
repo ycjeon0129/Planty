@@ -80,7 +80,7 @@ function AppRouter() {
 						<Route path="/shop/detail/:spid" element={<ShopDetail />} />
 						<Route path="/shop/pay/:spid" element={<ShopPay />} />
 						<Route path="/emergency" element={<EmergencyPage />} />
-						<Route path="/emergency/participate" element={<EmergencyParticipatePage />} />
+						<Route path="/emergency/participate/:type" element={<EmergencyParticipatePage />} />
 						<Route path="/consulting/participate" element={<ConsultingParticipatePage />} />
 						<Route path="/mypage" element={<MypagePage />} />
 						<Route path="/mypage/booking" element={<BookingManagementPage />} />

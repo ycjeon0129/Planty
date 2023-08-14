@@ -4,11 +4,14 @@ import OpenViduVideo from 'components/atoms/consulting/OpenViduVideo/OpenViduVid
 import VideoConsultingPageLayout from 'components/layout/Page/VideoConsultingPageLayout/VideoConsultingPageLayout';
 import VideoConsultingMenu from 'components/organisms/consulting/VideoConsultingMenu/VideoConsultingMenu';
 import { OpenVidu, Publisher, Session, StreamEvent, Subscriber } from 'openvidu-browser';
-import { getToken } from 'utils/api/openVidu';
 import ConsultingLoadingPageLayout from 'components/layout/Page/ConsultingLoadingPageLayout/ConsultingLoadingPageLayout';
 import { ReactComponent as CamOffIcon } from 'assets/icons/consultingMenu/VideoOff.svg';
 import { ReactComponent as MicOffIcon } from 'assets/icons/consultingMenu/MicOff.svg';
 import useMovePage from 'hooks/useMovePage';
+import { useRecoilState } from 'recoil';
+import consultingSessionState from 'recoil/consultingSession';
+import { IConsultingSession } from 'types/common/request';
+// import { getToken } from 'utils/api/openVidu';
 // import useUser from 'hooks/useUser';
 // import PlantChart from 'components/organisms/subscribe/PlantChart/PlantChart';
 
@@ -16,6 +19,7 @@ const userName = 'user1';
 
 function VideoConsultingPage() {
 	// const user = useUser();
+	const [consultingSession] = useRecoilState(consultingSessionState); // 현재 요청 정보 (webRTCType, token)
 	const { goBack } = useMovePage();
 	const [session, setSession] = useState<Session | undefined>(undefined); // 가상 룸
 	const [subscriber, setSubscriber] = useState<Subscriber | undefined>(undefined);
@@ -78,7 +82,9 @@ function VideoConsultingPage() {
 			const newSession = OV.initSession();
 			setSession(newSession);
 
-			const token = await getToken();
+			// const token = await getToken();
+			const { token } = consultingSession as IConsultingSession;
+			console.log('토큰이야', token);
 			await newSession.connect(token, { clientData: userName });
 
 			const initPublisher = await OV.initPublisherAsync(undefined, {
@@ -98,7 +104,7 @@ function VideoConsultingPage() {
 		if (!session) {
 			joinSession();
 		}
-	}, [webcamEnabled, microphoneEnabled, session]);
+	}, [webcamEnabled, microphoneEnabled, session, consultingSession]);
 
 	useEffect(() => {
 		if (session) {

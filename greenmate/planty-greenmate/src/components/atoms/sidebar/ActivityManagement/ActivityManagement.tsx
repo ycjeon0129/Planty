@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import './ActivityManagement.scss';
 import { ReactComponent as Refresh } from 'assets/icons/Refresh.svg';
 import { useRecoilState } from 'recoil';
-import { activityState } from 'recoil/auth';
+import { activityState } from 'recoil/store';
 import { Switch } from '@mui/material';
 import { findActivityStateApi, saveActivityStateApi } from 'utils/api/auth';
 import { toast } from 'react-hot-toast';
