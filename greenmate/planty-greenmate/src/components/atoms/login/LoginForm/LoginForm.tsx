@@ -62,7 +62,7 @@ function LoginForm() {
 				setAuth(info);
 				toast.success('로그인 완료! 대시보드로 이동합니다.');
 
-				movePage('/admin');
+				movePage('/');
 			} else {
 				toast.error('로그인에 실패했습니다! 잠시 후 다시 시도하세요.');
 			}

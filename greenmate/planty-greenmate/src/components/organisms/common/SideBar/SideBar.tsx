@@ -26,9 +26,9 @@ function SideBar() {
 			<SideBarLayout>
 				<div className="sidebar-container">
 					<div id="logo">
-						<img src={PlantyLogo} alt="planty" onClick={() => movePage('/admin/dashboard')} role="presentation" />
+						<img src={PlantyLogo} alt="planty" onClick={() => movePage('/dashboard')} role="presentation" />
 					</div>
-					<div id="profile" onClick={() => movePage('/admin/settings')} role="presentation">
+					<div id="profile" onClick={() => movePage('/settings')} role="presentation">
 						<GreenmateInfo img={(auth?.profilePhoto as string) ?? greenmateImg} text={auth?.nickname as string} />
 					</div>
 					<div id="menu">
@@ -37,33 +37,26 @@ function SideBar() {
 							<MenuItem
 								img={Ing}
 								text="현재 진행중인 컨설팅"
-								handleClick={() =>
-									movePage(auth?.currentConsulting?.type ? '/admin/consulting/video' : '/admin/consulting/chat')
-								}
+								handleClick={() => movePage(auth?.currentConsulting?.type ? '/consulting/video' : '/consulting/chat')}
 								isIng
 							/>
 						) : (
 							<div />
 						)}
-						<MenuItem
-							img={dashboard}
-							text="대시보드"
-							handleClick={() => movePage('/admin/dashboard')}
-							pathname="dashboard"
-						/>
+						<MenuItem img={dashboard} text="대시보드" handleClick={() => movePage('/dashboard')} pathname="dashboard" />
 						<MenuItem
 							img={classImg}
 							text="구독 관리"
-							handleClick={() => movePage('/admin/subscribes/list')}
+							handleClick={() => movePage('/subscribes/list')}
 							pathname="subscribes"
 						/>
 						<MenuItem
 							img={counsulting}
 							text="컨설팅 내역 조회"
-							handleClick={() => movePage('/admin/history/emergency')}
+							handleClick={() => movePage('/history/emergency')}
 							pathname="history"
 						/>
-						<MenuItem img={setting} text="설정" handleClick={() => movePage('/admin/settings')} pathname="settings" />
+						<MenuItem img={setting} text="설정" handleClick={() => movePage('/settings')} pathname="settings" />
 					</div>
 					<div id="active-manage">
 						<CheckOnline />

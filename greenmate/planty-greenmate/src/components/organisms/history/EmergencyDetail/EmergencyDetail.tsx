@@ -8,7 +8,7 @@ import useEmergency from 'hooks/api/useEmergency';
 import { IEmergency } from 'types/history';
 
 function EmergencyDetail() {
-	const eid = useLocationIdx(4);
+	const eid = useLocationIdx(3);
 	const emergency: IEmergency = useEmergency(eid) as IEmergency;
 	if (emergency) {
 		console.log(emergency);
