@@ -72,3 +72,9 @@ export const logoutApi = async (body: LoginBody) => {
 
 	return response;
 };
+
+export const findActivityStateApi = async () => {
+	const response = await instance.get('/active');
+
+	return response;
+};

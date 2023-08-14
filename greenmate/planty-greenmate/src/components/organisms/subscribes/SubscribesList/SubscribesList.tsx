@@ -10,11 +10,11 @@ function SubscribesList() {
 	const { movePage } = useMovePage();
 	const pathname = useLocation().pathname.split('/')[1];
 
-	const handleClick = (sid: number) => {
+	const handleClick = (spid: number) => {
 		if (pathname === 'history') {
-			return movePage(`/admin/history/consulting/${sid}`);
+			return movePage(`/admin/history/consulting/${spid}`);
 		}
-		return movePage(`/admin/subscribes/list/${sid}`);
+		return movePage(`/admin/subscribes/list/${spid}`);
 	};
 
 	if (subscribes.length) {
@@ -22,7 +22,7 @@ function SubscribesList() {
 		return (
 			<div className="subscribes-list-container">
 				{subscribes.map((s) => (
-					<SubscribesListItem key={s.sid} subscribe={s} handleClick={() => handleClick(s.sid)} />
+					<SubscribesListItem key={s.spid} subscribe={s} handleClick={() => handleClick(s.spid)} />
 				))}
 			</div>
 		);
@@ -39,7 +39,7 @@ function SubscribesList() {
 			<SubscribesListItem
 				subscribe={{
 					title: '토마토 클래스',
-					sid: 1,
+					spid: 1,
 					thumbnail: '',
 					startDate: '2023-05-03',
 					endDate: '2023-06-03',

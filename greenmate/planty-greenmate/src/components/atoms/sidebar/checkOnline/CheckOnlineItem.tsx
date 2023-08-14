@@ -1,33 +1,41 @@
-import React, { useState } from 'react';
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useEffect, useState } from 'react';
 import './CheckOnlineItem.scss';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import IOSSwitch from 'components/atoms/common/ToggleButton/ToggleButton';
 import { useRecoilState } from 'recoil';
-import { activeState } from 'recoil/auth';
+import { activityState } from 'recoil/auth';
 
 function CheckOnline() {
-	const [active, setActive] = useRecoilState(activeState);
-	const [isActive, SetIsActive] = useState<boolean>(false);
+	const [activity, setActivity] = useRecoilState(activityState);
+	const [message, setMessage] = useState('');
 
 	const onClick = () => {
-		SetIsActive(!isActive);
-		setActive(!active);
+		if (activity) setActivity(false);
+		else setActivity(true);
 	};
+
+	const changeMessage = () => {
+		if (activity) {
+			setMessage('현재 활동 중 입니다. \n모든 컨설팅 요청을 수신합니다.');
+		} else {
+			setMessage('현재 활동 중이 아닙니다.\n모든 컨설팅 요청을 수신하지 않습니다.');
+		}
+	};
+
+	useEffect(() => {
+		changeMessage();
+	}, [activity]);
 
 	return (
 		<div className="check-online-outer-box">
 			<div className="check-online-box">
 				<div className="active-management">
 					<div className="bold-text">활동 관리</div>
-					<FormControlLabel control={<IOSSwitch sx={{ m: 1 }} />} label="" onClick={onClick} />
+					<FormControlLabel control={<IOSSwitch defaultChecked={activity} />} label="" onClick={onClick} />
 				</div>
 				<div>
-					{isActive ? <div className="gray-text">현재 활동 중입니다.</div> : <div>현재 활동 중이 아닙니다.</div>}
-					{isActive ? (
-						<div className="gray-text">모든 컨설팅 요청을 수신합니다.</div>
-					) : (
-						<div>모든 컨설팅 요청을 수신하지 않습니다.</div>
-					)}
+					<div className="gray-text">{message}</div>
 				</div>
 			</div>
 		</div>

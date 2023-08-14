@@ -6,7 +6,7 @@ export const authState = atom<IAuth | null>({
 	default: null,
 });
 
-export const activeState = atom<boolean>({
-	key: 'activeState',
+export const activityState = atom<boolean>({
+	key: 'activityState',
 	default: false,
 });

@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import App from 'App';
 import React, { useEffect } from 'react';
 import { BrowserRouter, Navigate, Outlet, Route, Routes } from 'react-router-dom';
@@ -23,12 +24,23 @@ import ConsultingList from 'components/organisms/history/ConsultingList/Consulti
 import ScrollToTop from 'components/atoms/common/ScrollToTop/ScrollToTop';
 import { Toaster } from 'react-hot-toast';
 import { useRecoilState } from 'recoil';
-import { authState } from 'recoil/auth';
+import { activityState, authState } from 'recoil/auth';
 import LocalStorage from 'constants/storage/LocalStorage';
+import { findActivityStateApi } from 'utils/api/auth';
 import PrivateRoute from './PrivateRoute';
 
 function AppRouter() {
 	const [auth, setAuth] = useRecoilState(authState);
+	const [, setActivity] = useRecoilState(activityState);
+
+	const fetchActivity = async () => {
+		try {
+			const response = await findActivityStateApi();
+			setActivity(response.data);
+		} catch (error) {
+			console.error(error);
+		}
+	};
 
 	useEffect(() => {
 		const loginUser = LocalStorage.getItem('loginUser');
@@ -37,6 +49,10 @@ function AppRouter() {
 			setAuth(JSON.parse(loginUser));
 		}
 	}, [setAuth]);
+
+	useEffect(() => {
+		fetchActivity();
+	}, []);
 
 	return (
 		<div className="container">
