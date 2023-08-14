@@ -9,6 +9,7 @@ import com.planty.db.entity.*;
 import com.planty.db.repository.*;
 import com.planty.api.subscribe.response.UserSubscribeResponse;
 
+import java.time.LocalDate;
 import java.util.*;
 
 import lombok.RequiredArgsConstructor;
@@ -24,7 +25,7 @@ public class SubscribeServiceImpl implements SubscribeService {
     private final ViewUserSubscribeRepository viewUserSubscribeRepository;
     private final ViewUserConsultingRepository userConsultingRepository;
     private final UserInfoRepository userInfoRepository;
-    private final UserEmbeddedRepository userEmbeddedRepository;
+    private final PlantDataRepository plantDataRepository;
     private final SubscribeProductRepository subscribeProductRepository;
     private final UserSubscribeRepository userSubscribeRepository;
 
@@ -68,7 +69,7 @@ public class SubscribeServiceImpl implements SubscribeService {
         ViewUserSubscribe sub = viewUserSubscribeRepository.findByUidAndSid(user.getUid(), sid)
                 .orElseThrow(() -> new NullPointerException(ExceptionHandler.USER_SID_NOT_FOUND));
 
-        List<PlantData> plantDataList = userEmbeddedRepository.findByArduinoId(sub.getArduinoId());
+        List<PlantData> plantDataList = plantDataRepository.findByArduinoId(sub.getArduinoId());
         List<UserSubscribeEmbeddedResponse> embeddedList = new ArrayList<>();
 
         for(PlantData item : plantDataList) {
@@ -110,7 +111,7 @@ public class SubscribeServiceImpl implements SubscribeService {
         SubscribeProduct product = subscribeProductRepository.findBySpid(UserSubscribeRequest.getSpid())
                 .orElseThrow(() -> new NullPointerException(ExceptionHandler.PRODUCT_NOT_FOUND));
 
-        if(userSubscribeRepository.findByUidAndSpid(user, product).isPresent()) {
+        if(userSubscribeRepository.findByUidAndSpidAndEndDateIsNull(user, product).isPresent()) { // EndDateIsNull -> 현재 구독 상품 중에 해당 상품이 있는지 확인
             log.info(logCurrent(getClassName(), getMethodName(), END));
             return false;
         }
@@ -138,7 +139,8 @@ public class SubscribeServiceImpl implements SubscribeService {
                 .orElseThrow(() -> new NullPointerException(ExceptionHandler.USER_SID_NOT_FOUND));
 
         if (userSubscribe != null) {
-            userSubscribeRepository.delete(userSubscribe);
+            userSubscribe.setEndDate(LocalDate.now());
+            userSubscribeRepository.save(userSubscribe); // delete -> save : endDate update
             log.info(logCurrent(getClassName(), getMethodName(), END));
             return true;
         }

@@ -39,6 +39,6 @@ public class GmInfo {
     private String introduce;
 
     @Column(name = "activate") // 활성화 상태
-    @ColumnDefault("1")
-    private Integer activate;
+    @ColumnDefault("0")
+    private Boolean activate; // 'GM 활성화 상태. 활성화(1), 비활성화(0)',
 }

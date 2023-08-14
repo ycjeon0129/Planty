@@ -1,9 +1,8 @@
 package com.planty.api.booking.controller;
 
 import com.planty.api.booking.request.UserBookingRequest;
-import com.planty.api.booking.response.UserBookingResponse;
+import com.planty.api.booking.response.BookingResponse;
 import com.planty.api.booking.service.BookingService;
-import com.planty.api.subscribe.response.UserSubscribeResponse;
 import io.swagger.annotations.Api;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -25,7 +24,7 @@ public class BookingController {
     @GetMapping // 사용자 예약 조회
     public ResponseEntity<?> getUserBooking() {
         log.info(logCurrent(getClassName(), getMethodName(), START));
-        List<UserBookingResponse> bookingList = bookingServiceImpl.getUserBooking();
+        List<BookingResponse> bookingList = bookingServiceImpl.getUserBooking();
 
         if (!bookingList.isEmpty()) {
             log.info(logCurrent(getClassName(), getMethodName(), END));
@@ -56,7 +55,7 @@ public class BookingController {
             return ResponseEntity.status(200).build();
         }
         log.info(logCurrent(getClassName(), getMethodName(), END));
-        return ResponseEntity.status(500).build();
+        return ResponseEntity.status(404).build();
     }
 
     @DeleteMapping("/{cid}") // 사용자 예약 삭제

@@ -58,7 +58,7 @@ public class SubscribeController {
                 return ResponseEntity.status(200).build();
         }
         log.info(logCurrent(getClassName(), getMethodName(), END));
-        return ResponseEntity.status(500).build();
+        return ResponseEntity.status(406).build();
     }
 
     @DeleteMapping("/{sid}") // 사용자 구독 삭제

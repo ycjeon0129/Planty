@@ -13,7 +13,11 @@ public interface SubscribeProductRepository extends JpaRepository<SubscribeProdu
     Optional<SubscribeProduct> findBySpid(Long spid);
 //    Optional<SubscribeProduct> findBySpidAndGid(Long spid, GmInfo gmInfo);
 
+    List<SubscribeProduct> findAllByOrderBySpidDesc();
+
     List<SubscribeProduct> findByGid(GmInfo gmInfo);
 
+
+    List<SubscribeProduct> findAll();
 }
 

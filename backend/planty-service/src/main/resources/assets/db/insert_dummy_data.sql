@@ -20,7 +20,7 @@ VALUES(1, 1 , '한달동안 토마토 키우기', 4, 4, '토마토를 먹고 싶
 ,(3, 1 , '네펜데스와 함께 춤을', 52, 8, '식충 식물과 함께라면 벌레도 무섭지 않아요', 3, 490000);
 
 INSERT INTO user_subscribe(arduino_id, USER_INFO_uid, SUBSCRIBE_PRODUCT_spid, GM_INFO_gid, consulting_remain_cnt, start_date)
-VALUES(101,1,1,1,3,'2023-07-29'), (102,2,2,2,4, '2023-07-28'), (103,2,1,1,3, '2023-07-26'), (104,1,2,2,8, '2023-08-07'), (105,1,3,1,8, '2023-08-07');
+VALUES(101,1,1,1,3,'2023-07-25'), (102,2,2,2,4, '2023-07-27'), (103,2,1,1,3, '2023-07-29'), (104,1,2,2,8, '2023-08-07'), (105,1,3,1,8, '2023-08-08');
 
 INSERT INTO consulting_booking(USER_SUBSCRIBE_sid, USER_INFO_uid, GM_INFO_gid, TIME_TABLE_idx, date, cancel, active)
 VALUES(1,1,1,2,"2023-08-01", 0, 1), (1,1,1,7,"2023-08-08", 0, 0),
@@ -35,9 +35,9 @@ VALUES(1,"2023-08-11", "2023-08-18", 1, '물 plz', '2023-08-01 10:32:00', '2023-
 (8,"2023-08-12", "2023-08-19", 1,'벌레를 더 먹여주세요', '2023-08-03 10:04:00', '2023-08-03 10:29:00');
 
 INSERT INTO emergency_log(USER_INFO_uid, GM_INFO_gid, name, type, content, start_time, end_time)
-VALUES(1, 1, "다육이", 0, "놔두면 잘 큽니다", '2023-08-01 10:32:00', '2023-08-01 10:58:00'),
-(1,  1, "소나무", 1, '햇빛 plz','2023-08-01 10:36:00', '2023-08-01 10:54:00'),
-(2, 1, "동충하초", 1, '여름되면 잘 자랍니다', '2023-08-01 10:04:00', '2023-08-01 10:29:00');
+VALUES(1, 1, "다육이", 0, '놔두면 잘 큽니다', '2023-08-01 10:32:00', '2023-08-01 10:58:00'),
+      (2, 1, "동충하초", 1, '여름되면 잘 자랍니다', '2023-08-03 10:04:00', '2023-08-03 10:29:00'),
+      (1, 1, "소나무", 1, '햇빛 plz','2023-08-03 10:36:00', '2023-08-03 10:54:00');
   
 INSERT INTO plant_data(arduino_id, date, time, temp, humidity, soil)
 VALUES (103, '2023-08-07','11:00:00', 28.0,42.0,21.0),
@@ -52,87 +52,9 @@ VALUES (103, '2023-08-07','11:00:00', 28.0,42.0,21.0),
 (101, '2023-08-02','22:00:00', 23.0,33.0,2.0),
 (101, '2023-08-02','00:00:00', 24.0,34.0,3.0),
 (101, '2023-08-03','02:00:00', 25.0,35.0,4.0);
-  
--- [user_subscribe_list -> [user_subscribe, subscribe_product, plant_info, gm_info] join view / 사용자 구독 목록 리스트]
--- Create View view_user_subscribe AS
--- select  us.sid, us.USER_INFO_uid as uid, us.arduino_id, us.consulting_remain_cnt,
--- us.start_date, us.end_date,
--- sp.name as sp_name, sp.period, sp.consulting_cnt, sp.description,
--- pi.name as pi_name, pi.tonic_period, gm.nickname, cb.date as cb_date, cb.TIME_TABLE_idx as cb_time, cb.cancel, cb.active
--- from subscribe_product sp
--- join gm_info gm
--- on 	gm.gid = sp.GM_INFO_gid
--- join user_subscribe us
--- on us.SUBSCRIBE_PRODUCT_spid = sp.spid
--- join plant_info pi
--- on pi.idx = sp.PLANT_INFO_idx
--- left join consulting_booking cb
--- on us.sid = cb.USER_SUBSCRIBE_sid and
--- cb.cid in (select max(cid) from consulting_booking 
--- group by USER_SUBSCRIBE_sid) order by us.sid;
 
--- desc view_user_subscribe;
--- SELECT * FROM planty.view_user_subscribe;
-
--- consulting_booking -> sid 접근
-select *
-from consulting_booking
-where USER_SUBSCRIBE_sid = 2;
-
--- plant_data -> arduino id 접근
-select *
-from plant_data
-where arduino_id = 21;
-
--- [view_user_consulting -> [consulting_booking, consulting_log, user_subscribe, subscribe_product] join view / 사용자 예약 목록 리스트]
--- Create View view_user_consulting AS
--- select cb.USER_INFO_uid as uid, us.sid, cb.cid, cb.TIME_TABLE_idx as time, cb.date, cb.cancel, cb.active,
--- sp.name, cl.RECOMMENDED_START_DATE, cl.RECOMMENDED_END_DATE, cl.content, cl. start_time, cl.end_time
--- from consulting_booking cb
--- left join consulting_log cl
--- on cb.cid = cl.cid
--- join user_subscribe us
--- on cb.USER_SUBSCRIBE_sid = us.sid
--- join subscribe_product sp
--- on us.SUBSCRIBE_PRODUCT_spid = sp.spid
--- order by cb.cid;
-
-SELECT * FROM planty.view_user_consulting
-where sid = 2;
-
-SELECT * FROM planty.view_user_subscribe
-where uid = 1;
-
-select * from consulting_booking cb where cb.cid in (select max(cid) from consulting_booking
-group by USER_SUBSCRIBE_sid) and cb.user_info_uid = 2;
-
-select * from consulting_booking where cid in (select max(cid) from consulting_booking 
-group by USER_SUBSCRIBE_sid) and user_info_uid = 2 and USER_SUBSCRIBE_sid = 3;
-
-select * from plant_data where arduino_id = 21;
--- 일간통계
-SELECT date, avg(temp), avg(humidity), avg(soil)
-FROM plant_data
-where arduino_id = 102
-GROUP BY date;
-
-SELECT *
-FROM plant_data
-where arduino_id = 101;
-
--- 주간통계
--- SELECT DATE_FORMAT(DATE_SUB(date, INTERVAL (DAYOFWEEK(date)-1) DAY), '%Y/%m/%d') as start,
---        DATE_FORMAT(DATE_SUB(date, INTERVAL (DAYOFWEEK(date)-7) DAY), '%Y/%m/%d') as end,
---        DATE_FORMAT(date, '%Y%U') AS `date`,
---        avg(temp)
--- FROM plant_data
--- where arduino_id = 21
--- GROUP BY date;
-
--- 월간통계
--- SELECT MONTH(date),
---        avg(temp)
--- FROM plant_data
--- where arduino_id = 21
--- GROUP BY date;
-
+INSERT INTO ticket_product (name, count, price)
+VALUES ("1회 이용권", 1, 9900),
+       ("3회 이용권", 3, 24000),
+       ("5회 이용권", 5, 36000),
+       ("7회 이용권", 7, 45000);

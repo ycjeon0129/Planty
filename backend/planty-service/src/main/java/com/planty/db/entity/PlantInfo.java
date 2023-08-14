@@ -25,17 +25,16 @@ public class PlantInfo {
     @Column(name ="name", length = 128, nullable = false) // 식물 이름
     private String name;
 
-    @NonNull
-    @Column(name ="tonic_period", nullable = true) // 식물 영양제 제공 주기 (주)
+    @Column(name ="tonic_period") // 식물 영양제 제공 주기 (주)
     private Integer tonicPeriod;
 
-    @Column(name = "size", length = 16, nullable = true) // 크기
+    @Column(name = "size") // 크기. 소(0), 중(1), 대(2)
     private Integer size;
 
-    @Column(name = "place", length = 16, nullable = true) // 생육 장소
+    @Column(name = "place") // 생육 장소. 무관(0), 실내(1), 실외(2)
     private Integer place;
 
     @Column(name = "eatable")
     @ColumnDefault("0")
-    private boolean eatable; // 식용 여부. 식용(1), 비식용(0)
+    private Integer eatable; // 식용 여부. 식용(1), 비식용(0)
 }

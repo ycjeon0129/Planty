@@ -27,7 +27,7 @@ public class GmEmergencyController {
     @GetMapping()
     public ResponseEntity<?> findEmergencyList() throws ParseException {
         List<EmergencyResponse> list = gmEmergencyService.findEmergencyList();
-        if (list.isEmpty()) { // 컨설팅 예약이 없는 경우
+        if (list.isEmpty()) { // 응급실 내역이 없는 경우
             return ResponseEntity.noContent().build();
         }
         return ResponseEntity.ok().body(list);
