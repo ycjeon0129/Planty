@@ -8,15 +8,9 @@ import SquareShortcutButton from 'components/atoms/common/SquareShortcutButton/S
 import RectShortcutButton from 'components/atoms/common/RectShortcutButton/RectShortcutButton';
 import Header from 'components/organisms/common/Header/Header';
 import useMovePage from 'hooks/useMovePage';
-import CustomAlert from 'components/organisms/common/CustomAlert/CustomAlert';
 
 function HomePage() {
 	const { movePage } = useMovePage();
-
-	const handleConsulting = () => {
-		toast.error('현재 예약된 컨설팅이 없습니다.');
-		// movePage('/consulting/video', null);
-	};
 
 	return (
 		<HomePageLayout>
@@ -35,19 +29,17 @@ function HomePage() {
 			<RectShortcutButton
 				text="채팅 컨설팅"
 				handleClick={() => {
-					CustomAlert({
-						title: '주문 취소',
-						desc: '주문을 취소하시겠습니까? 주문 확인 전까지 취소가 가능합니다.',
-						btnTitle: '주문 취소하기',
-						params: {},
-						onAction: () => {
-							toast.success('채팅 컨설팅 입니다');
-						},
-					});
+					toast.error('응급실 - 채팅 컨설팅은 현재 준비중입니다 😥');
 				}}
 				type="consulting-chat"
 			/>
-			<RectShortcutButton text="화상 컨설팅" handleClick={handleConsulting} type="consulting-video" />
+			<RectShortcutButton
+				text="화상 컨설팅"
+				handleClick={() => {
+					movePage('/emergency/participate/1', null);
+				}}
+				type="consulting-video"
+			/>
 		</HomePageLayout>
 	);
 }
