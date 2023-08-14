@@ -78,3 +78,9 @@ export const findActivityStateApi = async () => {
 
 	return response;
 };
+
+export const saveActivityStateApi = async () => {
+	const response = await instance.post('/active');
+
+	return response;
+};
