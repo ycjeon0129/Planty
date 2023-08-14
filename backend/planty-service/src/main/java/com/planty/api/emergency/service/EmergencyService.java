@@ -17,5 +17,5 @@ public interface EmergencyService {
 
     EmergencySessionResponse initializeSession(int type) throws OpenViduJavaClientException, OpenViduHttpException;
 
-    String createConnection(EmergencyConnectionRequest connectionInfo) throws OpenViduJavaClientException, OpenViduHttpException;
+    String createConnection(EmergencyConnectionRequest connectionInfo) throws OpenViduJavaClientException, OpenViduHttpException, IllegalAccessException;
 }

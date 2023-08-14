@@ -36,9 +36,9 @@ public class GmConsultingController {
 
     // 컨설팅 세션 토큰 조회
     @GetMapping("/sessions/{cid}")
-    public ResponseEntity<SessionTokenResponse> findSessionToken(@PathVariable Long cid) {
+    public ResponseEntity<SessionTokenResponse> findSessionToken(@PathVariable Long cid) throws IllegalAccessException {
         String token = gmConsultingsService.findSessionToken(cid);
-        if (token == null) { // 다른 gm이 채감
+        if (token == null) {
             return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
         }
         SessionTokenResponse tokenResponse = new SessionTokenResponse();
@@ -48,7 +48,7 @@ public class GmConsultingController {
     }
 
     @PostMapping("/sessions/record")
-    public ResponseEntity<?> deleteSession(@RequestBody GmConsultingRecordRequest recordInfo) {
+    public ResponseEntity<?> deleteSession(@RequestBody GmConsultingRecordRequest recordInfo) throws IllegalAccessException {
         gmConsultingsService.deleteSession(recordInfo);
 
         return new ResponseEntity<>(null, HttpStatus.OK);

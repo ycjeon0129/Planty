@@ -122,8 +122,13 @@ public class EmergencyServiceImpl implements EmergencyService {
     }
 
     @Override
-    public String createConnection(EmergencyConnectionRequest connectionInfo) throws OpenViduJavaClientException, OpenViduHttpException {
+    public String createConnection(EmergencyConnectionRequest connectionInfo) throws OpenViduJavaClientException, OpenViduHttpException, IllegalAccessException {
         log.info(logCurrent(getClassName(), getMethodName(), START));
+        EmergencyLog emergencyInfo = emergencyLogRepository.findByEid(connectionInfo.getEid())
+                .orElseThrow(() -> new NullPointerException(ExceptionHandler.EMERGENCY_NOT_FOUND));
+        if (emergencyInfo.getUid().getUserEmail() != SecurityUtil.getCurrentUserEmail()) {
+            throw new IllegalAccessException(ExceptionHandler.EMERGENCY_UNAUTHORIZED);
+        }
         Map<String, Object> params = new HashMap<>();
         params.put("eid", connectionInfo.getEid());
         params.put("sessionId", connectionInfo.getSessionId());
@@ -131,8 +136,6 @@ public class EmergencyServiceImpl implements EmergencyService {
         if (token == null) {
             throw new NullPointerException(ExceptionHandler.EMERGENCY_SESSION_NOT_FOUND);
         }
-        EmergencyLog emergencyInfo = emergencyLogRepository.findByEid(connectionInfo.getEid())
-                .orElseThrow(() -> new NullPointerException(ExceptionHandler.EMERGENCY_NOT_FOUND));
         emergencyInfo.setConnection(token);
         emergencyLogRepository.save(emergencyInfo);
 

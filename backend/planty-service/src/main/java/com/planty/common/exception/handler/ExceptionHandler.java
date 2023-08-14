@@ -25,6 +25,7 @@ public class ExceptionHandler {
 
     // 403
     public static final String EMERGENCY_UNAUTHORIZED = "권한이 없는 응급실 세션입니다.";
+    public static final String CONSULTING_UNAUTHORIZED = "권한이 없는 컨설팅 세션입니다.";
 
 
     @org.springframework.web.bind.annotation.ExceptionHandler(NullPointerException.class)

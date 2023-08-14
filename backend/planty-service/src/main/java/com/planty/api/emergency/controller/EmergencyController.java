@@ -61,14 +61,16 @@ public class EmergencyController {
 
     @PostMapping("/{type}")
     public ResponseEntity<EmergencySessionResponse> initializeSession(@PathVariable("type") int type) throws OpenViduJavaClientException, OpenViduHttpException {
+        log.info(logCurrent(getClassName(), getMethodName(), START));
         EmergencySessionResponse sessionInfo = emergencyService.initializeSession(type);
+        log.info(logCurrent(getClassName(), getMethodName(), END));
 
         return new ResponseEntity<EmergencySessionResponse>(sessionInfo, HttpStatus.OK);
     }
 
     @PostMapping("/connections")
     public ResponseEntity<SessionTokenResponse> createConnection(@RequestBody EmergencyConnectionRequest connectionInfo)
-            throws OpenViduJavaClientException, OpenViduHttpException {
+            throws OpenViduJavaClientException, OpenViduHttpException, IllegalAccessException {
         log.info(logCurrent(getClassName(), getMethodName(), START));
         String token = emergencyService.createConnection(connectionInfo);
         SessionTokenResponse tokenResponse = new SessionTokenResponse();

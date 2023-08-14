@@ -8,9 +8,9 @@ import java.util.List;
 public interface GmConsultingService {
     List<UserConsultingResponse> findConsultingList(Long spid);
 
-    String findSessionToken(Long cid);
+    String findSessionToken(Long cid) throws IllegalAccessException;
 
-    void deleteSession(GmConsultingRecordRequest recordInfo);
+    void deleteSession(GmConsultingRecordRequest recordInfo) throws IllegalAccessException;
 
     void setStartTime(Long cid);
 }
