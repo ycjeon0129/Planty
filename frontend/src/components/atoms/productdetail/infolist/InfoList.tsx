@@ -28,7 +28,7 @@ function InfoList({ product }: { product: IProductDetail }) {
 				</div>
 				<div className="price-box">
 					<span>상세설명</span>
-					<span>{product.description} 원</span>
+					<span>{product.description}</span>
 				</div>
 			</div>
 		</div>
