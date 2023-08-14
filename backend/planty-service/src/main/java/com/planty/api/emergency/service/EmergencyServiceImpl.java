@@ -1,20 +1,28 @@
 package com.planty.api.emergency.service;
 
+import com.planty.api.emergency.request.EmergencyConnectionRequest;
 import com.planty.api.emergency.response.ConnectionCountResponse;
 import com.planty.api.emergency.response.EmergencyResponse;
 import com.planty.common.exception.handler.ExceptionHandler;
+import com.planty.common.util.OpenViduUtil;
 import com.planty.common.util.SecurityUtil;
 import com.planty.common.util.TimeUtil;
+import com.planty.db.entity.ConsultingBooking;
 import com.planty.db.entity.EmergencyLog;
 import com.planty.db.entity.UserInfo;
 import com.planty.db.repository.*;
+import io.openvidu.java.client.OpenViduHttpException;
+import io.openvidu.java.client.OpenViduJavaClientException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static com.planty.common.util.LogCurrent.*;
 import static com.planty.common.util.LogCurrent.START;
@@ -31,6 +39,8 @@ public class EmergencyServiceImpl implements EmergencyService {
     private final PlantyInfoRepository plantyInfoRepository;
     private final ViewUserConsultingRepository viewUserConsultingRepository;
     private final EmergencyLogRepository emergencyLogRepository;
+    @Autowired
+    private OpenViduUtil openViduUtil;
 
     @Override
     public List<EmergencyResponse> findEmergencyList() throws ParseException {
@@ -87,5 +97,31 @@ public class EmergencyServiceImpl implements EmergencyService {
         log.info(logCurrent(getClassName(), getMethodName(), END));
         return ConnectionCountResponse.builder()
                 .gmCnt(gmInfoRepository.countByActivateTrue()).build();
+    }
+
+    @Override
+    public String initializeSession(Long eid) throws OpenViduJavaClientException, OpenViduHttpException {
+        Map<String, Object> params = new HashMap<>();
+        params.put("cid", eid);
+        String sessionId = openViduUtil.initializeSession(params);
+        return sessionId;
+    }
+
+    @Override
+    public String createConnection(EmergencyConnectionRequest connectionInfo) throws OpenViduJavaClientException, OpenViduHttpException {
+        Map<String, Object> params = new HashMap<>();
+        params.put("cid", connectionInfo.getEid());
+        params.put("sessionId", connectionInfo.getSessionId());
+        String token = openViduUtil.createConnection(params);
+        if (token == null) {
+            throw new NullPointerException(ExceptionHandler.EMERGENCY_SESSION_NOT_FOUND);
+        }
+
+        EmergencyLog emergencyInfo = emergencyLogRepository.findByEid(connectionInfo.getEid())
+                .orElseThrow(() -> new NullPointerException(ExceptionHandler.BOOKING_NOT_FOUND));
+        emergencyInfo.setConnection(token);
+        emergencyLogRepository.save(emergencyInfo);
+
+        return token;
     }
 }
