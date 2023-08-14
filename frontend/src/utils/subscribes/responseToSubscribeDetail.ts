@@ -1,3 +1,4 @@
+/* eslint-disable global-require */
 import { ISubscribeDetail, ISubscribeDetailResponse } from 'types/domain/subscribe';
 import getSubscribeState from './getSubscribeState';
 
@@ -23,10 +24,10 @@ const responseToSubscribeDetail = (res: ISubscribeDetailResponse): ISubscribeDet
 			consultingTime: res.consultingTime,
 		},
 		state: getSubscribeState(res.consultingActive, res.consultingCancel, res.end, res.consultingDate),
-		thumbnail: 'https://gardening.godohosting.com/2018/mfset/redcherrytomato_01.jpg',
+		thumbnail: res.thumbnail ?? require('assets/images/defaultImage.png'),
 		endDate: res.endDate,
-		plant: 'none',
-		greenmate: 'none',
+		plant: res.plant,
+		greenmate: res.greenmate,
 		embeddedInfo: res.embeddedInfo,
 	};
 };
