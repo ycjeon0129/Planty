@@ -23,7 +23,7 @@ import ConsultingList from 'components/organisms/history/ConsultingList/Consulti
 import ScrollToTop from 'components/atoms/common/ScrollToTop/ScrollToTop';
 import { Toaster } from 'react-hot-toast';
 import { useRecoilState } from 'recoil';
-import { authState } from 'recoil/auth';
+import { authState } from 'recoil/store';
 import LocalStorage from 'constants/storage/LocalStorage';
 import PrivateRoute from './PrivateRoute';
 
