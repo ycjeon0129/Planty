@@ -1,12 +1,12 @@
 import ActivityManagement from 'components/atoms/sidebar/ActivityManagement/ActivityManagement';
 import React, { useState } from 'react';
 import { findAllRequest } from 'utils/api/consulting';
-import { IConsultingRequest } from 'types/consulting';
+import { IRequest } from 'types/consulting';
 import { toast } from 'react-hot-toast';
 import RequestList from '../RequestList/RequestList';
 
 function RequestArea() {
-	const [requests, setRequests] = useState<IConsultingRequest[]>([]);
+	const [requests, setRequests] = useState<IRequest[]>([]);
 
 	const refreshRequests = async () => {
 		try {
