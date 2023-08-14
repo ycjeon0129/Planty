@@ -22,7 +22,7 @@ interface MenuBarProps {
  * Setting = 설정
  */
 function MenuBar({ img, text, handleClick, pathname, isIng }: MenuBarProps) {
-	const realPathname = useLocation().pathname.split('/')[1];
+	const realPathname = useLocation().pathname.split('/')[2];
 	const isActive = pathname === realPathname;
 	const className = classNames('menu-bar-outer-box', { isIng, active: isActive });
 
