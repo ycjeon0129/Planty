@@ -12,9 +12,9 @@ function SubscribesList() {
 
 	const handleClick = (spid: number) => {
 		if (pathname === 'history') {
-			return movePage(`/history/consulting/${spid}`);
+			return movePage(`/history/consulting/${spid}`, null);
 		}
-		return movePage(`/subscribes/list/${spid}`);
+		return movePage(`/subscribes/list/${spid}`, null);
 	};
 
 	if (subscribes.length) {
