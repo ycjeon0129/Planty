@@ -12,6 +12,7 @@ import com.planty.db.entity.ViewUserConsulting;
 import com.planty.db.repository.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -38,10 +39,14 @@ public class GmConsultingServiceImpl implements GmConsultingService {
                 .orElseThrow(() -> new NullPointerException(ExceptionHandler.GM_NOT_FOUND));
 
         List<ViewUserConsulting> list = new ArrayList<>();
+        Sort sort = Sort.by(
+                Sort.Order.desc("date"),
+                Sort.Order.desc("time")
+        );
         if (spid == null) {
-            list = viewUserConsultingRepository.findByGid(gm.getGid());
+            list = viewUserConsultingRepository.findByGid(gm.getGid(), sort);
         } else {
-            list = viewUserConsultingRepository.findByGidAndSpid(gm.getGid(), spid);
+            list = viewUserConsultingRepository.findByGidAndSpid(gm.getGid(), spid, sort);
         }
         for(ViewUserConsulting item : list) {
             consultingList.add(
@@ -65,16 +70,26 @@ public class GmConsultingServiceImpl implements GmConsultingService {
     }
 
     @Override
-    public String findSessionToken(Long cid) {
+    public String findSessionToken(Long cid) throws IllegalAccessException {
         ConsultingBooking bookingInfo = consultingBookingRepository.findByCid(cid)
                 .orElseThrow(() -> new NullPointerException(ExceptionHandler.BOOKING_NOT_FOUND));
+        if (bookingInfo.getGid().getGid() != SecurityUtil.getCurrentGid()) {
+            throw new IllegalAccessException(ExceptionHandler.CONSULTING_UNAUTHORIZED);
+        }
+        if (!bookingInfo.getActive()) {
+            bookingInfo.setActive(true);
+            consultingBookingRepository.save(bookingInfo);
+        }
         return bookingInfo.getConnection();
     }
 
     @Override
-    public void deleteSession(GmConsultingRecordRequest recordInfo) {
+    public void deleteSession(GmConsultingRecordRequest recordInfo) throws IllegalAccessException {
         ConsultingBooking bookingInfo = consultingBookingRepository.findByCid(recordInfo.getCid())
                 .orElseThrow(() -> new NullPointerException(ExceptionHandler.BOOKING_NOT_FOUND));
+        if (bookingInfo.getGid().getGid() != SecurityUtil.getCurrentGid()) {
+            throw new IllegalAccessException(ExceptionHandler.CONSULTING_UNAUTHORIZED);
+        }
         ConsultingLog skeleton = consultingLogRepository.findByCid(bookingInfo)
                 .orElseThrow(() -> new NullPointerException(ExceptionHandler.CONSULTING_LOG_NOT_FOUND));
         List<ConsultingBooking> list = consultingBookingRepository.findAllByCidLessThanAndSidAndCancelFalse(bookingInfo.getCid(), bookingInfo.getSid());
@@ -86,9 +101,6 @@ public class GmConsultingServiceImpl implements GmConsultingService {
         skeleton.setEndTime(TimeUtil.findCurrentTimestamp());
 
         consultingLogRepository.save(skeleton);
-
-        bookingInfo.setConnection(null);
-        consultingBookingRepository.save(bookingInfo);
 
     }
 

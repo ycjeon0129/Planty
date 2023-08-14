@@ -1,16 +1,19 @@
 package com.planty.api.emergency.controller;
 
+import com.planty.api.emergency.request.EmergencyConnectionRequest;
 import com.planty.api.emergency.response.ConnectionCountResponse;
 import com.planty.api.emergency.response.EmergencyResponse;
+import com.planty.api.emergency.response.EmergencySessionResponse;
 import com.planty.api.emergency.service.EmergencyService;
+import com.planty.common.model.SessionTokenResponse;
+import io.openvidu.java.client.OpenViduHttpException;
+import io.openvidu.java.client.OpenViduJavaClientException;
 import io.swagger.annotations.Api;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.text.ParseException;
 import java.util.List;
@@ -54,6 +57,27 @@ public class EmergencyController {
         ConnectionCountResponse cnt = emergencyService.getGmCnt();
         log.info(logCurrent(getClassName(), getMethodName(), END));
         return ResponseEntity.status(200).body(cnt);
+    }
+
+    @PostMapping("/{type}")
+    public ResponseEntity<EmergencySessionResponse> initializeSession(@PathVariable("type") int type) throws OpenViduJavaClientException, OpenViduHttpException {
+        log.info(logCurrent(getClassName(), getMethodName(), START));
+        EmergencySessionResponse sessionInfo = emergencyService.initializeSession(type);
+        log.info(logCurrent(getClassName(), getMethodName(), END));
+
+        return new ResponseEntity<EmergencySessionResponse>(sessionInfo, HttpStatus.OK);
+    }
+
+    @PostMapping("/connections")
+    public ResponseEntity<SessionTokenResponse> createConnection(@RequestBody EmergencyConnectionRequest connectionInfo)
+            throws OpenViduJavaClientException, OpenViduHttpException, IllegalAccessException {
+        log.info(logCurrent(getClassName(), getMethodName(), START));
+        String token = emergencyService.createConnection(connectionInfo);
+        SessionTokenResponse tokenResponse = new SessionTokenResponse();
+        tokenResponse.setToken(token);
+        log.info(logCurrent(getClassName(), getMethodName(), END));
+
+        return new ResponseEntity<>(tokenResponse, HttpStatus.OK);
     }
 
 }

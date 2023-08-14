@@ -1,6 +1,7 @@
 package com.planty.api.consulting.service;
 
 import com.planty.api.consulting.request.ConsultingConnectionRequest;
+import com.planty.api.consulting.response.ConsultingSessionResponse;
 import com.planty.api.consulting.response.UserConsultingResponse;
 import com.planty.common.exception.handler.ExceptionHandler;
 import com.planty.common.util.OpenViduUtil;
@@ -11,6 +12,7 @@ import io.openvidu.java.client.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -19,6 +21,8 @@ import java.util.*;
 
 import static com.planty.common.util.LogCurrent.*;
 import static com.planty.common.util.LogCurrent.START;
+import static org.springframework.data.domain.Sort.Order.asc;
+import static org.springframework.data.domain.Sort.Order.desc;
 
 @Slf4j
 @Service
@@ -41,7 +45,7 @@ public class ConsultingServiceImpl implements ConsultingService {
                 .orElseThrow(() -> new NullPointerException(ExceptionHandler.USER_NOT_FOUND));
 
         List<UserConsultingResponse> consultingList = new ArrayList<>();
-        List<ViewUserConsulting> list = viewUserConsultingRepository.findByUid(user.getUid());
+        List<ViewUserConsulting> list = viewUserConsultingRepository.findByUid(user.getUid(), Sort.by(desc("date"),desc("time")));
         for(ViewUserConsulting item : list) {
             UserConsultingResponse consult = UserConsultingResponse.builder()
                     .cid(item.getCid())
@@ -74,8 +78,7 @@ public class ConsultingServiceImpl implements ConsultingService {
                 .orElseThrow(() -> new NullPointerException(ExceptionHandler.USER_SID_NOT_FOUND));
 
         List<UserConsultingResponse> consultingListDetail = new ArrayList<>();
-
-        List<ViewUserConsulting> list = viewUserConsultingRepository.findByUidAndSid(user.getUid(), sid);
+        List<ViewUserConsulting> list = viewUserConsultingRepository.findByUidAndSid(user.getUid(), sid, Sort.by(desc("date"),desc("time")));
         //todo : list 없을때 -> 204 , 유저의 sid 가 없을때 -> null 처리 (500) 바꿔야됨
         for(ViewUserConsulting item : list) {
             UserConsultingResponse consult = UserConsultingResponse.builder()
@@ -99,15 +102,28 @@ public class ConsultingServiceImpl implements ConsultingService {
     }
 
     @Override
-    public String initializeSession(Long cid) throws OpenViduJavaClientException, OpenViduHttpException {
+    public ConsultingSessionResponse initializeSession(Long cid) throws OpenViduJavaClientException, OpenViduHttpException, IllegalAccessException {
+        ConsultingBooking bookingInfo = consultingBookingRepository.findByCid(cid)
+                .orElseThrow(() -> new NullPointerException(ExceptionHandler.BOOKING_NOT_FOUND));
+        if (!bookingInfo.getUid().getUserEmail().equals(SecurityUtil.getCurrentUserEmail())) {
+            throw new IllegalAccessException(ExceptionHandler.CONSULTING_UNAUTHORIZED);
+        }
         Map<String, Object> params = new HashMap<>();
         params.put("cid", cid);
         String sessionId = openViduUtil.initializeSession(params);
-        return sessionId;
+        ConsultingSessionResponse session = ConsultingSessionResponse.builder()
+                .sessionId(sessionId)
+                .build();
+        return session;
     }
 
     @Override
-    public String createConnection(ConsultingConnectionRequest connectionInfo) throws OpenViduJavaClientException, OpenViduHttpException {
+    public String createConnection(ConsultingConnectionRequest connectionInfo) throws OpenViduJavaClientException, OpenViduHttpException, IllegalAccessException {
+        ConsultingBooking bookingInfo = consultingBookingRepository.findByCid(connectionInfo.getCid())
+                .orElseThrow(() -> new NullPointerException(ExceptionHandler.BOOKING_NOT_FOUND));
+        if (!bookingInfo.getUid().getUserEmail().equals(SecurityUtil.getCurrentUserEmail())) {
+            throw new IllegalAccessException(ExceptionHandler.CONSULTING_UNAUTHORIZED);
+        }
         Map<String, Object> params = new HashMap<>();
         params.put("cid", connectionInfo.getCid());
         params.put("sessionId", connectionInfo.getSessionId());
@@ -116,8 +132,6 @@ public class ConsultingServiceImpl implements ConsultingService {
             throw new NullPointerException(ExceptionHandler.CONSULTING_SESSION_NOT_FOUND);
         }
 
-        ConsultingBooking bookingInfo = consultingBookingRepository.findByCid(connectionInfo.getCid())
-                .orElseThrow(() -> new NullPointerException(ExceptionHandler.BOOKING_NOT_FOUND));
         bookingInfo.setConnection(token);
         consultingBookingRepository.save(bookingInfo);
 

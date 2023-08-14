@@ -11,6 +11,7 @@ import java.io.Serializable;
 
 @ToString
 @Getter
+@Setter
 @Builder
 @AllArgsConstructor
 @DynamicInsert // Apply changed fields only

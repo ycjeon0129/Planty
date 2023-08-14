@@ -2,8 +2,11 @@ package com.planty.api.consulting.controller;
 
 import com.planty.api.consulting.request.ConsultingConnectionRequest;
 import com.planty.api.consulting.request.ConsultingSessionRequest;
+import com.planty.api.consulting.response.ConsultingSessionResponse;
 import com.planty.api.consulting.response.UserConsultingResponse;
 import com.planty.api.consulting.service.ConsultingService;
+import com.planty.api.emergency.response.EmergencySessionResponse;
+import com.planty.common.model.SessionTokenResponse;
 import io.openvidu.java.client.*;
 import io.swagger.annotations.Api;
 import lombok.RequiredArgsConstructor;
@@ -58,17 +61,21 @@ public class ConsultingController {
     }
 
     @PostMapping()
-    public ResponseEntity<String> initializeSession(@RequestBody ConsultingSessionRequest sessionInfo) throws OpenViduJavaClientException, OpenViduHttpException {
-        String sessionId = consultingServiceImpl.initializeSession(sessionInfo.getCid());
+    public ResponseEntity<ConsultingSessionResponse> initializeSession(@RequestBody ConsultingSessionRequest sessionInfo) throws OpenViduJavaClientException, OpenViduHttpException, IllegalAccessException {
+        ConsultingSessionResponse sessionRes = consultingServiceImpl.initializeSession(sessionInfo.getCid());
 
-        return new ResponseEntity<>(sessionId, HttpStatus.OK);
+        return new ResponseEntity<>(sessionRes, HttpStatus.OK);
     }
 
     @PostMapping("/connections")
-    public ResponseEntity<String> createConnection(@RequestBody ConsultingConnectionRequest connectionInfo)
-            throws OpenViduJavaClientException, OpenViduHttpException {
+    public ResponseEntity<SessionTokenResponse> createConnection(@RequestBody ConsultingConnectionRequest connectionInfo)
+            throws OpenViduJavaClientException, OpenViduHttpException, IllegalAccessException {
+        log.info(logCurrent(getClassName(), getMethodName(), START));
         String token = consultingServiceImpl.createConnection(connectionInfo);
+        SessionTokenResponse tokenResponse = new SessionTokenResponse();
+        tokenResponse.setToken(token);
+        log.info(logCurrent(getClassName(), getMethodName(), END));
 
-        return new ResponseEntity<>(token, HttpStatus.OK);
+        return new ResponseEntity<>(tokenResponse, HttpStatus.OK);
     }
 }

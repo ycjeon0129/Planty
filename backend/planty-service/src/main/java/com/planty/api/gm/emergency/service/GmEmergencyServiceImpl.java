@@ -3,12 +3,11 @@ package com.planty.api.gm.emergency.service;
 import com.planty.api.consulting.response.UserConsultingResponse;
 import com.planty.api.emergency.response.EmergencyResponse;
 import com.planty.api.gm.consulting.service.GmConsultingService;
+import com.planty.api.gm.emergency.request.GmEmergencyRecordRequest;
 import com.planty.common.exception.handler.ExceptionHandler;
 import com.planty.common.util.SecurityUtil;
 import com.planty.common.util.TimeUtil;
-import com.planty.db.entity.EmergencyLog;
-import com.planty.db.entity.GmInfo;
-import com.planty.db.entity.ViewUserConsulting;
+import com.planty.db.entity.*;
 import com.planty.db.repository.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -77,5 +76,46 @@ public class GmEmergencyServiceImpl implements GmEmergencyService {
 //            );
 //        }
 
+    }
+
+    @Override
+    public String findSessionToken(Long eid) {
+        EmergencyLog emergencyInfo = emergencyLogRepository.findByEid(eid)
+                .orElseThrow(() -> new NullPointerException(ExceptionHandler.EMERGENCY_NOT_FOUND));
+        Long gid = SecurityUtil.getCurrentGid();
+        if (emergencyInfo.getGid() == null) {   // 해당 응급실에 대해 첫 GM 응답일 경우
+            GmInfo gmInfo = gmInfoRepository.findByGid(gid)
+                    .orElseThrow(() -> new NullPointerException(ExceptionHandler.GM_NOT_FOUND));
+            emergencyInfo.setGid(gmInfo);
+            emergencyLogRepository.save(emergencyInfo);
+            return emergencyInfo.getConnection();
+        } else if (emergencyInfo.getGid().getGid() == gid) {    // 해당 요청을 수락한 GM의 재요청인 경우
+            return emergencyInfo.getConnection();
+        } else {    // 해당 요청을 먼저 수락한 GM이 아닌 다른 GM인 경우
+            return null;
+        }
+    }
+
+    @Override
+    public void deleteSession(GmEmergencyRecordRequest recordInfo) throws IllegalAccessException {
+        EmergencyLog emergencyInfo = emergencyLogRepository.findByEid(recordInfo.getEid())
+                .orElseThrow(() -> new NullPointerException(ExceptionHandler.EMERGENCY_NOT_FOUND));
+        if (emergencyInfo.getGid().getGid() != SecurityUtil.getCurrentGid()) {
+            throw new IllegalAccessException(ExceptionHandler.EMERGENCY_UNAUTHORIZED);
+        }
+        emergencyInfo.setName(recordInfo.getName());
+        emergencyInfo.setContent(recordInfo.getContent());
+        emergencyInfo.setEndTime(TimeUtil.findCurrentTimestamp());
+        emergencyInfo.setConnection(null);
+
+        emergencyLogRepository.save(emergencyInfo);
+    }
+
+    @Override
+    public void setStartTime(Long eid) {
+        EmergencyLog emergencyInfo = emergencyLogRepository.findByEid(eid)
+                .orElseThrow(() -> new NullPointerException(ExceptionHandler.EMERGENCY_NOT_FOUND));
+        emergencyInfo.setStartTime(TimeUtil.findCurrentTimestamp());
+        emergencyLogRepository.save(emergencyInfo);
     }
 }

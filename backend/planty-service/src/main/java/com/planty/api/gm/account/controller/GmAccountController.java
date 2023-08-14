@@ -2,6 +2,7 @@ package com.planty.api.gm.account.controller;
 
 import com.planty.api.booking.response.BookingResponse;
 import com.planty.api.gm.account.response.GmAccountResponse;
+import com.planty.api.gm.account.response.GmWebRTCResponse;
 import com.planty.api.gm.account.service.GmAccountService;
 import com.planty.api.gm.booking.response.GmBookingResponse;
 import com.planty.api.gm.booking.service.GmBookingService;
@@ -48,6 +49,18 @@ public class GmAccountController {
         }
         log.info(logCurrent(getClassName(), getMethodName(), END));
         return ResponseEntity.status(404).build();
+    }
+
+    @GetMapping("/refresh-request")
+    public ResponseEntity<List<GmWebRTCResponse>> findRequest() {
+        log.info(logCurrent(getClassName(), getMethodName(), START));
+        List<GmWebRTCResponse> list = gmAccountService.findRequest();
+        if (list.isEmpty()) {
+            log.info(logCurrent(getClassName(), getMethodName(), END));
+            return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
+        }
+        log.info(logCurrent(getClassName(), getMethodName(), END));
+        return new ResponseEntity<List<GmWebRTCResponse>>(list, HttpStatus.OK);
     }
 
 }
