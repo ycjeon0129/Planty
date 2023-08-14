@@ -8,6 +8,7 @@ import com.planty.db.entity.*;
 import com.planty.db.repository.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -15,6 +16,8 @@ import java.util.List;
 
 import static com.planty.common.util.LogCurrent.*;
 import static com.planty.common.util.LogCurrent.END;
+import static org.springframework.data.domain.Sort.Order.asc;
+
 @Slf4j
 @Service
 @RequiredArgsConstructor
@@ -33,7 +36,7 @@ public class BookingServiceImpl implements BookingService {
                 .orElseThrow(() -> new NullPointerException(ExceptionHandler.USER_NOT_FOUND));
 
         List<BookingResponse> bookingList = new ArrayList<>();
-        List<ConsultingBooking> list = consultingBookingRepository.findByUid(user);
+        List<ConsultingBooking> list = consultingBookingRepository.findByUid(user, Sort.by(asc("date"),asc("timeIdx")));
         for (ConsultingBooking item : list) {
             BookingResponse booking = BookingResponse.builder()
                     .sid(item.getSid().getSid())

@@ -12,6 +12,7 @@ import com.planty.db.entity.ViewUserConsulting;
 import com.planty.db.repository.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -38,10 +39,14 @@ public class GmConsultingServiceImpl implements GmConsultingService {
                 .orElseThrow(() -> new NullPointerException(ExceptionHandler.GM_NOT_FOUND));
 
         List<ViewUserConsulting> list = new ArrayList<>();
+        Sort sort = Sort.by(
+                Sort.Order.desc("date"),
+                Sort.Order.desc("time")
+        );
         if (spid == null) {
-            list = viewUserConsultingRepository.findByGid(gm.getGid());
+            list = viewUserConsultingRepository.findByGid(gm.getGid(), sort);
         } else {
-            list = viewUserConsultingRepository.findByGidAndSpid(gm.getGid(), spid);
+            list = viewUserConsultingRepository.findByGidAndSpid(gm.getGid(), spid, sort);
         }
         for(ViewUserConsulting item : list) {
             consultingList.add(

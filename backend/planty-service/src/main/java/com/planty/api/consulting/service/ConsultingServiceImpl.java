@@ -11,6 +11,7 @@ import io.openvidu.java.client.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -19,6 +20,8 @@ import java.util.*;
 
 import static com.planty.common.util.LogCurrent.*;
 import static com.planty.common.util.LogCurrent.START;
+import static org.springframework.data.domain.Sort.Order.asc;
+import static org.springframework.data.domain.Sort.Order.desc;
 
 @Slf4j
 @Service
@@ -41,7 +44,7 @@ public class ConsultingServiceImpl implements ConsultingService {
                 .orElseThrow(() -> new NullPointerException(ExceptionHandler.USER_NOT_FOUND));
 
         List<UserConsultingResponse> consultingList = new ArrayList<>();
-        List<ViewUserConsulting> list = viewUserConsultingRepository.findByUid(user.getUid());
+        List<ViewUserConsulting> list = viewUserConsultingRepository.findByUid(user.getUid(), Sort.by(desc("date"),desc("time")));
         for(ViewUserConsulting item : list) {
             UserConsultingResponse consult = UserConsultingResponse.builder()
                     .cid(item.getCid())
@@ -74,8 +77,7 @@ public class ConsultingServiceImpl implements ConsultingService {
                 .orElseThrow(() -> new NullPointerException(ExceptionHandler.USER_SID_NOT_FOUND));
 
         List<UserConsultingResponse> consultingListDetail = new ArrayList<>();
-
-        List<ViewUserConsulting> list = viewUserConsultingRepository.findByUidAndSid(user.getUid(), sid);
+        List<ViewUserConsulting> list = viewUserConsultingRepository.findByUidAndSid(user.getUid(), sid, Sort.by(desc("date"),desc("time")));
         //todo : list 없을때 -> 204 , 유저의 sid 가 없을때 -> null 처리 (500) 바꿔야됨
         for(ViewUserConsulting item : list) {
             UserConsultingResponse consult = UserConsultingResponse.builder()
