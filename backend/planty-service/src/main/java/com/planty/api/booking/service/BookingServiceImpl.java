@@ -120,7 +120,7 @@ public class BookingServiceImpl implements BookingService {
                 .orElseThrow(() -> new NullPointerException(ExceptionHandler.USER_NOT_FOUND));
 
         ConsultingBooking booking = consultingBookingRepository.findByUidAndCid(user, cid)
-                .orElseThrow(() -> new NullPointerException(ExceptionHandler.BOOKING_NOT_FOUNT));
+                .orElseThrow(() -> new NullPointerException(ExceptionHandler.BOOKING_NOT_FOUND));
 
         if(booking.getActive() || booking.getCancel()) {
             System.out.println("실행 or 취소된 예약입니다.");

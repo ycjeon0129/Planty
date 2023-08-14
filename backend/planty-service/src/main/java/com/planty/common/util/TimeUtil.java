@@ -2,6 +2,7 @@ package com.planty.common.util;
 
 import lombok.extern.slf4j.Slf4j;
 
+import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -34,5 +35,11 @@ public class TimeUtil {
         sb.append(diffSec);
 
         return sb.toString();
+    }
+
+    public static String findCurrentTimestamp() {
+        return new SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
+                .format(new Timestamp(System.currentTimeMillis()))
+                .toString();
     }
 }

@@ -1,9 +1,10 @@
-package com.planty.api.openVidu;
+package com.planty.common.util;
 
 import io.openvidu.java.client.*;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.PostConstruct;
@@ -26,9 +27,10 @@ import java.util.Map;
 //import io.openvidu.java.client.Session;
 //import io.openvidu.java.client.SessionProperties;
 
-@RequestMapping("/api/sessions")
-@RestController
-public class OpenViduController {
+//@RequestMapping("/api/sessions")
+//@RestController
+@Component
+public class OpenViduUtil {
 
     @Value("${custom.openvidu.OPENVIDU_URL}")
     private String OPENVIDU_URL;
@@ -44,33 +46,26 @@ public class OpenViduController {
     }
 
     /**
-     * @param params The Session properties
      * @return The Session ID
      */
-    @PostMapping()
-    public ResponseEntity<String> initializeSession(@RequestBody(required = false) Map<String, Object> params)
-            throws OpenViduJavaClientException, OpenViduHttpException {
+    public String initializeSession(Map<String, Object> params) throws OpenViduJavaClientException, OpenViduHttpException {
         SessionProperties properties = SessionProperties.fromJson(params).build();
         Session session = openvidu.createSession(properties);
-        return new ResponseEntity<>(session.getSessionId(), HttpStatus.OK);
+        return session.getSessionId();
     }
 
     /**
-     * @param sessionId The Session in which to create the Connection
-     * @param params    The Connection properties
      * @return The Token associated to the Connection
      */
-    @PostMapping("/{sessionId}/connections")
-    public ResponseEntity<String> createConnection(@PathVariable("sessionId") String sessionId,
-                                                   @RequestBody(required = false) Map<String, Object> params)
+    public String createConnection(Map<String, Object> params)
             throws OpenViduJavaClientException, OpenViduHttpException {
-        Session session = openvidu.getActiveSession(sessionId);
+        Session session = openvidu.getActiveSession( (String) params.get("sessionId"));
         if (session == null) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            return null;
         }
         ConnectionProperties properties = ConnectionProperties.fromJson(params).build();
         Connection connection = session.createConnection(properties);
-        return new ResponseEntity<>(connection.getToken(), HttpStatus.OK);
+        return connection.getToken();
     }
 
 }

@@ -1,8 +1,12 @@
 package com.planty.api.gm.consulting.service;
 
 import com.planty.api.consulting.response.UserConsultingResponse;
+import com.planty.api.gm.consulting.request.GmConsultingRecordRequest;
 import com.planty.common.exception.handler.ExceptionHandler;
 import com.planty.common.util.SecurityUtil;
+import com.planty.common.util.TimeUtil;
+import com.planty.db.entity.ConsultingBooking;
+import com.planty.db.entity.ConsultingLog;
 import com.planty.db.entity.GmInfo;
 import com.planty.db.entity.ViewUserConsulting;
 import com.planty.db.repository.*;
@@ -19,6 +23,8 @@ import java.util.List;
 public class GmConsultingServiceImpl implements GmConsultingService {
 
     private final GmInfoRepository gmInfoRepository;
+    private final ConsultingBookingRepository consultingBookingRepository;
+    private final ConsultingLogRepository consultingLogRepository;
     private final SubscribeProductRepository subscribeProductRepository;
     private final UserSubscribeRepository userSubscribeRepository;
     private final PlantyInfoRepository plantyInfoRepository;
@@ -56,5 +62,40 @@ public class GmConsultingServiceImpl implements GmConsultingService {
             );
         }
         return consultingList;
+    }
+
+    @Override
+    public String findSessionToken(Long cid) {
+        ConsultingBooking bookingInfo = consultingBookingRepository.findByCid(cid)
+                .orElseThrow(() -> new NullPointerException(ExceptionHandler.BOOKING_NOT_FOUND));
+        return bookingInfo.getConnection();
+    }
+
+    @Override
+    public void deleteSession(GmConsultingRecordRequest recordInfo) {
+        ConsultingBooking bookingInfo = consultingBookingRepository.findByCid(recordInfo.getCid())
+                .orElseThrow(() -> new NullPointerException(ExceptionHandler.BOOKING_NOT_FOUND));
+        ConsultingLog skeleton = consultingLogRepository.findByCid(bookingInfo)
+                .orElseThrow(() -> new NullPointerException(ExceptionHandler.CONSULTING_LOG_NOT_FOUND));
+        List<ConsultingBooking> list = consultingBookingRepository.findAllByCidLessThanAndSidAndCancelFalse(bookingInfo.getCid(), bookingInfo.getSid());
+
+        skeleton.setRecommendedStartDate(recordInfo.getRecommendedStartDate());
+        skeleton.setRecommendedEndDate(recordInfo.getRecommendedEndDate());
+        skeleton.setTimes(list.size());
+        skeleton.setContent(recordInfo.getContent());
+        skeleton.setEndTime(TimeUtil.findCurrentTimestamp());
+
+        consultingLogRepository.save(skeleton);
+    }
+
+    @Override
+    public void setStartTime(Long cid) {
+        ConsultingBooking bookingInfo = consultingBookingRepository.findByCid(cid)
+                .orElseThrow(() -> new NullPointerException(ExceptionHandler.BOOKING_NOT_FOUND));
+        ConsultingLog consultingInfo = ConsultingLog.builder()
+                .cid(bookingInfo)
+                .startTime(TimeUtil.findCurrentTimestamp())
+                .build();
+        consultingLogRepository.save(consultingInfo);
     }
 }

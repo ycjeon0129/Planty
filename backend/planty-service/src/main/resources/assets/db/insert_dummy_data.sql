@@ -58,33 +58,3 @@ VALUES ("1회 이용권", 1, 9900),
        ("3회 이용권", 3, 24000),
        ("5회 이용권", 5, 36000),
        ("7회 이용권", 7, 45000);
--- [user_subscribe_list -> [user_subscribe, subscribe_product, plant_info, gm_info] join view / 사용자 구독 목록 리스트]
--- Create View view_user_subscribe AS
--- select  us.sid, us.USER_INFO_uid as uid, us.arduino_id, us.consulting_remain_cnt,
--- us.start_date, us.end_date,
--- sp.name as sp_name, sp.period, sp.consulting_cnt, sp.description,
--- pi.name as pi_name, pi.tonic_period, gm.nickname, cb.date as cb_date, cb.TIME_TABLE_idx as cb_time, cb.cancel, cb.active
--- from subscribe_product sp
--- join gm_info gm
--- on 	gm.gid = sp.GM_INFO_gid
--- join user_subscribe us
--- on us.SUBSCRIBE_PRODUCT_spid = sp.spid
--- join plant_info pi
--- on pi.idx = sp.PLANT_INFO_idx
--- left join consulting_booking cb
--- on us.sid = cb.USER_SUBSCRIBE_sid and
--- cb.cid in (select max(cid) from consulting_booking 
--- group by USER_SUBSCRIBE_sid) order by us.sid;
-
--- [view_user_consulting -> [consulting_booking, consulting_log, user_subscribe, subscribe_product] join view / 사용자 예약 목록 리스트]
--- Create View view_user_consulting AS
--- select cb.USER_INFO_uid as uid, us.sid, cb.cid, cb.TIME_TABLE_idx as time, cb.date, cb.cancel, cb.active,
--- sp.name, cl.RECOMMENDED_START_DATE, cl.RECOMMENDED_END_DATE, cl.content, cl. start_time, cl.end_time
--- from consulting_booking cb
--- left join consulting_log cl
--- on cb.cid = cl.cid
--- join user_subscribe us
--- on cb.USER_SUBSCRIBE_sid = us.sid
--- join subscribe_product sp
--- on us.SUBSCRIBE_PRODUCT_spid = sp.spid
--- order by cb.cid;
