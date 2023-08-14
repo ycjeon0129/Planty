@@ -1,12 +1,15 @@
 package com.planty.api.gm.account.service;
 
 import com.planty.api.gm.account.response.GmAccountResponse;
+import com.planty.api.gm.account.response.GmWebRTCResponse;
 import com.planty.api.subscribe.request.UserSubscribeRequest;
 import com.planty.api.subscribe.service.SubscribeService;
 import com.planty.api.ticketProduct.response.TicketProductResponse;
 import com.planty.common.exception.handler.ExceptionHandler;
 import com.planty.common.util.SecurityUtil;
 import com.planty.db.entity.*;
+import com.planty.db.repository.ConsultingBookingRepository;
+import com.planty.db.repository.EmergencyLogRepository;
 import com.planty.db.repository.GmInfoRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -22,7 +25,11 @@ import static com.planty.common.util.LogCurrent.END;
 @Service
 @RequiredArgsConstructor
 public class GmAccountServiceImpl implements GmAccountService {
+
     private final GmInfoRepository gmInfoRepository;
+    private final ConsultingBookingRepository consultingBookingRepository;
+    private final EmergencyLogRepository emergencyLogRepository;
+
     @Override // 이용권 묶음상품 상품 조회
     public GmAccountResponse getGmActive() {
         log.info(logCurrent(getClassName(), getMethodName(), START));
@@ -53,5 +60,32 @@ public class GmAccountServiceImpl implements GmAccountService {
 
         log.info(logCurrent(getClassName(), getMethodName(), END));
         return gmAccountResponse;
+    }
+
+    @Override
+    public List<GmWebRTCResponse> findRequest() {
+        Long gid = SecurityUtil.getCurrentGid();
+        GmInfo gmInfo = gmInfoRepository.findByGid(gid)
+                .orElseThrow(() -> new NullPointerException(ExceptionHandler.GM_NOT_FOUND));
+        List<ConsultingBooking> consultingBookingList = consultingBookingRepository.findByGidAndConnectionNotNull(gmInfo);
+        List<EmergencyLog> emergencyLogList = emergencyLogRepository.findByConnectionNotNull();
+        List<GmWebRTCResponse> list = new ArrayList<>();
+        for (ConsultingBooking consulting : consultingBookingList) {
+            list.add(GmWebRTCResponse.builder()
+                    .webRTCType(0)
+                    .idx(consulting.getCid())
+                    .username(consulting.getUid().getUserName())
+                    .build());
+        }
+        for (EmergencyLog emergency : emergencyLogList) {
+            list.add(GmWebRTCResponse.builder()
+                    .webRTCType(1)
+                    .idx(emergency.getEid())
+                    .emergencyType(emergency.getType())
+                    .username(emergency.getUid().getUserName())
+                    .build());
+        }
+
+        return list;
     }
 }

@@ -9,4 +9,5 @@ public interface EmergencyLogRepository extends JpaRepository<EmergencyLog, Long
     Optional<EmergencyLog> findByEid(Long eid);
     List<EmergencyLog> findByGid(GmInfo gid);
     List<EmergencyLog> findByUid(UserInfo uid);
+    List<EmergencyLog> findByConnectionNotNull();
 }
