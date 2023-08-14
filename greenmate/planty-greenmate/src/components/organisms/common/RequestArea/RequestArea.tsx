@@ -12,11 +12,13 @@ function RequestArea() {
 		try {
 			const response = await findAllRequest();
 			if (response.status === 200) {
-				toast.success('컨설팅 요청 목록 업데이트 성공 😀');
+				toast.success('컨설팅 요청 목록 업데이트 성공 😀\n왼쪽 하단의 컨설팅 요청 목록을 확인하세요.');
 				setRequests(response.data);
+			} else if (response.status === 204) {
+				toast.success('컨설팅 요청 목록 업데이트 성공 😀\n새로운 컨설팅 요청이 없습니다.');
 			}
 		} catch (error) {
-			toast.error('컨설팅 요청 목록 업데이트 실패 😥');
+			toast.error('컨설팅 요청 목록 업데이트 실패 😥\n잠시 후 다시 시도하세요.');
 			console.error(error);
 		}
 	};
