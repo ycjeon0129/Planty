@@ -4,6 +4,7 @@ import com.planty.api.consulting.request.ConsultingConnectionRequest;
 import com.planty.api.consulting.request.ConsultingSessionRequest;
 import com.planty.api.consulting.response.UserConsultingResponse;
 import com.planty.api.consulting.service.ConsultingService;
+import com.planty.common.model.SessionTokenResponse;
 import io.openvidu.java.client.*;
 import io.swagger.annotations.Api;
 import lombok.RequiredArgsConstructor;
@@ -65,10 +66,14 @@ public class ConsultingController {
     }
 
     @PostMapping("/connections")
-    public ResponseEntity<String> createConnection(@RequestBody ConsultingConnectionRequest connectionInfo)
+    public ResponseEntity<SessionTokenResponse> createConnection(@RequestBody ConsultingConnectionRequest connectionInfo)
             throws OpenViduJavaClientException, OpenViduHttpException {
+        log.info(logCurrent(getClassName(), getMethodName(), START));
         String token = consultingServiceImpl.createConnection(connectionInfo);
+        SessionTokenResponse tokenResponse = new SessionTokenResponse();
+        tokenResponse.setToken(token);
+        log.info(logCurrent(getClassName(), getMethodName(), END));
 
-        return new ResponseEntity<>(token, HttpStatus.OK);
+        return new ResponseEntity<>(tokenResponse, HttpStatus.OK);
     }
 }

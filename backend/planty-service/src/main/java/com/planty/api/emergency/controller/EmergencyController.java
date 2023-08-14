@@ -5,6 +5,7 @@ import com.planty.api.emergency.response.ConnectionCountResponse;
 import com.planty.api.emergency.response.EmergencyResponse;
 import com.planty.api.emergency.response.EmergencySessionResponse;
 import com.planty.api.emergency.service.EmergencyService;
+import com.planty.common.model.SessionTokenResponse;
 import io.openvidu.java.client.OpenViduHttpException;
 import io.openvidu.java.client.OpenViduJavaClientException;
 import io.swagger.annotations.Api;
@@ -66,13 +67,15 @@ public class EmergencyController {
     }
 
     @PostMapping("/connections")
-    public ResponseEntity<String> createConnection(@RequestBody EmergencyConnectionRequest connectionInfo)
+    public ResponseEntity<SessionTokenResponse> createConnection(@RequestBody EmergencyConnectionRequest connectionInfo)
             throws OpenViduJavaClientException, OpenViduHttpException {
         log.info(logCurrent(getClassName(), getMethodName(), START));
         String token = emergencyService.createConnection(connectionInfo);
+        SessionTokenResponse tokenResponse = new SessionTokenResponse();
+        tokenResponse.setToken(token);
         log.info(logCurrent(getClassName(), getMethodName(), END));
 
-        return new ResponseEntity<>(token, HttpStatus.OK);
+        return new ResponseEntity<>(tokenResponse, HttpStatus.OK);
     }
 
 }

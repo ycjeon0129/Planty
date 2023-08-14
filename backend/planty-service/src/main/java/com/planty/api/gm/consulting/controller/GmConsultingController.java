@@ -3,6 +3,7 @@ package com.planty.api.gm.consulting.controller;
 import com.planty.api.consulting.response.UserConsultingResponse;
 import com.planty.api.gm.consulting.request.GmConsultingRecordRequest;
 import com.planty.api.gm.consulting.service.GmConsultingService;
+import com.planty.common.model.SessionTokenResponse;
 import io.swagger.annotations.Api;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -35,13 +36,15 @@ public class GmConsultingController {
 
     // 컨설팅 세션 토큰 조회
     @GetMapping("/session/{cid}")
-    public ResponseEntity<String> findSessionToken(@PathVariable Long cid) {
+    public ResponseEntity<SessionTokenResponse> findSessionToken(@PathVariable Long cid) {
         String token = gmConsultingsService.findSessionToken(cid);
-        if (token == null) { // 아직 생성된 세션이 없는 경우
+        if (token == null) { // 다른 gm이 채감
             return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
         }
+        SessionTokenResponse tokenResponse = new SessionTokenResponse();
+        tokenResponse.setToken(token);
         gmConsultingsService.setStartTime(cid);
-        return new ResponseEntity<>(token, HttpStatus.OK);
+        return new ResponseEntity<>(tokenResponse, HttpStatus.OK);
     }
 
     @PostMapping("/session/record")

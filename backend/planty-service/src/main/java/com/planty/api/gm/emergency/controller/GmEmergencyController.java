@@ -6,6 +6,7 @@ import com.planty.api.gm.consulting.service.GmConsultingService;
 import com.planty.api.emergency.response.EmergencyResponse;
 import com.planty.api.gm.emergency.request.GmEmergencyRecordRequest;
 import com.planty.api.gm.emergency.service.GmEmergencyService;
+import com.planty.common.model.SessionTokenResponse;
 import io.swagger.annotations.Api;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -35,13 +36,15 @@ public class GmEmergencyController {
         return ResponseEntity.ok().body(list);
     }// 응급실 세션 토큰 조회
     @GetMapping("/session/{eid}")
-    public ResponseEntity<String> findSessionToken(@PathVariable Long eid) {
+    public ResponseEntity<SessionTokenResponse> findSessionToken(@PathVariable Long eid) {
         String token = gmEmergencyService.findSessionToken(eid);
         if (token == null) { // 아직 생성된 세션이 없는 경우
             return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
         }
+        SessionTokenResponse tokenResponse = new SessionTokenResponse();
+        tokenResponse.setToken(token);
         gmEmergencyService.setStartTime(eid);
-        return new ResponseEntity<>(token, HttpStatus.OK);
+        return new ResponseEntity<>(tokenResponse, HttpStatus.OK);
     }
 
     @PostMapping("/session/record")
