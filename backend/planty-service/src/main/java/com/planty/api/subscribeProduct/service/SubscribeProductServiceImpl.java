@@ -24,11 +24,6 @@ import static com.planty.common.util.LogCurrent.START;
 @Service
 @RequiredArgsConstructor
 public class SubscribeProductServiceImpl implements SubscribeProductService {
-    private final ViewUserConsultingRepository viewUserConsultingRepository;
-    private final UserInfoRepository userInfoRepository;
-    private final TimeTableRepository timeTableRepository;
-    private final UserSubscribeRepository userSubscribeRepository;
-    private final ConsultingBookingRepository consultingBookingRepository;
     private final GmInfoRepository gmInfoRepository;
     private final SubscribeProductRepository subscribeProductRepository;
     private final PlantyInfoRepository plantyInfoRepository;
