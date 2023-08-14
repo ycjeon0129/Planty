@@ -126,7 +126,7 @@ public class EmergencyServiceImpl implements EmergencyService {
         log.info(logCurrent(getClassName(), getMethodName(), START));
         EmergencyLog emergencyInfo = emergencyLogRepository.findByEid(connectionInfo.getEid())
                 .orElseThrow(() -> new NullPointerException(ExceptionHandler.EMERGENCY_NOT_FOUND));
-        if (emergencyInfo.getUid().getUserEmail() != SecurityUtil.getCurrentUserEmail()) {
+        if (!emergencyInfo.getUid().getUserEmail().equals(SecurityUtil.getCurrentUserEmail())) {
             throw new IllegalAccessException(ExceptionHandler.EMERGENCY_UNAUTHORIZED);
         }
         Map<String, Object> params = new HashMap<>();

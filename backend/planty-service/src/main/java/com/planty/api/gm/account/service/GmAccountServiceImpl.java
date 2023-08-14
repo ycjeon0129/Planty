@@ -67,8 +67,8 @@ public class GmAccountServiceImpl implements GmAccountService {
         Long gid = SecurityUtil.getCurrentGid();
         GmInfo gmInfo = gmInfoRepository.findByGid(gid)
                 .orElseThrow(() -> new NullPointerException(ExceptionHandler.GM_NOT_FOUND));
-        List<ConsultingBooking> consultingBookingList = consultingBookingRepository.findByGidAndConnectionNotNull(gmInfo);
-        List<EmergencyLog> emergencyLogList = emergencyLogRepository.findByConnectionNotNull();
+        List<ConsultingBooking> consultingBookingList = consultingBookingRepository.findByGidAndConnectionNotNullAndActiveFalse(gmInfo);
+        List<EmergencyLog> emergencyLogList = emergencyLogRepository.findByConnectionNotNullAndGidIsNull();
         List<GmWebRTCResponse> list = new ArrayList<>();
         for (ConsultingBooking consulting : consultingBookingList) {
             list.add(GmWebRTCResponse.builder()

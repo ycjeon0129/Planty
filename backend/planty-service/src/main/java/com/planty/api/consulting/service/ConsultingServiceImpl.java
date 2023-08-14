@@ -105,7 +105,7 @@ public class ConsultingServiceImpl implements ConsultingService {
     public ConsultingSessionResponse initializeSession(Long cid) throws OpenViduJavaClientException, OpenViduHttpException, IllegalAccessException {
         ConsultingBooking bookingInfo = consultingBookingRepository.findByCid(cid)
                 .orElseThrow(() -> new NullPointerException(ExceptionHandler.BOOKING_NOT_FOUND));
-        if (bookingInfo.getUid().getUserEmail() != SecurityUtil.getCurrentUserEmail()) {
+        if (!bookingInfo.getUid().getUserEmail().equals(SecurityUtil.getCurrentUserEmail())) {
             throw new IllegalAccessException(ExceptionHandler.CONSULTING_UNAUTHORIZED);
         }
         Map<String, Object> params = new HashMap<>();
@@ -121,7 +121,7 @@ public class ConsultingServiceImpl implements ConsultingService {
     public String createConnection(ConsultingConnectionRequest connectionInfo) throws OpenViduJavaClientException, OpenViduHttpException, IllegalAccessException {
         ConsultingBooking bookingInfo = consultingBookingRepository.findByCid(connectionInfo.getCid())
                 .orElseThrow(() -> new NullPointerException(ExceptionHandler.BOOKING_NOT_FOUND));
-        if (bookingInfo.getUid().getUserEmail() != SecurityUtil.getCurrentUserEmail()) {
+        if (!bookingInfo.getUid().getUserEmail().equals(SecurityUtil.getCurrentUserEmail())) {
             throw new IllegalAccessException(ExceptionHandler.CONSULTING_UNAUTHORIZED);
         }
         Map<String, Object> params = new HashMap<>();
