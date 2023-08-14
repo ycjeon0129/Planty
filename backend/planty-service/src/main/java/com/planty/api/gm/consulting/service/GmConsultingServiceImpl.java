@@ -86,6 +86,10 @@ public class GmConsultingServiceImpl implements GmConsultingService {
         skeleton.setEndTime(TimeUtil.findCurrentTimestamp());
 
         consultingLogRepository.save(skeleton);
+
+        bookingInfo.setConnection(null);
+        consultingBookingRepository.save(bookingInfo);
+
     }
 
     @Override
