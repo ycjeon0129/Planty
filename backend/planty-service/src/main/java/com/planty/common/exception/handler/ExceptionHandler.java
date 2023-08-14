@@ -16,6 +16,7 @@ public class ExceptionHandler {
     public static final String PRODUCT_NOT_FOUND = "존재하지 않는 구독 상품입니다.";
     public static final String TIME_NOT_FOUND = "존재하지 않는 시간입니다.";
     public static final String BOOKING_NOT_FOUND = "존재하지 않는 예약 번호입니다.";
+    public static final String EMERGENCY_NOT_FOUND = "존재하지 않는 응급실 번호입니다.";
     public static final String PLANT_NOT_FOUND = "존재하지 않는 식물입니다.";
     public static final String GM_NOT_FOUND = "존재하지 않는 그린메이트입니다.";
     public static final String TICKET_PRODUCT_NOT_FOUND = "존재하지 않는 응급실 묶음상품입니다.";

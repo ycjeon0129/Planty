@@ -1,11 +1,9 @@
 package com.planty.api.emergency.controller;
 
-import com.planty.api.consulting.request.ConsultingConnectionRequest;
-import com.planty.api.consulting.request.ConsultingSessionRequest;
 import com.planty.api.emergency.request.EmergencyConnectionRequest;
-import com.planty.api.emergency.request.EmergencySessionRequest;
 import com.planty.api.emergency.response.ConnectionCountResponse;
 import com.planty.api.emergency.response.EmergencyResponse;
+import com.planty.api.emergency.response.EmergencySessionResponse;
 import com.planty.api.emergency.service.EmergencyService;
 import io.openvidu.java.client.OpenViduHttpException;
 import io.openvidu.java.client.OpenViduJavaClientException;
@@ -61,16 +59,18 @@ public class EmergencyController {
     }
 
     @PostMapping()
-    public ResponseEntity<String> initializeSession(@RequestBody EmergencySessionRequest sessionInfo) throws OpenViduJavaClientException, OpenViduHttpException {
-        String sessionId = emergencyService.initializeSession(sessionInfo.getEid());
+    public ResponseEntity<EmergencySessionResponse> initializeSession() throws OpenViduJavaClientException, OpenViduHttpException {
+        EmergencySessionResponse sessionInfo = emergencyService.initializeSession();
 
-        return new ResponseEntity<>(sessionId, HttpStatus.OK);
+        return new ResponseEntity<EmergencySessionResponse>(sessionInfo, HttpStatus.OK);
     }
 
     @PostMapping("/connections")
     public ResponseEntity<String> createConnection(@RequestBody EmergencyConnectionRequest connectionInfo)
             throws OpenViduJavaClientException, OpenViduHttpException {
+        log.info(logCurrent(getClassName(), getMethodName(), START));
         String token = emergencyService.createConnection(connectionInfo);
+        log.info(logCurrent(getClassName(), getMethodName(), END));
 
         return new ResponseEntity<>(token, HttpStatus.OK);
     }

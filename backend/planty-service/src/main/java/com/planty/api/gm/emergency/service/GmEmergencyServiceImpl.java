@@ -3,6 +3,7 @@ package com.planty.api.gm.emergency.service;
 import com.planty.api.consulting.response.UserConsultingResponse;
 import com.planty.api.emergency.response.EmergencyResponse;
 import com.planty.api.gm.consulting.service.GmConsultingService;
+import com.planty.api.gm.emergency.request.GmEmergencyRecordRequest;
 import com.planty.common.exception.handler.ExceptionHandler;
 import com.planty.common.util.SecurityUtil;
 import com.planty.common.util.TimeUtil;
@@ -76,6 +77,21 @@ public class GmEmergencyServiceImpl implements GmEmergencyService {
 //                            .build()
 //            );
 //        }
+
+    }
+
+    @Override
+    public String findSessionToken(Long eid) {
+        return null;
+    }
+
+    @Override
+    public void deleteSession(GmEmergencyRecordRequest recordInfo) {
+
+    }
+
+    @Override
+    public void setStartTime(Long eid) {
 
     }
 }

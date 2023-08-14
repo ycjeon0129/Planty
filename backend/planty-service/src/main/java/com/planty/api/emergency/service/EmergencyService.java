@@ -3,6 +3,7 @@ package com.planty.api.emergency.service;
 import com.planty.api.emergency.request.EmergencyConnectionRequest;
 import com.planty.api.emergency.response.ConnectionCountResponse;
 import com.planty.api.emergency.response.EmergencyResponse;
+import com.planty.api.emergency.response.EmergencySessionResponse;
 import io.openvidu.java.client.OpenViduHttpException;
 import io.openvidu.java.client.OpenViduJavaClientException;
 
@@ -14,7 +15,7 @@ public interface EmergencyService {
 
     ConnectionCountResponse getGmCnt();
 
-    String initializeSession(Long eid) throws OpenViduJavaClientException, OpenViduHttpException;
+    EmergencySessionResponse initializeSession() throws OpenViduJavaClientException, OpenViduHttpException;
 
     String createConnection(EmergencyConnectionRequest connectionInfo) throws OpenViduJavaClientException, OpenViduHttpException;
 }

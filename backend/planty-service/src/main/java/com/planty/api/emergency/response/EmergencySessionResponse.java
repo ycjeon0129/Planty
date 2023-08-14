@@ -1,4 +1,4 @@
-package com.planty.api.emergency.request;
+package com.planty.api.emergency.response;
 
 import lombok.*;
 
@@ -8,8 +8,9 @@ import lombok.*;
 @ToString
 @AllArgsConstructor
 @NoArgsConstructor
-public class EmergencySessionRequest {
+public class EmergencySessionResponse {
 
     Long eid;
+    String sessionId;
 
 }
