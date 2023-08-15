@@ -1,7 +1,7 @@
 import UserProfilePhoto from 'components/atoms/user/UserProfilePhoto/UserProfilePhoto';
-import useUser from 'hooks/useUser';
 import React from 'react';
 import './UserProfile.scss';
+import useUser from 'hooks/common/useUser';
 
 function UserProfile() {
 	const [user] = useUser();

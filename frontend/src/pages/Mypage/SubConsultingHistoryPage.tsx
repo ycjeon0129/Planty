@@ -3,7 +3,7 @@ import SubConsultingHistoryPageLayout from 'components/layout/Page/SubConsulting
 import BadgeDescription from 'components/organisms/common/BadgeDescription/BadgeDescription';
 import MypageConsultingDetailList from 'components/organisms/mypage/MypageConsultingDetailList/MypageConsultingDetailList';
 import { SUB_CONSULTING_HISTORY_STATUS_DESC_LIST } from 'constants/common/StatusDescList';
-import useAllSubConsulting from 'hooks/useAllSubConsulting';
+import useAllSubConsulting from 'hooks/api/useAllSubConsulting';
 import React from 'react';
 // import { findAllConsultingApi } from 'utils/api/consulting';
 

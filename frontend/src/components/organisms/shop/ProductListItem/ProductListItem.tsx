@@ -6,7 +6,7 @@ import Button from 'components/atoms/common/Button/Button';
 import InfoList from 'components/organisms/common/InfoList/InfoList';
 import { PRODUCT_LIST_ITEM_LABELS } from 'constants/common/Labels';
 import { IProduct, IProductInfo } from 'types/domain/product';
-import useMovePage from 'hooks/useMovePage';
+import useMovePage from 'hooks/common/useMovePage';
 
 /**
  * 구독샵 상품 목록 아이템의 모음

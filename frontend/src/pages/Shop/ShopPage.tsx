@@ -7,8 +7,8 @@ import ShopIcon from 'assets/icons/pageTitle/ShoppingBag.svg';
 import TabBarList from 'components/organisms/common/TabBar/TabBar';
 import ProductListItem from 'components/organisms/shop/ProductListItem/ProductListItem';
 import FilterToggleBar from 'components/organisms/shop/FilterToggleBar/FilterToggleBar';
-import useIsLoading from 'hooks/useIsLoading';
-import useProduct from 'hooks/useProduct';
+import useIsLoading from 'hooks/common/useIsLoading';
+import useProduct from 'hooks/api/useProduct';
 
 /**
  * 구독샵 페이지

@@ -4,9 +4,9 @@ import './Checkout.scss';
 import { useLocation } from 'react-router-dom';
 import { saveSubscribeApi } from 'utils/api/subscribe';
 import { toast } from 'react-hot-toast';
-import useUser from 'hooks/useUser';
-import useMovePage from 'hooks/useMovePage';
 import { createProductBuyApi } from 'utils/api/product';
+import useUser from 'hooks/common/useUser';
+import useMovePage from 'hooks/common/useMovePage';
 
 const selector = '#payment-widget';
 const clientKey = 'test_ck_D5GePWvyJnrK0W0k6q8gLzN97Eoq';

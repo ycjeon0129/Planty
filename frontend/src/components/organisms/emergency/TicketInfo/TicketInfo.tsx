@@ -2,9 +2,9 @@ import React from 'react';
 import Ticket from 'assets/icons/Ticket.svg';
 import './TicketInfo.scss';
 import Button from 'components/atoms/common/Button/Button';
-import useUser from 'hooks/useUser';
 import CustomAlert from 'components/organisms/common/CustomAlert/CustomAlert';
-import useMovePage from 'hooks/useMovePage';
+import useMovePage from 'hooks/common/useMovePage';
+import useUser from 'hooks/common/useUser';
 
 /**
  * 응급실 - 이용권 정보를 보여주는 컴포넌트.

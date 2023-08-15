@@ -2,8 +2,8 @@ import React from 'react';
 import './PayComplete.scss';
 import { ReactComponent as CompleteIcon } from 'assets/icons/Paycomplete.svg';
 import { ReactComponent as LogoIcon } from 'assets/icons/logo/PlantyLogo.svg';
-import useMovePage from 'hooks/useMovePage';
 import { ReactComponent as BackIcon } from 'assets/icons/Back.svg';
+import useMovePage from 'hooks/common/useMovePage';
 
 function PayComplete({ price, spid = 0 }: { price: number; spid: number }) {
 	const { movePage } = useMovePage();

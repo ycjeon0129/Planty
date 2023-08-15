@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import './BookingList.scss';
 import EmptyItem from 'components/atoms/common/EmptyItem/EmptyItem';
-import useAllBooking from 'hooks/useAllBooking';
+import useAllBooking from 'hooks/api/useAllBooking';
 import { IBooking } from 'types/domain/booking';
 import { useRecoilState } from 'recoil';
 import selectedDateState from 'recoil/booking';

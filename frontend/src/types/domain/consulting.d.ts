@@ -26,3 +26,12 @@ export interface IConsultingSummary {
 	consultCount: string;
 	consultDate: string;
 }
+
+// 컨설팅 참여 정보
+export interface IConsultingParticipateInfo {
+	cid: number;
+	title: string;
+	greenmate: string;
+	date: string;
+	time: number;
+}

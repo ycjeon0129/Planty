@@ -23,7 +23,7 @@ const useProduct = () => {
 				});
 			}
 		} catch (error) {
-			console.log('에러', error);
+			console.error('에러', error);
 		}
 	};
 

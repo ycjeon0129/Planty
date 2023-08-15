@@ -3,15 +3,13 @@ import EmergencyHistoryPageLayout from 'components/layout/Page/EmergencyHistoryP
 import BadgeDescription from 'components/organisms/common/BadgeDescription/BadgeDescription';
 import EmergencyDetailList from 'components/organisms/mypage/EmergencyDetailList/EmergencyDetailList';
 import { EMERGENCY_HISTORY_STATUS_DESC_LIST } from 'constants/common/StatusDescList';
-import useEmergency from 'hooks/useEmergency';
+import useEmergency from 'hooks/api/useEmergency';
 import React from 'react';
 
 function EmergencyHistoryPage() {
 	const emergencyList = useEmergency();
-	console.log(emergencyList);
 
 	const stateKeyList = ['chat', 'video'];
-	// console.log(stateKeyList);
 
 	return (
 		<EmergencyHistoryPageLayout>

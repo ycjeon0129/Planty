@@ -4,21 +4,72 @@ import JoinButton from 'components/atoms/consulting/JoinButton/JoinButton';
 import CheckEquip from 'components/organisms/emergency/CheckEquip/CheckEquip';
 import ConsultingParticipatePageLayout from 'components/layout/Page/ConsultingParticipatePageLayout/ConsultingParticipatePageLayout';
 import ParticipateBox from 'components/organisms/consulting/ParticipateBox/ParticipateBox';
+import { useLocation } from 'react-router-dom';
+import consultingSessionState from 'recoil/consultingSession';
+import { useRecoilState } from 'recoil';
+import useMovePage from 'hooks/common/useMovePage';
+import { createSubscribeConnectionApi, createSubscribeSessionIdApi } from 'utils/api/openVidu';
+import { ISubscribeSessionInfo } from 'types/common/request';
+import AreaTitle from 'components/atoms/common/AreaTitle/AreaTitle';
+import ConsultingLottie from 'components/atoms/consulting/ConsultingLottie/ConsultingLottie';
 
 function ConsultingParticipatePage() {
-	const test = () => {
-		alert('클릭');
+	const { consultingParticipateInfo } = useLocation().state;
+	const { movePage } = useMovePage();
+	const [, setConsultingSession] = useRecoilState(consultingSessionState);
+
+	// 세션 아이디로 openVidu 연결 토큰 생성
+	const createConnection = async (sessionInfo: ISubscribeSessionInfo) => {
+		try {
+			if (sessionInfo) {
+				const response = await createSubscribeConnectionApi(sessionInfo);
+				if (response.status === 200) {
+					const { token } = response.data;
+					setConsultingSession({ webRTCType: 0, token }); // 구독에 대한 컨설팅이므로 0
+					movePage('/consulting/video', null);
+				}
+			}
+		} catch (error) {
+			console.error(error);
+		}
 	};
+
+	// 세션 아이디 생성
+	const createSessionId = async () => {
+		let sessionInfo: ISubscribeSessionInfo | null = null;
+		try {
+			const response = await createSubscribeSessionIdApi(consultingParticipateInfo.cid);
+
+			if (response.status === 200) {
+				sessionInfo = {
+					cid: consultingParticipateInfo.cid,
+					sessionId: response.data.sessionId,
+				};
+				createConnection(sessionInfo);
+			}
+		} catch (error) {
+			console.error(error);
+		}
+	};
+
+	const participate = () => {
+		createSessionId();
+	};
+
 	return (
 		<ConsultingParticipatePageLayout>
 			{/* 이전으로 */}
 			<PageTitleButton type="back" text="이전으로" />
+			{/* area */}
+			<AreaTitle title="1:1 화상 컨설팅 참여하기" url="#" />
+			{/* lottie */}
+			<ConsultingLottie />
 			{/* 상품Detail box */}
-			<ParticipateBox />
+			<ParticipateBox consultingParticipateInfo={consultingParticipateInfo} />
 			{/* 장비확인 text */}
 			<CheckEquip />
 			{/* 참여하기 버튼 */}
-			<JoinButton isActive handleClick={test} />
+			<JoinButton isActive handleClick={participate} />
 		</ConsultingParticipatePageLayout>
 	);
 }

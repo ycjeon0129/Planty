@@ -7,20 +7,18 @@ import { OpenVidu, Publisher, Session, StreamEvent, Subscriber } from 'openvidu-
 import ConsultingLoadingPageLayout from 'components/layout/Page/ConsultingLoadingPageLayout/ConsultingLoadingPageLayout';
 import { ReactComponent as CamOffIcon } from 'assets/icons/consultingMenu/VideoOff.svg';
 import { ReactComponent as MicOffIcon } from 'assets/icons/consultingMenu/MicOff.svg';
-import useMovePage from 'hooks/useMovePage';
+import useMovePage from 'hooks/common/useMovePage';
 import { useRecoilState } from 'recoil';
 import consultingSessionState from 'recoil/consultingSession';
 import { IConsultingSession } from 'types/common/request';
-// import { getToken } from 'utils/api/openVidu';
-// import useUser from 'hooks/useUser';
-// import PlantChart from 'components/organisms/subscribe/PlantChart/PlantChart';
-
-const userName = 'user1';
+import useUser from 'hooks/common/useUser';
+import { toast } from 'react-hot-toast';
+import CustomAlert from 'components/organisms/common/CustomAlert/CustomAlert';
 
 function VideoConsultingPage() {
-	// const user = useUser();
+	const [user] = useUser();
 	const [consultingSession] = useRecoilState(consultingSessionState); // 현재 요청 정보 (webRTCType, token)
-	const { goBack } = useMovePage();
+	const { movePage } = useMovePage();
 	const [session, setSession] = useState<Session | undefined>(undefined); // 가상 룸
 	const [subscriber, setSubscriber] = useState<Subscriber | undefined>(undefined);
 	const [publisher, setPublisher] = useState<Publisher | undefined>(undefined);
@@ -62,17 +60,29 @@ function VideoConsultingPage() {
 		}
 	};
 
+	/**
+	 * 컨설팅 메뉴 - 종료 버튼 클릭시
+	 */
 	const exitConsulting = () => {
-		if (session) {
-			alert('세션이 종료되었습니다.');
-			session.off('streamCreated', handleStreamCreated);
-			session.off('streamDestroyed', handleStreamDestroyed);
-			session.disconnect();
-			goBack();
-		} else {
-			alert('종료된 세션입니다.');
-			goBack();
-		}
+		const onConfirm = () => {
+			if (session) {
+				toast.success('화상컨설팅을 종료합니다.');
+				session.off('streamCreated', handleStreamCreated);
+				session.off('streamDestroyed', handleStreamDestroyed);
+				session.disconnect();
+			} else {
+				toast.success('종료된 세션입니다.');
+			}
+			movePage('/consulting/complete', null);
+		};
+
+		CustomAlert({
+			title: '화상 컨설팅 종료',
+			btnTitle: '종료하기',
+			desc: '화상 컨설팅을 종료하시겠습니까?',
+			onAction: onConfirm,
+			params: {},
+		});
 	};
 
 	useEffect(() => {
@@ -84,8 +94,7 @@ function VideoConsultingPage() {
 
 			// const token = await getToken();
 			const { token } = consultingSession as IConsultingSession;
-			console.log('토큰이야', token);
-			await newSession.connect(token, { clientData: userName });
+			await newSession.connect(token, { clientData: user?.userName });
 
 			const initPublisher = await OV.initPublisherAsync(undefined, {
 				audioSource: undefined, // The source of audio. If undefined default microphone
@@ -104,7 +113,7 @@ function VideoConsultingPage() {
 		if (!session) {
 			joinSession();
 		}
-	}, [webcamEnabled, microphoneEnabled, session, consultingSession]);
+	}, [webcamEnabled, microphoneEnabled, session, consultingSession, user]);
 
 	useEffect(() => {
 		if (session) {

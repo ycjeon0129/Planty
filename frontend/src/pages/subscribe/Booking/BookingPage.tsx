@@ -13,7 +13,7 @@ import formatDate from 'utils/date/formatDate';
 import { useParams } from 'react-router-dom';
 import { toast } from 'react-hot-toast';
 import convertTime from 'utils/common/convertTime';
-import useMovePage from 'hooks/useMovePage';
+import useMovePage from 'hooks/common/useMovePage';
 import CustomAlert from 'components/organisms/common/CustomAlert/CustomAlert';
 import BookingCalendar from '../../../components/atoms/booking/BookingCalendar/BookingCalendar';
 

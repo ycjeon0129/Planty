@@ -3,7 +3,12 @@ export interface IConsultingSession {
 	token: string;
 }
 
-export interface ISessionInfo {
+export interface IEmergencySessionInfo {
 	eid: number;
+	sessionId: string;
+}
+
+export interface ISubscribeSessionInfo {
+	cid: number;
 	sessionId: string;
 }

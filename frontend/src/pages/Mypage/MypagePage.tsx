@@ -5,7 +5,7 @@ import MypageIcon from 'assets/icons/tabbar/Mypage.svg';
 import MypageSubmenuList from 'components/organisms/mypage/MypageSubmenuList/MypageSubmenuList';
 import UserProfile from 'components/organisms/mypage/UserProfile/UserProfile';
 import MiniShortcutButton from 'components/atoms/common/MiniShortcutButton/MiniShortcutButton';
-import useMovePage from 'hooks/useMovePage';
+import useMovePage from 'hooks/common/useMovePage';
 
 function MypagePage() {
 	const { movePage } = useMovePage();

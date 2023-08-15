@@ -19,7 +19,6 @@ import userState from 'recoil/user';
 function ShopPay() {
 	const [user] = useRecoilState(userState);
 	const { state } = useLocation();
-	console.log(state);
 
 	if (!state?.product) return <Navigate to="/" />;
 	if (user)
