@@ -15,6 +15,5 @@ public interface ViewUserSubscribeRepository extends JpaRepository<ViewUserSubsc
     List<ViewUserSubscribe> findByUid(Long uid, Sort sort);
     List<ViewUserSubscribe> findByUidAndEndDateNull(Long uid, Sort sort);
     List<ViewUserSubscribe> findByUidAndEndDateNotNull(Long uid, Sort sort);
-
     Optional<ViewUserSubscribe> findByUidAndSid(Long uid, Long sid);
 }

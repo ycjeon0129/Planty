@@ -5,6 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 @Slf4j
@@ -40,6 +41,22 @@ public class TimeUtil {
     public static String findCurrentTimestamp() {
         return new SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
                 .format(new Timestamp(System.currentTimeMillis()))
+                .toString();
+    }
+
+    public static String findEndDate(String startDate, int period) throws ParseException {
+        String endDate = null;
+
+        Date start = new SimpleDateFormat("yyyy-MM-dd").parse(startDate);
+
+        ///
+        Calendar cal = Calendar.getInstance();
+
+        cal.setTime(start);
+
+        cal.add(Calendar.WEEK_OF_MONTH, period);
+        return new SimpleDateFormat("yyyy-MM-dd")
+                .format(cal.getTime())
                 .toString();
     }
 }

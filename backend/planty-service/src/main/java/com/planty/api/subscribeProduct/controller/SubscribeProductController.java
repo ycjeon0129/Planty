@@ -1,7 +1,7 @@
 package com.planty.api.subscribeProduct.controller;
 
 import com.planty.api.subscribe.request.UserSubscribeRequest;
-import com.planty.api.subscribe.response.UserSubscribeDatailResponse;
+import com.planty.api.subscribe.response.UserSubscribeDetailResponse;
 import com.planty.api.subscribe.response.UserSubscribeResponse;
 import com.planty.api.subscribe.service.SubscribeService;
 import com.planty.api.subscribeProduct.request.SubscribeProductRequest;

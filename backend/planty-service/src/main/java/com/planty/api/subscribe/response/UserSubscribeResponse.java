@@ -17,19 +17,23 @@ public class UserSubscribeResponse {
     @NotNull
     private String startDate;  // 구독 시작일
 
+    private String endDate;  // 구독 시작일
+
     private Boolean end;  // 종료 여부. 종료(0), 미종료(0)
+
     @NotNull
     private String title;  // 구독 상품명
+
+    private String thumbnail;  // 구독 상품 썸네일 이미지 CDN 링크
+
     @NotNull
     private Integer consultingCnt;  // 구독 상품 컨설팅 횟수
+
     @NotNull
     private Integer consultingRemainCnt;  // 남은 컨설팅 횟수
 
-    private String consultingDate; // 예약 날짜
+    private String greenmate;
 
-    private Boolean consultingCancel; // 취소여부. 취소(1), 미취소(0)
+    private NearConsultingResponse nearConsulting;  // 마지막 예약 정보
 
-    private Boolean consultingActive;  // 실행여부. 실행(1), 미실행(0)
-
-    private Integer consultingTime; // 시간 식별키
 }
