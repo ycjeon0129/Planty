@@ -30,8 +30,8 @@
                 button{
                     padding: 5px;
                     border-radius: var.$rd-sm;
-                    border: 1px solid var.$black-300;
-
+                    border: 1px solid var.$danger;
+                    color: var.$danger;
                     &:hover {
                         background-color: var.$danger;
                         border: 1px solid var.$danger;
@@ -44,5 +44,6 @@
         #advice {
             font-size: 1.4em;
         }
+
     }
 }
