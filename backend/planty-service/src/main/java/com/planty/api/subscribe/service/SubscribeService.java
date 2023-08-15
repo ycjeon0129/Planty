@@ -8,7 +8,7 @@ import com.planty.db.entity.UserSubscribe;
 import java.util.List;
 
 public interface SubscribeService {
-    List<UserSubscribeResponse> getUserSubscribe();
+    List<UserSubscribeResponse> getUserSubscribe(int done);
     UserSubscribeDatailResponse getUserSubscribeDetail(Long sid);
     boolean regUserSubscribe (UserSubscribeRequest userSubscribeRequest);
 

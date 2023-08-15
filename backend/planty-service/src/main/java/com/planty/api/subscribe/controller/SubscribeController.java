@@ -25,10 +25,12 @@ import static com.planty.common.util.LogCurrent.logCurrent;
 public class SubscribeController {
     private final SubscribeService subscribeServiceImpl;
     @GetMapping // 사용자 구독 조회
-    public ResponseEntity<?> getUserSubscribeList() {
+    public ResponseEntity<?> getUserSubscribeList(
+            @RequestParam(name = "done", required = false, defaultValue = "0") int done
+    ) {
 
         log.info(logCurrent(getClassName(), getMethodName(), START));
-        List<UserSubscribeResponse> subscribeList = subscribeServiceImpl.getUserSubscribe();
+        List<UserSubscribeResponse> subscribeList = subscribeServiceImpl.getUserSubscribe(done);
 
         if (!subscribeList.isEmpty()) {
             log.info(logCurrent(getClassName(), getMethodName(), END));
