@@ -5,7 +5,7 @@ import CheckEquip from 'components/organisms/emergency/CheckEquip/CheckEquip';
 import ConsultingParticipatePageLayout from 'components/layout/Page/ConsultingParticipatePageLayout/ConsultingParticipatePageLayout';
 import ParticipateBox from 'components/organisms/consulting/ParticipateBox/ParticipateBox';
 import { useLocation } from 'react-router-dom';
-import requestState from 'recoil/consultingSession';
+import consultingSessionState from 'recoil/consultingSession';
 import { useRecoilState } from 'recoil';
 import useMovePage from 'hooks/common/useMovePage';
 import { createSubscribeConnectionApi, createSubscribeSessionIdApi } from 'utils/api/openVidu';
@@ -16,7 +16,7 @@ import ConsultingLottie from 'components/atoms/consulting/ConsultingLottie/Consu
 function ConsultingParticipatePage() {
 	const { consultingParticipateInfo } = useLocation().state;
 	const { movePage } = useMovePage();
-	const [, setRequest] = useRecoilState(requestState);
+	const [, setConsultingSession] = useRecoilState(consultingSessionState);
 
 	// 세션 아이디로 openVidu 연결 토큰 생성
 	const createConnection = async (sessionInfo: ISubscribeSessionInfo) => {
@@ -25,7 +25,7 @@ function ConsultingParticipatePage() {
 				const response = await createSubscribeConnectionApi(sessionInfo);
 				if (response.status === 200) {
 					const { token } = response.data;
-					setRequest({ webRTCType: 1, token }); // 응급실에 대한 컨설팅이므로 1
+					setConsultingSession({ webRTCType: 0, token }); // 구독에 대한 컨설팅이므로 0
 					movePage('/consulting/video', null);
 				}
 			}
@@ -41,7 +41,10 @@ function ConsultingParticipatePage() {
 			const response = await createSubscribeSessionIdApi(consultingParticipateInfo.cid);
 
 			if (response.status === 200) {
-				sessionInfo = response.data as ISubscribeSessionInfo;
+				sessionInfo = {
+					cid: consultingParticipateInfo.cid,
+					sessionId: response.data.sessionId,
+				};
 				createConnection(sessionInfo);
 			}
 		} catch (error) {
