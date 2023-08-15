@@ -8,10 +8,8 @@ import React from 'react';
 
 function EmergencyHistoryPage() {
 	const emergencyList = useEmergency();
-	console.log(emergencyList);
 
 	const stateKeyList = ['chat', 'video'];
-	// console.log(stateKeyList);
 
 	return (
 		<EmergencyHistoryPageLayout>

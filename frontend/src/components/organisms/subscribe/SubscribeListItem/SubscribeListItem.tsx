@@ -15,8 +15,6 @@ import toast from 'react-hot-toast';
  * @param subscribe 구독 정보 1건
  */
 function SubscribeListItem({ subscribe }: { subscribe: ISubscribe }) {
-	console.log(subscribe);
-
 	const { movePage } = useMovePage();
 	const { sid, startDate, title, info, state, thumbnail } = subscribe;
 	const newInfo = {
@@ -31,8 +29,8 @@ function SubscribeListItem({ subscribe }: { subscribe: ISubscribe }) {
 	const linkToConsult = () => {
 		const onConfirm = async () => {
 			try {
-				toast.success('컨설팅을 진행합니다 \n화상채팅으로 이동합니다.');
-				movePage('/consulting/participate/1', { subscribe });
+				toast.success('화상 컨설팅으로 이동합니다.');
+				movePage('/consulting/participate', { subscribe });
 			} catch (error) {
 				console.error(error);
 			}

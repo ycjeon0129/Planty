@@ -9,9 +9,7 @@ function UserVideoComponent({ streamManager }: { streamManager: StreamManager })
 		return JSON.parse(streamManager.stream.connection.data).clientData;
 	};
 
-	useEffect(() => {
-		console.log('sM', streamManager);
-	});
+	useEffect(() => {});
 	return (
 		<div>
 			{streamManager !== undefined ? (

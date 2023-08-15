@@ -84,7 +84,6 @@ function VideoConsultingPage() {
 
 			// const token = await getToken();
 			const { token } = consultingSession as IConsultingSession;
-			console.log('토큰이야', token);
 			await newSession.connect(token, { clientData: userName });
 
 			const initPublisher = await OV.initPublisherAsync(undefined, {

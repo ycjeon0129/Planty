@@ -10,7 +10,6 @@ import SubscribeListItem from '../SubscribeListItem/SubscribeListItem';
  */
 function SubscribeSlider() {
 	const subscribes: ISubscribe[] = useAllSubscribe() as ISubscribe[];
-	console.log(subscribes);
 
 	return (
 		<div className="slider-container">
