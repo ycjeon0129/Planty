@@ -26,8 +26,10 @@ public class ExceptionHandler {
     // 403
     public static final String EMERGENCY_UNAUTHORIZED = "권한이 없는 응급실 세션입니다.";
     public static final String EMERGENCY_ALREADY_EXIST = "이미 존재하는 응급실 세션 로그입니다.";
+    public static final String EMERGENCY_TICKET_NOT_ENOUGH = "사용자가 보유한 이용권 티켓이 부족합니다.";
     public static final String CONSULTING_UNAUTHORIZED = "권한이 없는 컨설팅 세션입니다.";
     public static final String CONSULTING_ALREADY_EXIST = "이미 존재하는 컨설팅 세션 로그입니다.";
+    public static final String CONSULTING_COUNT_NOT_ENOUGH = "사용자가 보유한 컨설팅 횟수가 부족합니다.";
 
 
     @org.springframework.web.bind.annotation.ExceptionHandler(NullPointerException.class)
