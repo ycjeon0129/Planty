@@ -21,7 +21,7 @@ function Success() {
 	return (
 		<div className="complete-container">
 			{isLoading && state ? (
-				<PayLoadingPageLayout />
+				<PayLoadingPageLayout desc="상품을 구입 중이예요" />
 			) : (
 				<PayComplete price={state.product.price} spid={state.product.spid} />
 			)}

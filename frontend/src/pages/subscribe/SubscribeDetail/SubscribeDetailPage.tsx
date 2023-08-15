@@ -9,6 +9,7 @@ import { useParams } from 'react-router-dom';
 import useSubscribe from 'hooks/api/useSubscribe';
 import { IEmbeddedInfo, ISubscribeDetail } from 'types/domain/subscribe';
 import useIsLoading from 'hooks/common/useIsLoading';
+import PayLoadingPageLayout from 'components/layout/Page/PayLoadingPageLayout/PayLoadingPageLayout';
 
 function SubscribeDetailPage() {
 	const { sid = 0 } = useParams();
@@ -16,7 +17,7 @@ function SubscribeDetailPage() {
 	const isLoading = useIsLoading(subscribe);
 
 	if (isLoading) {
-		return <div>로딩중</div>;
+		return <PayLoadingPageLayout desc="자세한 정보를 불러오고 있어요" />;
 	}
 
 	return (
