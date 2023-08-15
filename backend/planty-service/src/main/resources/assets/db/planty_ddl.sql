@@ -359,7 +359,7 @@ CREATE  OR REPLACE ALGORITHM=UNDEFINED DEFINER=`planty`@`%`
 SQL SECURITY DEFINER VIEW `planty`.`view_user_subscribe`
 AS select `us`.`sid` AS `sid`,`us`.`USER_INFO_uid` AS `uid`,
           `us`.`arduino_id` AS `arduino_id`,`us`.`consulting_remain_cnt` AS `consulting_remain_cnt`,
-          `us`.`start_date` AS `start_date`,
+          `us`.`start_date` AS `start_date`,`us`.`end_date` AS `end_date`,
           `sp`.`name` AS `sp_name`,`sp`.`period` AS `period`,`sp`.`thumbnail` AS `thumbnail`,
           `sp`.`consulting_cnt` AS `consulting_cnt`,`sp`.`description` AS `description`,
           `pi`.`name` AS `pi_name`,`pi`.`tonic_period` AS `tonic_period`,
