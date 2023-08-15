@@ -60,7 +60,7 @@ public class EmergencyController {
     }
 
     @PostMapping("/{type}")
-    public ResponseEntity<EmergencySessionResponse> initializeSession(@PathVariable("type") int type) throws OpenViduJavaClientException, OpenViduHttpException {
+    public ResponseEntity<EmergencySessionResponse> initializeSession(@PathVariable("type") int type) throws OpenViduJavaClientException, OpenViduHttpException, IllegalAccessException {
         log.info(logCurrent(getClassName(), getMethodName(), START));
         EmergencySessionResponse sessionInfo = emergencyService.initializeSession(type);
         log.info(logCurrent(getClassName(), getMethodName(), END));

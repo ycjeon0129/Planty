@@ -15,7 +15,7 @@ public interface EmergencyService {
 
     ConnectionCountResponse getGmCnt();
 
-    EmergencySessionResponse initializeSession(int type) throws OpenViduJavaClientException, OpenViduHttpException;
+    EmergencySessionResponse initializeSession(int type) throws OpenViduJavaClientException, OpenViduHttpException, IllegalAccessException;
 
     String createConnection(EmergencyConnectionRequest connectionInfo) throws OpenViduJavaClientException, OpenViduHttpException, IllegalAccessException;
 }

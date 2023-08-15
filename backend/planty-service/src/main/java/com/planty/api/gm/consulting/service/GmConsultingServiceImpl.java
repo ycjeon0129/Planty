@@ -5,15 +5,13 @@ import com.planty.api.gm.consulting.request.GmConsultingRecordRequest;
 import com.planty.common.exception.handler.ExceptionHandler;
 import com.planty.common.util.SecurityUtil;
 import com.planty.common.util.TimeUtil;
-import com.planty.db.entity.ConsultingBooking;
-import com.planty.db.entity.ConsultingLog;
-import com.planty.db.entity.GmInfo;
-import com.planty.db.entity.ViewUserConsulting;
+import com.planty.db.entity.*;
 import com.planty.db.repository.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -70,6 +68,7 @@ public class GmConsultingServiceImpl implements GmConsultingService {
     }
 
     @Override
+    @Transactional
     public String findSessionToken(Long cid) throws IllegalAccessException {
         ConsultingBooking bookingInfo = consultingBookingRepository.findByCid(cid)
                 .orElseThrow(() -> new NullPointerException(ExceptionHandler.BOOKING_NOT_FOUND));
@@ -84,6 +83,7 @@ public class GmConsultingServiceImpl implements GmConsultingService {
     }
 
     @Override
+    @Transactional
     public void deleteSession(GmConsultingRecordRequest recordInfo) throws IllegalAccessException {
         ConsultingBooking bookingInfo = consultingBookingRepository.findByCid(recordInfo.getCid())
                 .orElseThrow(() -> new NullPointerException(ExceptionHandler.BOOKING_NOT_FOUND));
@@ -92,6 +92,9 @@ public class GmConsultingServiceImpl implements GmConsultingService {
         }
         ConsultingLog skeleton = consultingLogRepository.findByCid(bookingInfo)
                 .orElseThrow(() -> new NullPointerException(ExceptionHandler.CONSULTING_LOG_NOT_FOUND));
+        if (skeleton.getContent() != null) {    // 이미 작성된 컨설팅 로그
+            throw new IllegalAccessException(ExceptionHandler.CONSULTING_ALREADY_EXIST);
+        }
         List<ConsultingBooking> list = consultingBookingRepository.findAllByCidLessThanAndSidAndCancelFalse(bookingInfo.getCid(), bookingInfo.getSid());
 
         skeleton.setRecommendedStartDate(recordInfo.getRecommendedStartDate());
@@ -102,6 +105,13 @@ public class GmConsultingServiceImpl implements GmConsultingService {
 
         consultingLogRepository.save(skeleton);
 
+        bookingInfo.setConnection(null);
+        consultingBookingRepository.save(bookingInfo);
+
+        UserSubscribe subscribeInfo = userSubscribeRepository.findBySid(bookingInfo.getSid().getSid())
+                .orElseThrow(() -> new NullPointerException(ExceptionHandler.USER_SID_NOT_FOUND));
+        subscribeInfo.setConsultingRemainCnt( (subscribeInfo.getConsultingRemainCnt()-1) );
+        userSubscribeRepository.save(subscribeInfo);
     }
 
     @Override
