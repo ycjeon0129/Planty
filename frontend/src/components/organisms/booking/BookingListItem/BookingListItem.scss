@@ -1,49 +1,55 @@
 @use 'styles/base/variable' as var;
 
 .booking-list-item-container {
-    margin-bottom: 15px;
+	margin-bottom: 15px;
 
-    .booking-header {
-        display: flex;
-        flex-grow: 1;
-        justify-content: space-between;
-        align-items: center
-    }
+	.booking-header {
+		display: flex;
+		flex-grow: 1;
+		justify-content: space-between;
+		align-items: flex-start;
+		flex-wrap: wrap;
+		flex-direction: column;
 
-    .booking-info {
-        text-align: start;
-        display: flex;
-        flex-direction: column;
-        gap: 30px;
+		& > h4 {
+			padding-left: 4px;
+			color: var.$black-300;
+		}
+	}
 
-        h3 {
-            font-weight: bold;
-        }
+	.booking-info {
+		text-align: start;
+		display: flex;
+		flex-direction: column;
+		gap: 30px;
 
-        #detail {
-            #detail-header{
-                display: flex;
-                flex-direction: row;
-                justify-content: space-between;
-                margin-bottom: 10px;
+		h3 {
+			font-weight: bold;
+		}
 
-                button{
-                    padding: 5px;
-                    border-radius: var.$rd-sm;
-                    border: 1px solid var.$danger;
-                    color: var.$danger;
-                    &:hover {
-                        background-color: var.$danger;
-                        border: 1px solid var.$danger;
-                        color:white
-                    }
-                }
-            }
-        }
+		#detail {
+			#detail-header {
+				display: flex;
+				flex-direction: row;
+				justify-content: space-between;
+				margin-bottom: 10px;
 
-        #advice {
-            font-size: 1.4em;
-        }
+				button {
+					padding: 5px;
+					border-radius: var.$rd-sm;
+					border: 1px solid var.$danger;
+					color: var.$danger;
+					&:hover {
+						background-color: var.$danger;
+						border: 1px solid var.$danger;
+						color: white;
+					}
+				}
+			}
+		}
 
-    }
+		#advice {
+			font-size: 1.4em;
+		}
+	}
 }

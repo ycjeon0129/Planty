@@ -9,6 +9,7 @@ import ProductListItem from 'components/organisms/shop/ProductListItem/ProductLi
 import FilterToggleBar from 'components/organisms/shop/FilterToggleBar/FilterToggleBar';
 import useIsLoading from 'hooks/common/useIsLoading';
 import useProduct from 'hooks/api/useProduct';
+import PayLoadingPageLayout from 'components/layout/Page/PayLoadingPageLayout/PayLoadingPageLayout';
 
 /**
  * 구독샵 페이지
@@ -25,7 +26,7 @@ function ShopPage() {
 	// const [selected, setSelected] = useState<number>(0);
 
 	if (isLoading) {
-		return <div>로딩중</div>;
+		return <PayLoadingPageLayout desc="상품 목록을 불러 오고 있어요" />;
 	}
 
 	const test = (idx: number) => {

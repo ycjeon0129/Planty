@@ -10,7 +10,7 @@
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	border: 1.5px solid var.$black-100;
+	box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
 	border-radius: var.$rd-sm var.$rd-sm;
 	background-color: var.$white;
 	position: sticky;

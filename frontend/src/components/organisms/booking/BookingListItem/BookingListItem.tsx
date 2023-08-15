@@ -70,9 +70,9 @@ function BookingListItem({ booking }: { booking: IBooking }) {
 			<AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel1a-content" id="panel1a-header">
 				<div className="booking-header">
 					<h3>{booking.title}</h3>
-					<h3>
+					<h4>
 						{booking.date} / {convertTime(booking.time)}
-					</h3>
+					</h4>
 				</div>
 			</AccordionSummary>
 			<AccordionDetails>

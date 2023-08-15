@@ -17,6 +17,14 @@
 	.icon {
 		fill: $black-400;
 	}
+
+	& > label {
+		margin: 0;
+
+		& > span {
+			margin: 0;
+		}
+	}
 }
 
 .menu-text-font {

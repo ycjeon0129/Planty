@@ -1,16 +1,14 @@
 @import 'styles/base/_variable.scss';
 
 .pay-complete-box {
-	// border: 1px solid ghostwhite;
 	border-radius: 10px;
 	width: 340px;
-	height: 220px;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
+	gap: 10px;
 	font-weight: 500;
-	background-color: white;
 }
 
 .pay-complete-text {
@@ -18,12 +16,18 @@
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
+
+	.product-title {
+		font-size: 1.7rem;
+		font-weight: normal;
+		margin-bottom: 4px;
+	}
 }
 
 .pay-complete-planty {
 	font-size: $h1;
 	color: #222222;
-	margin-top: 10px;
+	margin-bottom: 10px;
 }
 
 .pay-complete-cost {
@@ -31,9 +35,19 @@
 	color: $primary;
 	margin-bottom: 10px;
 }
+
 .pay-complete-footer {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	gap: 6px;
 	color: $black-200;
 	font-size: 15px;
+	position: absolute;
+	// bottom: 30%;
+	bottom: -70%;
+	left: 50%;
+	transform: translateX(-50%);
 }
 
 .pay-gray {

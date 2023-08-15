@@ -12,7 +12,9 @@ function DetailMenuItem({ text, url = '', isToggle = false }: IDetail) {
 	const [isActive, SetIsActive] = useState<boolean>(false);
 	const onClick = () => {
 		SetIsActive(!isActive);
-		toast.success('서비스 개발 중입니다');
+		toast('준비 중인 서비스입니다!', {
+			icon: '🛠️',
+		});
 	};
 
 	if (isToggle) {
@@ -31,7 +33,9 @@ function DetailMenuItem({ text, url = '', isToggle = false }: IDetail) {
 				<button
 					type="button"
 					onClick={() => {
-						toast.success('서비스 개발 중입니다.');
+						toast('준비 중인 서비스입니다!', {
+							icon: '🛠️',
+						});
 					}}
 				>
 					<NextIcon />

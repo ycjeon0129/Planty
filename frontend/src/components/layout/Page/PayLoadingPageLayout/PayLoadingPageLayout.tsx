@@ -4,10 +4,10 @@ import { HashLoader } from 'react-spinners';
 
 // import LoadingSpinner from 'components/atoms/consulting/LoadingSpinner/LoadingSpinner';
 
-function PayLoadingPageLayout() {
+function PayLoadingPageLayout({ desc }: { desc: string }) {
 	return (
 		<div className="loading-page-layout">
-			<div className="text">상품을 구입 중이예요</div>
+			<div className="text">{desc}</div>
 			<HashLoader color="#36d7b7" />
 		</div>
 	);

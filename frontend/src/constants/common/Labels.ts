@@ -4,7 +4,7 @@ export const CONSULTING_INFO_LABELS = ['총 제공 횟수', '잔여 횟수', '�
 
 export const SUBSCRIBE_DETAIL_ITEM_LABELS = ['구독 시작일', '구독 종료일', '담당 그린메이트'];
 
-export const SUBSCRIBE_LIST_ITEM_LABELS = ['구독 기간', '컨설팅 회차', '가까운 컨설팅'];
+export const SUBSCRIBE_LIST_ITEM_LABELS = ['구독 종료일', '컨설팅 회차', '컨설팅 일정'];
 
 const BOOKING_LIST_ITEM_LABELS = ['컨설팅 일자'];
 
