@@ -25,15 +25,19 @@ function SubscribeListItem({ subscribe }: { subscribe: ISubscribe }) {
 		consultingDate: info.consultingDate,
 	};
 
+	/**
+	 * 컨설팅으로 연결
+	 */
 	const linkToConsult = () => {
 		const onConfirm = async () => {
 			try {
 				toast.success('컨설팅을 진행합니다 \n화상채팅으로 이동합니다.');
-				// 여기에 컨설팅 연결 로직 넣기
+				movePage('/consulting/participate/1', { subscribe });
 			} catch (error) {
 				console.error(error);
 			}
 		};
+
 		CustomAlert({
 			title: `${subscribe.title}`,
 			desc: `${subscribe.info.consultingDate}에 진행되는 컨설팅을 정말 진행하시겠습니까?`,
@@ -42,6 +46,10 @@ function SubscribeListItem({ subscribe }: { subscribe: ISubscribe }) {
 			onAction: onConfirm,
 		});
 	};
+
+	/**
+	 * 예약하기로 연결
+	 */
 	const linkToBook = () => {
 		movePage(`/subscribe/${sid}/booking`, null);
 	};
@@ -55,7 +63,7 @@ function SubscribeListItem({ subscribe }: { subscribe: ISubscribe }) {
 			{state === 'done' ? (
 				<Button isActive text="컨설팅 이용하기" handleClick={linkToConsult} />
 			) : (
-				<Button isActive={false} text="컨설팅 이용하기" handleClick={linkToBook} />
+				<Button isActive={false} text="예약 하러가기" handleClick={linkToBook} />
 			)}
 		</SubscribeItemLayout>
 	);
