@@ -7,7 +7,7 @@ import { OpenVidu, Publisher, Session, StreamEvent, Subscriber } from 'openvidu-
 import ConsultingLoadingPageLayout from 'components/layout/Page/ConsultingLoadingPageLayout/ConsultingLoadingPageLayout';
 import { ReactComponent as CamOffIcon } from 'assets/icons/consultingMenu/VideoOff.svg';
 import { ReactComponent as MicOffIcon } from 'assets/icons/consultingMenu/MicOff.svg';
-import useMovePage from 'hooks/useMovePage';
+import useMovePage from 'hooks/common/useMovePage';
 import { useRecoilState } from 'recoil';
 import consultingSessionState from 'recoil/consultingSession';
 import { IConsultingSession } from 'types/common/request';
@@ -84,7 +84,6 @@ function VideoConsultingPage() {
 
 			// const token = await getToken();
 			const { token } = consultingSession as IConsultingSession;
-			console.log('토큰이야', token);
 			await newSession.connect(token, { clientData: userName });
 
 			const initPublisher = await OV.initPublisherAsync(undefined, {

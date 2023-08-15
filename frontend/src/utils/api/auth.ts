@@ -11,7 +11,6 @@ import { instance } from './instance';
 const getUidFromAccessToken = (): number | null => {
 	const token = LocalStorage.getItem('AccessToken') as string;
 	// const decoded: AccessToken = jwt_decode(token);
-	// console.log(decoded);
 
 	// TODO : 임시 uid
 	if (token) return 1;

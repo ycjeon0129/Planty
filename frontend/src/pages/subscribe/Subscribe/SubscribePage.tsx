@@ -5,7 +5,7 @@ import BadgeDescription from 'components/organisms/common/BadgeDescription/Badge
 import { CONSULTING_STATUS_DESC_LIST } from 'constants/common/StatusDescList';
 import PageTitleButton from 'components/atoms/common/PageTitleButton/PageTitleButton';
 import { ISubscribe } from 'types/domain/subscribe';
-import useAllSubscribe from 'hooks/subscribes/useAllSubscribe';
+import useAllSubscribe from 'hooks/api/useAllSubscribe';
 
 function SubscribePage() {
 	const subscribes: ISubscribe[] = useAllSubscribe() as ISubscribe[];

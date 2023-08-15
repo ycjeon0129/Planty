@@ -18,9 +18,6 @@ function ConsultingHistoryPage() {
 			const response = await findAllConsultingBySidApi(reqSid);
 			if (response.status === 200) {
 				setConsultingList(response.data);
-				console.log(response);
-			} else {
-				console.log(`ConsultingHistoryPage fetch fail`);
 			}
 		} catch (error) {
 			console.error(error);

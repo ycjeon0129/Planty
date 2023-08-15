@@ -4,15 +4,21 @@
 export interface ISubscribeResponse {
 	sid: number;
 	startDate: string;
+	endDate: string;
 	end: boolean;
 	title: string;
+	thumbnail: string;
 	consultingCnt: number;
 	consultingRemainCnt: number;
-	consultingDate: string;
-	consultingCancel: boolean;
-	consultingActive: boolean;
-	consultingTime: number;
-	thumbnail: string;
+	greenmate: string;
+	// 가까운 컨설팅에 대한 정보
+	nearConsulting: {
+		cid: number;
+		date: string;
+		cancel: boolean;
+		active: boolean;
+		time: number;
+	};
 }
 
 /**
@@ -42,28 +48,30 @@ export interface IEmbeddedInfo {
 export interface ISubscribe {
 	sid: number;
 	startDate: string;
+	endDate: string;
+	end: boolean;
 	title: string;
-	info: IConsultingSummary;
 	state: string;
 	thumbnail: string;
+	consultingCnt: number;
+	consultingRemainCnt: number;
+	greenmate: string;
+	nearConsulting: IConsultingSummary;
 }
 
 /**
  * 구독정보에 포함되는 컨설팅 정보
  */
 export interface IConsultingSummary {
-	consultingCnt: number;
-	consultingRemainCnt: number;
-	consultingDate: string;
-	consultingCancel: boolean;
-	consultingActive: boolean;
-	consultingTime: number;
+	cid: number;
+	date: string;
+	cancel: boolean;
+	active: boolean;
+	time: number;
 }
 
 export interface ISubscribeDetail extends ISubscribe {
-	endDate: string;
 	plant: string;
-	greenmate: string;
 	embeddedInfo: IEmbeddedInfo[];
 }
 

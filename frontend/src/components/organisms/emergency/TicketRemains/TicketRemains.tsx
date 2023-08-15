@@ -1,7 +1,7 @@
 import React from 'react';
 import './TicketRemains.scss';
 import { ReactComponent as TicketSet } from 'assets/icons/TicketSet.svg';
-import useUser from 'hooks/useUser';
+import useUser from 'hooks/common/useUser';
 
 /**
  * 응급실 참여하기 - 응급실 서비스 box

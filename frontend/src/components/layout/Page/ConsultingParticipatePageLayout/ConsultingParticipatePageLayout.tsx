@@ -9,17 +9,20 @@ function ConsultingParticipatePageLayout({ children }: { children: ReactNode[] }
 		<PageLayout>
 			{/* 페이지 헤더 */}
 			<NavigationLayout>{children[0]}</NavigationLayout>
+			{/* 타이틀 */}
+			<ContentsLayout id="area-title">{children[1]}</ContentsLayout>
+			<ContentsLayout id="lottie">{children[2]}</ContentsLayout>
 			{/* 상품Detail box */}
 			<ContentsLayout id="participate-detail-box">
-				<div>{children[1]}</div>
+				<div>{children[3]}</div>
 			</ContentsLayout>
 			{/* 장비확인 text */}
 			<ContentsLayout id="check-equip-text">
-				<div>{children[2]}</div>
+				<div>{children[4]}</div>
 			</ContentsLayout>
 			{/* 참여하기버튼 */}
 			<ContentsLayout id="participate-btn">
-				<div>{children[3]}</div>
+				<div>{children[5]}</div>
 			</ContentsLayout>
 		</PageLayout>
 	);

@@ -1,9 +1,10 @@
 import React from 'react';
 import './VideoConsultingMenu.scss';
 import VideoConsultingMenuItem from 'components/atoms/consulting/VideoConsultingMenuItem/VideoConsultingMenuItem';
-import useToggle from 'hooks/useToggle';
-import uuid from 'react-uuid';
 import MENU from 'constants/menu/VideoConsultingMenu';
+import useToggle from 'hooks/common/useToggle';
+import { useRecoilState } from 'recoil';
+import consultingSessionState from 'recoil/consultingSession';
 
 /**
  * 비디오 컨설팅 메뉴바
@@ -60,8 +61,6 @@ function VideoConsultingMenu({
 				return [camState, handleCam];
 			case 'mic':
 				return [micState, handleMic];
-			// case 'chat':
-			// 	return [chatState, handleChat];
 			case 'chart':
 				return [chartState, handleChart];
 			default:
@@ -69,15 +68,19 @@ function VideoConsultingMenu({
 		}
 	};
 
+	const [consultingSession] = useRecoilState(consultingSessionState);
+
 	return (
 		<div className="btn-box">
 			{MENU.map((menu) => (
 				<VideoConsultingMenuItem
-					key={uuid()}
+					key={menu.key}
+					menuKey={menu.key}
 					isActive={getStates(menu.key)[0] as boolean}
 					icon={getStates(menu.key)[0] ? menu.onIcon : menu.offIcon}
 					isDanger={menu.isDanger}
 					handleClick={getStates(menu.key)[1] as () => void}
+					hideChart={consultingSession?.webRTCType === 1} // 1이면 응급실 0이면 화상컨설팅
 				/>
 			))}
 		</div>

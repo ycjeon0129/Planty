@@ -21,7 +21,6 @@ export default function CheckoutPage() {
 		// TODO : 결제하는 로직 api if문으로 추가해야함.
 		try {
 			const response = await saveSubscribeApi(state.product.spid);
-			console.log(response);
 
 			if (response.status === 200) {
 				toast.success('결제 및 구독에 성공했습니다.');
