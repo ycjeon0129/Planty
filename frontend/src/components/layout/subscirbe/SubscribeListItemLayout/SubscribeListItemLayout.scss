@@ -17,6 +17,7 @@
 
 	#bottom {
 		display: flex;
+		gap: 15px;
 
 		img {
 			border-radius: var.$rd-sm;
@@ -28,7 +29,6 @@
 
 		#right {
 			@include flex-column;
-			padding: 0 var.$pd-lg;
 			width: 100%;
 			justify-content: space-between;
 
