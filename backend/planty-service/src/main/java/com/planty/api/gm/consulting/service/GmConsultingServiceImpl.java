@@ -3,18 +3,25 @@ package com.planty.api.gm.consulting.service;
 import com.planty.api.consulting.response.UserConsultingResponse;
 import com.planty.api.gm.consulting.request.GmConsultingRecordRequest;
 import com.planty.common.exception.handler.ExceptionHandler;
+import com.planty.common.model.SessionTokenResponse;
+import com.planty.common.util.OpenViduUtil;
 import com.planty.common.util.SecurityUtil;
 import com.planty.common.util.TimeUtil;
 import com.planty.db.entity.*;
 import com.planty.db.repository.*;
+import io.openvidu.java.client.OpenViduHttpException;
+import io.openvidu.java.client.OpenViduJavaClientException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Slf4j
 @Service
@@ -28,6 +35,8 @@ public class GmConsultingServiceImpl implements GmConsultingService {
     private final UserSubscribeRepository userSubscribeRepository;
     private final PlantyInfoRepository plantyInfoRepository;
     private final ViewUserConsultingRepository viewUserConsultingRepository;
+    @Autowired
+    private OpenViduUtil openViduUtil;
 
     @Override
     public List<UserConsultingResponse> findConsultingList(Long spid) {
@@ -69,17 +78,26 @@ public class GmConsultingServiceImpl implements GmConsultingService {
 
     @Override
     @Transactional
-    public String findSessionToken(Long cid) throws IllegalAccessException {
+    public SessionTokenResponse findSessionToken(Long cid) throws IllegalAccessException, OpenViduJavaClientException, OpenViduHttpException {
         ConsultingBooking bookingInfo = consultingBookingRepository.findByCid(cid)
                 .orElseThrow(() -> new NullPointerException(ExceptionHandler.BOOKING_NOT_FOUND));
         if (bookingInfo.getGid().getGid() != SecurityUtil.getCurrentGid()) {
             throw new IllegalAccessException(ExceptionHandler.CONSULTING_UNAUTHORIZED);
         }
-        if (!bookingInfo.getActive()) {
-            bookingInfo.setActive(true);
-            consultingBookingRepository.save(bookingInfo);
+        if (bookingInfo.getActive()) {
+            throw new IllegalAccessException(ExceptionHandler.CONSULTING_ALREADY_EXIST);
         }
-        return bookingInfo.getConnection();
+        bookingInfo.setActive(true);
+        consultingBookingRepository.save(bookingInfo);
+        String sessionId = bookingInfo.getConnection();
+        Map<String, Object> params = new HashMap<>();
+        params.put("cid", bookingInfo.getCid());
+        params.put("sessionId", bookingInfo.getConnection());
+        String token = openViduUtil.createConnection(params);
+        SessionTokenResponse tokenResponse = new SessionTokenResponse();
+        tokenResponse.setToken(token);
+
+        return tokenResponse;
     }
 
     @Override

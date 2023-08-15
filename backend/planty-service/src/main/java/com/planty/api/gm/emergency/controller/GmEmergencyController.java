@@ -7,6 +7,8 @@ import com.planty.api.emergency.response.EmergencyResponse;
 import com.planty.api.gm.emergency.request.GmEmergencyRecordRequest;
 import com.planty.api.gm.emergency.service.GmEmergencyService;
 import com.planty.common.model.SessionTokenResponse;
+import io.openvidu.java.client.OpenViduHttpException;
+import io.openvidu.java.client.OpenViduJavaClientException;
 import io.swagger.annotations.Api;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -38,15 +40,13 @@ public class GmEmergencyController {
 
     // 응급실 세션 토큰 조회
     @GetMapping("/sessions/{eid}")
-    public ResponseEntity<SessionTokenResponse> findSessionToken(@PathVariable Long eid) {
-        String token = gmEmergencyService.findSessionToken(eid);
+    public ResponseEntity<SessionTokenResponse> findSessionToken(@PathVariable Long eid) throws OpenViduJavaClientException, OpenViduHttpException, IllegalAccessException {
+        SessionTokenResponse token = gmEmergencyService.findSessionToken(eid);
         if (token == null) { // 이미 다른 GM이 수락한 응급실 요청인 경우
             return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
         }
-        SessionTokenResponse tokenResponse = new SessionTokenResponse();
-        tokenResponse.setToken(token);
         gmEmergencyService.setStartTime(eid);
-        return new ResponseEntity<>(tokenResponse, HttpStatus.OK);
+        return new ResponseEntity<>(token, HttpStatus.OK);
     }
 
     @PostMapping("/sessions/record")

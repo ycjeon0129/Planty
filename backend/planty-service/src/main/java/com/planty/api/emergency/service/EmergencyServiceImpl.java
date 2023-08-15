@@ -118,6 +118,10 @@ public class EmergencyServiceImpl implements EmergencyService {
         Long eid = emergencyLogRepository.save(emergencyInfo).getEid();
         params.put("eid", eid);
         String sessionId = openViduUtil.initializeSession(params);
+
+        emergencyInfo.setConnection(sessionId);
+        emergencyLogRepository.save(emergencyInfo);
+
         EmergencySessionResponse sessionInfo = EmergencySessionResponse.builder()
                 .eid(eid)
                 .sessionId(sessionId)
@@ -140,8 +144,6 @@ public class EmergencyServiceImpl implements EmergencyService {
         if (token == null) {
             throw new NullPointerException(ExceptionHandler.EMERGENCY_SESSION_NOT_FOUND);
         }
-        emergencyInfo.setConnection(token);
-        emergencyLogRepository.save(emergencyInfo);
 
         log.info(logCurrent(getClassName(), getMethodName(), END));
         return token;

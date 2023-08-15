@@ -108,9 +108,17 @@ public class ConsultingServiceImpl implements ConsultingService {
         if (!bookingInfo.getUid().getUserEmail().equals(SecurityUtil.getCurrentUserEmail())) {
             throw new IllegalAccessException(ExceptionHandler.CONSULTING_UNAUTHORIZED);
         }
+        // 시연 용 임시 메서드. 해당 컨설팅에 대한 최초 접속만 세션 생성
+        if (bookingInfo.getConnection() != null) {
+            throw new IllegalAccessException(ExceptionHandler.CONSULTING_ALREADY_EXIST);
+        }
         Map<String, Object> params = new HashMap<>();
         params.put("cid", cid);
         String sessionId = openViduUtil.initializeSession(params);
+
+        bookingInfo.setConnection(sessionId);
+        consultingBookingRepository.save(bookingInfo);
+
         ConsultingSessionResponse session = ConsultingSessionResponse.builder()
                 .sessionId(sessionId)
                 .build();
@@ -132,8 +140,8 @@ public class ConsultingServiceImpl implements ConsultingService {
             throw new NullPointerException(ExceptionHandler.CONSULTING_SESSION_NOT_FOUND);
         }
 
-        bookingInfo.setConnection(token);
-        consultingBookingRepository.save(bookingInfo);
+//        bookingInfo.setConnection(token);
+//        consultingBookingRepository.save(bookingInfo);
 
         return token;
     }
