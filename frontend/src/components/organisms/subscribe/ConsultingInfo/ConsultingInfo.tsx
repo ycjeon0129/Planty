@@ -12,7 +12,7 @@ function ConsultingInfo({ subscribe }: { subscribe: ISubscribeDetail }) {
 	const tmpInfo = {
 		'총 횟수': `${subscribe.consultingCnt} 회`,
 		'잔여 횟수': `${subscribe.consultingRemainCnt} 회`,
-		'컨설팅 일정': subscribe.info.consultingDate === null ? '-' : subscribe.info.consultingDate,
+		'컨설팅 일정': subscribe.nearConsulting.date === null ? '-' : subscribe.nearConsulting.date,
 	};
 	const consultingStatus = subscribe && [
 		...new Array(subscribe.consultingCnt - subscribe.consultingRemainCnt).fill(0),

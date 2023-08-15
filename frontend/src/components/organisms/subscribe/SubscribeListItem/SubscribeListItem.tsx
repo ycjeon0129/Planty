@@ -9,6 +9,8 @@ import { ISubscribe } from 'types/domain/subscribe';
 import useMovePage from 'hooks/common/useMovePage';
 import CustomAlert from 'components/organisms/common/CustomAlert/CustomAlert';
 import toast from 'react-hot-toast';
+import convertTime from 'utils/common/convertTime';
+import { IConsultingParticipateInfo } from 'types/domain/consulting';
 
 /**
  * 구독 목록 아이템
@@ -16,11 +18,12 @@ import toast from 'react-hot-toast';
  */
 function SubscribeListItem({ subscribe }: { subscribe: ISubscribe }) {
 	const { movePage } = useMovePage();
-	const { sid, startDate, title, info, state, thumbnail, consultingCnt } = subscribe;
 	const newInfo = {
-		startDate,
-		consultingCnt,
-		consultingDate: info.consultingDate,
+		period: `${subscribe.startDate} ~ ${subscribe.endDate}`,
+		consultingCnt: `${subscribe.consultingRemainCnt}회 / ${subscribe.consultingCnt}회`,
+		consultingDate: subscribe.nearConsulting.date
+			? `${subscribe.nearConsulting.date} / ${convertTime(subscribe.nearConsulting.time)}`
+			: '예약된 일정이 없습니다',
 	};
 
 	/**
@@ -30,7 +33,14 @@ function SubscribeListItem({ subscribe }: { subscribe: ISubscribe }) {
 		const onConfirm = async () => {
 			try {
 				toast.success('화상 컨설팅으로 이동합니다.');
-				movePage('/consulting/participate', { subscribe });
+				const consultingParticipateInfo: IConsultingParticipateInfo = {
+					cid: subscribe.nearConsulting.cid,
+					date: subscribe.nearConsulting.date,
+					time: subscribe.nearConsulting.time,
+					title: subscribe.title,
+					greenmate: subscribe.greenmate,
+				};
+				movePage('/consulting/participate', { consultingParticipateInfo });
 			} catch (error) {
 				console.error(error);
 			}
@@ -38,7 +48,7 @@ function SubscribeListItem({ subscribe }: { subscribe: ISubscribe }) {
 
 		CustomAlert({
 			title: `${subscribe.title}`,
-			desc: `${subscribe.info.consultingDate}에 진행되는 컨설팅을 정말 진행하시겠습니까?`,
+			desc: `${subscribe.nearConsulting.date}에 진행되는 컨설팅을 정말 진행하시겠습니까?`,
 			btnTitle: '컨설팅하러 가기',
 			params: {},
 			onAction: onConfirm,
@@ -49,16 +59,16 @@ function SubscribeListItem({ subscribe }: { subscribe: ISubscribe }) {
 	 * 예약하기로 연결
 	 */
 	const toBooking = () => {
-		movePage(`/subscribe/${sid}/booking`, null);
+		movePage(`/subscribe/${subscribe.sid}/booking`, null);
 	};
 
 	return (
 		<SubscribeItemLayout>
-			<ListItemTitle title={title} url={`/subscribe/${sid}`} />
-			<SubscribeStateBadge stateKey={state} />
-			<img src={thumbnail} alt="" />
+			<ListItemTitle title={subscribe.title} url={`/subscribe/${subscribe.sid}`} />
+			<SubscribeStateBadge stateKey={subscribe.state} />
+			<img src={subscribe.thumbnail} alt="" />
 			<InfoList info={newInfo} labels={SUBSCRIBE_LIST_ITEM_LABELS} />
-			{state === 'done' ? (
+			{subscribe.state === 'done' ? (
 				<Button isActive text="컨설팅 이용하기" handleClick={toConsulting} />
 			) : (
 				<Button isActive={false} text="예약 하러가기" handleClick={toBooking} />
