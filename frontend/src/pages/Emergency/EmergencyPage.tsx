@@ -30,14 +30,17 @@ function EmergencyPage() {
 				type="consulting-chat"
 				text="채팅 응급실"
 				handleClick={() => {
-					toast.error('준비 중인 서비스입니다 😥');
+					// movePage('/emergency/participate/0', null);
+					toast('준비 중인 서비스입니다!', {
+						icon: '🛠️',
+					});
 				}}
 			/>
 			<SquareShortcutButton
 				type="consulting-video"
 				text="화상 응급실"
 				handleClick={() => {
-					movePage('/emergency/participate', null);
+					movePage('/emergency/participate/1', null);
 				}}
 			/>
 		</EmergencyPageLayout>
