@@ -2,7 +2,7 @@ import React from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import './SubscribeSlider.scss';
 import { ISubscribe } from 'types/domain/subscribe';
-import useAllSubscribe from 'hooks/subscribes/useAllSubscribe';
+import useAllSubscribe from 'hooks/api/useAllSubscribe';
 import SubscribeListItem from '../SubscribeListItem/SubscribeListItem';
 
 /**

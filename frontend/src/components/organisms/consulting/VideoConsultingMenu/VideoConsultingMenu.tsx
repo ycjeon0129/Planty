@@ -1,9 +1,9 @@
 import React from 'react';
 import './VideoConsultingMenu.scss';
 import VideoConsultingMenuItem from 'components/atoms/consulting/VideoConsultingMenuItem/VideoConsultingMenuItem';
-import useToggle from 'hooks/useToggle';
 import uuid from 'react-uuid';
 import MENU from 'constants/menu/VideoConsultingMenu';
+import useToggle from 'hooks/common/useToggle';
 
 /**
  * 비디오 컨설팅 메뉴바

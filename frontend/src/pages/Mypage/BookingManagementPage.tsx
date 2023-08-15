@@ -3,7 +3,7 @@ import AreaTitle from 'components/atoms/common/AreaTitle/AreaTitle';
 import BookingManagementPageLayout from 'components/layout/Page/BookingManagementPageLayout/BookingManagementPageLayout';
 import PageTitleButton from 'components/atoms/common/PageTitleButton/PageTitleButton';
 import CustomCalendar from 'components/atoms/booking/FullScheduleCalendar/FullScheduleCalendar';
-import useSelectedDate from 'hooks/useSelectedDate';
+import useSelectedDate from 'hooks/common/useSelectedDate';
 import BookingList from 'components/organisms/booking/BookingList/BookingList';
 
 function BookingManagement() {

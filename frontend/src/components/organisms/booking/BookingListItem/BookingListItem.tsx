@@ -10,7 +10,7 @@ import convertTime from 'utils/common/convertTime';
 import InfoRow from 'components/atoms/common/InfoRow/InfoRow';
 import { deleteBooking } from 'utils/api/booking';
 import { toast } from 'react-hot-toast';
-import useMovePage from 'hooks/useMovePage';
+import useMovePage from 'hooks/common/useMovePage';
 import moment from 'moment';
 import CustomAlert from 'components/organisms/common/CustomAlert/CustomAlert';
 
@@ -45,6 +45,26 @@ function BookingListItem({ booking }: { booking: IBooking }) {
 		});
 	};
 
+	/**
+	 * 컨설팅으로 연결
+	 */
+	const toConsulting = () => {
+		try {
+			toast.success('화상 컨설팅으로 이동합니다.');
+			// 참여 화면으로 전달할 컨설팅 정보
+			const consultingParticipateInfo = {
+				cid: booking.cid,
+				title: booking.title,
+				greenmate: booking.greenmate,
+				date: booking.date,
+				time: booking.time,
+			};
+			movePage('/consulting/participate', { consultingParticipateInfo });
+		} catch (error) {
+			console.error(error);
+		}
+	};
+
 	return (
 		<Accordion className="booking-list-item-container">
 			<AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel1a-content" id="panel1a-header">
@@ -72,6 +92,9 @@ function BookingListItem({ booking }: { booking: IBooking }) {
 							<InfoRow title="가드너" content={booking.user} />
 							<InfoRow title="그린메이트" content={booking.greenmate} />
 						</div>
+						<button type="button" onClick={toConsulting}>
+							컨설팅 참여하기(TODO)
+						</button>
 					</div>
 				</div>
 			</AccordionDetails>

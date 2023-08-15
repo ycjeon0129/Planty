@@ -6,7 +6,7 @@ import { Value } from 'types/common/global';
 import { yesterdayDateTime } from 'constants/common/Date';
 import isSameDate from 'utils/date/isSameDate';
 import { IBooking } from 'types/domain/booking';
-import useAllBooking from 'hooks/useAllBooking';
+import useAllBooking from 'hooks/api/useAllBooking';
 
 interface ICustomCaledarProps {
 	selectedDate: Value;

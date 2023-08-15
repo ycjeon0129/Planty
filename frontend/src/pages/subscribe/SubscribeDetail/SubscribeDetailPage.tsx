@@ -6,9 +6,9 @@ import ConsultingInfo from 'components/organisms/subscribe/ConsultingInfo/Consul
 import SubscribeDetailItem from 'components/organisms/subscribe/SubscribeDetailItem/SubscribeDetailItem';
 import PlantChart from 'components/organisms/subscribe/PlantChart/PlantChart';
 import { useParams } from 'react-router-dom';
-import useSubscribe from 'hooks/subscribes/useSubscribe';
-import { IConsultingSummary, IEmbeddedInfo, ISubscribeDetail } from 'types/domain/subscribe';
-import useIsLoading from 'hooks/useIsLoading';
+import useSubscribe from 'hooks/api/useSubscribe';
+import { IEmbeddedInfo, ISubscribeDetail } from 'types/domain/subscribe';
+import useIsLoading from 'hooks/common/useIsLoading';
 
 function SubscribeDetailPage() {
 	const { sid = 0 } = useParams();
@@ -30,7 +30,7 @@ function SubscribeDetailPage() {
 
 			{/* 컨설팅 정보 */}
 			<AreaTitle title="컨설팅 정보" url="#" />
-			<ConsultingInfo sid={Number(sid)} info={subscribe?.info as IConsultingSummary} />
+			<ConsultingInfo subscribe={subscribe as ISubscribeDetail} />
 
 			{/* 온습도 정보 */}
 			<AreaTitle title="온습도 정보" url="#" />

@@ -7,12 +7,14 @@ import ParticipateBox from 'components/organisms/consulting/ParticipateBox/Parti
 import { useLocation } from 'react-router-dom';
 import requestState from 'recoil/consultingSession';
 import { useRecoilState } from 'recoil';
-import useMovePage from 'hooks/useMovePage';
+import useMovePage from 'hooks/common/useMovePage';
 import { createSubscribeConnectionApi, createSubscribeSessionIdApi } from 'utils/api/openVidu';
 import { ISubscribeSessionInfo } from 'types/common/request';
+import AreaTitle from 'components/atoms/common/AreaTitle/AreaTitle';
+import ConsultingLottie from 'components/atoms/consulting/ConsultingLottie/ConsultingLottie';
 
 function ConsultingParticipatePage() {
-	const { subscribe } = useLocation().state;
+	const { consultingParticipateInfo } = useLocation().state;
 	const { movePage } = useMovePage();
 	const [, setRequest] = useRecoilState(requestState);
 
@@ -36,7 +38,8 @@ function ConsultingParticipatePage() {
 	const createSessionId = async () => {
 		let sessionInfo: ISubscribeSessionInfo | null = null;
 		try {
-			const response = await createSubscribeSessionIdApi();
+			const response = await createSubscribeSessionIdApi(consultingParticipateInfo.cid);
+
 			if (response.status === 200) {
 				sessionInfo = response.data as ISubscribeSessionInfo;
 				createConnection(sessionInfo);
@@ -54,8 +57,12 @@ function ConsultingParticipatePage() {
 		<ConsultingParticipatePageLayout>
 			{/* 이전으로 */}
 			<PageTitleButton type="back" text="이전으로" />
+			{/* area */}
+			<AreaTitle title="1:1 화상 컨설팅 참여하기" url="#" />
+			{/* lottie */}
+			<ConsultingLottie />
 			{/* 상품Detail box */}
-			<ParticipateBox subscribe={subscribe} />
+			<ParticipateBox consultingParticipateInfo={consultingParticipateInfo} />
 			{/* 장비확인 text */}
 			<CheckEquip />
 			{/* 참여하기 버튼 */}

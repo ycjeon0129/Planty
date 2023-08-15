@@ -6,7 +6,7 @@ import AreaTitle from 'components/atoms/common/AreaTitle/AreaTitle';
 import SquareShortcutButton from 'components/atoms/common/SquareShortcutButton/SquareShortcutButton';
 import CurrentGreenmateCount from 'components/atoms/emergency/CurrentGreenmateCount/CurrentGreenmateCount';
 import TicketInfo from 'components/organisms/emergency/TicketInfo/TicketInfo';
-import useMovePage from 'hooks/useMovePage';
+import useMovePage from 'hooks/common/useMovePage';
 import { toast } from 'react-hot-toast';
 
 function EmergencyPage() {

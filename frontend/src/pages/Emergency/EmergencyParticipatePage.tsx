@@ -8,7 +8,7 @@ import { useParams } from 'react-router-dom';
 import { IEmergencySessionInfo } from 'types/common/request';
 import { useRecoilState } from 'recoil';
 import requestState from 'recoil/consultingSession';
-import useMovePage from 'hooks/useMovePage';
+import useMovePage from 'hooks/common/useMovePage';
 import { createEmergencyConnectionApi, createEmergencySessionIdApi } from 'utils/api/openVidu';
 
 function EmergencyParticipatePage() {

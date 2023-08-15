@@ -2,21 +2,21 @@ import React from 'react';
 import ConsultingInfoLayout from 'components/layout/subscirbe/ConsultingInfoLayout/ConsultingInfoLayout';
 import InfoList from 'components/organisms/common/InfoList/InfoList';
 import Button from 'components/atoms/common/Button/Button';
-import useMovePage from 'hooks/useMovePage';
+import useMovePage from 'hooks/common/useMovePage';
 import { CONSULTING_INFO_LABELS } from 'constants/common/Labels';
-import { IConsultingSummary } from 'types/domain/subscribe';
+import { ISubscribeDetail } from 'types/domain/subscribe';
 import ConsultingStickerList from '../ConsultingStickerList/ConsultingStickerList';
 
-function ConsultingInfo({ sid, info }: { sid: number; info: IConsultingSummary }) {
+function ConsultingInfo({ subscribe }: { subscribe: ISubscribeDetail }) {
 	const { movePage } = useMovePage();
 	const tmpInfo = {
-		'총 횟수': `${info?.consultingCnt} 회`,
-		'잔여 횟수': `${info?.consultingRemainCnt} 회`,
-		'컨설팅 일정': info?.consultingDate === null ? '-' : info.consultingDate,
+		'총 횟수': `${subscribe.consultingCnt} 회`,
+		'잔여 횟수': `${subscribe.consultingRemainCnt} 회`,
+		'컨설팅 일정': subscribe.info.consultingDate === null ? '-' : subscribe.info.consultingDate,
 	};
-	const consultingStatus = info && [
-		...new Array(info.consultingCnt - info.consultingRemainCnt).fill(0),
-		...new Array(info.consultingRemainCnt).fill(2),
+	const consultingStatus = subscribe && [
+		...new Array(subscribe.consultingCnt - subscribe.consultingRemainCnt).fill(0),
+		...new Array(subscribe.consultingRemainCnt).fill(2),
 	];
 
 	return (
@@ -27,7 +27,7 @@ function ConsultingInfo({ sid, info }: { sid: number; info: IConsultingSummary }
 			<Button
 				isActive={false}
 				text="컨설팅 내역보기"
-				handleClick={() => movePage(`/subscribe/${sid}/consulting`, null)}
+				handleClick={() => movePage(`/subscribe/${subscribe.sid}/consulting`, null)}
 			/>{' '}
 		</ConsultingInfoLayout>
 	);

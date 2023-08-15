@@ -6,7 +6,7 @@ import Button from 'components/atoms/common/Button/Button';
 import InfoList from 'components/organisms/common/InfoList/InfoList';
 import { SUBSCRIBE_LIST_ITEM_LABELS } from 'constants/common/Labels';
 import { ISubscribe } from 'types/domain/subscribe';
-import useMovePage from 'hooks/useMovePage';
+import useMovePage from 'hooks/common/useMovePage';
 import CustomAlert from 'components/organisms/common/CustomAlert/CustomAlert';
 import toast from 'react-hot-toast';
 
@@ -16,17 +16,17 @@ import toast from 'react-hot-toast';
  */
 function SubscribeListItem({ subscribe }: { subscribe: ISubscribe }) {
 	const { movePage } = useMovePage();
-	const { sid, startDate, title, info, state, thumbnail } = subscribe;
+	const { sid, startDate, title, info, state, thumbnail, consultingCnt } = subscribe;
 	const newInfo = {
 		startDate,
-		consultingCnt: info.consultingCnt,
+		consultingCnt,
 		consultingDate: info.consultingDate,
 	};
 
 	/**
 	 * 컨설팅으로 연결
 	 */
-	const linkToConsult = () => {
+	const toConsulting = () => {
 		const onConfirm = async () => {
 			try {
 				toast.success('화상 컨설팅으로 이동합니다.');
@@ -48,7 +48,7 @@ function SubscribeListItem({ subscribe }: { subscribe: ISubscribe }) {
 	/**
 	 * 예약하기로 연결
 	 */
-	const linkToBook = () => {
+	const toBooking = () => {
 		movePage(`/subscribe/${sid}/booking`, null);
 	};
 
@@ -59,9 +59,9 @@ function SubscribeListItem({ subscribe }: { subscribe: ISubscribe }) {
 			<img src={thumbnail} alt="" />
 			<InfoList info={newInfo} labels={SUBSCRIBE_LIST_ITEM_LABELS} />
 			{state === 'done' ? (
-				<Button isActive text="컨설팅 이용하기" handleClick={linkToConsult} />
+				<Button isActive text="컨설팅 이용하기" handleClick={toConsulting} />
 			) : (
-				<Button isActive={false} text="예약 하러가기" handleClick={linkToBook} />
+				<Button isActive={false} text="예약 하러가기" handleClick={toBooking} />
 			)}
 		</SubscribeItemLayout>
 	);

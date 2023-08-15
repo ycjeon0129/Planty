@@ -1,6 +1,6 @@
 import React, { ReactNode } from 'react';
 import './TabBarLayout.scss';
-import useTabbarRender from 'hooks/useTabbarRender';
+import useTabbarRender from 'hooks/common/useTabbarRender';
 
 function TabBarLayout({ children }: { children: ReactNode }) {
 	if (useTabbarRender()) {

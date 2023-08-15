@@ -1,7 +1,7 @@
 import React from 'react';
 import './UserProfilePhoto.scss';
-import useUser from 'hooks/useUser';
 import { ReactComponent as DefaultProfilePhoto } from 'assets/icons/User.svg';
+import useUser from 'hooks/common/useUser';
 
 function UserProfilePhoto() {
 	const [user] = useUser();
