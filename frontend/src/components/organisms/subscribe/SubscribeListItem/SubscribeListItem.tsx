@@ -19,11 +19,11 @@ import { IConsultingParticipateInfo } from 'types/domain/consulting';
 function SubscribeListItem({ subscribe }: { subscribe: ISubscribe }) {
 	const { movePage } = useMovePage();
 	const newInfo = {
-		period: `${subscribe.startDate} ~ ${subscribe.endDate}`,
+		period: `${subscribe.endDate}`,
 		consultingCnt: `${subscribe.consultingRemainCnt}회 / ${subscribe.consultingCnt}회`,
 		consultingDate: subscribe.nearConsulting.date
 			? `${subscribe.nearConsulting.date} / ${convertTime(subscribe.nearConsulting.time)}`
-			: '예약된 일정이 없습니다',
+			: '-',
 	};
 
 	/**

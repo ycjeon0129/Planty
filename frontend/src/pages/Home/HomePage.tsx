@@ -29,7 +29,9 @@ function HomePage() {
 			<RectShortcutButton
 				text="채팅 컨설팅"
 				handleClick={() => {
-					toast.error('응급실 - 채팅 컨설팅은 현재 준비중입니다 😥');
+					toast('준비 중인 서비스입니다!', {
+						icon: '🛠️',
+					});
 				}}
 				type="consulting-chat"
 			/>
