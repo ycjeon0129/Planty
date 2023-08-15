@@ -68,6 +68,7 @@ public class GmConsultingServiceImpl implements GmConsultingService {
     }
 
     @Override
+    @Transactional
     public String findSessionToken(Long cid) throws IllegalAccessException {
         ConsultingBooking bookingInfo = consultingBookingRepository.findByCid(cid)
                 .orElseThrow(() -> new NullPointerException(ExceptionHandler.BOOKING_NOT_FOUND));
@@ -91,6 +92,9 @@ public class GmConsultingServiceImpl implements GmConsultingService {
         }
         ConsultingLog skeleton = consultingLogRepository.findByCid(bookingInfo)
                 .orElseThrow(() -> new NullPointerException(ExceptionHandler.CONSULTING_LOG_NOT_FOUND));
+        if (skeleton.getContent() != null) {    // 이미 작성된 컨설팅 로그
+            throw new IllegalAccessException(ExceptionHandler.CONSULTING_ALREADY_EXIST);
+        }
         List<ConsultingBooking> list = consultingBookingRepository.findAllByCidLessThanAndSidAndCancelFalse(bookingInfo.getCid(), bookingInfo.getSid());
 
         skeleton.setRecommendedStartDate(recordInfo.getRecommendedStartDate());
@@ -100,6 +104,9 @@ public class GmConsultingServiceImpl implements GmConsultingService {
         skeleton.setEndTime(TimeUtil.findCurrentTimestamp());
 
         consultingLogRepository.save(skeleton);
+
+        bookingInfo.setConnection(null);
+        consultingBookingRepository.save(bookingInfo);
 
         UserSubscribe subscribeInfo = userSubscribeRepository.findBySid(bookingInfo.getSid().getSid())
                 .orElseThrow(() -> new NullPointerException(ExceptionHandler.USER_SID_NOT_FOUND));

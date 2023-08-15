@@ -12,6 +12,7 @@ import com.planty.db.repository.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.text.ParseException;
 import java.util.ArrayList;
@@ -23,6 +24,7 @@ import java.util.List;
 public class GmEmergencyServiceImpl implements GmEmergencyService {
 
     private final GmInfoRepository gmInfoRepository;
+    private final UserInfoRepository userInfoRepository;
     private final SubscribeProductRepository subscribeProductRepository;
     private final UserSubscribeRepository userSubscribeRepository;
     private final PlantyInfoRepository plantyInfoRepository;
@@ -57,28 +59,10 @@ public class GmEmergencyServiceImpl implements GmEmergencyService {
             );
         }
         return emergencyList;
-//        for(ViewUserConsulting item : list) {
-//            consultingList.add(
-//                    UserConsultingResponse.builder()
-//                            .cid(item.getCid())
-//                            .sid(item.getSid())
-//                            .time(item.getTime())
-//                            .date(item.getDate())
-//                            .cancel(item.getCancel())
-//                            .active(item.getActive())
-//                            .subscribeProductName(item.getName())
-//                            .recommendedStartDate(item.getRecommendedStartDate())
-//                            .recommendedEndDate(item.getRecommendedEndDate())
-//                            .advice(item.getContent())
-//                            .startTime(item.getStartTime())
-//                            .endTime(item.getEndTime())
-//                            .build()
-//            );
-//        }
-
     }
 
     @Override
+    @Transactional
     public String findSessionToken(Long eid) {
         EmergencyLog emergencyInfo = emergencyLogRepository.findByEid(eid)
                 .orElseThrow(() -> new NullPointerException(ExceptionHandler.EMERGENCY_NOT_FOUND));
@@ -97,11 +81,15 @@ public class GmEmergencyServiceImpl implements GmEmergencyService {
     }
 
     @Override
+    @Transactional
     public void deleteSession(GmEmergencyRecordRequest recordInfo) throws IllegalAccessException {
         EmergencyLog emergencyInfo = emergencyLogRepository.findByEid(recordInfo.getEid())
                 .orElseThrow(() -> new NullPointerException(ExceptionHandler.EMERGENCY_NOT_FOUND));
         if (emergencyInfo.getGid().getGid() != SecurityUtil.getCurrentGid()) {
             throw new IllegalAccessException(ExceptionHandler.EMERGENCY_UNAUTHORIZED);
+        }
+        if (emergencyInfo.getContent() != null) {   // 이미 존재하는 응급실 로그인 경우
+            throw new IllegalAccessException(ExceptionHandler.EMERGENCY_ALREADY_EXIST);
         }
         emergencyInfo.setName(recordInfo.getName());
         emergencyInfo.setContent(recordInfo.getContent());
@@ -109,6 +97,11 @@ public class GmEmergencyServiceImpl implements GmEmergencyService {
         emergencyInfo.setConnection(null);
 
         emergencyLogRepository.save(emergencyInfo);
+
+        UserInfo userInfo = userInfoRepository.findByUid(emergencyInfo.getUid().getUid())
+                .orElseThrow(() -> new NullPointerException(ExceptionHandler.USER_NOT_FOUND));
+        userInfo.setEmergencyCount( (userInfo.getEmergencyCount() - 1 ) );
+        userInfoRepository.save(userInfo);
     }
 
     @Override
