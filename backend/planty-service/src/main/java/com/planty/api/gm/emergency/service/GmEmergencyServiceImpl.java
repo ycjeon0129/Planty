@@ -5,18 +5,25 @@ import com.planty.api.emergency.response.EmergencyResponse;
 import com.planty.api.gm.consulting.service.GmConsultingService;
 import com.planty.api.gm.emergency.request.GmEmergencyRecordRequest;
 import com.planty.common.exception.handler.ExceptionHandler;
+import com.planty.common.model.SessionTokenResponse;
+import com.planty.common.util.OpenViduUtil;
 import com.planty.common.util.SecurityUtil;
 import com.planty.common.util.TimeUtil;
 import com.planty.db.entity.*;
 import com.planty.db.repository.*;
+import io.openvidu.java.client.OpenViduHttpException;
+import io.openvidu.java.client.OpenViduJavaClientException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Slf4j
 @Service
@@ -30,6 +37,8 @@ public class GmEmergencyServiceImpl implements GmEmergencyService {
     private final PlantyInfoRepository plantyInfoRepository;
     private final ViewUserConsultingRepository viewUserConsultingRepository;
     private final EmergencyLogRepository emergencyLogRepository;
+    @Autowired
+    private OpenViduUtil openViduUtil;
 
     @Override
     public List<EmergencyResponse> findEmergencyList() throws ParseException {
@@ -63,7 +72,7 @@ public class GmEmergencyServiceImpl implements GmEmergencyService {
 
     @Override
     @Transactional
-    public String findSessionToken(Long eid) {
+    public SessionTokenResponse findSessionToken(Long eid) throws OpenViduJavaClientException, OpenViduHttpException, IllegalAccessException {
         EmergencyLog emergencyInfo = emergencyLogRepository.findByEid(eid)
                 .orElseThrow(() -> new NullPointerException(ExceptionHandler.EMERGENCY_NOT_FOUND));
         Long gid = SecurityUtil.getCurrentGid();
@@ -72,11 +81,26 @@ public class GmEmergencyServiceImpl implements GmEmergencyService {
                     .orElseThrow(() -> new NullPointerException(ExceptionHandler.GM_NOT_FOUND));
             emergencyInfo.setGid(gmInfo);
             emergencyLogRepository.save(emergencyInfo);
-            return emergencyInfo.getConnection();
+
+            String sessionId = emergencyInfo.getConnection();
+            Map<String, Object> params = new HashMap<>();
+            params.put("eid", emergencyInfo.getEid());
+            params.put("sessionId", emergencyInfo.getConnection());
+            String token = openViduUtil.createConnection(params);
+            SessionTokenResponse tokenResponse = new SessionTokenResponse();
+            tokenResponse.setToken(token);
+            return tokenResponse;
         } else if (emergencyInfo.getGid().getGid() == gid) {    // 해당 요청을 수락한 GM의 재요청인 경우
-            return emergencyInfo.getConnection();
+            String sessionId = emergencyInfo.getConnection();
+            Map<String, Object> params = new HashMap<>();
+            params.put("eid", emergencyInfo.getEid());
+            params.put("sessionId", emergencyInfo.getConnection());
+            String token = openViduUtil.createConnection(params);
+            SessionTokenResponse tokenResponse = new SessionTokenResponse();
+            tokenResponse.setToken(token);
+            return tokenResponse;
         } else {    // 해당 요청을 먼저 수락한 GM이 아닌 다른 GM인 경우
-            return null;
+            throw new IllegalAccessException(ExceptionHandler.EMERGENCY_ALREADY_EXIST);
         }
     }
 

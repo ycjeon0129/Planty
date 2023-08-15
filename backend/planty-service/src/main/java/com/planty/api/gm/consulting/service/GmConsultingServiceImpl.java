@@ -93,9 +93,7 @@ public class GmConsultingServiceImpl implements GmConsultingService {
         Map<String, Object> params = new HashMap<>();
         params.put("cid", bookingInfo.getCid());
         params.put("sessionId", bookingInfo.getConnection());
-        System.out.println(params.get("sessionId"));
         String token = openViduUtil.createConnection(params);
-        System.out.println(token);
         SessionTokenResponse tokenResponse = new SessionTokenResponse();
         tokenResponse.setToken(token);
 
