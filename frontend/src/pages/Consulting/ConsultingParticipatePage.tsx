@@ -5,11 +5,11 @@ import CheckEquip from 'components/organisms/emergency/CheckEquip/CheckEquip';
 import ConsultingParticipatePageLayout from 'components/layout/Page/ConsultingParticipatePageLayout/ConsultingParticipatePageLayout';
 import ParticipateBox from 'components/organisms/consulting/ParticipateBox/ParticipateBox';
 import { useLocation } from 'react-router-dom';
-import { ISessionInfo } from 'types/common/request';
 import requestState from 'recoil/consultingSession';
 import { useRecoilState } from 'recoil';
 import useMovePage from 'hooks/useMovePage';
 import { createSubscribeConnectionApi, createSubscribeSessionIdApi } from 'utils/api/openVidu';
+import { ISubscribeSessionInfo } from 'types/common/request';
 
 function ConsultingParticipatePage() {
 	const { subscribe } = useLocation().state;
@@ -17,7 +17,7 @@ function ConsultingParticipatePage() {
 	const [, setRequest] = useRecoilState(requestState);
 
 	// 세션 아이디로 openVidu 연결 토큰 생성
-	const createConnection = async (sessionInfo: ISessionInfo) => {
+	const createConnection = async (sessionInfo: ISubscribeSessionInfo) => {
 		try {
 			if (sessionInfo) {
 				const response = await createSubscribeConnectionApi(sessionInfo);
@@ -34,11 +34,11 @@ function ConsultingParticipatePage() {
 
 	// 세션 아이디 생성
 	const createSessionId = async () => {
-		let sessionInfo: ISessionInfo | null = null;
+		let sessionInfo: ISubscribeSessionInfo | null = null;
 		try {
 			const response = await createSubscribeSessionIdApi();
 			if (response.status === 200) {
-				sessionInfo = response.data as ISessionInfo;
+				sessionInfo = response.data as ISubscribeSessionInfo;
 				createConnection(sessionInfo);
 			}
 		} catch (error) {
@@ -50,14 +50,12 @@ function ConsultingParticipatePage() {
 		createSessionId();
 	};
 
-	console.log(subscribe);
-
 	return (
 		<ConsultingParticipatePageLayout>
 			{/* 이전으로 */}
 			<PageTitleButton type="back" text="이전으로" />
 			{/* 상품Detail box */}
-			<ParticipateBox />
+			<ParticipateBox subscribe={subscribe} />
 			{/* 장비확인 text */}
 			<CheckEquip />
 			{/* 참여하기 버튼 */}

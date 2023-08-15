@@ -1,15 +1,11 @@
 import React from 'react';
 import './ParticipateBox.scss';
-import useSid from 'hooks/subscribes/useSid';
-import useSubscribe from 'hooks/subscribes/useSubscribe';
+import { ISubscribeDetail } from 'types/domain/subscribe';
 
 /**
  * 컨설팅 참여하기 - 클래스 정보 box
  */
-function ParticipateBox() {
-	const sid = useSid(); // TODO : 현재 url (/consulting/participate) 에서는 sid를 얻어올 수 없음. 수정 필요
-	const subscribe = useSubscribe(sid);
-
+function ParticipateBox({ subscribe }: { subscribe: ISubscribeDetail }) {
 	return (
 		<div className="participate-box">
 			{subscribe && (

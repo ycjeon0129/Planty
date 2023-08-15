@@ -5,7 +5,7 @@ import TicketRemains from 'components/organisms/emergency/TicketRemains/TicketRe
 import CheckEquip from 'components/organisms/emergency/CheckEquip/CheckEquip';
 import EmergencyParticipatePageLayout from 'components/layout/Page/EmergencyParticipatePageLayout/EmergencyParticipatePageLayout/EmergencyParticipatePageLayout';
 import { useParams } from 'react-router-dom';
-import { ISessionInfo } from 'types/common/request';
+import { IEmergencySessionInfo } from 'types/common/request';
 import { useRecoilState } from 'recoil';
 import requestState from 'recoil/consultingSession';
 import useMovePage from 'hooks/useMovePage';
@@ -17,7 +17,7 @@ function EmergencyParticipatePage() {
 	const { type } = useParams(); // 채팅 0, 화상 1
 
 	// 세션 아이디로 openVidu 연결 토큰 생성
-	const createConnection = async (sessionInfo: ISessionInfo) => {
+	const createConnection = async (sessionInfo: IEmergencySessionInfo) => {
 		try {
 			if (sessionInfo) {
 				const response = await createEmergencyConnectionApi(sessionInfo);
@@ -34,12 +34,12 @@ function EmergencyParticipatePage() {
 
 	// 세션 아이디 생성
 	const createSessionId = async () => {
-		let sessionInfo: ISessionInfo | null = null;
+		let sessionInfo: IEmergencySessionInfo | null = null;
 		try {
 			if (type) {
 				const response = await createEmergencySessionIdApi(+type);
 				if (response.status === 200) {
-					sessionInfo = response.data as ISessionInfo;
+					sessionInfo = response.data as IEmergencySessionInfo;
 					createConnection(sessionInfo);
 				}
 			}
