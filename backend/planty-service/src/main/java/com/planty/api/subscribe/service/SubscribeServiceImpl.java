@@ -2,13 +2,16 @@ package com.planty.api.subscribe.service;
 
 import com.planty.api.embedded.response.UserSubscribeEmbeddedResponse;
 import com.planty.api.subscribe.request.UserSubscribeRequest;
-import com.planty.api.subscribe.response.UserSubscribeDatailResponse;
+import com.planty.api.subscribe.response.NearConsultingResponse;
+import com.planty.api.subscribe.response.UserSubscribeDetailResponse;
 import com.planty.common.exception.handler.ExceptionHandler;
 import com.planty.common.util.SecurityUtil;
+import com.planty.common.util.TimeUtil;
 import com.planty.db.entity.*;
 import com.planty.db.repository.*;
 import com.planty.api.subscribe.response.UserSubscribeResponse;
 
+import java.text.ParseException;
 import java.time.LocalDate;
 import java.util.*;
 
@@ -31,7 +34,7 @@ public class SubscribeServiceImpl implements SubscribeService {
     private final UserSubscribeRepository userSubscribeRepository;
 
     @Override // 사용자 구독 조회
-    public List<UserSubscribeResponse> getUserSubscribe(int done) {
+    public List<UserSubscribeResponse> getUserSubscribe(int done) throws ParseException {
         log.info(logCurrent(getClassName(), getMethodName(), START));
         String email = SecurityUtil.getCurrentUserEmail();
         UserInfo user = userInfoRepository.findByUserEmail(email)
@@ -55,17 +58,18 @@ public class SubscribeServiceImpl implements SubscribeService {
 
         for(ViewUserSubscribe item : list) {
             boolean end = item.getEndDate() != null;
+            NearConsultingResponse nearConsultingInfo = new NearConsultingResponse(item.getCid(), item.getCbDate(), item.getCbCancel(), item.getCbActive(), item.getCbTime());
             UserSubscribeResponse sub = UserSubscribeResponse.builder()
                     .sid(item.getSid())
                     .startDate(item.getStartDate())
+                    .endDate(TimeUtil.findEndDate(item.getStartDate(), item.getPeriod()))
                     .end(end)
                     .title(item.getSpName())
+                    .thumbnail(item.getThumbnail())
                     .consultingCnt(item.getConsultingCnt())
                     .consultingRemainCnt(item.getConsultingRemainCnt())
-                    .consultingDate(item.getCbDate())
-                    .consultingCancel(item.getCbCancel())
-                    .consultingActive(item.getCbActive())
-                    .consultingTime(item.getCbTime())
+                    .greenmate(item.getGMNickname())
+                    .nearConsulting(nearConsultingInfo)
                     .build();
             subscribeList.add(sub);
         }
@@ -74,7 +78,7 @@ public class SubscribeServiceImpl implements SubscribeService {
     }
 
     @Override // 사용자 구독 상세 조회
-    public UserSubscribeDatailResponse getUserSubscribeDetail(Long sid) {
+    public UserSubscribeDetailResponse getUserSubscribeDetail(Long sid) {
         log.info(logCurrent(getClassName(), getMethodName(), START));
         String email = SecurityUtil.getCurrentUserEmail();
         UserInfo user = userInfoRepository.findByUserEmail(email)
@@ -97,20 +101,20 @@ public class SubscribeServiceImpl implements SubscribeService {
             embeddedList.add(embedded);
         }
 
+        NearConsultingResponse nearConsultingInfo = new NearConsultingResponse(sub.getCid(), sub.getCbDate(), sub.getCbCancel(), sub.getCbActive(), sub.getCbTime());
+
         log.info(logCurrent(getClassName(), getMethodName(), END));
-        return UserSubscribeDatailResponse.builder()
+        return UserSubscribeDetailResponse.builder()
                 .sid(sub.getSid())
                 .startDate(sub.getStartDate())
                 .endDate(sub.getEndDate())
                 .title(sub.getSpName())
+                .thumbnail(sub.getThumbnail())
                 .plant(sub.getPiName())
                 .greenmate(sub.getGMNickname())
                 .consultingCnt(sub.getConsultingCnt())
                 .consultingRemainCnt(sub.getConsultingRemainCnt())
-                .consultingDate(sub.getCbDate())
-                .consultingCancel(sub.getCbCancel())
-                .consultingActive(sub.getCbActive())
-                .consultingTime(sub.getCbTime())
+                .nearConsulting(nearConsultingInfo)
                 .embeddedInfo(embeddedList)
                 .build();
     }

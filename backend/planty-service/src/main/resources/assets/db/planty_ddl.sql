@@ -359,13 +359,14 @@ CREATE  OR REPLACE ALGORITHM=UNDEFINED DEFINER=`planty`@`%`
 SQL SECURITY DEFINER VIEW `planty`.`view_user_subscribe`
 AS select `us`.`sid` AS `sid`,`us`.`USER_INFO_uid` AS `uid`,
           `us`.`arduino_id` AS `arduino_id`,`us`.`consulting_remain_cnt` AS `consulting_remain_cnt`,
-          `us`.`start_date` AS `start_date`,`us`.`end_date` AS `end_date`,
-          `sp`.`name` AS `sp_name`,`sp`.`period` AS `period`,
+          `us`.`start_date` AS `start_date`,
+          `sp`.`name` AS `sp_name`,`sp`.`period` AS `period`,`sp`.`thumbnail` AS `thumbnail`,
           `sp`.`consulting_cnt` AS `consulting_cnt`,`sp`.`description` AS `description`,
           `pi`.`name` AS `pi_name`,`pi`.`tonic_period` AS `tonic_period`,
-          `gm`.`nickname` AS `nickname`,`cb`.`date` AS `cb_date`,
-          `cb`.`TIME_TABLE_idx` AS `cb_time`,`cb`.`cancel` AS `cancel`,
-          `cb`.`active` AS `active` from
+          `gm`.`nickname` AS `nickname`,`cb`.`cid` AS `cid`,
+          `cb`.`date` AS `cb_date`,`cb`.`TIME_TABLE_idx` AS `cb_time`,
+          `cb`.`cancel` AS `cancel`,`cb`.`active` AS `active` 
+          from
                    ((((`planty`.`subscribe_product` `sp` join `planty`.`gm_info` `gm` on((`gm`.`gid` = `sp`.`GM_INFO_gid`)))
                        join `planty`.`user_subscribe` `us` on((`us`.`SUBSCRIBE_PRODUCT_spid` = `sp`.`spid`)))
                        join `planty`.`plant_info` `pi` on((`pi`.`idx` = `sp`.`PLANT_INFO_idx`)))
