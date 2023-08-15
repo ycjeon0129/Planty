@@ -14,6 +14,7 @@ import java.util.*;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import static com.planty.common.util.LogCurrent.*;
@@ -30,14 +31,27 @@ public class SubscribeServiceImpl implements SubscribeService {
     private final UserSubscribeRepository userSubscribeRepository;
 
     @Override // 사용자 구독 조회
-    public List<UserSubscribeResponse> getUserSubscribe() {
+    public List<UserSubscribeResponse> getUserSubscribe(int done) {
         log.info(logCurrent(getClassName(), getMethodName(), START));
         String email = SecurityUtil.getCurrentUserEmail();
         UserInfo user = userInfoRepository.findByUserEmail(email)
                 .orElseThrow(() -> new NullPointerException(ExceptionHandler.USER_NOT_FOUND));
 
         List<UserSubscribeResponse> subscribeList = new ArrayList<>();
-        List<ViewUserSubscribe> list = viewUserSubscribeRepository.findByUid(user.getUid());
+
+        Sort sort = Sort.by(
+                Sort.Order.asc("endDate"),
+                Sort.Order.asc("cbDate"),
+                Sort.Order.asc("cbTime")
+        );
+
+        List<ViewUserSubscribe> list = new ArrayList<>();
+        if(done == 1) // 종료여부 N
+            list = viewUserSubscribeRepository.findByUidAndEndDateNull(user.getUid(), sort);
+        else if(done == 2) // 종료여부 Y
+            list = viewUserSubscribeRepository.findByUidAndEndDateNotNull(user.getUid(), sort);
+        else // 0을 포함한 다른 값들은 모두 조회
+            list = viewUserSubscribeRepository.findByUid(user.getUid(), sort);
 
         for(ViewUserSubscribe item : list) {
             boolean end = item.getEndDate() != null;
