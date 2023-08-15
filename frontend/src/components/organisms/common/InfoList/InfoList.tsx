@@ -21,6 +21,8 @@ function InfoList({ info, labels }: { info: object; labels: string[] }) {
 						content = <span>{value} 개월</span>;
 					} else if (title === '가격') {
 						content = <span>{value.toLocaleString()} 원</span>;
+					} else if (title === '컨설팅 횟수') {
+						content = <span>{value} 회</span>;
 					} else {
 						content = <span>{values[idx]}</span>;
 					}

@@ -10,8 +10,8 @@ import ConsultingStickerList from '../ConsultingStickerList/ConsultingStickerLis
 function ConsultingInfo({ sid, info }: { sid: number; info: IConsultingSummary }) {
 	const { movePage } = useMovePage();
 	const tmpInfo = {
-		'총 횟수': info?.consultingCnt,
-		'잔여 횟수': info?.consultingRemainCnt,
+		'총 횟수': `${info?.consultingCnt} 회`,
+		'잔여 횟수': `${info?.consultingRemainCnt} 회`,
 		'컨설팅 일정': info?.consultingDate === null ? '-' : info.consultingDate,
 	};
 	const consultingStatus = info && [

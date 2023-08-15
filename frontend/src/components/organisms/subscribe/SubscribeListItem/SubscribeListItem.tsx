@@ -6,12 +6,18 @@ import Button from 'components/atoms/common/Button/Button';
 import InfoList from 'components/organisms/common/InfoList/InfoList';
 import { SUBSCRIBE_LIST_ITEM_LABELS } from 'constants/common/Labels';
 import { ISubscribe } from 'types/domain/subscribe';
+import useMovePage from 'hooks/useMovePage';
+import CustomAlert from 'components/organisms/common/CustomAlert/CustomAlert';
+import toast from 'react-hot-toast';
 
 /**
  * 구독 목록 아이템
  * @param subscribe 구독 정보 1건
  */
 function SubscribeListItem({ subscribe }: { subscribe: ISubscribe }) {
+	console.log(subscribe);
+
+	const { movePage } = useMovePage();
 	const { sid, startDate, title, info, state, thumbnail } = subscribe;
 	const newInfo = {
 		startDate,
@@ -19,8 +25,25 @@ function SubscribeListItem({ subscribe }: { subscribe: ISubscribe }) {
 		consultingDate: info.consultingDate,
 	};
 
-	const testFunc = () => {
-		alert('클릭');
+	const linkToConsult = () => {
+		const onConfirm = async () => {
+			try {
+				toast.success('컨설팅을 진행합니다 \n화상채팅으로 이동합니다.');
+				// 여기에 컨설팅 연결 로직 넣기
+			} catch (error) {
+				console.error(error);
+			}
+		};
+		CustomAlert({
+			title: `${subscribe.title}`,
+			desc: `${subscribe.info.consultingDate}에 진행되는 컨설팅을 정말 진행하시겠습니까?`,
+			btnTitle: '컨설팅하러 가기',
+			params: {},
+			onAction: onConfirm,
+		});
+	};
+	const linkToBook = () => {
+		movePage(`/subscribe/${sid}/booking`, null);
 	};
 
 	return (
@@ -29,7 +52,11 @@ function SubscribeListItem({ subscribe }: { subscribe: ISubscribe }) {
 			<SubscribeStateBadge stateKey={state} />
 			<img src={thumbnail} alt="" />
 			<InfoList info={newInfo} labels={SUBSCRIBE_LIST_ITEM_LABELS} />
-			<Button isActive={false} text="컨설팅 이용하기" handleClick={testFunc} />
+			{state === 'done' ? (
+				<Button isActive text="컨설팅 이용하기" handleClick={linkToConsult} />
+			) : (
+				<Button isActive={false} text="컨설팅 이용하기" handleClick={linkToBook} />
+			)}
 		</SubscribeItemLayout>
 	);
 }

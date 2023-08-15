@@ -10,19 +10,20 @@ import SubscribeListItem from '../SubscribeListItem/SubscribeListItem';
  */
 function SubscribeSlider() {
 	const subscribes: ISubscribe[] = useAllSubscribe() as ISubscribe[];
+	console.log(subscribes);
 
 	return (
 		<div className="slider-container">
 			<Swiper spaceBetween={10} slidesPerView="auto" className="subscribe-slider">
-				{subscribes ? (
-					subscribes?.map((subscribe) => (
-						<SwiperSlide key={subscribe.sid}>
-							<SubscribeListItem subscribe={subscribe} />
-						</SwiperSlide>
-					))
-				) : (
-					<div />
-				)}
+				{subscribes &&
+					subscribes?.map(
+						(subscribe) =>
+							subscribe.state !== 'end' && (
+								<SwiperSlide key={subscribe.sid}>
+									<SubscribeListItem subscribe={subscribe} />
+								</SwiperSlide>
+							),
+					)}
 			</Swiper>
 		</div>
 	);
