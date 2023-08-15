@@ -48,7 +48,7 @@ public class BookingController {
     }
 
     @PostMapping() // 사용자 예약 등록
-    public ResponseEntity<?> postUserBooking(@RequestBody UserBookingRequest userConsultingRequest) {
+    public ResponseEntity<?> postUserBooking(@RequestBody UserBookingRequest userConsultingRequest) throws IllegalAccessException {
         log.info(logCurrent(getClassName(), getMethodName(), START));
         if(bookingServiceImpl.regUserBooking(userConsultingRequest)){
             log.info(logCurrent(getClassName(), getMethodName(), END));

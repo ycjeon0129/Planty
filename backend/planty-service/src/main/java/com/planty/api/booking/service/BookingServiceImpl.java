@@ -78,7 +78,7 @@ public class BookingServiceImpl implements BookingService {
         return bookingDateList;
     }
     @Override // 사용자 컨설팅 등록
-    public boolean regUserBooking(UserBookingRequest userBookingRequest) {
+    public boolean regUserBooking(UserBookingRequest userBookingRequest) throws IllegalAccessException {
         log.info(logCurrent(getClassName(), getMethodName(), START));
         String email = SecurityUtil.getCurrentUserEmail();
         UserInfo user = userInfoRepository.findByUserEmail(email)
@@ -92,14 +92,15 @@ public class BookingServiceImpl implements BookingService {
 
         if(subscribe.getConsultingRemainCnt() < 1) {
             log.info("남은 컨설팅 횟수가 없습니다.");
-            return false;
+            log.info(logCurrent(getClassName(), getMethodName(), END));
+            throw new IllegalAccessException(ExceptionHandler.CONSULTING_COUNT_NOT_ENOUGH);
         }
         GmInfo gm = gmInfoRepository.findByGid(subscribe.getGid().getGid())
                 .orElseThrow(() -> new NullPointerException(ExceptionHandler.GM_NOT_FOUND));
 
         if(consultingBookingRepository.findBySidAndTimeIdxAndDateAndCancelFalseAndActiveFalse(subscribe, time, userBookingRequest.getDate()).isPresent()) {
             log.info(logCurrent(getClassName(), getMethodName(), END));
-            return false;
+            throw new IllegalAccessException(ExceptionHandler.CONSULTING_TIME_OCCUPIED);
         }
 
         ConsultingBooking consultingBooking = ConsultingBooking.builder()
