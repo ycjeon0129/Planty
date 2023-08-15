@@ -14,8 +14,11 @@ export const createEmergencyConnectionApi = async (sessionInfo: IEmergencySessio
 	return response;
 };
 
-export const createSubscribeSessionIdApi = async () => {
-	const response = await openviduInstance.post(`/consultings`);
+export const createSubscribeSessionIdApi = async (cid: number) => {
+	const body = {
+		cid,
+	};
+	const response = await openviduInstance.post(`/consultings`, JSON.stringify(body));
 
 	return response;
 };

@@ -13,17 +13,21 @@ const responseToSubscribe = (res: ISubscribeResponse): ISubscribe => {
 	return {
 		sid: res.sid,
 		startDate: res.startDate,
+		endDate: res.endDate,
 		title: res.title,
-		info: {
-			consultingCnt: res.consultingCnt,
-			consultingRemainCnt: res.consultingRemainCnt,
-			consultingDate: res.consultingDate,
-			consultingCancel: res.consultingCancel,
-			consultingActive: res.consultingActive,
-			consultingTime: res.consultingTime,
+		end: res.end,
+		state: getSubscribeState(res.nearConsulting.active, res.nearConsulting.cancel, res.end, res.nearConsulting.date),
+		thumbnail: res.thumbnail ?? 'https://gardening.godohosting.com/2018/mfset/redcherrytomato_01.jpg',
+		consultingCnt: res.consultingCnt,
+		consultingRemainCnt: res.consultingRemainCnt,
+		greenmate: res.greenmate,
+		nearConsulting: {
+			cid: res.nearConsulting.cid,
+			date: res.nearConsulting.date,
+			cancel: res.nearConsulting.cancel,
+			active: res.nearConsulting.active,
+			time: res.nearConsulting.time,
 		},
-		state: getSubscribeState(res.consultingActive, res.consultingCancel, res.end, res.consultingDate),
-		thumbnail: 'https://gardening.godohosting.com/2018/mfset/redcherrytomato_01.jpg',
 	};
 };
 

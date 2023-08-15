@@ -14,21 +14,23 @@ const responseToSubscribeDetail = (res: ISubscribeDetailResponse): ISubscribeDet
 	return {
 		sid: res.sid,
 		startDate: res.startDate,
-		title: res.title,
-		info: {
-			consultingCnt: res.consultingCnt,
-			consultingRemainCnt: res.consultingRemainCnt,
-			consultingDate: res.consultingDate,
-			consultingCancel: res.consultingCancel,
-			consultingActive: res.consultingActive,
-			consultingTime: res.consultingTime,
-		},
-		state: getSubscribeState(res.consultingActive, res.consultingCancel, res.end, res.consultingDate),
-		thumbnail: res.thumbnail ?? require('assets/images/defaultImage.png'),
 		endDate: res.endDate,
+		title: res.title,
+		end: res.end,
+		state: getSubscribeState(res.nearConsulting.active, res.nearConsulting.cancel, res.end, res.nearConsulting.date),
+		thumbnail: res.thumbnail ?? require('assets/images/defaultImage.png'),
 		plant: res.plant,
 		greenmate: res.greenmate,
 		embeddedInfo: res.embeddedInfo,
+		consultingCnt: res.consultingCnt,
+		consultingRemainCnt: res.consultingRemainCnt,
+		nearConsulting: {
+			cid: res.nearConsulting.cid,
+			date: res.nearConsulting.date,
+			cancel: res.nearConsulting.cancel,
+			active: res.nearConsulting.active,
+			time: res.nearConsulting.time,
+		},
 	};
 };
 
