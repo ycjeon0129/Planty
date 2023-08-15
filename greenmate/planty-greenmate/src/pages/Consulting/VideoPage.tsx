@@ -6,13 +6,14 @@ import Header from 'components/organisms/common/Header/Header';
 import OpenViduVideo from 'components/organisms/consulting/OpenViduVideo/OpenViduVideo';
 import VideoConsultingMenu from 'components/organisms/consulting/VideoConsultingMenu/VideoConsultingMenu';
 import useMovePage from 'hooks/useMovePage';
-
 import { OpenVidu, Publisher, Session, StreamEvent, Subscriber } from 'openvidu-browser';
-import { getToken } from 'utils/api/openVidu';
 import { Link } from 'react-router-dom';
+import { useRecoilState } from 'recoil';
+import { consultingSessionState } from 'recoil/store';
 import LoadingPage from './LoadingPage';
 
 function VideoPage() {
+	const [consultingSession] = useRecoilState(consultingSessionState);
 	const { goBack } = useMovePage();
 	const [session, setSession] = useState<Session | undefined>(undefined); // 가상 룸
 	const [subscriber, setSubscriber] = useState<Subscriber | undefined>(undefined);
@@ -69,9 +70,8 @@ function VideoPage() {
 			const OV = new OpenVidu();
 			const newSession = OV.initSession();
 			setSession(newSession);
-
-			const token = await getToken();
-			await newSession.connect(token);
+			console.log(consultingSession);
+			if (consultingSession) await newSession.connect(`${consultingSession.token}`);
 
 			const initPublisher = await OV.initPublisherAsync(undefined, {
 				audioSource: undefined, // The source of audio. If undefined default microphone
@@ -87,10 +87,10 @@ function VideoPage() {
 			setLoading(false);
 		};
 
-		if (!session) {
+		if (!session && consultingSession) {
 			joinSession();
 		}
-	}, [webcamEnabled, microphoneEnabled, session]);
+	}, [webcamEnabled, microphoneEnabled, session, consultingSession]);
 
 	useEffect(() => {
 		if (session) {

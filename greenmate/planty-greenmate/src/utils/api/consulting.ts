@@ -19,7 +19,7 @@ export const findConsulting = async (cid: number) => {
 };
 
 export const findAllRequest = async () => {
-	const response = await instance.get(`/requests`);
+	const response = await instance.get(`/refresh-request`);
 
 	return response;
 };

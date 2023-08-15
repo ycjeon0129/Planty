@@ -6,8 +6,8 @@ import Level from 'components/organisms/shop/Level/Level';
  * @param info 정보들을 담고 있는 객체
  */
 function InfoList({ info, labels }: { info: object; labels: string[] }) {
+	// const keys = Object.keys(info);
 	const values = Object.values(info);
-	// console.log(labels);
 
 	return (
 		<div className="info-list-container">

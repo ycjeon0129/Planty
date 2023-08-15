@@ -10,7 +10,7 @@ function SubscribesListItem({ subscribe, handleClick }: { subscribe: ISubscribe;
 	const [active, setActive] = useState(false);
 
 	const className = classNames('subscribes-list-item-container', { active });
-	const sid = useLocationIdx(4);
+	const sid = useLocationIdx(3);
 
 	useEffect(() => {
 		if (sid === subscribe.spid) setActive(true);

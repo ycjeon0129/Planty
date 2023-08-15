@@ -13,7 +13,7 @@ function PageMenu({ menu }: { menu: IMenuItem[] }) {
 
 	const handleButton = (m: IMenuItem) => {
 		setNowMenu(m.idx);
-		movePage(m.url);
+		movePage(m.url, null);
 	};
 
 	useEffect(() => {

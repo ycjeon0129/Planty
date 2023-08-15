@@ -1,28 +1,17 @@
 import { openviduInstance } from './instance';
 
-export const createToken = async (sessionId: string) => {
-	const response = await openviduInstance.post(
-		`/sessions/${sessionId}/connections`,
-		{},
-		{
-			headers: { 'Content-Type': 'application/json' },
-		},
-	);
-	return response.data; // The token
+/**
+ * 응급실 세션의 토큰을 가져옴.
+ *  */
+export const getEmergencyTokenApi = async (eid: number) => {
+	const response = await openviduInstance.get(`/emergencies/sessions/${eid}`);
+	return response;
 };
 
-// export const createSession = async (sessionId: string) => {
-// 	const response = await openviduInstance.post(
-// 		`/sessions`,
-// 		{ customSessionId: sessionId },
-// 		{
-// 			headers: { 'Content-Type': 'application/json' },
-// 		},
-// 	);
-// 	return response.data; // The sessionId
-// };
-
-export const getToken = async () => {
-	// TODO : 백엔드에 요청해서 sessionId 가져와야 함
-	return createToken('ses_S584w5wJDZ');
+/**
+ * 구독 컨설팅 세션의 토큰을 가져옴.
+ *  */
+export const getConsultingTokenApi = async (cid: number) => {
+	const response = await openviduInstance.get(`/consultings/sessions/${cid}`);
+	return response;
 };

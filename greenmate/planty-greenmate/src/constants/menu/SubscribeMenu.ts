@@ -6,12 +6,12 @@ const SUBSCRIBES_MENU: IMenu = {
 		{
 			idx: 0,
 			title: '내 구독 목록',
-			url: '/admin/subscribes/list',
+			url: '/subscribes/list',
 		},
 		{
 			idx: 1,
 			title: '전체 예약 일정',
-			url: '/admin/subscribes/calendar',
+			url: '/subscribes/calendar',
 		},
 	],
 };

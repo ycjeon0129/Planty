@@ -9,13 +9,12 @@ import dashboard from 'assets/icons/greenmatesidebar/Dashboard.svg';
 import counsulting from 'assets/icons/greenmatesidebar/Consulting.svg';
 import GreenmateInfo from 'components/atoms/sidebar/greenmateinfo/GreenmateInfo';
 import greenmateImg from 'assets/icons/Greenmate.svg';
-import CheckOnline from 'components/atoms/sidebar/checkOnline/CheckOnlineItem';
 import PlantyLogo from 'assets/icons/logo/PlantyLogo.svg';
 import useMovePage from 'hooks/useMovePage';
 import { useRecoilState } from 'recoil';
 import './SideBar.scss';
-import { authState } from 'recoil/auth';
-import RequestList from '../RequestList/RequestList';
+import { authState } from 'recoil/store';
+import RequestArea from '../RequestArea/RequestArea';
 
 function SideBar() {
 	const [auth] = useRecoilState(authState);
@@ -26,9 +25,9 @@ function SideBar() {
 			<SideBarLayout>
 				<div className="sidebar-container">
 					<div id="logo">
-						<img src={PlantyLogo} alt="planty" onClick={() => movePage('/admin/dashboard')} role="presentation" />
+						<img src={PlantyLogo} alt="planty" onClick={() => movePage('/dashboard', null)} role="presentation" />
 					</div>
-					<div id="profile" onClick={() => movePage('/admin/settings')} role="presentation">
+					<div id="profile" onClick={() => movePage('/settings', null)} role="presentation">
 						<GreenmateInfo img={(auth?.profilePhoto as string) ?? greenmateImg} text={auth?.nickname as string} />
 					</div>
 					<div id="menu">
@@ -38,7 +37,7 @@ function SideBar() {
 								img={Ing}
 								text="현재 진행중인 컨설팅"
 								handleClick={() =>
-									movePage(auth?.currentConsulting?.type ? '/admin/consulting/video' : '/admin/consulting/chat')
+									movePage(auth?.currentConsulting?.type ? '/consulting/video' : '/consulting/chat', null)
 								}
 								isIng
 							/>
@@ -48,26 +47,25 @@ function SideBar() {
 						<MenuItem
 							img={dashboard}
 							text="대시보드"
-							handleClick={() => movePage('/admin/dashboard')}
+							handleClick={() => movePage('/dashboard', null)}
 							pathname="dashboard"
 						/>
 						<MenuItem
 							img={classImg}
 							text="구독 관리"
-							handleClick={() => movePage('/admin/subscribes/list')}
+							handleClick={() => movePage('/subscribes/list', null)}
 							pathname="subscribes"
 						/>
 						<MenuItem
 							img={counsulting}
 							text="컨설팅 내역 조회"
-							handleClick={() => movePage('/admin/history/emergency')}
+							handleClick={() => movePage('/history/emergency', null)}
 							pathname="history"
 						/>
-						<MenuItem img={setting} text="설정" handleClick={() => movePage('/admin/settings')} pathname="settings" />
+						<MenuItem img={setting} text="설정" handleClick={() => movePage('/settings', null)} pathname="settings" />
 					</div>
 					<div id="active-manage">
-						<CheckOnline />
-						<RequestList />
+						<RequestArea />
 					</div>
 				</div>
 			</SideBarLayout>
