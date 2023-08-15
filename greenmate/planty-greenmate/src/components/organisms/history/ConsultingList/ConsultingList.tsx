@@ -15,7 +15,7 @@ function ConsultingList() {
 	if (consultings.length)
 		return (
 			<div className="consluting-list-container">
-				{consultings?.map((c: IConsulting) => <ConsultingListItem consulting={c} />)}
+				{consultings?.map((c: IConsulting) => <ConsultingListItem key={c.cid} consulting={c} />)}
 			</div>
 		);
 

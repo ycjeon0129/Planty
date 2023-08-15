@@ -10,7 +10,7 @@ import SubscribeListItem from '../SubscribeListItem/SubscribeListItem';
  */
 function SubscribeSlider() {
 	const subscribes: ISubscribe[] = useAllSubscribe() as ISubscribe[];
-
+	console.log('구독 목록', subscribes);
 	return (
 		<div className="slider-container">
 			<Swiper spaceBetween={10} slidesPerView="auto" className="subscribe-slider">
