@@ -18,7 +18,7 @@ function SubscribesList() {
 	};
 
 	if (subscribes.length) {
-		console.log('subscribes', subscribes);
+		console.log('현재 관리중인 구독 목록', subscribes);
 		return (
 			<div className="subscribes-list-container">
 				{subscribes.map((s) => (
