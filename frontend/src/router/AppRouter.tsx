@@ -34,6 +34,7 @@ import { useRecoilState } from 'recoil';
 import userState from 'recoil/user';
 import { findUserApi } from 'utils/api/auth';
 import FailPage from 'pages/Payment/pages/Fail';
+import ConsultingCompletePage from 'pages/Etc/ConsultingCompletePage';
 import PrivateRoute from './PrivateRoute';
 
 function AppRouter() {
@@ -92,6 +93,7 @@ function AppRouter() {
 						<Route path="/subscribe/:sid/booking" element={<BookingPage />} />
 						<Route path="/subscribe/:sid/consulting" element={<ConsultingHistoryPage />} />
 						<Route path="/consulting/video" element={<VideoConsultingPage />} />
+						<Route path="/consulting/complete" element={<ConsultingCompletePage />} />
 						<Route path="/consultingloading" element={<ConsultingLoadingPageLayout />} />
 						<Route path="/payment/:pid" element={<CheckoutPage />} />
 						<Route path="/payment/success/:spid" element={<Success />} />
