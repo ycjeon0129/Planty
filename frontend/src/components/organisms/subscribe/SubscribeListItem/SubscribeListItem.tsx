@@ -55,7 +55,7 @@ function SubscribeListItem({ subscribe }: { subscribe: ISubscribe }) {
 			{state === 'done' ? (
 				<Button isActive text="컨설팅 이용하기" handleClick={linkToConsult} />
 			) : (
-				<Button isActive={false} text="예약하러 가기" handleClick={linkToBook} />
+				<Button isActive={false} text="컨설팅 이용하기" handleClick={linkToBook} />
 			)}
 		</SubscribeItemLayout>
 	);
