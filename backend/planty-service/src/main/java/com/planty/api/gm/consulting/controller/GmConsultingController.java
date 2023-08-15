@@ -4,6 +4,8 @@ import com.planty.api.consulting.response.UserConsultingResponse;
 import com.planty.api.gm.consulting.request.GmConsultingRecordRequest;
 import com.planty.api.gm.consulting.service.GmConsultingService;
 import com.planty.common.model.SessionTokenResponse;
+import io.openvidu.java.client.OpenViduHttpException;
+import io.openvidu.java.client.OpenViduJavaClientException;
 import io.swagger.annotations.Api;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -36,15 +38,15 @@ public class GmConsultingController {
 
     // 컨설팅 세션 토큰 조회
     @GetMapping("/sessions/{cid}")
-    public ResponseEntity<SessionTokenResponse> findSessionToken(@PathVariable Long cid) throws IllegalAccessException {
-        String token = gmConsultingsService.findSessionToken(cid);
+    public ResponseEntity<SessionTokenResponse> findSessionToken(@PathVariable Long cid) throws IllegalAccessException, OpenViduJavaClientException, OpenViduHttpException {
+        SessionTokenResponse token = gmConsultingsService.findSessionToken(cid);
         if (token == null) {
             return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
         }
-        SessionTokenResponse tokenResponse = new SessionTokenResponse();
-        tokenResponse.setToken(token);
+//        SessionTokenResponse tokenResponse = new SessionTokenResponse();
+//        tokenResponse.setToken(token);
         gmConsultingsService.setStartTime(cid);
-        return new ResponseEntity<>(tokenResponse, HttpStatus.OK);
+        return new ResponseEntity<>(token, HttpStatus.OK);
     }
 
     @PostMapping("/sessions/record")
