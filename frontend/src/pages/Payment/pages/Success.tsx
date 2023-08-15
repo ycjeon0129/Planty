@@ -20,7 +20,11 @@ function Success() {
 
 	return (
 		<div className="complete-container">
-			{isLoading ? <PayLoadingPageLayout /> : <PayComplete price={state.price} />}
+			{isLoading && state ? (
+				<PayLoadingPageLayout />
+			) : (
+				<PayComplete price={state.product.price} spid={state.product.spid} />
+			)}
 		</div>
 	);
 }
