@@ -103,10 +103,14 @@ public class EmergencyServiceImpl implements EmergencyService {
 
     @Override
     @Transactional
-    public EmergencySessionResponse initializeSession(int type) throws OpenViduJavaClientException, OpenViduHttpException {
+    public EmergencySessionResponse initializeSession(int type) throws OpenViduJavaClientException, OpenViduHttpException, IllegalAccessException {
         Map<String, Object> params = new HashMap<>();
         UserInfo userInfo = userInfoRepository.findByUserEmail(SecurityUtil.getCurrentUserEmail())
                 .orElseThrow(() -> new NullPointerException(ExceptionHandler.USER_NOT_FOUND));
+        if (type == 1 && userInfo.getEmergencyCount() < 1) {    // 사용자가 보유한 응급실 이용권이 없다면 화상 응급실 사용 불가
+            log.info("user has not enough emergency ticket : {}", userInfo.getEmergencyCount());
+            throw new IllegalAccessException(ExceptionHandler.EMERGENCY_TICKET_NOT_ENOUGH);
+        }
         EmergencyLog emergencyInfo = EmergencyLog.builder()
                 .uid(userInfo)
                 .type(type)
@@ -114,6 +118,10 @@ public class EmergencyServiceImpl implements EmergencyService {
         Long eid = emergencyLogRepository.save(emergencyInfo).getEid();
         params.put("eid", eid);
         String sessionId = openViduUtil.initializeSession(params);
+
+        emergencyInfo.setConnection(sessionId);
+        emergencyLogRepository.save(emergencyInfo);
+
         EmergencySessionResponse sessionInfo = EmergencySessionResponse.builder()
                 .eid(eid)
                 .sessionId(sessionId)
@@ -136,8 +144,6 @@ public class EmergencyServiceImpl implements EmergencyService {
         if (token == null) {
             throw new NullPointerException(ExceptionHandler.EMERGENCY_SESSION_NOT_FOUND);
         }
-        emergencyInfo.setConnection(token);
-        emergencyLogRepository.save(emergencyInfo);
 
         log.info(logCurrent(getClassName(), getMethodName(), END));
         return token;

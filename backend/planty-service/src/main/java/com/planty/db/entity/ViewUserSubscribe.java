@@ -41,6 +41,9 @@ public class ViewUserSubscribe{
     @Column(name = "period") // 구독 상품 기간
     private Integer period;
 
+    @Column(name = "thumbnail") // 구독 상품 이미지 썸네일 CDN 링크
+    private String thumbnail;
+
     @Column(name = "consulting_cnt") // 구독 상품 컨설팅 횟수
     private Integer consultingCnt;
 
@@ -55,6 +58,9 @@ public class ViewUserSubscribe{
 
     @Column(name = "nickname") // Gm 닉네임
     private String GMNickname;
+
+    @Column(name = "cid") // 컨설팅 예약 식별 인덱스
+    private Long cid;
 
     @Column(name = "cb_date") // 예약 날짜
     private String cbDate;

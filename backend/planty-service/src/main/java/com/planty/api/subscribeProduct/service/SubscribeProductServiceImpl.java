@@ -2,7 +2,7 @@ package com.planty.api.subscribeProduct.service;
 
 import com.planty.api.consulting.response.UserConsultingResponse;
 import com.planty.api.consulting.service.ConsultingService;
-import com.planty.api.subscribe.response.UserSubscribeDatailResponse;
+import com.planty.api.subscribe.response.UserSubscribeDetailResponse;
 import com.planty.api.subscribeProduct.request.SubscribeProductRequest;
 import com.planty.api.subscribeProduct.response.SubscribeProductDetailResponse;
 import com.planty.api.subscribeProduct.response.SubscribeProductResponse;

@@ -59,8 +59,9 @@ public class OpenViduUtil {
      */
     public String createConnection(Map<String, Object> params)
             throws OpenViduJavaClientException, OpenViduHttpException {
-        Session session = openvidu.getActiveSession( (String) params.get("sessionId"));
+        Session session = openvidu.getActiveSession( (String) params.get("sessionId") );
         if (session == null) {
+            System.out.println("OpenVidu::session NULL");
             return null;
         }
         ConnectionProperties properties = ConnectionProperties.fromJson(params).build();

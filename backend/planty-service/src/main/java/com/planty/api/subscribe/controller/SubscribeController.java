@@ -1,7 +1,7 @@
 package com.planty.api.subscribe.controller;
 
 import com.planty.api.subscribe.request.UserSubscribeRequest;
-import com.planty.api.subscribe.response.UserSubscribeDatailResponse;
+import com.planty.api.subscribe.response.UserSubscribeDetailResponse;
 import io.swagger.annotations.Api;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.http.ResponseEntity;
 
+import java.text.ParseException;
 import java.util.List;
 
 import com.planty.api.subscribe.response.UserSubscribeResponse;
@@ -25,10 +26,12 @@ import static com.planty.common.util.LogCurrent.logCurrent;
 public class SubscribeController {
     private final SubscribeService subscribeServiceImpl;
     @GetMapping // 사용자 구독 조회
-    public ResponseEntity<?> getUserSubscribeList() {
+    public ResponseEntity<?> getUserSubscribeList(
+            @RequestParam(name = "done", required = false, defaultValue = "0") int done
+    ) throws ParseException {
 
         log.info(logCurrent(getClassName(), getMethodName(), START));
-        List<UserSubscribeResponse> subscribeList = subscribeServiceImpl.getUserSubscribe();
+        List<UserSubscribeResponse> subscribeList = subscribeServiceImpl.getUserSubscribe(done);
 
         if (!subscribeList.isEmpty()) {
             log.info(logCurrent(getClassName(), getMethodName(), END));
@@ -41,7 +44,7 @@ public class SubscribeController {
     public ResponseEntity<?> getUserSubscribeDetailList(@PathVariable("sid") Long sid) {
 
         log.info(logCurrent(getClassName(), getMethodName(), START));
-        UserSubscribeDatailResponse response = subscribeServiceImpl.getUserSubscribeDetail(sid);
+        UserSubscribeDetailResponse response = subscribeServiceImpl.getUserSubscribeDetail(sid);
         if(response != null) {
             log.info(logCurrent(getClassName(), getMethodName(), END));
             return ResponseEntity.status(200).body(response);
