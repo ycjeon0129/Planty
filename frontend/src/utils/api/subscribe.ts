@@ -11,6 +11,12 @@ export const findAllSubscribeApi = async () => {
 	return response;
 };
 
+export const findDoneSubscribeApi = async (done: number) => {
+	const response = await instance.get(`/subscribes?done=${done}`);
+
+	return response;
+};
+
 export const findSubscribeApi = async (sid: number) => {
 	const response = await instance.get(`/subscribes/${sid}`);
 
