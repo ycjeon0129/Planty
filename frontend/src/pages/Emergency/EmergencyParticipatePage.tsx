@@ -17,7 +17,6 @@ function EmergencyParticipatePage() {
 	const [, setConsultingSession] = useRecoilState(consultingSessionState);
 	const { type } = useParams(); // 채팅 0, 화상 1
 	const [user, setUser] = useUser();
-	console.log(user);
 
 	// 세션 아이디로 openVidu 연결 토큰 생성
 	const createConnection = async (sessionInfo: IEmergencySessionInfo) => {
