@@ -58,11 +58,12 @@ public class SubscribeServiceImpl implements SubscribeService {
 
         for(ViewUserSubscribe item : list) {
             boolean end = item.getEndDate() != null;
+            String endDate = end? item.getEndDate() : TimeUtil.findEndDate(item.getStartDate(), item.getPeriod());
             NearConsultingResponse nearConsultingInfo = new NearConsultingResponse(item.getCid(), item.getCbDate(), item.getCbCancel(), item.getCbActive(), item.getCbTime());
             UserSubscribeResponse sub = UserSubscribeResponse.builder()
                     .sid(item.getSid())
                     .startDate(item.getStartDate())
-                    .endDate(TimeUtil.findEndDate(item.getStartDate(), item.getPeriod()))
+                    .endDate(endDate)
                     .end(end)
                     .title(item.getSpName())
                     .thumbnail(item.getThumbnail())
@@ -78,7 +79,7 @@ public class SubscribeServiceImpl implements SubscribeService {
     }
 
     @Override // 사용자 구독 상세 조회
-    public UserSubscribeDetailResponse getUserSubscribeDetail(Long sid) {
+    public UserSubscribeDetailResponse getUserSubscribeDetail(Long sid) throws ParseException{
         log.info(logCurrent(getClassName(), getMethodName(), START));
         String email = SecurityUtil.getCurrentUserEmail();
         UserInfo user = userInfoRepository.findByUserEmail(email)
@@ -102,12 +103,15 @@ public class SubscribeServiceImpl implements SubscribeService {
 
         NearConsultingResponse nearConsultingInfo = new NearConsultingResponse(sub.getCid(), sub.getCbDate(), sub.getCbCancel(), sub.getCbActive(), sub.getCbTime());
 
+        boolean end = sub.getEndDate() != null;
+        String endDate = end? sub.getEndDate() : TimeUtil.findEndDate(sub.getStartDate(), sub.getPeriod());
+
         log.info(logCurrent(getClassName(), getMethodName(), END));
         return UserSubscribeDetailResponse.builder()
                 .sid(sub.getSid())
                 .startDate(sub.getStartDate())
-                .endDate(sub.getEndDate())
-                .end(sub.getEndDate() != null)
+                .endDate(endDate)
+                .end(end)
                 .title(sub.getSpName())
                 .thumbnail(sub.getThumbnail())
                 .plant(sub.getPiName())
@@ -120,13 +124,13 @@ public class SubscribeServiceImpl implements SubscribeService {
     }
 
     @Override // 사용자 구독 등록
-    public boolean regUserSubscribe(UserSubscribeRequest UserSubscribeRequest) {
+    public boolean regUserSubscribe(UserSubscribeRequest userSubscribeRequest) {
         log.info(logCurrent(getClassName(), getMethodName(), START));
         String email = SecurityUtil.getCurrentUserEmail();
         UserInfo user = userInfoRepository.findByUserEmail(email)
                 .orElseThrow(() -> new NullPointerException(ExceptionHandler.USER_NOT_FOUND));
 
-        SubscribeProduct product = subscribeProductRepository.findBySpid(UserSubscribeRequest.getSpid())
+        SubscribeProduct product = subscribeProductRepository.findBySpid(userSubscribeRequest.getSpid())
                 .orElseThrow(() -> new NullPointerException(ExceptionHandler.PRODUCT_NOT_FOUND));
 
         if(userSubscribeRepository.findByUidAndSpidAndEndDateIsNull(user, product).isPresent()) { // EndDateIsNull -> 현재 구독 상품 중에 해당 상품이 있는지 확인
