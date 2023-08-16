@@ -51,7 +51,7 @@ public class EmergencyServiceImpl implements EmergencyService {
                 .orElseThrow(() -> new NullPointerException(ExceptionHandler.USER_NOT_FOUND));
 
         List<EmergencyResponse> emergencyList = new ArrayList<>();
-        List<EmergencyLog> list = emergencyLogRepository.findByUid(userInfo);
+        List<EmergencyLog> list = emergencyLogRepository.findByUidAndStartTimeIsNotNull(userInfo);
 
         for(EmergencyLog item : list) {
             String timeTaken = TimeUtil.findTimeDiff(item.getStartTime(), item.getEndTime());

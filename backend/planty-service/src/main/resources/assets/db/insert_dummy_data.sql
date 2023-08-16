@@ -33,28 +33,29 @@ VALUES ('gardener2','초보 가드너2', 'sunflower2@gmail.com', "1q2w3e4r!!"), 
 
 INSERT INTO plant_info(name, tonic_period, size, place, eatable)
 VALUES ('바질', 4, 0, 1, 1), ('파슬리', 4, 0, 1, 1), ('토마토', 3, 1, 1, 1), ('래몬', 12, 1, 2, 1), ('라즈베리', 12, 1, 2, 1), 
-('스킨답서스', 24, 3, 1, 0), ('네펜데스', 8, 2, 2, 0), ('멘드라고라', 2, 2, 1, 0);
+('스킨답서스', 24, 3, 1, 0), ('아이비', 8, 1, 2, 0), ('소철', 12, 3, 2, 0);
 
 INSERT INTO subscribe_product(PLANT_INFO_idx, GM_INFO_gid, name, period, consulting_cnt, description, level, price, thumbnail)
 VALUES(1, 1 , '식린이를 위한 바질 클래스', 12, 4, '식린이라도 걱정하지 마세요! 물만 줘도 잘 자라는 바질과 함께라면 가드너로서 자신감 뿜뿜!!', 1, 49000, "https://github.com/ycjeon0129/algorithm-problem-solving/assets/79627716/d7631a82-1cec-453c-acbd-e440c3510845"),
-(2, 2 , '요리 좋아하는 당신을 위한 파슬리 키우기', 12, 4, '요리를 좋아하신다구요? 찬장에 향신료 3종 이상이라구요? 그렇다면 당장 구독하세요!', 2, 78000, "https://github.com/ycjeon0129/algorithm-problem-solving/assets/79627716/422d4e8d-3696-4a90-8c90-f5cdaf66fefb"),
-(3, 3 , '나는야 케찹될꺼야 나는야 춤을 출거야', 24, 8, '멋쟁이 토마토', 3, 99000, "https://github.com/ycjeon0129/algorithm-problem-solving/assets/79627716/9e0485d8-b93a-477b-afd7-90a78ed75843"),
-(4, 4 , '상큼한 시트러스의 황제, 레몬', 24, 8, '새콤달콤 매력적이야', 4, 109000, "https://github.com/ycjeon0129/algorithm-problem-solving/assets/79627716/cebbfe7d-5db7-4286-945b-5c7965c650fa"),
-(5, 1 , '키우기 어려운만큼 보람이 큰 라즈베리 클래스', 52, 12, '우리에게 산딸기로도 알려진 라즈베리. 건강 식품의 대표주자입니다. 난이도가 높은 만큼 보람도 업! 라즈베리 클래스에요.', 5, 129000, "https://github.com/ycjeon0129/algorithm-problem-solving/assets/79627716/82059ab2-4119-4363-bd50-a2f00a70d45a"),
-(6, 2 , '전세계에서 가장 사랑받는 원예식물, 스킨답서스!', 24, 6, '초보 가드너도 손쉽게 키울 수 있는 식물을 찾으신다구요? 여기에요 에기~', 1, 59000, "https://github.com/ycjeon0129/algorithm-problem-solving/assets/79627716/471a8afd-5cc5-41b6-abba-b89d750349a9"),
-(7, 1 , '집안 벌레로 고민한다면 넌 네펜데스가 딱이야', 24, 8, '하지만 사실 식충식물은 벌레로부터 얻는 영양분 비율이 낮다는 사실! 알고 계셨나요?', 3, 490000, "https://github.com/ycjeon0129/algorithm-problem-solving/assets/79627716/ebc762a1-0d86-467f-8ad6-ffcb8a6d2bb5"),
-(8, 3 , '상급 마법약 필수 제료, 맨드라고라!', 520, 24, '아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아', 5, 2990000, "https://github.com/ycjeon0129/algorithm-problem-solving/assets/79627716/e35b9b92-d6c9-460d-8855-32925547ba6b");
+(2, 2 , '요리사에게 찰떡 파슬리 키우기', 12, 4, '요리를 좋아하신다구요? 찬장에 향신료 3종 이상이라구요? 그렇다면 당장 구독하세요!', 2, 78000, "https://github.com/ycjeon0129/algorithm-problem-solving/assets/79627716/422d4e8d-3696-4a90-8c90-f5cdaf66fefb"),
+(3, 3 , '나는야 케찹될꺼야', 24, 4, '멋쟁이 토마토', 3, 99000, "https://github.com/ycjeon0129/algorithm-problem-solving/assets/79627716/9e0485d8-b93a-477b-afd7-90a78ed75843"),
+(4, 4 , '상큼한 시트러스, 레몬', 24, 4, '새콤달콤 매력적이야', 4, 109000, "https://github.com/ycjeon0129/algorithm-problem-solving/assets/79627716/cebbfe7d-5db7-4286-945b-5c7965c650fa"),
+(5, 1 , '난이도 상 보람 상, 라즈베리', 52, 6, '우리에게 산딸기로도 알려진 라즈베리. 건강 식품의 대표주자입니다. 난이도가 높은 만큼 보람도 업! 라즈베리 클래스에요.', 5, 129000, "https://github.com/ycjeon0129/algorithm-problem-solving/assets/79627716/82059ab2-4119-4363-bd50-a2f00a70d45a"),
+(6, 2 , '가장 사랑받는 식물, 스킨답서스!', 24, 6, '초보 가드너도 손쉽게 키울 수 있는 식물을 찾으신다구요? 여기에요 에기~', 1, 59000, "https://github.com/ycjeon0129/algorithm-problem-solving/assets/79627716/471a8afd-5cc5-41b6-abba-b89d750349a9"),
+(7, 1 , '공기정화 식물 아이비', 24, 8, '아이비와 함께라면 미세먼지 걱정 끝', 3, 49000, "https://github.com/ycjeon0129/algorithm-problem-solving/assets/79627716/b5be6e7f-b21c-4bed-a9e7-2eb835b5872d"),
+(8, 3 , '휴양지 느낌 물씬, 소철', 52, 8, '휴양지의 대표 식물 소철을 직접 키워보세요!', 5, 290000, "https://github.com/ycjeon0129/algorithm-problem-solving/assets/79627716/8389dae3-a019-4f98-8ecf-febef4cfea64");
 
--- 더미 데이터 진행 
-
+-- gid가 1인 상품 15개 + gid가 1이 아니지만 uid가 1인 상품 1개
 INSERT INTO user_subscribe(arduino_id, USER_INFO_uid, SUBSCRIBE_PRODUCT_spid, GM_INFO_gid, consulting_remain_cnt, start_date)
-VALUES(101,1,1,1,3,'2023-07-25'), (102,2,2,2,4, '2023-07-27'), (103,2,1,1,3, '2023-07-29'), (104,1,2,2,8, '2023-08-07'), (105,1,3,1,8, '2023-08-08');
+VALUES(101,1,1,1,2,'2023-05-25'), (102,2,5,1,3,'2023-05-30'), (103,3,7,1,5,'2023-06-05'), (104,4,1,1,3, '2023-06-07'), (105,5,5,1,4, '2023-06-07'), 
+(106,6,7,1,6, '2023-06-08'), (107,7,1,1,3, '2023-06-09'), (108,9,1,1,3, '2023-06-10'), (109,1,5,1,4, '2023-06-12'), (110,2,1,1,4, '2023-06-18'),
+(111,10,5,1,5, '2023-06-27'), (112,8,7,1,7, '2023-06-29'), (113,3,5,1,5, '2023-07-08'), (114,5,7,1,8, '2023-07-17'), (115,4,7,1,8, '2023-07-18'), (106,1,4,4,4,'2023-08-15');
 
-INSERT INTO consulting_booking(USER_SUBSCRIBE_sid, USER_INFO_uid, GM_INFO_gid, TIME_TABLE_idx, date, cancel, active)
-VALUES(1,1,1,2,"2023-08-01", 0, 1), (1,1,1,7,"2023-08-08", 0, 0),
-(2,2,2,2,"2023-08-01", 0, 1), (2,2,2,3,"2023-08-03", 1, 0), (2,2,2,4,"2023-08-11", 0, 0),
-(3,2,1,1,"2023-08-02", 0, 1), (3,2,1,1,"2023-08-05", 0, 0),
-(5,1,1,1,"2023-08-03", 0, 1),(3,2,1,1,"2023-09-02", 1, 0), (3,2,1,1,"2023-09-02", 0, 0), (5,1,1,1,"2023-09-03", 0, 0);
+
+INSERT INTO consulting_booking(USER_SUBSCRIBE_sid, USER_INFO_uid, TIME_TABLE_idx, GM_INFO_gid, date, cancel, active)
+VALUES (1,1,1,1,"2023-08-01", 0, 1)
+
+
 
 INSERT INTO consulting_log(cid, RECOMMENDED_START_DATE, RECOMMENDED_END_DATE, times, content, start_time, end_time)
 VALUES(1,"2023-08-11", "2023-08-18", 1, '물 plz', '2023-08-01 10:32:00', '2023-08-01 10:58:00'),
@@ -85,4 +86,4 @@ INSERT INTO ticket_product (name, count, price)
 VALUES ("1회 이용권", 1, 9900),
        ("3회 이용권", 3, 24000),
        ("5회 이용권", 5, 36000),
-       ("7회 이용권", 7, 45000);
+       ("10회 이용권", 10, 59000);
