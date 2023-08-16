@@ -22,7 +22,7 @@ function ProductListItem({ product }: { product: IProduct }) {
 
 	return (
 		<ProductListItemLayout>
-			<ListItemTitle title={product.name} url={`detail/${product.spid}`} />
+			<ListItemTitle title={product.name} isFull url={`detail/${product.spid}`} />
 			<img src={product.imgUrl ?? require('assets/images/defaultImage.png')} alt={product.plantName} />
 			<InfoList info={info} labels={PRODUCT_LIST_ITEM_LABELS} />
 			<Button isActive text="자세히 보기" handleClick={handleClick} />
