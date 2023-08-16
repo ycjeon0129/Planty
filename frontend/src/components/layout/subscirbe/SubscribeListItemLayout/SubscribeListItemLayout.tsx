@@ -22,9 +22,9 @@ function SubscribeItemLayout({ children }: { children: ReactNode[] }) {
 					{/* 구독 정보 */}
 					<div>{children[3]}</div>
 					{/* 버튼 */}
-					{children[4]}
 				</div>
 			</div>
+			{children[4]}
 		</div>
 	);
 }

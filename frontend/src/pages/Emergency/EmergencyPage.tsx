@@ -8,10 +8,11 @@ import CurrentGreenmateCount from 'components/atoms/emergency/CurrentGreenmateCo
 import TicketInfo from 'components/organisms/emergency/TicketInfo/TicketInfo';
 import useMovePage from 'hooks/common/useMovePage';
 import { toast } from 'react-hot-toast';
+// import useUser from 'hooks/common/useUser';
 
 function EmergencyPage() {
 	const { movePage } = useMovePage();
-
+	// const [user] = useUser();
 	return (
 		<EmergencyPageLayout>
 			{/* 페이지 헤더 */}

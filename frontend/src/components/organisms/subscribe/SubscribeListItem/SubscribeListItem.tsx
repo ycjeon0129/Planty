@@ -67,20 +67,20 @@ function SubscribeListItem({ subscribe }: { subscribe: ISubscribe }) {
 	 */
 
 	const toAlert = () => {
-		toast('구독이 완료되어 예약할 수 없습니다', {
+		toast('구독 종료된 상품입니다', {
 			icon: '🌾',
 		});
 	};
 
 	return (
 		<SubscribeItemLayout>
-			<ListItemTitle title={subscribe.title} url={`/subscribe/${subscribe.sid}`} />
+			<ListItemTitle title={subscribe.title} isFull={false} url={`/subscribe/${subscribe.sid}`} />
 			<SubscribeStateBadge stateKey={subscribe.state} />
 			<img src={subscribe.thumbnail} alt="썸내일" />
 			<InfoList info={newInfo} labels={SUBSCRIBE_LIST_ITEM_LABELS} />
 			<>
-				{subscribe.state === 'done' && <Button isActive text="컨설팅 이용하기" handleClick={toConsulting} />}
-				{subscribe.state === 'wait' && <Button isActive={false} text="예약 하러가기" handleClick={toBooking} />}
+				{subscribe.state === 'done' && <Button isActive text="컨설팅 받기" handleClick={toConsulting} />}
+				{subscribe.state === 'wait' && <Button isActive={false} text="예약하기" handleClick={toBooking} />}
 				{subscribe.state === 'end' && <Button isActive={false} text="구독종료" handleClick={toAlert} />}
 			</>
 		</SubscribeItemLayout>

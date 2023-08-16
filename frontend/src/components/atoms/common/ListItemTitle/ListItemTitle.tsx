@@ -9,12 +9,21 @@ import sliceText from 'utils/common/formatText';
  * @param title : 아이템의 제목
  * @param url : 클릭 시 이동할 경로
  */
-function ListItemTitle({ title, url }: { title: string; url: string }) {
+function ListItemTitle({ title, isFull, url }: { title: string; isFull: boolean; url: string }) {
 	return (
 		<h5 className="list-item-title">
 			<Link to={url}>
-				<span>{sliceText(title)}</span>
-				<img src={NextIcon} alt="" />
+				{isFull ? (
+					<>
+						<span className="title-control-box">{title}</span>
+						{/* <img src={NextIcon} alt="" /> */}
+					</>
+				) : (
+					<>
+						<span>{sliceText(title)}</span>
+						<img src={NextIcon} alt="" />
+					</>
+				)}
 			</Link>
 		</h5>
 	);
