@@ -37,10 +37,10 @@ public class EmbeddedController {
         return ResponseEntity.status(400).build();
     }
 
-    @GetMapping ("/{sid}") // 임베디드 데이터 조회
-    public ResponseEntity<?> getUserEmbedded(@PathVariable("sid") Long sid) {
+    @GetMapping ("/{cid}") // 임베디드 데이터 조회
+    public ResponseEntity<?> getUserEmbedded(@PathVariable("cid") Long cid) {
         log.info(logCurrent(getClassName(), getMethodName(), START));
-        List<UserSubscribeEmbeddedResponse> embeddedList = embeddedService.getEmbedded(sid);
+        List<UserSubscribeEmbeddedResponse> embeddedList = embeddedService.getEmbedded(cid);
 
         if (!embeddedList.isEmpty()) {
             log.info(logCurrent(getClassName(), getMethodName(), END));

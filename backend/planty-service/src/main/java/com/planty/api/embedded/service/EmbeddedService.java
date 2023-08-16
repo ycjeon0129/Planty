@@ -7,5 +7,5 @@ import java.util.List;
 
 public interface EmbeddedService {
     boolean regEmbedded (EmbeddedRequest embeddedRequest);
-    List<UserSubscribeEmbeddedResponse> getEmbedded(Long sid);
+    List<UserSubscribeEmbeddedResponse> getEmbedded(Long cid);
 }
