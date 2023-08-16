@@ -38,10 +38,12 @@ function ShopDetail() {
 		return (
 			<ShopDetailPageLayout>
 				<PageTitleButton type="back" text="구독 상품 상세정보" />
-				<ProductImg imgUrls={[product.imgUrl ?? defaultImg, product.imgUrl ?? defaultImg]} />
+				<ProductImg
+					imgUrls={[product.imgUrl ? product.imgUrl : defaultImg, product.imgUrl ? product.imgUrl : defaultImg]}
+				/>
 				<Title name={product.name} />
 				<InfoList product={product as IProductDetail} />
-				<ImgDetail descImgUrl={product.imgUrl ?? defaultDetailImg} />
+				<ImgDetail descImgUrl={defaultDetailImg} />
 				<Price product={product} />
 			</ShopDetailPageLayout>
 		);
