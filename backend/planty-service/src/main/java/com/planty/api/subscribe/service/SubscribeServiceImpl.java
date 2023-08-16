@@ -13,6 +13,8 @@ import com.planty.api.subscribe.response.UserSubscribeResponse;
 
 import java.text.ParseException;
 import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.*;
 
 import lombok.RequiredArgsConstructor;
@@ -161,7 +163,10 @@ public class SubscribeServiceImpl implements SubscribeService {
                 .orElseThrow(() -> new NullPointerException(ExceptionHandler.USER_SID_NOT_FOUND));
 
         if (userSubscribe != null) {
-            userSubscribe.setEndDate(LocalDate.now());
+            ZoneId zoneId = ZoneId.of("Asia/Seoul");
+            ZonedDateTime zonedDateTime = ZonedDateTime.now( zoneId );
+            String output = zonedDateTime.toString().split("T")[0];
+            userSubscribe.setEndDate(output);
             userSubscribeRepository.save(userSubscribe); // delete -> save : endDate update
             log.info(logCurrent(getClassName(), getMethodName(), END));
             return true;
