@@ -4,20 +4,48 @@ VALUES (1, "10:00"), (2, "10:30"), (3, "11:00"), (4, "11:30"), (5, "12:00"), (6,
 (8, "13:30"), (9, "14:00"), (10, "14:30"), (11, "15:00"), (12, "15:30"), (13, "16:00"), (14, "16:30"),
 (15, "17:00"), (16, "17:30"), (17, "18:00"), (18, "18:30"), (19, "19:00"), (20, "19:30");
 
-INSERT INTO gm_info(id, pw, nickname, introduce)
-VALUES('ssafy', 'ssafy202', 'potato', '말하는 감자'),
-('gardener', 'gardener202', 'groot', 'I am Groot');
+INSERT INTO gm_info(id, pw, nickname, introduce, activate)
+VALUES('greenmate1', 'greenmate1', '식물왕 전식물', '안녕하세요. 당신의 식물이 잘! 자랄 수 있도록 도와드릴게요.', 0),
+('greenmate2', 'greenmate2', '김드루이드', '드루이드와 함께 식물을 건강하게', 1),
+('greenmate3', 'greenmate3', '식물마스터', '안녕하세요 플랜티 그린메이트입니다.', 1),
+('greenmate4', 'greenmate4', '식물선인', '안녕하세요 플랜티 그린메이트입니다.', 1),
+('greenmate5', 'greenmate5', '초록손', '안녕하세요 플랜티 그린메이트입니다.', 1),
+('greenmate6', 'greenmate6', '식물헌터', '안녕하세요 플랜티 그린메이트입니다.', 1),
+('greenmate7', 'greenmate7', '녹색전문가', '안녕하세요 플랜티 그린메이트입니다.', 1),
+('greenmate8', 'greenmate8', '식물바이블', '안녕하세요 플랜티 그린메이트입니다.', 1),
+('greenmate9', 'greenmate9', '식물매직', '안녕하세요 플랜티 그린메이트입니다.', 1),
+('greenmate10', 'greenmate10', '식물위즈', '안녕하세요 플랜티 그린메이트입니다.', 1),
+('greenmate11', 'greenmate11', '식물마법사', '안녕하세요 플랜티 그린메이트입니다.', 1),
+('greenmate12', 'greenmate12', '식물마음', '안녕하세요 플랜티 그린메이트입니다.', 1),
+('greenmate13', 'greenmate13', '식물탐험가', '안녕하세요 플랜티 그린메이트입니다.', 1),
+('greenmate14', 'greenmate14', '녹색의달인', '안녕하세요 플랜티 그린메이트입니다.', 1),
+('greenmate15', 'greenmate15', '식물의달', '안녕하세요 플랜티 그린메이트입니다.', 1),
+('greenmate16', 'greenmate16', '식물박사', '안녕하세요 플랜티 그린메이트입니다.', 1);
+
+INSERT INTO user_info(user_id, user_name, email, `password`, shipping_address)
+VALUES ('gardener1','초보 가드너1', 'sunflower1@gmail.com', "1q2w3e4r!!", "광주 광산구 하남산단6번로 107"),('develop1', '초보 개발자1', 'gardener1@naver.com', "1q2w3e4r!!","서울 강남구 테헤란로 212");
 
 INSERT INTO user_info(user_id, user_name, email, `password`)
-VALUES('ssafyUser','초보 가드너', 'ssafy@gmail.com', "ps1234"), ('ssafyDevelop', '초보 개발자', 'gardener@naver.com', "ps1234");
+VALUES ('gardener2','초보 가드너2', 'sunflower2@gmail.com', "1q2w3e4r!!"), ('develop2', '초보 개발자2', 'gardener2@naver.com', "1q2w3e4r!!"),
+('gardener3','초보 가드너3', 'sunflower3@gmail.com', "1q2w3e4r!!"), ('develop3', '초보 개발자3', 'gardener3@naver.com', "1q2w3e4r!!"),
+('gardener4','초보 가드너4', 'sunflower4@gmail.com', "1q2w3e4r!!"), ('develop4', '초보 개발자4', 'gardener4@naver.com', "1q2w3e4r!!"),
+('gardener5','초보 가드너5', 'sunflower5@gmail.com', "1q2w3e4r!!"), ('develop5', '초보 개발자5', 'gardener5@naver.com', "1q2w3e4r!!");
 
 INSERT INTO plant_info(name, tonic_period, size, place, eatable)
-VALUES('토마토', 3, 0, 1, 1), ('양파', 4, 1, 1, 1), ('네펜데스', 8, 2, 2, 0);
+VALUES ('바질', 4, 0, 1, 1), ('파슬리', 4, 0, 1, 1), ('토마토', 3, 1, 1, 1), ('래몬', 12, 1, 2, 1), ('라즈베리', 12, 1, 2, 1), 
+('스킨답서스', 24, 3, 1, 0), ('네펜데스', 8, 2, 2, 0), ('멘드라고라', 2, 2, 1, 0);
 
 INSERT INTO subscribe_product(PLANT_INFO_idx, GM_INFO_gid, name, period, consulting_cnt, description, level, price)
-VALUES(1, 1 , '한달동안 토마토 키우기', 4, 4, '토마토를 먹고 싶나요? 당장 구독하세요', 1, 50000)
-,(2, 2 , '두달동안 양파 키우기', 8, 8, '양파는 좋은 식재료입니다!', 1, 80000)
-,(3, 1 , '네펜데스와 함께 춤을', 52, 8, '식충 식물과 함께라면 벌레도 무섭지 않아요', 3, 490000);
+VALUES(1, 1 , '식린이를 위한 바질 클래스', 12, 4, '식린이라도 걱정하지 마세요! 물만 줘도 잘 자라는 바질과 함께라면 가드너로서 자신감 뿜뿜!!', 1, 49000),
+(2, 2 , '요리 좋아하는 당신을 위한 파슬리 키우기', 12, 4, '요리를 좋아하신다구요? 찬장에 향신료 3종 이상이라구요? 그렇다면 당장 구독하세요!', 2, 78000),
+(3, 3 , '나는야 케찹될꺼야 나는야 춤을 출거야', 24, 8, '멋쟁이 토마토', 3, 99000),
+(4, 4 , '상큼한 시트러스의 황제, 레몬', 24, 8, '새콤달콤 매력적이야', 4, 109000),
+(5, 1 , '키우기 어려운만큼 보람이 큰 라즈베리 클래스', 52, 12, '우리에게 산딸기로도 알려진 라즈베리. 건강 식품의 대표주자입니다. 난이도가 높은 만큼 보람도 업! 라즈베리 클래스에요.', 5, 129000),
+(6, 2 , '전세계에서 가장 사랑받는 원예식물, 스킨답서스!', 24, 6, '초보 가드너도 손쉽게 키울 수 있는 식물을 찾으신다구요? 여기에요 에기~', 1, 59000),
+(7, 1 , '집안 벌레로 고민한다면 넌 네펜데스가 딱이야', 24, 8, '하지만 사실 식충식물은 벌레로부터 얻는 영양분 비율이 낮다는 사실! 알고 계셨나요?', 3, 490000),
+(8, 3 , '상급 마법약 필수 제료, 맨드라고라!', 520, 24, '아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아아', 5, 2990000);
+
+-- 더미 데이터 진행 
 
 INSERT INTO user_subscribe(arduino_id, USER_INFO_uid, SUBSCRIBE_PRODUCT_spid, GM_INFO_gid, consulting_remain_cnt, start_date)
 VALUES(101,1,1,1,3,'2023-07-25'), (102,2,2,2,4, '2023-07-27'), (103,2,1,1,3, '2023-07-29'), (104,1,2,2,8, '2023-08-07'), (105,1,3,1,8, '2023-08-08');

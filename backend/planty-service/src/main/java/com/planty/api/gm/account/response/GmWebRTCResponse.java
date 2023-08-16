@@ -12,6 +12,7 @@ public class GmWebRTCResponse {
     private int webRTCType;
     private Long idx;
     private int emergencyType;
+    private int minutesAgo;
     private String username;
 
 }

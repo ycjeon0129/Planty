@@ -9,7 +9,7 @@ public interface BookingService {
 
     List<BookingResponse> getUserBooking();
     boolean[] getUserBookingDate(Long sid, String date);
-    boolean regUserBooking (UserBookingRequest userBookingRequest);
+    boolean regUserBooking (UserBookingRequest userBookingRequest) throws IllegalAccessException;
     boolean deleteUserBooking(Long cid);
 }
 

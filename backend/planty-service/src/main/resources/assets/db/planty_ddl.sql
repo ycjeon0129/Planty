@@ -231,6 +231,7 @@ CREATE TABLE IF NOT EXISTS `planty`.`emergency_log` (
   `name` VARCHAR(32) NULL DEFAULT NULL COMMENT '식물 이름',
   `type` TINYINT(1) NOT NULL DEFAULT '0' COMMENT '상담 유형. 채팅(0), 화상(1)',
   `content` TEXT NULL DEFAULT NULL COMMENT '상담 내용',
+  `request_time` TIMESTAMP NULL DEFAULT NULL COMMENT '응급실 요청 시간',
   `start_time` TIMESTAMP NULL DEFAULT NULL COMMENT '실제 시작 시간',
   `end_time` TIMESTAMP NULL DEFAULT NULL COMMENT '실제 종료 시간',
   `connection` VARCHAR(512) NULL DEFAULT NULL COMMENT 'OpenVidu Session Token',

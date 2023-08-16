@@ -120,8 +120,9 @@ public class EmergencyServiceImpl implements EmergencyService {
         String sessionId = openViduUtil.initializeSession(params);
 
         emergencyInfo.setConnection(sessionId);
+        String requestTime = TimeUtil.findCurrentTimestamp();
+        emergencyInfo.setRequestTime(requestTime);
         emergencyLogRepository.save(emergencyInfo);
-
         EmergencySessionResponse sessionInfo = EmergencySessionResponse.builder()
                 .eid(eid)
                 .sessionId(sessionId)
