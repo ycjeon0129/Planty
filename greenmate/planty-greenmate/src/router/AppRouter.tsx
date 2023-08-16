@@ -22,7 +22,7 @@ import ConsultingList from 'components/organisms/history/ConsultingList/Consulti
 import ScrollToTop from 'components/atoms/common/ScrollToTop/ScrollToTop';
 import { Toaster } from 'react-hot-toast';
 import { useRecoilState } from 'recoil';
-import { authState, consultingSessionState, modalControlState } from 'recoil/store';
+import { activityState, authState, consultingSessionState, modalControlState } from 'recoil/store';
 import LocalStorage from 'constants/storage/LocalStorage';
 import VideoSessionPage from 'pages/Consulting/VideoSessionModalPage';
 import ConsultingCompletePage from 'pages/Consulting/ConsultingCompletePage';
@@ -32,6 +32,7 @@ import PrivateRoute from './PrivateRoute';
 function AppRouter() {
 	// recoil 전역 상태
 	const [auth, setAuth] = useRecoilState(authState);
+	const [activity] = useRecoilState(activityState);
 	const [consultingSession] = useRecoilState(consultingSessionState);
 	const [, setModalControl] = useRecoilState(modalControlState);
 	// 컨설팅 요청(request) 목록 업데이트
@@ -62,12 +63,14 @@ function AppRouter() {
 
 	// 10초마다 fetchData 배열 업데이트
 	useEffect(() => {
-		const requestFetchInterval = setInterval(fetchData, 5000);
-
-		return () => {
-			clearInterval(requestFetchInterval);
-		};
-	}, []);
+		if (activity) {
+			const requestFetchInterval = setInterval(fetchData, 5000);
+			return () => {
+				clearInterval(requestFetchInterval);
+			};
+		}
+		return () => {};
+	}, [activity]);
 
 	return (
 		<div className="container">
