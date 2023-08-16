@@ -11,7 +11,7 @@ function Button({ isActive, text, handleClick }: { isActive: boolean; text: stri
 	const className = classnames('button-container', {
 		primary: isActive,
 		disabled: !isActive,
-		'primary-outline': text === '예약 하러가기',
+		'primary-outline': text === '예약하기',
 	});
 	return (
 		<button type="button" className={className} onClick={handleClick}>

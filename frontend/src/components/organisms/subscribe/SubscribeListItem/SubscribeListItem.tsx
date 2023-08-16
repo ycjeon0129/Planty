@@ -59,7 +59,15 @@ function SubscribeListItem({ subscribe }: { subscribe: ISubscribe }) {
 	 * 예약하기로 연결
 	 */
 	const toBooking = () => {
-		movePage(`/subscribe/${subscribe.sid}/booking`, null);
+		CustomAlert({
+			title: `예약하기`,
+			desc: `${subscribe.title}, 예약을 진행하시겠습니까?`,
+			btnTitle: '예약하기',
+			params: {},
+			onAction: () => {
+				movePage(`/subscribe/${subscribe.sid}/booking`, null);
+			},
+		});
 	};
 
 	return (
@@ -69,9 +77,9 @@ function SubscribeListItem({ subscribe }: { subscribe: ISubscribe }) {
 			<img src={subscribe.thumbnail} alt="" />
 			<InfoList info={newInfo} labels={SUBSCRIBE_LIST_ITEM_LABELS} />
 			{subscribe.state === 'done' ? (
-				<Button isActive text="컨설팅 이용하기" handleClick={toConsulting} />
+				<Button isActive text="컨설팅 받기" handleClick={toConsulting} />
 			) : (
-				<Button isActive text="예약 하러가기" handleClick={toBooking} />
+				<Button isActive text="예약하기" handleClick={toBooking} />
 			)}
 		</SubscribeItemLayout>
 	);
