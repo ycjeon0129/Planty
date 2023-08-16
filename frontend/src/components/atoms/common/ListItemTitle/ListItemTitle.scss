@@ -4,7 +4,7 @@
 	max-width: 270px;
 	display: flex;
 	font-size: var.$h3;
-
+	// max-width: calc(100% - 70px);
 	a {
 		display: flex;
 		align-items: center;
@@ -15,5 +15,6 @@
 		vertical-align: middle;
 		white-space: nowrap;
 		text-overflow: ellipsis;
+		white-space: inherit;
 	}
 }

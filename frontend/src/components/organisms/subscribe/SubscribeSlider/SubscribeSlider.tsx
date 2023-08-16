@@ -11,6 +11,7 @@ import SubscribeListItem from '../SubscribeListItem/SubscribeListItem';
  */
 function SubscribeSlider() {
 	const [subscribes, setSubscribes] = useState<ISubscribe[] | null>(null);
+	console.log('data', subscribes);
 
 	const findSubscribes = async () => {
 		try {
