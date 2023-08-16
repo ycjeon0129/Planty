@@ -2,7 +2,7 @@ package com.planty.api.gm.booking.service;
 
 import com.planty.api.booking.response.BookingResponse;
 import com.planty.api.gm.booking.response.GmBookingResponse;
-import com.planty.common.exception.handler.ExceptionHandler;
+import com.planty.common.exception.handler.CustomException;
 import com.planty.common.util.SecurityUtil;
 import com.planty.db.entity.ConsultingBooking;
 import com.planty.db.entity.GmInfo;
@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.planty.common.exception.handler.ErrorCode.*;
 import static com.planty.common.util.LogCurrent.*;
 import static com.planty.common.util.LogCurrent.START;
 
@@ -32,14 +33,14 @@ public class GmBookingServiceImpl implements GmBookingService {
         log.info(logCurrent(getClassName(), getMethodName(), START));
         Long gid = SecurityUtil.getCurrentGid();
         GmInfo gm = gmInfoRepository.findByGid(gid)
-                .orElseThrow(() -> new NullPointerException(ExceptionHandler.GM_NOT_FOUND));
+                .orElseThrow(() -> new CustomException(GM_NOT_FOUND));
         boolean isSpid = true;
         if (spid == null) {
             isSpid = false;
         }
         if (isSpid) {   // 유효한 spid에 대한 요청인지 확인
             subscribeProductRepository.findBySpid(spid)
-                    .orElseThrow(() -> new NullPointerException(ExceptionHandler.PRODUCT_NOT_FOUND));
+                    .orElseThrow(() -> new CustomException(PRODUCT_NOT_FOUND));
         }
 
         List<GmBookingResponse> bookingList = new ArrayList<>();

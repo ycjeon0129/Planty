@@ -49,10 +49,9 @@ public class UserSubscribe{
     private Integer consultingRemainCnt;
 
     @Column(name = "start_date") // 구독 시작일
-    @CreationTimestamp
-    private LocalDate startDate;
+    private String startDate;
 
     @Column(name = "end_date", nullable = true) // 구독 종료일
-    private LocalDate endDate;
+    private String endDate;
 
 }

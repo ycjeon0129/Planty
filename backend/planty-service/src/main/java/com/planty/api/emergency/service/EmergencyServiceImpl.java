@@ -4,7 +4,7 @@ import com.planty.api.emergency.request.EmergencyConnectionRequest;
 import com.planty.api.emergency.response.ConnectionCountResponse;
 import com.planty.api.emergency.response.EmergencyResponse;
 import com.planty.api.emergency.response.EmergencySessionResponse;
-import com.planty.common.exception.handler.ExceptionHandler;
+import com.planty.common.exception.handler.CustomException;
 import com.planty.common.util.OpenViduUtil;
 import com.planty.common.util.SecurityUtil;
 import com.planty.common.util.TimeUtil;
@@ -26,6 +26,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static com.planty.common.exception.handler.ErrorCode.*;
 import static com.planty.common.util.LogCurrent.*;
 import static com.planty.common.util.LogCurrent.START;
 
@@ -48,10 +49,10 @@ public class EmergencyServiceImpl implements EmergencyService {
     public List<EmergencyResponse> findEmergencyList() throws ParseException {
         String email = SecurityUtil.getCurrentUserEmail();
         UserInfo userInfo = userInfoRepository.findByUserEmail(email)
-                .orElseThrow(() -> new NullPointerException(ExceptionHandler.USER_NOT_FOUND));
+                .orElseThrow(() -> new CustomException(USER_NOT_FOUND));
 
         List<EmergencyResponse> emergencyList = new ArrayList<>();
-        List<EmergencyLog> list = emergencyLogRepository.findByUid(userInfo);
+        List<EmergencyLog> list = emergencyLogRepository.findByUidAndStartTimeIsNotNull(userInfo);
 
         for(EmergencyLog item : list) {
             String timeTaken = TimeUtil.findTimeDiff(item.getStartTime(), item.getEndTime());
@@ -106,10 +107,10 @@ public class EmergencyServiceImpl implements EmergencyService {
     public EmergencySessionResponse initializeSession(int type) throws OpenViduJavaClientException, OpenViduHttpException, IllegalAccessException {
         Map<String, Object> params = new HashMap<>();
         UserInfo userInfo = userInfoRepository.findByUserEmail(SecurityUtil.getCurrentUserEmail())
-                .orElseThrow(() -> new NullPointerException(ExceptionHandler.USER_NOT_FOUND));
+                .orElseThrow(() -> new CustomException(USER_NOT_FOUND));
         if (type == 1 && userInfo.getEmergencyCount() < 1) {    // 사용자가 보유한 응급실 이용권이 없다면 화상 응급실 사용 불가
             log.info("user has not enough emergency ticket : {}", userInfo.getEmergencyCount());
-            throw new IllegalAccessException(ExceptionHandler.EMERGENCY_TICKET_NOT_ENOUGH);
+            throw new CustomException(EMERGENCY_TICKET_NOT_ENOUGH);
         }
         EmergencyLog emergencyInfo = EmergencyLog.builder()
                 .uid(userInfo)
@@ -134,16 +135,16 @@ public class EmergencyServiceImpl implements EmergencyService {
     public String createConnection(EmergencyConnectionRequest connectionInfo) throws OpenViduJavaClientException, OpenViduHttpException, IllegalAccessException {
         log.info(logCurrent(getClassName(), getMethodName(), START));
         EmergencyLog emergencyInfo = emergencyLogRepository.findByEid(connectionInfo.getEid())
-                .orElseThrow(() -> new NullPointerException(ExceptionHandler.EMERGENCY_NOT_FOUND));
+                .orElseThrow(() -> new CustomException(EMERGENCY_NOT_FOUND));
         if (!emergencyInfo.getUid().getUserEmail().equals(SecurityUtil.getCurrentUserEmail())) {
-            throw new IllegalAccessException(ExceptionHandler.EMERGENCY_UNAUTHORIZED);
+            throw new CustomException(EMERGENCY_UNAUTHORIZED);
         }
         Map<String, Object> params = new HashMap<>();
         params.put("eid", connectionInfo.getEid());
         params.put("sessionId", connectionInfo.getSessionId());
         String token = openViduUtil.createConnection(params);
         if (token == null) {
-            throw new NullPointerException(ExceptionHandler.EMERGENCY_SESSION_NOT_FOUND);
+            throw new CustomException(EMERGENCY_SESSION_NOT_FOUND);
         }
 
         log.info(logCurrent(getClassName(), getMethodName(), END));

@@ -4,7 +4,7 @@ import com.planty.api.embedded.response.UserSubscribeEmbeddedResponse;
 import com.planty.api.subscribe.request.UserSubscribeRequest;
 import com.planty.api.subscribe.response.NearConsultingResponse;
 import com.planty.api.subscribe.response.UserSubscribeDetailResponse;
-import com.planty.common.exception.handler.ExceptionHandler;
+import com.planty.common.exception.handler.CustomException;
 import com.planty.common.util.SecurityUtil;
 import com.planty.common.util.TimeUtil;
 import com.planty.db.entity.*;
@@ -12,7 +12,8 @@ import com.planty.db.repository.*;
 import com.planty.api.subscribe.response.UserSubscribeResponse;
 
 import java.text.ParseException;
-import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.*;
 
 import lombok.RequiredArgsConstructor;
@@ -20,6 +21,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import static com.planty.common.exception.handler.ErrorCode.*;
 import static com.planty.common.util.LogCurrent.*;
 
 @Slf4j
@@ -38,7 +40,7 @@ public class SubscribeServiceImpl implements SubscribeService {
         log.info(logCurrent(getClassName(), getMethodName(), START));
         String email = SecurityUtil.getCurrentUserEmail();
         UserInfo user = userInfoRepository.findByUserEmail(email)
-                .orElseThrow(() -> new NullPointerException(ExceptionHandler.USER_NOT_FOUND));
+                .orElseThrow(() -> new CustomException(USER_NOT_FOUND));
 
         List<UserSubscribeResponse> subscribeList = new ArrayList<>();
 
@@ -58,11 +60,12 @@ public class SubscribeServiceImpl implements SubscribeService {
 
         for(ViewUserSubscribe item : list) {
             boolean end = item.getEndDate() != null;
+            String endDate = end? item.getEndDate() : TimeUtil.findEndDate(item.getStartDate(), item.getPeriod());
             NearConsultingResponse nearConsultingInfo = new NearConsultingResponse(item.getCid(), item.getCbDate(), item.getCbCancel(), item.getCbActive(), item.getCbTime());
             UserSubscribeResponse sub = UserSubscribeResponse.builder()
                     .sid(item.getSid())
                     .startDate(item.getStartDate())
-                    .endDate(TimeUtil.findEndDate(item.getStartDate(), item.getPeriod()))
+                    .endDate(endDate)
                     .end(end)
                     .title(item.getSpName())
                     .thumbnail(item.getThumbnail())
@@ -78,37 +81,39 @@ public class SubscribeServiceImpl implements SubscribeService {
     }
 
     @Override // 사용자 구독 상세 조회
-    public UserSubscribeDetailResponse getUserSubscribeDetail(Long sid) {
+    public UserSubscribeDetailResponse getUserSubscribeDetail(Long sid) throws ParseException{
         log.info(logCurrent(getClassName(), getMethodName(), START));
         String email = SecurityUtil.getCurrentUserEmail();
         UserInfo user = userInfoRepository.findByUserEmail(email)
-                .orElseThrow(() -> new NullPointerException(ExceptionHandler.USER_NOT_FOUND));
+                .orElseThrow(() -> new CustomException(USER_NOT_FOUND));
 
         ViewUserSubscribe sub = viewUserSubscribeRepository.findByUidAndSid(user.getUid(), sid)
-                .orElseThrow(() -> new NullPointerException(ExceptionHandler.USER_SID_NOT_FOUND));
+                .orElseThrow(() -> new CustomException(USER_SID_NOT_FOUND));
 
-        List<PlantData> plantDataList = plantDataRepository.findByArduinoId(sub.getArduinoId());
+        List<PlantDataAvgInterface> plantDataList = plantDataRepository.findDateAvgByArduinoId(sub.getArduinoId());
         List<UserSubscribeEmbeddedResponse> embeddedList = new ArrayList<>();
 
-        for(PlantData item : plantDataList) {
+        for(PlantDataAvgInterface item : plantDataList) {
             UserSubscribeEmbeddedResponse embedded = UserSubscribeEmbeddedResponse.builder()
-                    .date(item.getDate())
-                    .time(item.getTime())
-                    .temp(item.getTemp())
-                    .humidity(item.getHumidity())
-                    .soil(item.getSoil())
+                    .date(item.getDate().substring(2))
+                    .temp(Math.round((item.getTemp()*100) / 100))
+                    .humidity(Math.round((item.getHumidity()*100) / 100))
+                    .soil(Math.round((item.getSoil()*100) / 100))
                     .build();
             embeddedList.add(embedded);
         }
 
         NearConsultingResponse nearConsultingInfo = new NearConsultingResponse(sub.getCid(), sub.getCbDate(), sub.getCbCancel(), sub.getCbActive(), sub.getCbTime());
 
+        boolean end = sub.getEndDate() != null;
+        String endDate = end? sub.getEndDate() : TimeUtil.findEndDate(sub.getStartDate(), sub.getPeriod());
+
         log.info(logCurrent(getClassName(), getMethodName(), END));
         return UserSubscribeDetailResponse.builder()
                 .sid(sub.getSid())
                 .startDate(sub.getStartDate())
-                .endDate(sub.getEndDate())
-                .end(sub.getEndDate() != null)
+                .endDate(endDate)
+                .end(end)
                 .title(sub.getSpName())
                 .thumbnail(sub.getThumbnail())
                 .plant(sub.getPiName())
@@ -121,18 +126,18 @@ public class SubscribeServiceImpl implements SubscribeService {
     }
 
     @Override // 사용자 구독 등록
-    public boolean regUserSubscribe(UserSubscribeRequest UserSubscribeRequest) {
+    public boolean regUserSubscribe(UserSubscribeRequest userSubscribeRequest) {
         log.info(logCurrent(getClassName(), getMethodName(), START));
         String email = SecurityUtil.getCurrentUserEmail();
         UserInfo user = userInfoRepository.findByUserEmail(email)
-                .orElseThrow(() -> new NullPointerException(ExceptionHandler.USER_NOT_FOUND));
+                .orElseThrow(() -> new CustomException(USER_NOT_FOUND));
 
-        SubscribeProduct product = subscribeProductRepository.findBySpid(UserSubscribeRequest.getSpid())
-                .orElseThrow(() -> new NullPointerException(ExceptionHandler.PRODUCT_NOT_FOUND));
+        SubscribeProduct product = subscribeProductRepository.findBySpid(userSubscribeRequest.getSpid())
+                .orElseThrow(() -> new CustomException(PRODUCT_NOT_FOUND));
 
         if(userSubscribeRepository.findByUidAndSpidAndEndDateIsNull(user, product).isPresent()) { // EndDateIsNull -> 현재 구독 상품 중에 해당 상품이 있는지 확인
             log.info(logCurrent(getClassName(), getMethodName(), END));
-            return false;
+            throw new CustomException(SUBSCRIBE_PRODUCT_ALREADY_EXIST);
         }
 
         UserSubscribe userSubscribe = UserSubscribe.builder()
@@ -152,19 +157,23 @@ public class SubscribeServiceImpl implements SubscribeService {
         log.info(logCurrent(getClassName(), getMethodName(), START));
         String email = SecurityUtil.getCurrentUserEmail();
         UserInfo user = userInfoRepository.findByUserEmail(email)
-                .orElseThrow(() -> new NullPointerException(ExceptionHandler.USER_NOT_FOUND));
+                .orElseThrow(() -> new CustomException(USER_NOT_FOUND));
 
         UserSubscribe userSubscribe = userSubscribeRepository.findByUidAndSid(user,sid)
-                .orElseThrow(() -> new NullPointerException(ExceptionHandler.USER_SID_NOT_FOUND));
+                .orElseThrow(() -> new CustomException(USER_SID_NOT_FOUND));
 
-        if (userSubscribe != null) {
-            userSubscribe.setEndDate(LocalDate.now());
-            userSubscribeRepository.save(userSubscribe); // delete -> save : endDate update
+        if (userSubscribe == null) {
             log.info(logCurrent(getClassName(), getMethodName(), END));
-            return true;
+            throw new CustomException(USER_SID_NOT_FOUND);
         }
 
+        ZoneId zoneId = ZoneId.of("Asia/Seoul");
+        ZonedDateTime zonedDateTime = ZonedDateTime.now( zoneId );
+        String output = zonedDateTime.toString().split("T")[0];
+        userSubscribe.setEndDate(output);
+        userSubscribeRepository.save(userSubscribe); // delete -> save : endDate update
         log.info(logCurrent(getClassName(), getMethodName(), END));
-        return false;
+        return true;
+
     }
 }

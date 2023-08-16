@@ -6,7 +6,7 @@ import com.planty.api.subscribe.response.UserSubscribeDetailResponse;
 import com.planty.api.subscribeProduct.request.SubscribeProductRequest;
 import com.planty.api.subscribeProduct.response.SubscribeProductDetailResponse;
 import com.planty.api.subscribeProduct.response.SubscribeProductResponse;
-import com.planty.common.exception.handler.ExceptionHandler;
+import com.planty.common.exception.handler.CustomException;
 import com.planty.common.util.SecurityUtil;
 import com.planty.db.entity.*;
 import com.planty.db.repository.*;
@@ -18,6 +18,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.planty.common.exception.handler.ErrorCode.*;
 import static com.planty.common.util.LogCurrent.*;
 import static com.planty.common.util.LogCurrent.START;
 @Slf4j
@@ -58,7 +59,7 @@ public class SubscribeProductServiceImpl implements SubscribeProductService {
         log.info(logCurrent(getClassName(), getMethodName(), START));
 
         SubscribeProduct item = subscribeProductRepository.findBySpid(spid)
-                .orElseThrow(() -> new NullPointerException(ExceptionHandler.PRODUCT_NOT_FOUND));
+                .orElseThrow(() -> new CustomException(PRODUCT_NOT_FOUND));
 
         log.info(logCurrent(getClassName(), getMethodName(), END));
         return SubscribeProductDetailResponse.builder()
@@ -84,12 +85,12 @@ public class SubscribeProductServiceImpl implements SubscribeProductService {
     public boolean regSubscribeProduct(SubscribeProductRequest spr) {
         log.info(logCurrent(getClassName(), getMethodName(), START));
         GmInfo gm = gmInfoRepository.findByGid(spr.getGid())
-                .orElseThrow(() -> new NullPointerException(ExceptionHandler.GM_NOT_FOUND));
+                .orElseThrow(() -> new CustomException(GM_NOT_FOUND));
         if(!(spr.getSize() >= 0 && spr.getSize() <= 2
         && spr.getPlace() >= 0 && spr.getPlace() <= 2
         && spr.getEatable() >= 0 && spr.getEatable() <= 1
         && spr.getLevel() >= 1 && spr.getLevel() <= 3)) {
-            return false;
+            throw new CustomException(PRODUCT_FILTER_NOT_FOUND);
         }
         PlantInfo plant = PlantInfo.builder()
                 .name(spr.getPlantName())

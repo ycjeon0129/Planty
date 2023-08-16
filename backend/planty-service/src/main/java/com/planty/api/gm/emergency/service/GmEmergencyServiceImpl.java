@@ -4,7 +4,7 @@ import com.planty.api.consulting.response.UserConsultingResponse;
 import com.planty.api.emergency.response.EmergencyResponse;
 import com.planty.api.gm.consulting.service.GmConsultingService;
 import com.planty.api.gm.emergency.request.GmEmergencyRecordRequest;
-import com.planty.common.exception.handler.ExceptionHandler;
+import com.planty.common.exception.handler.CustomException;
 import com.planty.common.model.SessionTokenResponse;
 import com.planty.common.util.OpenViduUtil;
 import com.planty.common.util.SecurityUtil;
@@ -25,6 +25,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static com.planty.common.exception.handler.ErrorCode.*;
+
 @Slf4j
 @Service
 @RequiredArgsConstructor
@@ -44,7 +46,7 @@ public class GmEmergencyServiceImpl implements GmEmergencyService {
     public List<EmergencyResponse> findEmergencyList() throws ParseException {
         Long gid = SecurityUtil.getCurrentGid();
         GmInfo gm = gmInfoRepository.findByGid(gid)
-                .orElseThrow(() -> new NullPointerException(ExceptionHandler.GM_NOT_FOUND));
+                .orElseThrow(() -> new CustomException(GM_NOT_FOUND));
 
         List<EmergencyResponse> emergencyList = new ArrayList<>();
         List<EmergencyLog> list = emergencyLogRepository.findByGid(gm);
@@ -74,11 +76,11 @@ public class GmEmergencyServiceImpl implements GmEmergencyService {
     @Transactional
     public SessionTokenResponse findSessionToken(Long eid) throws OpenViduJavaClientException, OpenViduHttpException, IllegalAccessException {
         EmergencyLog emergencyInfo = emergencyLogRepository.findByEid(eid)
-                .orElseThrow(() -> new NullPointerException(ExceptionHandler.EMERGENCY_NOT_FOUND));
+                .orElseThrow(() -> new CustomException(EMERGENCY_NOT_FOUND));
         Long gid = SecurityUtil.getCurrentGid();
         if (emergencyInfo.getGid() == null) {   // 해당 응급실에 대해 첫 GM 응답일 경우
             GmInfo gmInfo = gmInfoRepository.findByGid(gid)
-                    .orElseThrow(() -> new NullPointerException(ExceptionHandler.GM_NOT_FOUND));
+                    .orElseThrow(() -> new CustomException(GM_NOT_FOUND));
             emergencyInfo.setGid(gmInfo);
             emergencyLogRepository.save(emergencyInfo);
 
@@ -100,7 +102,7 @@ public class GmEmergencyServiceImpl implements GmEmergencyService {
             tokenResponse.setToken(token);
             return tokenResponse;
         } else {    // 해당 요청을 먼저 수락한 GM이 아닌 다른 GM인 경우
-            throw new IllegalAccessException(ExceptionHandler.EMERGENCY_ALREADY_EXIST);
+            throw new CustomException(EMERGENCY_ALREADY_EXIST);
         }
     }
 
@@ -108,12 +110,12 @@ public class GmEmergencyServiceImpl implements GmEmergencyService {
     @Transactional
     public void deleteSession(GmEmergencyRecordRequest recordInfo) throws IllegalAccessException {
         EmergencyLog emergencyInfo = emergencyLogRepository.findByEid(recordInfo.getEid())
-                .orElseThrow(() -> new NullPointerException(ExceptionHandler.EMERGENCY_NOT_FOUND));
+                .orElseThrow(() -> new CustomException(EMERGENCY_NOT_FOUND));
         if (emergencyInfo.getGid().getGid() != SecurityUtil.getCurrentGid()) {
-            throw new IllegalAccessException(ExceptionHandler.EMERGENCY_UNAUTHORIZED);
+            throw new CustomException(EMERGENCY_UNAUTHORIZED);
         }
         if (emergencyInfo.getContent() != null) {   // 이미 존재하는 응급실 로그인 경우
-            throw new IllegalAccessException(ExceptionHandler.EMERGENCY_ALREADY_EXIST);
+            throw new CustomException(EMERGENCY_ALREADY_EXIST);
         }
         emergencyInfo.setName(recordInfo.getName());
         emergencyInfo.setContent(recordInfo.getContent());
@@ -123,7 +125,7 @@ public class GmEmergencyServiceImpl implements GmEmergencyService {
         emergencyLogRepository.save(emergencyInfo);
 
         UserInfo userInfo = userInfoRepository.findByUid(emergencyInfo.getUid().getUid())
-                .orElseThrow(() -> new NullPointerException(ExceptionHandler.USER_NOT_FOUND));
+                .orElseThrow(() -> new CustomException(USER_NOT_FOUND));
         userInfo.setEmergencyCount( (userInfo.getEmergencyCount() - 1 ) );
         userInfoRepository.save(userInfo);
     }
@@ -131,7 +133,7 @@ public class GmEmergencyServiceImpl implements GmEmergencyService {
     @Override
     public void setStartTime(Long eid) {
         EmergencyLog emergencyInfo = emergencyLogRepository.findByEid(eid)
-                .orElseThrow(() -> new NullPointerException(ExceptionHandler.EMERGENCY_NOT_FOUND));
+                .orElseThrow(() -> new CustomException(EMERGENCY_NOT_FOUND));
         emergencyInfo.setStartTime(TimeUtil.findCurrentTimestamp());
         emergencyLogRepository.save(emergencyInfo);
     }
