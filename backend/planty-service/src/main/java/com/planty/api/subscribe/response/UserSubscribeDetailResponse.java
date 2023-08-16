@@ -20,6 +20,8 @@ public class UserSubscribeDetailResponse {
 
     private String endDate; // 구독 종료일
 
+    private Boolean end;  // 종료 여부. 종료(0), 미종료(0)
+
     @NotNull
     private String title; // 구독 상품명
 

@@ -108,6 +108,7 @@ public class SubscribeServiceImpl implements SubscribeService {
                 .sid(sub.getSid())
                 .startDate(sub.getStartDate())
                 .endDate(sub.getEndDate())
+                .end(sub.getEndDate() != null)
                 .title(sub.getSpName())
                 .thumbnail(sub.getThumbnail())
                 .plant(sub.getPiName())
