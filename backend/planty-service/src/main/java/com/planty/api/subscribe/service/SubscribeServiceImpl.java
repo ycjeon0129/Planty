@@ -87,16 +87,15 @@ public class SubscribeServiceImpl implements SubscribeService {
         ViewUserSubscribe sub = viewUserSubscribeRepository.findByUidAndSid(user.getUid(), sid)
                 .orElseThrow(() -> new NullPointerException(ExceptionHandler.USER_SID_NOT_FOUND));
 
-        List<PlantData> plantDataList = plantDataRepository.findByArduinoId(sub.getArduinoId());
+        List<PlantDataAvgInterface> plantDataList = plantDataRepository.findDateAvgByArduinoId(sub.getArduinoId());
         List<UserSubscribeEmbeddedResponse> embeddedList = new ArrayList<>();
 
-        for(PlantData item : plantDataList) {
+        for(PlantDataAvgInterface item : plantDataList) {
             UserSubscribeEmbeddedResponse embedded = UserSubscribeEmbeddedResponse.builder()
-                    .date(item.getDate())
-                    .time(item.getTime())
-                    .temp(item.getTemp())
-                    .humidity(item.getHumidity())
-                    .soil(item.getSoil())
+                    .date(item.getDate().substring(2))
+                    .temp(Math.round((item.getTemp()*100) / 100))
+                    .humidity(Math.round((item.getHumidity()*100) / 100))
+                    .soil(Math.round((item.getSoil()*100) / 100))
                     .build();
             embeddedList.add(embedded);
         }
