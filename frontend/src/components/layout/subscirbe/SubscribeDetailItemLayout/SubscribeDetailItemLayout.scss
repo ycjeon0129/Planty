@@ -8,11 +8,24 @@
 	padding: 15px;
 	border-radius: var.$rd-sm;
 	background-color: var.$white;
-
+	
 	#top {
 		@include flex-row;
 		@include flex-align(between, center);
 		margin-bottom: 10px;
+		align-items: baseline;
+
+		.badge-container {
+			min-width: 60px;
+		}
+		list-item-title {
+			// max-width: calc(100% - 70px);
+			overflow: hidden;
+			display: inline;
+			vertical-align: middle;
+			text-overflow: ellipsis;
+			white-space: inherit;
+		}
 	}
 
 	#bottom {
