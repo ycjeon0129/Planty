@@ -10,11 +10,14 @@ import { useRecoilState } from 'recoil';
 import consultingSessionState from 'recoil/consultingSession';
 import useMovePage from 'hooks/common/useMovePage';
 import { createEmergencyConnectionApi, createEmergencySessionIdApi } from 'utils/api/openVidu';
+import useUser from 'hooks/common/useUser';
 
 function EmergencyParticipatePage() {
 	const { movePage } = useMovePage();
 	const [, setConsultingSession] = useRecoilState(consultingSessionState);
 	const { type } = useParams(); // 채팅 0, 화상 1
+	const [user, setUser] = useUser();
+	console.log(user);
 
 	// 세션 아이디로 openVidu 연결 토큰 생성
 	const createConnection = async (sessionInfo: IEmergencySessionInfo) => {
@@ -48,8 +51,33 @@ function EmergencyParticipatePage() {
 		}
 	};
 
+	// const participate = () => {
+	// 	if (user) {
+	// 		const updatedUser = { ...user, emergencyCount: user.emergencyCount - 1 };
+
+	// 		createSessionId();
+
+	// 		// updatedUser를 활용하여 필요한 작업 수행
+	// 		console.log(updatedUser.emergencyCount); // 변경된 값을 사용
+	// 		user.emergencyCount = updatedUser.emergencyCount;
+	// 		// 원래 user 객체에 변경 사항을 적용하지 않음
+	// 		// user = updatedUser; // 이런 식으로 할당하려면 user가 let 변수여야 함
+	// 	}
+	// };
+
 	const participate = () => {
-		createSessionId();
+		if (user && user.emergencyCount > 0) {
+			createSessionId();
+			setUser((prevUser) => {
+				if (prevUser) {
+					return {
+						...prevUser,
+						emergencyCount: prevUser.emergencyCount - 1,
+					};
+				}
+				return prevUser;
+			});
+		}
 	};
 
 	return (

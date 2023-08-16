@@ -10,10 +10,11 @@
 	padding: var.$pd-sm;
 	text-align: center;
 	font-size: var.$h5;
-
+	
 	&.primary {
 		@include buttonColor(var.$primary);
 		width: 100%;
+		
 	}
 
 	&.disabled {
