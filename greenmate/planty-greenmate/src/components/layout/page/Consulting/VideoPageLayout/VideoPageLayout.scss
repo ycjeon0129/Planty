@@ -2,6 +2,18 @@
 @import 'styles/mixins/flex';
 @import 'styles/mixins/grid';
 
+#header {
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    button {
+        padding: 10px 20px;
+    }
+
+}
+
 #video-page-layout-container {
     position: relative;
     flex-grow: 1;
@@ -9,6 +21,8 @@
 
     grid-template-columns: 1fr;
     grid-template-rows: 1fr;
+
+
 
     #greenmate-video,
     #user-video {
@@ -23,7 +37,6 @@
             fill: var.$black-300;
         }
     }
-
 
 
     #greenmate-video {

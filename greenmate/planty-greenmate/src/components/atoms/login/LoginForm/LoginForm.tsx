@@ -43,8 +43,6 @@ function LoginForm() {
 
 		try {
 			console.log('로그인 시도 :', body);
-			// const response = await loginApi(body);
-			// console.log(response);
 
 			// 로그인 성공 시
 			// TODO : 일단 더미 로그인.

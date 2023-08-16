@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { BrowserRouter, Navigate, Outlet, Route, Routes } from 'react-router-dom';
 import SideBar from 'components/organisms/common/SideBar/SideBar';
 import Develop from 'pages/Develop';
@@ -8,7 +8,6 @@ import ErrorPage from 'pages/Etc/ErrorPage';
 import DashBoardPage from 'pages/DashBoard/DashBoardPage';
 import LoadingPage from 'pages/Consulting/LoadingPage';
 import ChattingPage from 'pages/Consulting/ChattingPage';
-import VideoPage from 'pages/Consulting/VideoPage';
 import ListPage from 'pages/Subscribes/ListPage';
 import SubscribesPage from 'pages/Subscribes/SubscribesPage';
 import CalendarPage from 'pages/Subscribes/CalendarPage';
@@ -23,11 +22,25 @@ import ConsultingList from 'components/organisms/history/ConsultingList/Consulti
 import ScrollToTop from 'components/atoms/common/ScrollToTop/ScrollToTop';
 import { Toaster } from 'react-hot-toast';
 import { useRecoilState } from 'recoil';
-import { authState } from 'recoil/store';
+import { authState, consultingSessionState, modalControlState } from 'recoil/store';
 import LocalStorage from 'constants/storage/LocalStorage';
+import VideoSessionPage from 'pages/Consulting/VideoSessionModalPage';
+import ConsultingCompletePage from 'pages/Consulting/ConsultingCompletePage';
 import PrivateRoute from './PrivateRoute';
 
 function AppRouter() {
+	const [consultingSession] = useRecoilState(consultingSessionState);
+	const [, setModalControl] = useRecoilState(modalControlState);
+	const [open, setOpen] = useState(false);
+	const handleOpen = () => setOpen(true);
+	const handleClose = () => setOpen(false);
+
+	const control = {
+		open,
+		handleOpen,
+		handleClose,
+	};
+
 	const [auth, setAuth] = useRecoilState(authState);
 
 	useEffect(() => {
@@ -38,9 +51,15 @@ function AppRouter() {
 		}
 	}, [setAuth]);
 
+	useEffect(() => {
+		console.log('현재 consultingSession', consultingSession);
+		setModalControl(control);
+	}, [consultingSession]);
+
 	return (
 		<div className="container">
 			<BrowserRouter basename="/admin">
+				<VideoSessionPage open={open} handleClose={handleClose} />
 				<SideBar />
 				<Routes>
 					{/* 로그인이 필요하지 않은 경로 */}
@@ -54,7 +73,7 @@ function AppRouter() {
 							<Route path="" element={<Navigate to="error" />} />
 							<Route path="loading" element={<LoadingPage />} />
 							<Route path="chatting" element={<ChattingPage />} />
-							<Route path="video" element={<VideoPage />} />
+							<Route path="complete" element={<ConsultingCompletePage />} />
 						</Route>
 						<Route path="/subscribes" element={<SubscribesPage />}>
 							<Route path="" element={<Navigate to="list" />} />

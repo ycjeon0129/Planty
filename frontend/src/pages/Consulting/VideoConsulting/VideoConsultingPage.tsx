@@ -17,7 +17,7 @@ import CustomAlert from 'components/organisms/common/CustomAlert/CustomAlert';
 
 function VideoConsultingPage() {
 	const [user] = useUser();
-	const [consultingSession] = useRecoilState(consultingSessionState); // 현재 요청 정보 (webRTCType, token)
+	const [consultingSession, setConsultingSession] = useRecoilState(consultingSessionState); // 현재 요청 정보 (webRTCType, token)
 	const { movePage } = useMovePage();
 	const [session, setSession] = useState<Session | undefined>(undefined); // 가상 룸
 	const [subscriber, setSubscriber] = useState<Subscriber | undefined>(undefined);
@@ -60,16 +60,31 @@ function VideoConsultingPage() {
 		}
 	};
 
+	const handleExitSignal = (ses: Session) => {
+		toast.success('상대방이 컨설팅을 종료했습니다.');
+		ses.off('streamCreated');
+		ses.off('streamDestroyed');
+		ses.off('signal:exit');
+		ses.disconnect();
+		setSession(undefined);
+		setConsultingSession(null);
+		movePage('/consulting/complete', null);
+	};
+
 	/**
 	 * 컨설팅 메뉴 - 종료 버튼 클릭시
 	 */
 	const exitConsulting = () => {
 		const onConfirm = () => {
 			if (session) {
-				toast.success('화상컨설팅을 종료합니다.');
-				session.off('streamCreated', handleStreamCreated);
-				session.off('streamDestroyed', handleStreamDestroyed);
+				toast.success('컨설팅을 종료합니다.');
+				session.signal({ type: 'exit' });
+				session.off('streamCreated');
+				session.off('streamDestroyed');
+				session.off('signal:exit');
 				session.disconnect();
+				setSession(undefined);
+				setConsultingSession(null);
 			} else {
 				toast.success('종료된 세션입니다.');
 			}
@@ -92,7 +107,6 @@ function VideoConsultingPage() {
 			const newSession = OV.initSession();
 			setSession(newSession);
 
-			// const token = await getToken();
 			const { token } = consultingSession as IConsultingSession;
 			await newSession.connect(token, { clientData: user?.userName });
 
@@ -119,15 +133,14 @@ function VideoConsultingPage() {
 		if (session) {
 			session.on('streamCreated', handleStreamCreated);
 			session.on('streamDestroyed', handleStreamDestroyed);
+			session.on('signal:exit', () => handleExitSignal(session));
 		}
 
 		return () => {
 			if (session) {
-				session.off('streamCreated', handleStreamCreated);
-				session.off('streamDestroyed', handleStreamDestroyed);
-
-				// 상담이 끝나면 세션 종료
-				// session.disconnect();
+				session.off('streamCreated');
+				session.off('streamDestroyed');
+				session.off('signal:exit');
 			}
 		};
 	});

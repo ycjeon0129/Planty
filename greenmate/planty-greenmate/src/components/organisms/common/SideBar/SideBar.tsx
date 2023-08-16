@@ -13,12 +13,13 @@ import PlantyLogo from 'assets/icons/logo/PlantyLogo.svg';
 import useMovePage from 'hooks/useMovePage';
 import { useRecoilState } from 'recoil';
 import './SideBar.scss';
-import { authState, consultingSessionState } from 'recoil/store';
+import { authState, consultingSessionState, modalControlState } from 'recoil/store';
 import RequestArea from '../RequestArea/RequestArea';
 
 function SideBar() {
 	const [auth] = useRecoilState(authState);
 	const [consultingSession] = useRecoilState(consultingSessionState);
+	const [modalControl] = useRecoilState(modalControlState);
 	const { movePage } = useMovePage();
 
 	if (useSidebarRender()) {
@@ -37,7 +38,8 @@ function SideBar() {
 							<MenuItem
 								img={Ing}
 								text="현재 진행중인 컨설팅"
-								handleClick={() => movePage(consultingSession ? '/consulting/video' : '/consulting/chat', null)}
+								// handleClick={() => movePage(consultingSession ? '/consulting/video' : '/consulting/chat', null)}
+								handleClick={() => modalControl?.handleOpen()}
 								isIng
 							/>
 						) : (
