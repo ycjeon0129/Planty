@@ -1,0 +1,64 @@
+@import 'styles/base/variable';
+.mypage-counsulting-detail-container {
+  border: 1.5px solid $border-100;
+	border-radius: $rd-sm;
+	.title {
+		display: flex;
+		font-size: $h3;
+		color: $black-400;
+		align-items: center;
+		margin: 15px;
+		position: relative;
+		.flexgrow1 {
+      width: 70%;
+		}
+		.flexgrow2 {
+      width: 30%;
+      display: flex;
+      justify-content: center;
+		}
+	}
+  .grey-box {
+		background-color: $border-bg;
+		border-radius: $rd-sm;
+		margin: 20px;
+		// padding-top: 15px;
+
+		.content-box {
+			padding: 15px;
+
+			.dates {
+				display: flex;
+				margin: 10px;
+				margin-top: 3px;
+
+				.leftdate {
+					color: $black-400;
+					font-size: $h5;
+				}
+
+				.rightdate {
+					color: $black-300;
+					margin-left: 15px;
+					font-size: $h5;
+					font-weight: normal;
+				}
+			}
+
+			.content {
+				display: flex;
+				margin: 10px;
+				margin-top: 3px;
+				margin-left: 5px;
+				color: $black-300;
+				font-size: $h5;
+				font-weight: normal;
+			}
+		}
+	}
+
+	.h3 {
+		font-size: $h4;
+		color: $black-500;
+	}
+}
