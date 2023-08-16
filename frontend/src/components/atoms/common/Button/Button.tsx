@@ -8,7 +8,11 @@ import './Button.scss';
  * @param handleClick 버튼을 클릭했을 때의 동작
  */
 function Button({ isActive, text, handleClick }: { isActive: boolean; text: string; handleClick: () => void }) {
-	const className = classnames('button-container', { primary: isActive, disabled: !isActive });
+	const className = classnames('button-container', {
+		primary: isActive,
+		disabled: !isActive,
+		'primary-outline': text === '예약하기',
+	});
 	return (
 		<button type="button" className={className} onClick={handleClick}>
 			{text}
