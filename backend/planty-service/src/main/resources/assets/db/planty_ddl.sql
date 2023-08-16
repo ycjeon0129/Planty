@@ -107,7 +107,7 @@ CREATE TABLE IF NOT EXISTS `planty`.`subscribe_product` (
   `name` VARCHAR(128) NOT NULL COMMENT '구독 상품명',
   `period` INT NOT NULL COMMENT '구독 기간 (주)',
   `consulting_cnt` INT UNSIGNED NOT NULL DEFAULT '0' COMMENT '컨설팅 횟수',
-  `thumbnail` VARCHAR(256) NULL DEFAULT NULL COMMENT '썸네일 이미지 : CDN 링크',
+  `thumbnail` VARCHAR(1024) NULL DEFAULT NULL COMMENT '썸네일 이미지 : CDN 링크',
   `description` VARCHAR(256) NULL DEFAULT NULL COMMENT '상세설명 : CDN 링크',
   `level` INT UNSIGNED NOT NULL COMMENT '구독 상품 난이도, level : 1~5',
   `price` INT NOT NULL COMMENT '구독 상품 가격',
