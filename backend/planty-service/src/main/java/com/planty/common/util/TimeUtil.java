@@ -5,8 +5,12 @@ import lombok.extern.slf4j.Slf4j;
 import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import java.util.Date;
+import java.time.Duration;
+import java.time.LocalTime;
 
 @Slf4j
 public class TimeUtil {
@@ -14,6 +18,7 @@ public class TimeUtil {
     public static String findDateOnly(String timestamp) {
         return timestamp.substring(0, 10);
     }
+
     public static String findTimeDiff(String start, String end) throws ParseException {
 
         StringBuilder sb = new StringBuilder();
@@ -58,5 +63,17 @@ public class TimeUtil {
         return new SimpleDateFormat("yyyy-MM-dd")
                 .format(cal.getTime())
                 .toString();
+    }
+
+    public static int findMinutesDiff(String ago) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        LocalTime now = LocalTime.now();
+        LocalTime req = LocalTime.parse(ago, formatter);
+
+        Duration duration = Duration.between(req, now);
+
+        int diff = (int) duration.toMinutes();
+
+        return diff;
     }
 }

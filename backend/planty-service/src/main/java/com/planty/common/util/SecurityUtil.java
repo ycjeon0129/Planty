@@ -16,7 +16,7 @@ public class SecurityUtil {
 //        if (authentication == null || authentication.getName() == null) {
 ////            throw new RuntimeException("No authentication information.");
 //        }
-        return "ssafy@gmail.com";
+        return "sunflower1@gmail.com";
 //        return authentication.getName();
     }
 

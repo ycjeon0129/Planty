@@ -43,6 +43,9 @@ public class EmergencyLog implements Serializable {
     @Column(name = "content") // 상담 내용
     private String content;
 
+    @Column(name = "request_time") // 응급실 요청 시간
+    private String requestTime;
+
     @Column(name = "start_time") // 실제 시작 시간
     private String startTime;
 
