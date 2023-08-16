@@ -54,6 +54,7 @@ function BookingListItem({ booking }: { booking: IBooking }) {
 			// 참여 화면으로 전달할 컨설팅 정보
 			const consultingParticipateInfo = {
 				cid: booking.cid,
+				sid: booking.sid,
 				title: booking.title,
 				greenmate: booking.greenmate,
 				date: booking.date,

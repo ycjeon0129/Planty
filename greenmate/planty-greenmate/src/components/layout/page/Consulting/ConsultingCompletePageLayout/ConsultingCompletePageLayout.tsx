@@ -9,7 +9,8 @@ function ConsultingCompletePageLayout({ children }: { children: ReactNode[] }) {
 				{children[1]}
 				{children[2]}
 			</div>
-			<div id="return-button">{children[3]}</div>
+			<div id="advice-input">{children[3]}</div>
+			<div id="return-button">{children[4]}</div>
 		</div>
 	);
 }

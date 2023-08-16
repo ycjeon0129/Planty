@@ -1,5 +1,5 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from 'react';
-// import { OpenVidu, Session, Publisher, Device, Subscriber, StreamManager } from 'openvidu-browser';
 import OpenViduVideo from 'components/atoms/consulting/OpenViduVideo/OpenViduVideo';
 import VideoConsultingPageLayout from 'components/layout/Page/VideoConsultingPageLayout/VideoConsultingPageLayout';
 import VideoConsultingMenu from 'components/organisms/consulting/VideoConsultingMenu/VideoConsultingMenu';
@@ -14,19 +14,27 @@ import { IConsultingSession } from 'types/common/request';
 import useUser from 'hooks/common/useUser';
 import { toast } from 'react-hot-toast';
 import CustomAlert from 'components/organisms/common/CustomAlert/CustomAlert';
+import { findEmbeddedInfoByCidApi } from 'utils/api/consulting';
+import { IEmbeddedInfo } from 'types/domain/subscribe';
+import PlantChart from 'components/organisms/subscribe/PlantChart/PlantChart';
 
 function VideoConsultingPage() {
+	// common
 	const [user] = useUser();
-	const [consultingSession, setConsultingSession] = useRecoilState(consultingSessionState); // 현재 요청 정보 (webRTCType, token)
 	const { movePage } = useMovePage();
+	const [isLoading, setLoading] = useState<boolean>(true);
+	// WebRTC
+	const [consultingSession, setConsultingSession] = useRecoilState(consultingSessionState); // 현재 진행중인 컨설팅 정보 (webRTCType, token)
 	const [session, setSession] = useState<Session | undefined>(undefined); // 가상 룸
 	const [subscriber, setSubscriber] = useState<Subscriber | undefined>(undefined);
 	const [publisher, setPublisher] = useState<Publisher | undefined>(undefined);
 	const [webcamEnabled, setWebcamEnabled] = useState<boolean>(true);
 	const [microphoneEnabled, setMicrophoneEnabled] = useState<boolean>(true);
+	// 구독 컨설팅 (임베디드)
 	const [chartDisplayOn, setChartDisplayOn] = useState<boolean>(false);
-	const [isLoading, setLoading] = useState<boolean>(true);
+	const [embeddedInfo, setEmbeddedInfo] = useState<IEmbeddedInfo[]>([]);
 
+	// ########컨설팅 메뉴 토글 onClick 함수 선언########
 	const toggleMicrophone = () => {
 		if (publisher) {
 			const newMicrophoneState = !microphoneEnabled;
@@ -47,6 +55,7 @@ function VideoConsultingPage() {
 		setChartDisplayOn(!chartDisplayOn);
 	};
 
+	// ########스트림 이벤트 핸들러 선언########
 	const handleStreamCreated = (event: StreamEvent) => {
 		if (session) {
 			const newSubscriber = session.subscribe(event.stream, undefined);
@@ -60,6 +69,9 @@ function VideoConsultingPage() {
 		}
 	};
 
+	/**
+	 * 상대방으로부터 exit signal을 받았을 때의 로직. (컨설팅 종료)
+	 */
 	const handleExitSignal = (ses: Session) => {
 		toast.success('상대방이 컨설팅을 종료했습니다.');
 		ses.off('streamCreated');
@@ -71,10 +83,12 @@ function VideoConsultingPage() {
 		movePage('/consulting/complete', null);
 	};
 
+	// ####################컨설팅 세션 종료#############################
 	/**
-	 * 컨설팅 메뉴 - 종료 버튼 클릭시
+	 * 컨설팅 메뉴에서, 종료 버튼 클릭 시 처리 로직.
 	 */
 	const exitConsulting = () => {
+		// 2. 확인(confirm) 시, 상대방에게 exit 신호를 보냄 & 모든 스트림 이벤트 리스너를 해지 & recoil 전역의 세션정보를 초기화
 		const onConfirm = () => {
 			if (session) {
 				toast.success('컨설팅을 종료합니다.');
@@ -85,12 +99,11 @@ function VideoConsultingPage() {
 				session.disconnect();
 				setSession(undefined);
 				setConsultingSession(null);
-			} else {
-				toast.success('종료된 세션입니다.');
+				movePage('/consulting/complete', null);
 			}
-			movePage('/consulting/complete', null);
 		};
 
+		// 1. 컨설팅 종료 확인 form 열기.
 		CustomAlert({
 			title: '화상 컨설팅 종료',
 			btnTitle: '종료하기',
@@ -100,42 +113,47 @@ function VideoConsultingPage() {
 		});
 	};
 
+	// ####################컨설팅 세션 참여#############################
+	/**
+	 * 새로운 컨설팅 세션을 만들고, recoil 전역에 있는 token으로 해당 세션에 접속.
+	 */
+	const joinSession = async () => {
+		setLoading(true);
+		const OV = new OpenVidu();
+		const newSession = OV.initSession();
+		setSession(newSession);
+
+		const { token } = consultingSession as IConsultingSession;
+		await newSession.connect(token, { clientData: user?.userName });
+
+		const initPublisher = await OV.initPublisherAsync(undefined, {
+			audioSource: undefined, // The source of audio. If undefined default microphone
+			videoSource: undefined, // The source of video. If undefined default webcam
+			publishAudio: microphoneEnabled, // Whether you want to start publishing with your audio unmuted or not
+			publishVideo: webcamEnabled, // Whether you want to start publishing with your video enabled or not
+			frameRate: 30, // The frame rate of your video
+			insertMode: 'APPEND', // How the video is inserted in the target element 'video-container'
+			mirror: false, // Whether to mirror your local video or not
+		});
+		newSession.publish(initPublisher);
+		setPublisher(initPublisher);
+		setLoading(false);
+	};
+
 	useEffect(() => {
-		const joinSession = async () => {
-			setLoading(true);
-			const OV = new OpenVidu();
-			const newSession = OV.initSession();
-			setSession(newSession);
-
-			const { token } = consultingSession as IConsultingSession;
-			await newSession.connect(token, { clientData: user?.userName });
-
-			const initPublisher = await OV.initPublisherAsync(undefined, {
-				audioSource: undefined, // The source of audio. If undefined default microphone
-				videoSource: undefined, // The source of video. If undefined default webcam
-				publishAudio: microphoneEnabled, // Whether you want to start publishing with your audio unmuted or not
-				publishVideo: webcamEnabled, // Whether you want to start publishing with your video enabled or not
-				frameRate: 30, // The frame rate of your video
-				insertMode: 'APPEND', // How the video is inserted in the target element 'video-container'
-				mirror: false, // Whether to mirror your local video or not
-			});
-			newSession.publish(initPublisher);
-			setPublisher(initPublisher);
-			setLoading(false);
-		};
-
+		// 컨설팅 세션에 참여한 상태가 아니라면, joinSession
 		if (!session) {
 			joinSession();
 		}
-	}, [webcamEnabled, microphoneEnabled, session, consultingSession, user]);
 
-	useEffect(() => {
-		if (session) {
+		// 컨설팅 세션에 참여한 상태라면, 스트림 이벤트 리스너를 달아줌.
+		else if (session) {
 			session.on('streamCreated', handleStreamCreated);
 			session.on('streamDestroyed', handleStreamDestroyed);
 			session.on('signal:exit', () => handleExitSignal(session));
 		}
 
+		// 언마운트 시, 스트림 이벤트 리스너를 떼어줌.
 		return () => {
 			if (session) {
 				session.off('streamCreated');
@@ -143,8 +161,30 @@ function VideoConsultingPage() {
 				session.off('signal:exit');
 			}
 		};
-	});
+	}, [webcamEnabled, microphoneEnabled, session, consultingSession, user]);
 
+	// ####################구독 컨설팅 이용 시, 차트 정보#############################
+	/**
+	 * sid를 이용해 해당 구독의 식물 차트 정보를 가져옴.
+	 * @param reqSid 구독의 sid
+	 */
+	const fetchEmbeddedInfo = async (reqSid: number) => {
+		try {
+			const response = await findEmbeddedInfoByCidApi(reqSid);
+			if (response.status === 200) {
+				setEmbeddedInfo(response.data);
+			}
+		} catch (error) {
+			console.error(error);
+		}
+	};
+
+	// sid 가 존재할 때에만 embedded정보를 fetch 해온다.
+	useEffect(() => {
+		if (consultingSession?.webRTCType === 0) fetchEmbeddedInfo(consultingSession.idx);
+	}, []);
+
+	// #################### Render View #############################
 	if (isLoading || !publisher || !subscriber) {
 		return <ConsultingLoadingPageLayout />;
 	}
@@ -166,7 +206,7 @@ function VideoConsultingPage() {
 				<div className="chart-display-wrap">
 					<h3>온습도 정보</h3>
 					{/* TODO : 현재 Sid를 얻어올 수 없어서 차트 데이터 요청을 못날림. sid 추가해야 함. */}
-					{/* <PlantChart  /> */}
+					<PlantChart embeddedInfo={embeddedInfo} />
 				</div>
 			)}
 		</VideoConsultingPageLayout>

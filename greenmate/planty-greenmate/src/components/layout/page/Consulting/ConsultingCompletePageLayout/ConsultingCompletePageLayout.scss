@@ -1,27 +1,49 @@
 @import 'styles/mixins/flex';
 
-.consulting-complete-page-layout-container{
+.consulting-complete-page-layout-container {
     @include flex-column(10px);
-    @include flex-align(center, center);
+    @include flex-align(normal, center);
     padding-bottom: 0;
     height: 100vh;
 
     #lottie {
         div {
-            width: 400px!important;
-            height: 400px!important;
+            width: 30vw !important;
+            height: 30vh !important;
         }
     }
 
-    #message{
+    #message {
         text-align: center;
         display: flex;
         flex-direction: column;
-        margin-bottom: 50px;
+        margin-bottom: 20px;
     }
-    
+
+    #advice-input {
+        font-size: 1.5em;
+
+        textarea {
+            resize: none;
+            width: 33vw;
+            height: 20vh;
+            margin-bottom: 10px;
+
+        }
+
+        input {
+            width: 150px;
+            height: 40px;
+            font-size: 1em;
+            text-align: center;
+        }
+
+        margin-bottom: 30px;
+    }
+
     #return-button {
         button {
+            width: 33vw;
             padding: 10px;
         }
     }

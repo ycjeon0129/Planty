@@ -25,8 +25,8 @@ function ConsultingParticipatePage() {
 				const response = await createSubscribeConnectionApi(sessionInfo);
 				if (response.status === 200) {
 					const { token } = response.data;
-					setConsultingSession({ webRTCType: 0, token }); // 구독에 대한 컨설팅이므로 0
-					movePage('/consulting/video', null);
+					setConsultingSession({ webRTCType: 0, token, idx: sessionInfo.cid }); // 구독에 대한 컨설팅이므로 0
+					movePage('/consulting/video', { sid: consultingParticipateInfo.sid });
 				}
 			}
 		} catch (error) {

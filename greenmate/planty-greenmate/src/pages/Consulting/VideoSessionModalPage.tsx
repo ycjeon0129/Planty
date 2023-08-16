@@ -17,15 +17,19 @@ import Button from 'components/atoms/common/Button/Button';
 import LoadingPage from './LoadingPage';
 
 function VideoSessionPage({ open, handleClose }: { open: boolean; handleClose: () => void }) {
-	const [consultingSession, setConsultingSession] = useRecoilState(consultingSessionState);
+	// common
 	const { movePage } = useMovePage();
+	const [isLoading, setLoading] = useState<boolean>(true);
+	// WebRTC
+	const [consultingSession, setConsultingSession] = useRecoilState(consultingSessionState);
 	const [session, setSession] = useState<Session | undefined>(undefined); // 가상 룸
 	const [subscriber, setSubscriber] = useState<Subscriber | undefined>(undefined);
 	const [publisher, setPublisher] = useState<Publisher | undefined>(undefined);
 	const [webcamEnabled, setWebcamEnabled] = useState<boolean>(true);
 	const [microphoneEnabled, setMicrophoneEnabled] = useState<boolean>(true);
-	const [isLoading, setLoading] = useState<boolean>(true);
+	// 구독 컨설팅 (임베디드)
 
+	// ########컨설팅 메뉴 토글 onClick 함수 선언########
 	const toggleMicrophone = () => {
 		if (publisher) {
 			const newMicrophoneState = !microphoneEnabled;
@@ -42,6 +46,7 @@ function VideoSessionPage({ open, handleClose }: { open: boolean; handleClose: (
 		}
 	};
 
+	// ########스트림 이벤트 핸들러 선언########
 	const handleStreamCreated = (event: StreamEvent) => {
 		if (session) {
 			const newSubscriber = session.subscribe(event.stream, undefined);
@@ -55,37 +60,45 @@ function VideoSessionPage({ open, handleClose }: { open: boolean; handleClose: (
 		}
 	};
 
+	/**
+	 * 상대방으로부터 exit signal을 받았을 때의 로직. (컨설팅 종료)
+	 */
 	const handleExitSignal = (ses: Session) => {
-		toast.success('상대방이 컨설팅을 종료했습니다.');
+		const idx = consultingSession?.idx; // 결과페이지로 넘겨줄 idx (cid or eid)
+		const webRTCType = consultingSession?.webRTCType; // 결과페이지로 넘겨줄 idx (cid or eid)
+		setConsultingSession(null);
 		ses.off('streamCreated');
 		ses.off('streamDestroyed');
 		ses.off('signal:exit');
 		ses.disconnect();
 		setSession(undefined);
-		setConsultingSession(null);
-		movePage('/consulting/complete', null);
+		toast.success('상대방이 컨설팅을 종료했습니다.');
+		movePage('/consulting/complete', { idx, webRTCType });
 	};
 
+	// ####################컨설팅 세션 종료#############################
 	/**
-	 * 컨설팅 메뉴 - 종료 버튼 클릭시
+	 * 컨설팅 메뉴에서, 종료 버튼 클릭 시 처리 로직.
 	 */
 	const exitConsulting = () => {
+		// 2. 확인(confirm) 시, 상대방에게 exit 신호를 보냄 & 모든 스트림 이벤트 리스너를 해지 & recoil 전역의 세션정보를 초기화
 		const onConfirm = () => {
 			if (session) {
-				toast.success('컨설팅을 종료합니다.');
+				const idx = consultingSession?.idx; // 결과페이지로 넘겨줄 idx (cid or eid)
+				const webRTCType = consultingSession?.webRTCType; // 결과페이지로 넘겨줄 idx (cid or eid)
+				setConsultingSession(null);
 				session.signal({ type: 'exit' });
 				session.off('streamCreated');
 				session.off('streamDestroyed');
 				session.off('signal:exit');
 				session.disconnect();
-			} else {
-				toast.success('종료된 세션입니다.');
+				setSession(undefined);
+				toast.success('컨설팅을 종료합니다.');
+				movePage('/consulting/complete', { idx, webRTCType });
 			}
-			setConsultingSession(null);
-			setSession(undefined);
-			movePage('/consulting/complete', null);
 		};
 
+		// 1. 컨설팅 종료 확인 form 열기.
 		CustomAlert({
 			title: '화상 컨설팅 종료',
 			btnTitle: '종료하기',
@@ -95,6 +108,10 @@ function VideoSessionPage({ open, handleClose }: { open: boolean; handleClose: (
 		});
 	};
 
+	// ####################컨설팅 세션 참여#############################
+	/**
+	 * 새로운 컨설팅 세션을 만들고, recoil 전역에 있는 token으로 해당 세션에 접속.
+	 */
 	const joinSession = async () => {
 		setLoading(true);
 		const OV = new OpenVidu();
@@ -117,18 +134,21 @@ function VideoSessionPage({ open, handleClose }: { open: boolean; handleClose: (
 	};
 
 	useEffect(() => {
+		// 컨설팅 세션에 참여한 상태가 아니라면, joinSession
 		if (consultingSession && !session) {
 			joinSession();
 		}
 	}, [webcamEnabled, microphoneEnabled, session, consultingSession]);
 
 	useEffect(() => {
-		if (consultingSession && session) {
+		// 컨설팅 세션에 참여한 상태라면, 스트림 이벤트 리스너를 달아줌.
+		if (session) {
 			session.on('streamCreated', handleStreamCreated);
 			session.on('streamDestroyed', handleStreamDestroyed);
 			session.on('signal:exit', () => handleExitSignal(session));
 		}
 
+		// 언마운트 시, 스트림 이벤트 리스너를 떼어줌.
 		return () => {
 			if (session) {
 				session.off('streamCreated');
@@ -137,8 +157,28 @@ function VideoSessionPage({ open, handleClose }: { open: boolean; handleClose: (
 			}
 		};
 	});
+	// ####################구독 컨설팅 이용 시, 차트 정보#############################
+	/**
+	 * sid를 이용해 해당 구독의 식물 차트 정보를 가져옴.
+	 * @param reqSid 구독의 sid
+	 */
+	// const fetchEmbeddedInfo = async (reqSid: number) => {
+	// 	try {
+	// 		const response = await findEmbeddedInfoBySidApi(reqSid);
+	// 		if (response.status === 200) {
+	// 			setEmbeddedInfo(response.data);
+	// 		}
+	// 	} catch (error) {
+	// 		console.error(error);
+	// 	}
+	// };
 
-	// 컨설팅 세션이 있을때만 렌더링
+	// // sid 가 존재할 때에만 embedded정보를 fetch 해온다.
+	// useEffect(() => {
+	// 	if (LocationState?.sid != null) fetchEmbeddedInfo(LocationState.sid);
+	// }, []);
+
+	// #################### Render View #############################
 	if (consultingSession) {
 		return (
 			<Modal open={open} onClose={handleClose}>

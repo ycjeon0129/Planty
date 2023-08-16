@@ -12,6 +12,7 @@ import formatDate from 'utils/formatDate';
 import SubscribeStateBadge from 'components/atoms/subscribes/SubscribeStateBadge/SubscribeStateBadge';
 
 function ConsultingListItem({ consulting }: { consulting: IConsulting }) {
+	console.log(consulting);
 	const getState = (active: boolean) => {
 		if (active) return 'join';
 		return 'notJoin';
