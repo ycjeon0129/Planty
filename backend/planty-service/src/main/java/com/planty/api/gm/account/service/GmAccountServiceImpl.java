@@ -7,6 +7,7 @@ import com.planty.api.subscribe.service.SubscribeService;
 import com.planty.api.ticketProduct.response.TicketProductResponse;
 import com.planty.common.exception.handler.ExceptionHandler;
 import com.planty.common.util.SecurityUtil;
+import com.planty.common.util.TimeUtil;
 import com.planty.db.entity.*;
 import com.planty.db.repository.ConsultingBookingRepository;
 import com.planty.db.repository.EmergencyLogRepository;
@@ -15,6 +16,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -63,7 +65,7 @@ public class GmAccountServiceImpl implements GmAccountService {
     }
 
     @Override
-    public List<GmWebRTCResponse> findRequest() {
+    public List<GmWebRTCResponse> findRequest() throws ParseException {
         Long gid = SecurityUtil.getCurrentGid();
         GmInfo gmInfo = gmInfoRepository.findByGid(gid)
                 .orElseThrow(() -> new NullPointerException(ExceptionHandler.GM_NOT_FOUND));
@@ -78,10 +80,12 @@ public class GmAccountServiceImpl implements GmAccountService {
                     .build());
         }
         for (EmergencyLog emergency : emergencyLogList) {
+            int minutesAgo = TimeUtil.findMinutesDiff(emergency.getRequestTime());
             list.add(GmWebRTCResponse.builder()
                     .webRTCType(1)
                     .idx(emergency.getEid())
                     .emergencyType(emergency.getType())
+                    .minutesAgo(minutesAgo)
                     .username(emergency.getUid().getUserName())
                     .build());
         }

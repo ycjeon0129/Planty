@@ -13,6 +13,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.ParseException;
 import java.util.List;
 
 import static com.planty.common.util.LogCurrent.*;
@@ -52,7 +53,7 @@ public class GmAccountController {
     }
 
     @GetMapping("/refresh-request")
-    public ResponseEntity<List<GmWebRTCResponse>> findRequest() {
+    public ResponseEntity<List<GmWebRTCResponse>> findRequest() throws ParseException {
         log.info(logCurrent(getClassName(), getMethodName(), START));
         List<GmWebRTCResponse> list = gmAccountService.findRequest();
         if (list.isEmpty()) {
