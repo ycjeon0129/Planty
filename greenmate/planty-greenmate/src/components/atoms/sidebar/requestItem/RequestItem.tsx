@@ -2,10 +2,10 @@ import React from 'react';
 import './RequestItem.scss';
 import x from 'assets/icons/Close.svg';
 import { IConsultingSession, IRequest } from 'types/consulting';
-import useMovePage from 'hooks/useMovePage';
+// import useMovePage from 'hooks/useMovePage';
 import { getConsultingTokenApi, getEmergencyTokenApi } from 'utils/api/openVidu';
 import { useRecoilState } from 'recoil';
-import { consultingSessionState } from 'recoil/store';
+import { consultingSessionState, modalControlState } from 'recoil/store';
 
 /**
  * 사용자가 요청보낸 것(*수락버튼 + x버튼 눌렀을 떄 로직 미완*)
@@ -14,7 +14,7 @@ import { consultingSessionState } from 'recoil/store';
  */
 function RequestItem({ request }: { request: IRequest }) {
 	const [, setConsultingSession] = useRecoilState(consultingSessionState);
-	const { movePage } = useMovePage();
+	const [modalControl] = useRecoilState(modalControlState);
 
 	const getToken = async () => {
 		try {
@@ -33,10 +33,8 @@ function RequestItem({ request }: { request: IRequest }) {
 					username: request.username,
 					webRTCType: request.webRTCType,
 				};
-				console.log(session);
-				// console.log(movePage);
 				setConsultingSession(session);
-				movePage(`/consulting/video`, null);
+				modalControl?.handleOpen();
 			}
 		} catch (error) {
 			console.error(error);

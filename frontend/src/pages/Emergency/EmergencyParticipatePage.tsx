@@ -7,13 +7,13 @@ import EmergencyParticipatePageLayout from 'components/layout/Page/EmergencyPart
 import { useParams } from 'react-router-dom';
 import { IEmergencySessionInfo } from 'types/common/request';
 import { useRecoilState } from 'recoil';
-import requestState from 'recoil/consultingSession';
+import consultingSessionState from 'recoil/consultingSession';
 import useMovePage from 'hooks/common/useMovePage';
 import { createEmergencyConnectionApi, createEmergencySessionIdApi } from 'utils/api/openVidu';
 
 function EmergencyParticipatePage() {
 	const { movePage } = useMovePage();
-	const [, setRequest] = useRecoilState(requestState);
+	const [, setConsultingSession] = useRecoilState(consultingSessionState);
 	const { type } = useParams(); // 채팅 0, 화상 1
 
 	// 세션 아이디로 openVidu 연결 토큰 생성
@@ -23,7 +23,7 @@ function EmergencyParticipatePage() {
 				const response = await createEmergencyConnectionApi(sessionInfo);
 				if (response.status === 200) {
 					const { token } = response.data;
-					setRequest({ webRTCType: 1, token }); // 응급실에 대한 컨설팅이므로 1
+					setConsultingSession({ webRTCType: 1, token, idx: sessionInfo.eid }); // 응급실에 대한 컨설팅이므로 1
 					movePage('/consulting/video', null);
 				}
 			}

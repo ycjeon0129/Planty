@@ -16,6 +16,10 @@ const converTime = (timeIdx: number): string => {
 		'16:30',
 		'17:00',
 		'17:30',
+		'18:00',
+		'18:30',
+		'19:00',
+		'19:30',
 	];
 	return TIMES[timeIdx - 1];
 };

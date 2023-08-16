@@ -4,9 +4,7 @@ import { ReactComponent as PlantyLogo } from '../../../../assets/icons/logo/Plan
 function Header() {
 	return (
 		<div className="Header">
-			<div>
-				<PlantyLogo />
-			</div>
+			<PlantyLogo />
 		</div>
 	);
 }

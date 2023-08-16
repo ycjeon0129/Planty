@@ -17,6 +17,7 @@ function LoadingPageLayout({ children }: { children: ReactNode[] }) {
 				<div id="footer">{children[4]}</div>
 				<div id="footer-sub">{children[5]}</div>
 			</div>
+			<div id="cancel-button">{children[6]}</div>
 		</PageLayout>
 	);
 }

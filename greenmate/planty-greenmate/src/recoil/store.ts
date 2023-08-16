@@ -19,3 +19,14 @@ export const consultingSessionState = atom<IConsultingSession | null>({
 	key: 'consultingSessionState',
 	default: null,
 });
+
+export interface IModalControl {
+	open: boolean;
+	handleOpen: () => void;
+	handleClose: () => void;
+}
+
+export const modalControlState = atom<IModalControl | null>({
+	key: 'modalControlState',
+	default: null,
+});

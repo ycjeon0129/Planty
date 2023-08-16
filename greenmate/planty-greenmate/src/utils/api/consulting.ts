@@ -23,3 +23,31 @@ export const findAllRequest = async () => {
 
 	return response;
 };
+
+// 응급실 컨설팅 후 컨설팅 일지 전송
+export const saveEmergencyAdviceApi = async (eid: number, name: string, content: string) => {
+	const body = {
+		eid,
+		name,
+		content,
+	};
+	const response = await instance.post('/emergencies/sessions/record', JSON.stringify(body));
+	return response;
+};
+
+// 구독 컨설팅 후 컨설팅 일지 전송
+export const saveConsultingAdviceApi = async (
+	cid: number,
+	recommendedStartDate: string,
+	recommendedEndDate: string,
+	content: string,
+) => {
+	const body = {
+		cid,
+		recommendedStartDate,
+		recommendedEndDate,
+		content,
+	};
+	const response = await instance.post('/consultings/sessions/record', JSON.stringify(body));
+	return response;
+};

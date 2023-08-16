@@ -14,6 +14,17 @@
 	padding: 10px;
 	background-color: var.$white;
 
+
+
+	&.active {
+		background-color: var.$navy;
+
+		path,
+		circle {
+			fill: white;
+		}
+	}
+
 	& {
 		path {
 			fill: var.$navy;
@@ -23,16 +34,8 @@
 			path {
 				fill: var.$white;
 			}
+
 			background-color: var.$danger;
-		}
-	}
-
-	&.active {
-		background-color: var.$navy;
-
-		path,
-		circle {
-			fill: white;
 		}
 	}
 }
