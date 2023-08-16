@@ -41,7 +41,7 @@ public class SubscribeController {
         return ResponseEntity.status(204).build();
     }
     @GetMapping("/{sid}") // 사용자 구독 상세 조회
-    public ResponseEntity<?> getUserSubscribeDetailList(@PathVariable("sid") Long sid) {
+    public ResponseEntity<?> getUserSubscribeDetailList(@PathVariable("sid") Long sid) throws ParseException {
 
         log.info(logCurrent(getClassName(), getMethodName(), START));
         UserSubscribeDetailResponse response = subscribeServiceImpl.getUserSubscribeDetail(sid);

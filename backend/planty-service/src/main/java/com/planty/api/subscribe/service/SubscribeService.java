@@ -10,7 +10,7 @@ import java.util.List;
 
 public interface SubscribeService {
     List<UserSubscribeResponse> getUserSubscribe(int done) throws ParseException;
-    UserSubscribeDetailResponse getUserSubscribeDetail(Long sid);
+    UserSubscribeDetailResponse getUserSubscribeDetail(Long sid) throws ParseException;
     boolean regUserSubscribe (UserSubscribeRequest userSubscribeRequest);
 
     boolean deleteUserSubscribe(Long sid);

@@ -24,6 +24,7 @@ public class EmbeddedServiceImpl implements EmbeddedService {
     private final UserInfoRepository userInfoRepository;
     private final UserSubscribeRepository userSubscribeRepository;
     private final PlantDataRepository plantDataRepository;
+    private final ConsultingBookingRepository consultingBookingRepository;
     @Override // 임베디드 데이터 등록
     public boolean regEmbedded (EmbeddedRequest embeddedRequest){
         log.info(logCurrent(getClassName(), getMethodName(), START));
@@ -47,16 +48,17 @@ public class EmbeddedServiceImpl implements EmbeddedService {
     }
 
     @Override // 임베디드 데이터 조회
-    public List<UserSubscribeEmbeddedResponse> getEmbedded(Long sid) {
+    public List<UserSubscribeEmbeddedResponse> getEmbedded(Long cid) {
         log.info(logCurrent(getClassName(), getMethodName(), START));
         String email = SecurityUtil.getCurrentUserEmail();
         UserInfo user = userInfoRepository.findByUserEmail(email)
                 .orElseThrow(() -> new NullPointerException(ExceptionHandler.USER_NOT_FOUND));
 
-        UserSubscribe subscribe = userSubscribeRepository.findByUidAndSid(user,sid)
-                .orElseThrow(() -> new NullPointerException(ExceptionHandler.USER_SID_NOT_FOUND));
+        ConsultingBooking booking = consultingBookingRepository.findByUidAndCid(user, cid)
+                .orElseThrow(() -> new NullPointerException(ExceptionHandler.USER_CID_NOT_FOUND));
 
-        List<PlantDataAvgInterface> list = plantDataRepository.findDateAvgByArduinoId(subscribe.getArduinoId());
+        List<PlantDataAvgInterface> list = plantDataRepository.findDateAvgByArduinoId(booking.getSid().getArduinoId());
+
         List<UserSubscribeEmbeddedResponse> embeddedList = new ArrayList<>();
         for(PlantDataAvgInterface item : list) {
             UserSubscribeEmbeddedResponse embedded = UserSubscribeEmbeddedResponse.builder()
