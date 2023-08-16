@@ -12,7 +12,7 @@ function SubscribeDetailItem({ subscribe }: { subscribe: ISubscribeDetail }) {
 	return (
 		<SubscribeDetailItemLayout>
 			{/* 제목 & 구독상태뱃지 */}
-			<ListItemTitle title={subscribe.title} url="#" />
+			<ListItemTitle title={subscribe.title} isFull url="#" />
 			<SubscribeStateBadge stateKey={subscribe.state} />
 
 			{/* 구독 상세 정보 */}

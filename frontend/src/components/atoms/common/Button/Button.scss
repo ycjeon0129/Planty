@@ -13,9 +13,17 @@
 
 	&.primary {
 		@include buttonColor(var.$primary);
+		width: 100%;
 	}
 
 	&.disabled {
 		@include buttonColor(var.$black-200);
+		width: 100%;
+	}
+
+	&.primary-outline {
+		@include buttonColor((var.$white));
+		border: 1px solid var.$primary;
+		color: var.$primary;
 	}
 }
