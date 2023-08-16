@@ -17,6 +17,7 @@ import CustomAlert from 'components/organisms/common/CustomAlert/CustomAlert';
 import { findEmbeddedInfoByCidApi } from 'utils/api/consulting';
 import { IEmbeddedInfo } from 'types/domain/subscribe';
 import PlantChart from 'components/organisms/subscribe/PlantChart/PlantChart';
+import LocalStorage from 'constants/storage/LocalStorage';
 
 function VideoConsultingPage() {
 	// common
@@ -78,6 +79,7 @@ function VideoConsultingPage() {
 		ses.off('streamDestroyed');
 		ses.off('signal:exit');
 		ses.disconnect();
+		LocalStorage.removeItem('sessionId');
 		setSession(undefined);
 		setConsultingSession(null);
 		movePage('/consulting/complete', null);
@@ -91,12 +93,13 @@ function VideoConsultingPage() {
 		// 2. 확인(confirm) 시, 상대방에게 exit 신호를 보냄 & 모든 스트림 이벤트 리스너를 해지 & recoil 전역의 세션정보를 초기화
 		const onConfirm = () => {
 			if (session) {
-				toast.success('컨설팅을 종료합니다.');
 				session.signal({ type: 'exit' });
+				toast.success('컨설팅을 종료합니다.');
 				session.off('streamCreated');
 				session.off('streamDestroyed');
 				session.off('signal:exit');
 				session.disconnect();
+				LocalStorage.removeItem('sessionId');
 				setSession(undefined);
 				setConsultingSession(null);
 				movePage('/consulting/complete', null);
@@ -172,6 +175,7 @@ function VideoConsultingPage() {
 		try {
 			const response = await findEmbeddedInfoByCidApi(reqSid);
 			if (response.status === 200) {
+				console.log(response);
 				setEmbeddedInfo(response.data);
 			}
 		} catch (error) {

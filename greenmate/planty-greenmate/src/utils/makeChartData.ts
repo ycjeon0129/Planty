@@ -1,4 +1,5 @@
-import { IChartData, IPlantData, IPlantDataset } from 'types/base/global';
+import { IChartData, IPlantDataset } from 'types/base/global';
+import { IEmbeddedInfo } from 'types/subscribe';
 
 /**
  * 식물의 온/습도 정보 배열(plantDatas)과 temp hudi 에 따라 최종 차트 데이터를 만들어주는 util 함수
@@ -7,9 +8,9 @@ import { IChartData, IPlantData, IPlantDataset } from 'types/base/global';
  * @param hudi 습도 버튼 true/false
  * @returns 온도/습도 차트 데이터 (IChartData)
  */
-const makeChartData = (plantDatas: IPlantData[], temp: boolean, hudi: boolean): IChartData => {
+const makeChartData = (plantDatas: IEmbeddedInfo[], temp: boolean, hudi: boolean): IChartData => {
 	const charData: IChartData = {
-		labels: plantDatas.map((d) => d.date),
+		labels: plantDatas?.map((d) => d.date),
 		datasets: [],
 	};
 
@@ -17,7 +18,7 @@ const makeChartData = (plantDatas: IPlantData[], temp: boolean, hudi: boolean): 
 		label: '온도',
 		fill: false,
 		tension: 0.1,
-		data: plantDatas.map((d) => d.temperature),
+		data: plantDatas?.map((d) => d.temp),
 		borderColor: '#ff4343',
 		pointRadius: 8,
 	};
@@ -26,7 +27,7 @@ const makeChartData = (plantDatas: IPlantData[], temp: boolean, hudi: boolean): 
 		label: '습도',
 		fill: false,
 		tension: 0.1,
-		data: plantDatas.map((d) => d.humidity),
+		data: plantDatas?.map((d) => d.humidity),
 		borderColor: '#00c2ff',
 		pointRadius: 8,
 	};

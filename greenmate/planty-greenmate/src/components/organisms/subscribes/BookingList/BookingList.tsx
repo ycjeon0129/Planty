@@ -7,7 +7,7 @@ import { Value } from 'types/base/global';
 import isSameDate from 'utils/isSameDate';
 
 function BookingList({ selectedDate }: { selectedDate?: Value }) {
-	let bookings = useAllBooking().sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
+	let bookings = useAllBooking();
 
 	if (selectedDate) {
 		bookings = bookings.filter((el) => isSameDate(selectedDate as Date, el.date));

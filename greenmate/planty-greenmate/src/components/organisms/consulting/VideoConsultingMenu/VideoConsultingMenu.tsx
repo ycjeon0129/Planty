@@ -11,10 +11,12 @@ import MENU from 'constants/menu/VideoConsultingMenu';
 function VideoConsultingMenu({
 	toggleWebcam,
 	toggleMicrophone,
+	toggleChartDisplay,
 	exitConsulting,
 }: {
 	toggleWebcam: () => void;
 	toggleMicrophone: () => void;
+	toggleChartDisplay: () => void;
 	exitConsulting: () => void;
 }) {
 	const [camState, toggleCamera] = useToggle(true);
@@ -46,6 +48,7 @@ function VideoConsultingMenu({
 		const handleChart = () => {
 			// 캠 on/off 로직 추가
 			toggleChart();
+			toggleChartDisplay();
 		};
 		const handleExit = () => {
 			// 컨설팅 종료 로직 추가

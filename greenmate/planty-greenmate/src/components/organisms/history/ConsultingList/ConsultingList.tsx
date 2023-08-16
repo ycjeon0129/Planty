@@ -8,9 +8,7 @@ import useAllConsultingBySpid from 'hooks/api/useAllConsultingBySpid';
 
 function ConsultingList() {
 	const spid = useLocationIdx(3);
-	const consultings = useAllConsultingBySpid(spid)
-		.filter((el) => el.active)
-		.sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
+	const consultings = useAllConsultingBySpid(spid).filter((el) => el.active);
 
 	if (consultings.length)
 		return (
