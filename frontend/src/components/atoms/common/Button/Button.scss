@@ -18,4 +18,10 @@
 	&.disabled {
 		@include buttonColor(var.$black-200);
 	}
+
+	&.primary-outline {
+		@include buttonColor((var.$white));
+		border: 1px solid var.$primary;
+		color: var.$primary;
+	}
 }

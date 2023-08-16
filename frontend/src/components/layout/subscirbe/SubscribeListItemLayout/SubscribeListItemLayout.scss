@@ -12,6 +12,7 @@
 	#top {
 		@include flex-row(5px);
 		@include flex-align(between, center);
+		flex-wrap: wrap;
 		margin-bottom: 10px;
 	}
 
