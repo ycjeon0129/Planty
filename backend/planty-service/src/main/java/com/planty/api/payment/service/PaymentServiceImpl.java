@@ -2,7 +2,7 @@ package com.planty.api.payment.service;
 
 import com.planty.api.subscribe.controller.SubscribeController;
 import com.planty.api.subscribe.request.UserSubscribeRequest;
-import com.planty.common.exception.handler.ExceptionHandler;
+import com.planty.common.exception.handler.CustomException;
 import com.planty.common.util.SecurityUtil;
 import com.planty.db.entity.SubscribeProduct;
 import com.planty.db.entity.TicketProduct;
@@ -15,6 +15,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import static com.planty.common.exception.handler.ErrorCode.*;
 import static com.planty.common.util.LogCurrent.*;
 import static com.planty.common.util.LogCurrent.START;
 
@@ -32,9 +33,9 @@ public class PaymentServiceImpl implements PaymentService {
     public void subscribePayment(Long spid) {
         log.info(logCurrent(getClassName(), getMethodName(), START));
         UserInfo userInfo = userInfoRepository.findByUserEmail(SecurityUtil.getCurrentUserEmail())
-                .orElseThrow(() -> new NullPointerException(ExceptionHandler.USER_NOT_FOUND));
+                .orElseThrow(() -> new CustomException(USER_NOT_FOUND));
         SubscribeProduct subscribeProduct = subscribeProductRepository.findBySpid(spid)
-                .orElseThrow(() -> new NullPointerException(ExceptionHandler.PRODUCT_NOT_FOUND));
+                .orElseThrow(() -> new CustomException(PRODUCT_NOT_FOUND));
         UserSubscribeRequest subscribeRequest = new UserSubscribeRequest();
         subscribeRequest.setSpid(spid);
         subscribeController.postUserSubscribe(subscribeRequest);
@@ -45,9 +46,9 @@ public class PaymentServiceImpl implements PaymentService {
     public void ticketPayment(Long tpid) {
         log.info(logCurrent(getClassName(), getMethodName(), START));
         UserInfo userInfo = userInfoRepository.findByUserEmail(SecurityUtil.getCurrentUserEmail())
-                .orElseThrow(() -> new NullPointerException(ExceptionHandler.USER_NOT_FOUND));
+                .orElseThrow(() -> new CustomException(USER_NOT_FOUND));
         TicketProduct ticketProduct = ticketProductRepository.findByTpid(tpid)
-                .orElseThrow(() -> new NullPointerException(ExceptionHandler.TICKET_PRODUCT_NOT_FOUND));
+                .orElseThrow(() -> new CustomException(TICKET_PRODUCT_NOT_FOUND));
         int ticket = ticketProduct.getCount();
         userInfo.setEmergencyCount( (userInfo.getEmergencyCount()) + ticket );
         userInfoRepository.save(userInfo);

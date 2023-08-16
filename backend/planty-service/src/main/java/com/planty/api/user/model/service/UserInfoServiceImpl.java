@@ -4,7 +4,7 @@ package com.planty.api.user.model.service;
 //import com.planty.api.user.model.request.TokenRefreshRequest;
 import com.planty.api.user.model.request.UserJoinRequest;
 import com.planty.api.user.model.response.*;
-import com.planty.common.exception.handler.ExceptionHandler;
+import com.planty.common.exception.handler.CustomException;
 import com.planty.common.handler.NotFoundException;
 import com.planty.common.jwt.JwtTokenProvider;
 import com.planty.common.util.SecurityUtil;
@@ -19,7 +19,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import static com.planty.common.exception.handler.ExceptionHandler.USER_NOT_FOUND;
+import static com.planty.common.exception.handler.ErrorCode.*;
 
 @Service
 @RequiredArgsConstructor
@@ -80,7 +80,7 @@ public class UserInfoServiceImpl implements UserInfoService {
 //    @Override
     public TokenInfoResponse loginUser(String email) throws Exception {
         UserInfo userInfo = userRepository.findByUserEmail(email)
-                .orElseThrow(() -> new NotFoundException("ERROR_001", "유저 정보를 찾을 수 없습니다."));
+                .orElseThrow(() -> new CustomException(USER_NOT_FOUND));
 //        UserLoginRequest loginInfo = new UserLoginRequest();
 //        loginInfo = userInfo.getUserEmail();
         log.info("UserInfoServiceImpl::loginUser::userInfo - before {}", userInfo);
@@ -133,7 +133,7 @@ public class UserInfoServiceImpl implements UserInfoService {
 
     public UserLoginResponse getLoginUser(String email) throws Exception {
         UserInfo user = userRepository.findByUserEmail(email)
-                .orElseThrow(() -> new NotFoundException("ERROR_001", "유저 정보를 찾을 수 없습니다."));
+                .orElseThrow(() -> new CustomException(USER_NOT_FOUND));
         return UserLoginResponse.builder()
                 .uid(user.getUid())
                 .userEmail(user.getUserEmail())
@@ -151,7 +151,7 @@ public class UserInfoServiceImpl implements UserInfoService {
             log.info("get uid using jwt :: {}", jwtTokenProvider.getAuthentication(accessToken).getName());
 //            UserInfo userInfo = userRepository.findByUid(token.getUid())
             UserInfo userInfo = userRepository.findByUid(Long.parseLong(jwtTokenProvider.getAuthentication(accessToken).getName()))
-                    .orElseThrow(() -> new NotFoundException("ERROR_001", "유저 정보를 찾을 수 없습니다."));
+                    .orElseThrow(() -> new CustomException(USER_NOT_FOUND));
             if(refreshToken.equals(userInfo.getToken())) {
                 // Access 토큰 새로 생성
                 // Long uid를 String으로 변환하여 토큰 발급에 사용
@@ -185,7 +185,7 @@ public class UserInfoServiceImpl implements UserInfoService {
     public void logout() {
         String email = SecurityUtil.getCurrentUserEmail();
         UserInfo userInfo = userRepository.findByUserEmail(email)
-                .orElseThrow(() -> new NotFoundException("ERROR_001", "유저 정보를 찾을 수 없습니다."));
+                .orElseThrow(() -> new CustomException(USER_NOT_FOUND));
         // Refresh Token 제거
         userInfo.setToken(null);
     }
@@ -193,7 +193,7 @@ public class UserInfoServiceImpl implements UserInfoService {
     public UserInfoDetailResponse findUserInfoDetail(Long uid) {
         UserInfo userInfo = userRepository.findByUid(uid)
 //                .orElseThrow(() -> new NullPointerException(ExceptionHandler(USER_NOT_FOUND)));
-                .orElseThrow(() -> new NullPointerException(ExceptionHandler.USER_NOT_FOUND));
+                .orElseThrow(() -> new CustomException(USER_NOT_FOUND));
         String joinDate = userInfo.getJoinDate().toLocalDate().toString();
         return UserInfoDetailResponse.builder()
                 .userId(userInfo.getUserId())

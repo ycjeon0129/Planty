@@ -1,17 +1,26 @@
 package com.planty.common.exception.handler;
 
-import lombok.Data;
-import lombok.RequiredArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import org.springframework.http.ResponseEntity;
 
-@Data
-@RequiredArgsConstructor
+@Getter
+@Builder
 public class ErrorResponse {
-    private Integer status;
-    private String message;
+    private final int status;
+//    private final String error;
+    private final String code;
+    private final String message;
 
-    public ErrorResponse(int code, String message) {
-        super();
-        this.status = code;
-        this.message = message;
+    public static ResponseEntity<ErrorResponse> toResponseEntity(ErrorCode errorCode) {
+        return ResponseEntity
+                .status(errorCode.getHttpStatus())
+                .body(ErrorResponse.builder()
+                        .status(errorCode.getHttpStatus().value())
+//                        .error(errorCode.getHttpStatus().name())
+                        .code(errorCode.name())
+                        .message(errorCode.getDescription())
+                        .build()
+                );
     }
 }

@@ -2,7 +2,7 @@ package com.planty.api.gm.subscribe.service;
 
 import com.planty.api.gm.subscribe.response.GmSubscribeDetailResponse;
 import com.planty.api.gm.subscribe.response.GmSubscribeResponse;
-import com.planty.common.exception.handler.ExceptionHandler;
+import com.planty.common.exception.handler.CustomException;
 import com.planty.common.util.LogCurrent;
 import com.planty.common.util.SecurityUtil;
 import com.planty.db.entity.GmInfo;
@@ -21,6 +21,8 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 
+import static com.planty.common.exception.handler.ErrorCode.*;
+
 @Slf4j
 @Service
 @RequiredArgsConstructor
@@ -36,7 +38,7 @@ public class GmSubscribeServiceImpl implements GmSubscribeService {
         List<GmSubscribeResponse> subscribeList = new ArrayList<>();
         Long gid = SecurityUtil.getCurrentGid();
         GmInfo gmInfo = gmInfoRepository.findByGid(gid)
-                .orElseThrow(() -> new NullPointerException(ExceptionHandler.GM_NOT_FOUND));
+                .orElseThrow(() -> new CustomException(GM_NOT_FOUND));
         List<SubscribeProduct> subscribeProduct = subscribeProductRepository.findByGid(gmInfo);
         for (SubscribeProduct sp : subscribeProduct) {
             List<UserSubscribe> numList = userSubscribeRepository.findBySpid(sp);
@@ -55,12 +57,12 @@ public class GmSubscribeServiceImpl implements GmSubscribeService {
     @Override
     public GmSubscribeDetailResponse findSubscribeDetail(Long spid) {
         SubscribeProduct spInfo = subscribeProductRepository.findBySpid(spid)
-                .orElseThrow(() -> new NullPointerException(ExceptionHandler.PRODUCT_NOT_FOUND));
+                .orElseThrow(() -> new CustomException(PRODUCT_NOT_FOUND));
         if (spInfo.getGid().getGid() != SecurityUtil.getCurrentGid()) { // 해당 구독 상품의 담당 그린메이트가 아닐 경우
             return null;
         }
         PlantInfo plantInfo = plantyInfoRepository.findByIdx(spInfo.getPlantInfoIdx().getIdx())
-                .orElseThrow(() -> new NullPointerException(ExceptionHandler.PLANT_NOT_FOUND));
+                .orElseThrow(() -> new CustomException(PLANT_NOT_FOUND));
         String plant = plantInfo.getName();
         List<UserSubscribe> numList = userSubscribeRepository.findBySpid(spInfo);
         return GmSubscribeDetailResponse.builder()
