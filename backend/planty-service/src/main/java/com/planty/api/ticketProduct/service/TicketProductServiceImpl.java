@@ -5,7 +5,7 @@ import com.planty.api.subscribeProduct.response.SubscribeProductDetailResponse;
 import com.planty.api.subscribeProduct.response.SubscribeProductResponse;
 import com.planty.api.subscribeProduct.service.SubscribeProductService;
 import com.planty.api.ticketProduct.response.TicketProductResponse;
-import com.planty.common.exception.handler.ExceptionHandler;
+import com.planty.common.exception.handler.CustomException;
 import com.planty.db.entity.GmInfo;
 import com.planty.db.entity.PlantInfo;
 import com.planty.db.entity.SubscribeProduct;
@@ -19,6 +19,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.planty.common.exception.handler.ErrorCode.*;
 import static com.planty.common.util.LogCurrent.*;
 import static com.planty.common.util.LogCurrent.START;
 
@@ -26,14 +27,6 @@ import static com.planty.common.util.LogCurrent.START;
 @Service
 @RequiredArgsConstructor
 public class TicketProductServiceImpl implements TicketProductService {
-    private final ViewUserConsultingRepository viewUserConsultingRepository;
-    private final UserInfoRepository userInfoRepository;
-    private final TimeTableRepository timeTableRepository;
-    private final UserSubscribeRepository userSubscribeRepository;
-    private final ConsultingBookingRepository consultingBookingRepository;
-    private final GmInfoRepository gmInfoRepository;
-    private final SubscribeProductRepository subscribeProductRepository;
-    private final PlantyInfoRepository plantyInfoRepository;
     private final TicketProductRepository ticketProductRepository;
     @Override // 이용권 묶음상품 상품 조회
     public List<TicketProductResponse> getTicketProduct() {
@@ -59,7 +52,7 @@ public class TicketProductServiceImpl implements TicketProductService {
         log.info(logCurrent(getClassName(), getMethodName(), START));
 
         TicketProduct item = ticketProductRepository.findByTpid(tpid)
-                .orElseThrow(() -> new NullPointerException(ExceptionHandler.TICKET_PRODUCT_NOT_FOUND));
+                .orElseThrow(() -> new CustomException(TICKET_PRODUCT_NOT_FOUND));
 
         log.info(logCurrent(getClassName(), getMethodName(), END));
         return TicketProductResponse.builder()

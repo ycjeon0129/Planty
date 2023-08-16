@@ -5,7 +5,7 @@ import com.planty.api.gm.account.response.GmWebRTCResponse;
 import com.planty.api.subscribe.request.UserSubscribeRequest;
 import com.planty.api.subscribe.service.SubscribeService;
 import com.planty.api.ticketProduct.response.TicketProductResponse;
-import com.planty.common.exception.handler.ExceptionHandler;
+import com.planty.common.exception.handler.CustomException;
 import com.planty.common.util.SecurityUtil;
 import com.planty.common.util.TimeUtil;
 import com.planty.db.entity.*;
@@ -20,6 +20,7 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.planty.common.exception.handler.ErrorCode.*;
 import static com.planty.common.util.LogCurrent.*;
 import static com.planty.common.util.LogCurrent.END;
 
@@ -37,7 +38,7 @@ public class GmAccountServiceImpl implements GmAccountService {
         log.info(logCurrent(getClassName(), getMethodName(), START));
         Long gid = SecurityUtil.getCurrentGid();
         GmInfo gm = gmInfoRepository.findByGid(gid)
-                .orElseThrow(() -> new NullPointerException(ExceptionHandler.GM_NOT_FOUND));
+                .orElseThrow(() -> new CustomException(GM_NOT_FOUND));
         GmAccountResponse gmAccountResponse = GmAccountResponse.builder()
                 .active(gm.getActivate())
                 .build();
@@ -51,7 +52,7 @@ public class GmAccountServiceImpl implements GmAccountService {
 
         Long gid = SecurityUtil.getCurrentGid();
         GmInfo gm = gmInfoRepository.findByGid(gid)
-                .orElseThrow(() -> new NullPointerException(ExceptionHandler.GM_NOT_FOUND));
+                .orElseThrow(() -> new CustomException(GM_NOT_FOUND));
 
         gm.setActivate(!gm.getActivate());
         gmInfoRepository.save(gm);
@@ -68,7 +69,7 @@ public class GmAccountServiceImpl implements GmAccountService {
     public List<GmWebRTCResponse> findRequest() throws ParseException {
         Long gid = SecurityUtil.getCurrentGid();
         GmInfo gmInfo = gmInfoRepository.findByGid(gid)
-                .orElseThrow(() -> new NullPointerException(ExceptionHandler.GM_NOT_FOUND));
+                .orElseThrow(() -> new CustomException(GM_NOT_FOUND));
         List<ConsultingBooking> consultingBookingList = consultingBookingRepository.findByGidAndConnectionNotNullAndActiveFalse(gmInfo);
         List<EmergencyLog> emergencyLogList = emergencyLogRepository.findByConnectionNotNullAndGidIsNull();
         List<GmWebRTCResponse> list = new ArrayList<>();

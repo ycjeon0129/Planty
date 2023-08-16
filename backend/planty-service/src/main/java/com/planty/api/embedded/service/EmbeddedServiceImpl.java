@@ -3,7 +3,7 @@ package com.planty.api.embedded.service;
 import com.planty.api.booking.request.UserBookingRequest;
 import com.planty.api.embedded.repuest.EmbeddedRequest;
 import com.planty.api.embedded.response.UserSubscribeEmbeddedResponse;
-import com.planty.common.exception.handler.ExceptionHandler;
+import com.planty.common.exception.handler.CustomException;
 import com.planty.common.util.SecurityUtil;
 import com.planty.db.entity.*;
 import com.planty.db.repository.*;
@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.planty.common.exception.handler.ErrorCode.*;
 import static com.planty.common.util.LogCurrent.*;
 import static com.planty.common.util.LogCurrent.END;
 
@@ -30,10 +31,10 @@ public class EmbeddedServiceImpl implements EmbeddedService {
         log.info(logCurrent(getClassName(), getMethodName(), START));
         String email = SecurityUtil.getCurrentUserEmail();
         UserInfo user = userInfoRepository.findByUserEmail(email)
-                .orElseThrow(() -> new NullPointerException(ExceptionHandler.USER_NOT_FOUND));
+                .orElseThrow(() -> new CustomException(USER_NOT_FOUND));
 
         UserSubscribe subscribe = userSubscribeRepository.findByUidAndSid(user,embeddedRequest.getSid())
-                .orElseThrow(() -> new NullPointerException(ExceptionHandler.USER_SID_NOT_FOUND));
+                .orElseThrow(() -> new CustomException(USER_SID_NOT_FOUND));
 
         PlantData plantData = PlantData.builder()
                 .arduinoId(subscribe.getArduinoId())
@@ -52,10 +53,10 @@ public class EmbeddedServiceImpl implements EmbeddedService {
         log.info(logCurrent(getClassName(), getMethodName(), START));
         String email = SecurityUtil.getCurrentUserEmail();
         UserInfo user = userInfoRepository.findByUserEmail(email)
-                .orElseThrow(() -> new NullPointerException(ExceptionHandler.USER_NOT_FOUND));
+                .orElseThrow(() -> new CustomException(USER_NOT_FOUND));
 
         ConsultingBooking booking = consultingBookingRepository.findByUidAndCid(user, cid)
-                .orElseThrow(() -> new NullPointerException(ExceptionHandler.USER_CID_NOT_FOUND));
+                .orElseThrow(() -> new CustomException(USER_CID_NOT_FOUND));
 
         List<PlantDataAvgInterface> list = plantDataRepository.findDateAvgByArduinoId(booking.getSid().getArduinoId());
 

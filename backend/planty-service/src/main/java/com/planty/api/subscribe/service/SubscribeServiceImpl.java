@@ -4,7 +4,7 @@ import com.planty.api.embedded.response.UserSubscribeEmbeddedResponse;
 import com.planty.api.subscribe.request.UserSubscribeRequest;
 import com.planty.api.subscribe.response.NearConsultingResponse;
 import com.planty.api.subscribe.response.UserSubscribeDetailResponse;
-import com.planty.common.exception.handler.ExceptionHandler;
+import com.planty.common.exception.handler.CustomException;
 import com.planty.common.util.SecurityUtil;
 import com.planty.common.util.TimeUtil;
 import com.planty.db.entity.*;
@@ -12,7 +12,6 @@ import com.planty.db.repository.*;
 import com.planty.api.subscribe.response.UserSubscribeResponse;
 
 import java.text.ParseException;
-import java.time.LocalDate;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.util.*;
@@ -22,6 +21,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import static com.planty.common.exception.handler.ErrorCode.*;
 import static com.planty.common.util.LogCurrent.*;
 
 @Slf4j
@@ -40,7 +40,7 @@ public class SubscribeServiceImpl implements SubscribeService {
         log.info(logCurrent(getClassName(), getMethodName(), START));
         String email = SecurityUtil.getCurrentUserEmail();
         UserInfo user = userInfoRepository.findByUserEmail(email)
-                .orElseThrow(() -> new NullPointerException(ExceptionHandler.USER_NOT_FOUND));
+                .orElseThrow(() -> new CustomException(USER_NOT_FOUND));
 
         List<UserSubscribeResponse> subscribeList = new ArrayList<>();
 
@@ -85,10 +85,10 @@ public class SubscribeServiceImpl implements SubscribeService {
         log.info(logCurrent(getClassName(), getMethodName(), START));
         String email = SecurityUtil.getCurrentUserEmail();
         UserInfo user = userInfoRepository.findByUserEmail(email)
-                .orElseThrow(() -> new NullPointerException(ExceptionHandler.USER_NOT_FOUND));
+                .orElseThrow(() -> new CustomException(USER_NOT_FOUND));
 
         ViewUserSubscribe sub = viewUserSubscribeRepository.findByUidAndSid(user.getUid(), sid)
-                .orElseThrow(() -> new NullPointerException(ExceptionHandler.USER_SID_NOT_FOUND));
+                .orElseThrow(() -> new CustomException(USER_SID_NOT_FOUND));
 
         List<PlantDataAvgInterface> plantDataList = plantDataRepository.findDateAvgByArduinoId(sub.getArduinoId());
         List<UserSubscribeEmbeddedResponse> embeddedList = new ArrayList<>();
@@ -130,14 +130,14 @@ public class SubscribeServiceImpl implements SubscribeService {
         log.info(logCurrent(getClassName(), getMethodName(), START));
         String email = SecurityUtil.getCurrentUserEmail();
         UserInfo user = userInfoRepository.findByUserEmail(email)
-                .orElseThrow(() -> new NullPointerException(ExceptionHandler.USER_NOT_FOUND));
+                .orElseThrow(() -> new CustomException(USER_NOT_FOUND));
 
         SubscribeProduct product = subscribeProductRepository.findBySpid(userSubscribeRequest.getSpid())
-                .orElseThrow(() -> new NullPointerException(ExceptionHandler.PRODUCT_NOT_FOUND));
+                .orElseThrow(() -> new CustomException(PRODUCT_NOT_FOUND));
 
         if(userSubscribeRepository.findByUidAndSpidAndEndDateIsNull(user, product).isPresent()) { // EndDateIsNull -> 현재 구독 상품 중에 해당 상품이 있는지 확인
             log.info(logCurrent(getClassName(), getMethodName(), END));
-            return false;
+            throw new CustomException(SUBSCRIBE_PRODUCT_ALREADY_EXIST);
         }
 
         UserSubscribe userSubscribe = UserSubscribe.builder()
@@ -157,22 +157,23 @@ public class SubscribeServiceImpl implements SubscribeService {
         log.info(logCurrent(getClassName(), getMethodName(), START));
         String email = SecurityUtil.getCurrentUserEmail();
         UserInfo user = userInfoRepository.findByUserEmail(email)
-                .orElseThrow(() -> new NullPointerException(ExceptionHandler.USER_NOT_FOUND));
+                .orElseThrow(() -> new CustomException(USER_NOT_FOUND));
 
         UserSubscribe userSubscribe = userSubscribeRepository.findByUidAndSid(user,sid)
-                .orElseThrow(() -> new NullPointerException(ExceptionHandler.USER_SID_NOT_FOUND));
+                .orElseThrow(() -> new CustomException(USER_SID_NOT_FOUND));
 
-        if (userSubscribe != null) {
-            ZoneId zoneId = ZoneId.of("Asia/Seoul");
-            ZonedDateTime zonedDateTime = ZonedDateTime.now( zoneId );
-            String output = zonedDateTime.toString().split("T")[0];
-            userSubscribe.setEndDate(output);
-            userSubscribeRepository.save(userSubscribe); // delete -> save : endDate update
+        if (userSubscribe == null) {
             log.info(logCurrent(getClassName(), getMethodName(), END));
-            return true;
+            throw new CustomException(USER_SID_NOT_FOUND);
         }
 
+        ZoneId zoneId = ZoneId.of("Asia/Seoul");
+        ZonedDateTime zonedDateTime = ZonedDateTime.now( zoneId );
+        String output = zonedDateTime.toString().split("T")[0];
+        userSubscribe.setEndDate(output);
+        userSubscribeRepository.save(userSubscribe); // delete -> save : endDate update
         log.info(logCurrent(getClassName(), getMethodName(), END));
-        return false;
+        return true;
+
     }
 }
