@@ -8,6 +8,6 @@ import java.util.Optional;
 public interface EmergencyLogRepository extends JpaRepository<EmergencyLog, Long> {
     Optional<EmergencyLog> findByEid(Long eid);
     List<EmergencyLog> findByGid(GmInfo gid);
-    List<EmergencyLog> findByUid(UserInfo uid);
+    List<EmergencyLog> findByUidAndStartTimeIsNotNull(UserInfo uid);
     List<EmergencyLog> findByConnectionNotNullAndGidIsNull();
 }
