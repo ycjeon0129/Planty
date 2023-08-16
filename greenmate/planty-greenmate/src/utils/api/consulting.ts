@@ -1,3 +1,4 @@
+import axios from 'axios';
 import { instance } from './instance';
 
 export const findAllConsulting = async () => {
@@ -49,5 +50,10 @@ export const saveConsultingAdviceApi = async (
 		content,
 	};
 	const response = await instance.post('/consultings/sessions/record', JSON.stringify(body));
+	return response;
+};
+
+export const findEmbeddedInfoByCidApi = async (cid: number) => {
+	const response = await axios.get(`https://i9c202.p.ssafy.io/api/embedded/${cid}`);
 	return response;
 };

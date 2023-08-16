@@ -1,6 +1,6 @@
 import { atom } from 'recoil';
 import { IAuth } from 'types/auth';
-import { IConsultingSession } from 'types/consulting';
+import { IConsultingSession, IRequest } from 'types/consulting';
 
 // 로그인 정보
 export const authState = atom<IAuth | null>({
@@ -29,4 +29,9 @@ export interface IModalControl {
 export const modalControlState = atom<IModalControl | null>({
 	key: 'modalControlState',
 	default: null,
+});
+
+export const consultingRequestState = atom<IRequest[]>({
+	key: 'consultingRequestState',
+	default: [],
 });

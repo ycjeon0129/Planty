@@ -38,3 +38,14 @@ export interface IBooking {
 	user: string;
 	title: string;
 }
+
+/**
+ * 임베디드 정보 (온/습도 등)
+ */
+export interface IEmbeddedInfo {
+	date: string;
+	time: string;
+	temp: number;
+	humidity: number;
+	soil: number;
+}

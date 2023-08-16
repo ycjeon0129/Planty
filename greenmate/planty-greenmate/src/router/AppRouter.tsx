@@ -26,22 +26,21 @@ import { authState, consultingSessionState, modalControlState } from 'recoil/sto
 import LocalStorage from 'constants/storage/LocalStorage';
 import VideoSessionPage from 'pages/Consulting/VideoSessionModalPage';
 import ConsultingCompletePage from 'pages/Consulting/ConsultingCompletePage';
+import useRefreshRequests from 'hooks/api/useRefreshRequests';
 import PrivateRoute from './PrivateRoute';
 
 function AppRouter() {
+	// recoil 전역 상태
+	const [auth, setAuth] = useRecoilState(authState);
 	const [consultingSession] = useRecoilState(consultingSessionState);
 	const [, setModalControl] = useRecoilState(modalControlState);
+	// 컨설팅 요청(request) 목록 업데이트
+	const fetchData = useRefreshRequests();
+
+	// 화상컨설팅 세션 모달
 	const [open, setOpen] = useState(false);
 	const handleOpen = () => setOpen(true);
 	const handleClose = () => setOpen(false);
-
-	const control = {
-		open,
-		handleOpen,
-		handleClose,
-	};
-
-	const [auth, setAuth] = useRecoilState(authState);
 
 	useEffect(() => {
 		const loginUser = LocalStorage.getItem('loginUser');
@@ -52,9 +51,23 @@ function AppRouter() {
 	}, [setAuth]);
 
 	useEffect(() => {
-		console.log('현재 consultingSession', consultingSession);
+		const control = {
+			open,
+			handleOpen,
+			handleClose,
+		};
+
 		setModalControl(control);
 	}, [consultingSession]);
+
+	// 10초마다 fetchData 배열 업데이트
+	useEffect(() => {
+		const requestFetchInterval = setInterval(fetchData, 5000);
+
+		return () => {
+			clearInterval(requestFetchInterval);
+		};
+	}, []);
 
 	return (
 		<div className="container">

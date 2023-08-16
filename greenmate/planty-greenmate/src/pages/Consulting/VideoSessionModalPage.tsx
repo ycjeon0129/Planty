@@ -14,6 +14,9 @@ import { toast } from 'react-hot-toast';
 import CustomAlert from 'components/organisms/common/CustomAlert/CustomAlert';
 import { Modal } from '@mui/material';
 import Button from 'components/atoms/common/Button/Button';
+import { findEmbeddedInfoByCidApi } from 'utils/api/consulting';
+import { IEmbeddedInfo } from 'types/subscribe';
+import PlantChart from 'components/organisms/consulting/PlantChart/PlantChart';
 import LoadingPage from './LoadingPage';
 
 function VideoSessionPage({ open, handleClose }: { open: boolean; handleClose: () => void }) {
@@ -28,6 +31,8 @@ function VideoSessionPage({ open, handleClose }: { open: boolean; handleClose: (
 	const [webcamEnabled, setWebcamEnabled] = useState<boolean>(true);
 	const [microphoneEnabled, setMicrophoneEnabled] = useState<boolean>(true);
 	// 구독 컨설팅 (임베디드)
+	const [chartDisplayOn, setChartDisplayOn] = useState<boolean>(false);
+	const [embeddedInfo, setEmbeddedInfo] = useState<IEmbeddedInfo[]>([]);
 
 	// ########컨설팅 메뉴 토글 onClick 함수 선언########
 	const toggleMicrophone = () => {
@@ -44,6 +49,10 @@ function VideoSessionPage({ open, handleClose }: { open: boolean; handleClose: (
 			publisher.publishVideo(newWebcamState);
 			setWebcamEnabled(newWebcamState);
 		}
+	};
+
+	const toggleChartDisplay = () => {
+		setChartDisplayOn(!chartDisplayOn);
 	};
 
 	// ########스트림 이벤트 핸들러 선언########
@@ -64,14 +73,14 @@ function VideoSessionPage({ open, handleClose }: { open: boolean; handleClose: (
 	 * 상대방으로부터 exit signal을 받았을 때의 로직. (컨설팅 종료)
 	 */
 	const handleExitSignal = (ses: Session) => {
-		const idx = consultingSession?.idx; // 결과페이지로 넘겨줄 idx (cid or eid)
-		const webRTCType = consultingSession?.webRTCType; // 결과페이지로 넘겨줄 idx (cid or eid)
-		setConsultingSession(null);
 		ses.off('streamCreated');
 		ses.off('streamDestroyed');
 		ses.off('signal:exit');
 		ses.disconnect();
 		setSession(undefined);
+		const idx = consultingSession?.idx; // 결과페이지로 넘겨줄 idx (cid or eid)
+		const webRTCType = consultingSession?.webRTCType; // 결과페이지로 넘겨줄 idx (cid or eid)
+		setConsultingSession(null);
 		toast.success('상대방이 컨설팅을 종료했습니다.');
 		movePage('/consulting/complete', { idx, webRTCType });
 	};
@@ -84,15 +93,15 @@ function VideoSessionPage({ open, handleClose }: { open: boolean; handleClose: (
 		// 2. 확인(confirm) 시, 상대방에게 exit 신호를 보냄 & 모든 스트림 이벤트 리스너를 해지 & recoil 전역의 세션정보를 초기화
 		const onConfirm = () => {
 			if (session) {
-				const idx = consultingSession?.idx; // 결과페이지로 넘겨줄 idx (cid or eid)
-				const webRTCType = consultingSession?.webRTCType; // 결과페이지로 넘겨줄 idx (cid or eid)
-				setConsultingSession(null);
 				session.signal({ type: 'exit' });
 				session.off('streamCreated');
 				session.off('streamDestroyed');
 				session.off('signal:exit');
 				session.disconnect();
 				setSession(undefined);
+				const idx = consultingSession?.idx; // 결과페이지로 넘겨줄 idx (cid or eid)
+				const webRTCType = consultingSession?.webRTCType; // 결과페이지로 넘겨줄 idx (cid or eid)
+				setConsultingSession(null);
 				toast.success('컨설팅을 종료합니다.');
 				movePage('/consulting/complete', { idx, webRTCType });
 			}
@@ -138,11 +147,8 @@ function VideoSessionPage({ open, handleClose }: { open: boolean; handleClose: (
 		if (consultingSession && !session) {
 			joinSession();
 		}
-	}, [webcamEnabled, microphoneEnabled, session, consultingSession]);
-
-	useEffect(() => {
 		// 컨설팅 세션에 참여한 상태라면, 스트림 이벤트 리스너를 달아줌.
-		if (session) {
+		else if (session) {
 			session.on('streamCreated', handleStreamCreated);
 			session.on('streamDestroyed', handleStreamDestroyed);
 			session.on('signal:exit', () => handleExitSignal(session));
@@ -156,27 +162,27 @@ function VideoSessionPage({ open, handleClose }: { open: boolean; handleClose: (
 				session.off('signal:exit');
 			}
 		};
-	});
+	}, [webcamEnabled, microphoneEnabled, session, consultingSession]);
+
 	// ####################구독 컨설팅 이용 시, 차트 정보#############################
 	/**
 	 * sid를 이용해 해당 구독의 식물 차트 정보를 가져옴.
 	 * @param reqSid 구독의 sid
 	 */
-	// const fetchEmbeddedInfo = async (reqSid: number) => {
-	// 	try {
-	// 		const response = await findEmbeddedInfoBySidApi(reqSid);
-	// 		if (response.status === 200) {
-	// 			setEmbeddedInfo(response.data);
-	// 		}
-	// 	} catch (error) {
-	// 		console.error(error);
-	// 	}
-	// };
-
-	// // sid 가 존재할 때에만 embedded정보를 fetch 해온다.
-	// useEffect(() => {
-	// 	if (LocationState?.sid != null) fetchEmbeddedInfo(LocationState.sid);
-	// }, []);
+	const fetchEmbeddedInfo = async (reqSid: number) => {
+		try {
+			const response = await findEmbeddedInfoByCidApi(reqSid);
+			if (response.status === 200) {
+				setEmbeddedInfo(response.data);
+			}
+		} catch (error) {
+			console.error(error);
+		}
+	};
+	// sid 가 존재할 때에만 embedded정보를 fetch 해온다.
+	useEffect(() => {
+		if (consultingSession?.webRTCType === 0) fetchEmbeddedInfo(consultingSession?.idx);
+	}, [consultingSession]);
 
 	// #################### Render View #############################
 	if (consultingSession) {
@@ -203,8 +209,15 @@ function VideoSessionPage({ open, handleClose }: { open: boolean; handleClose: (
 							<VideoConsultingMenu
 								toggleWebcam={toggleWebcam}
 								toggleMicrophone={toggleMicrophone}
+								toggleChartDisplay={toggleChartDisplay}
 								exitConsulting={exitConsulting}
 							/>
+							{chartDisplayOn && (
+								<div className="chart-display-wrap">
+									<h3>온습도 정보</h3>
+									<PlantChart embeddedInfo={embeddedInfo} />
+								</div>
+							)}
 						</VideoPageLayout>
 					)}
 				</div>

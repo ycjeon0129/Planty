@@ -5,7 +5,7 @@ import React from 'react';
 
 function SubscribeBookingList() {
 	const spid = useLocationIdx(3);
-	const bookings = useAllBookingBySpid(spid).sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
+	const bookings = useAllBookingBySpid(spid);
 
 	if (bookings.length)
 		return (
