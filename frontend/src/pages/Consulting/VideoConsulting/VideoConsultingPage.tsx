@@ -135,14 +135,15 @@ function VideoConsultingPage() {
 		let videoSource;
 
 		// 카메라
-		OV.getDevices().then((devices) => {
+		await OV.getDevices().then((devices) => {
 			const videoDevices = devices.filter((device) => device.kind === 'videoinput');
-
+			console.log('비디오 장치 목록', videoDevices);
 			if (videoDevices && videoDevices.length > 1) {
 				videoSource = camToggle ? videoDevices[1].deviceId : videoDevices[0].deviceId;
 			}
 		});
 
+		console.log('비디오소스', videoSource);
 		const initPublisher = await OV.initPublisherAsync(undefined, {
 			audioSource: undefined, // The source of audio. If undefined default microphone
 			videoSource, // The source of video. If undefined default webcam
@@ -201,6 +202,10 @@ function VideoConsultingPage() {
 	useEffect(() => {
 		if (consultingSession?.webRTCType === 0) fetchEmbeddedInfo(consultingSession.idx);
 	}, []);
+
+	useEffect(() => {
+		console.log(camToggle);
+	}, [camToggle]);
 
 	// #################### Render View #############################
 	if (isLoading || !publisher || !subscriber) {
