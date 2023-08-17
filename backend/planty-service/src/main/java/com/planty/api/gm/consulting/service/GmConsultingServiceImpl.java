@@ -130,7 +130,12 @@ public class GmConsultingServiceImpl implements GmConsultingService {
 
         UserSubscribe subscribeInfo = userSubscribeRepository.findBySid(bookingInfo.getSid().getSid())
                 .orElseThrow(() -> new CustomException(USER_SID_NOT_FOUND));
-        subscribeInfo.setConsultingRemainCnt( (subscribeInfo.getConsultingRemainCnt()-1) );
+        int remain = subscribeInfo.getConsultingRemainCnt() - 1;
+        subscribeInfo.setConsultingRemainCnt(remain);
+        if (remain < 1) {
+            String endDate = TimeUtil.findDateOnly(TimeUtil.findCurrentTimestamp());
+            subscribeInfo.setEndDate(endDate);
+        }
         userSubscribeRepository.save(subscribeInfo);
     }
 

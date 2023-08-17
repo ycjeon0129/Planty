@@ -33,7 +33,7 @@ public class SubscribeProductServiceImpl implements SubscribeProductService {
         log.info(logCurrent(getClassName(), getMethodName(), START));
 
         List<SubscribeProductResponse> subscribeProductList = new ArrayList<>();
-        List<SubscribeProduct> list = subscribeProductRepository.findAllByOrderBySpidDesc();
+        List<SubscribeProduct> list = subscribeProductRepository.findAllByOrderByPriceAsc();
         for(SubscribeProduct item : list) {
             if(size >= 0 && size <= 2 && item.getPlantInfoIdx().getSize() != size) continue; // 식용 여부. 식용(1), 비식용(0)
             if(place >= 0 && place <= 2 && item.getPlantInfoIdx().getPlace()!= place) continue; //크기. 소(0), 중(1), 대(2)

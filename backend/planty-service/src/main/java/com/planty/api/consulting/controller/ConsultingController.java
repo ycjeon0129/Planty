@@ -15,6 +15,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.ParseException;
 import java.util.List;
 import java.util.Map;
 
@@ -29,7 +30,7 @@ import static com.planty.common.util.LogCurrent.END;
 public class ConsultingController {
     private final ConsultingService consultingServiceImpl;
     @GetMapping
-    public ResponseEntity<?> getUserConsultingList() {
+    public ResponseEntity<?> getUserConsultingList() throws ParseException {
 
         log.info(logCurrent(getClassName(), getMethodName(), START));
         List<UserConsultingResponse> consultingList = consultingServiceImpl.getUserConsultingUid();
@@ -46,7 +47,7 @@ public class ConsultingController {
     }
 
     @GetMapping("/{sid}")
-    public ResponseEntity<?> getUserConsultingDetailList(@PathVariable("sid") Long sid) {
+    public ResponseEntity<?> getUserConsultingDetailList(@PathVariable("sid") Long sid) throws ParseException {
 
         log.info(logCurrent(getClassName(), getMethodName(), START));
         List<UserConsultingResponse> consultingDetailList = consultingServiceImpl.getUserConsultingDetail(sid);

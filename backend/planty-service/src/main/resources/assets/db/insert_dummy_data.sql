@@ -23,8 +23,8 @@ VALUES('greenmate1', 'greenmate1', '식물왕 전식물', '안녕하세요. 당�
 ('greenmate16', 'greenmate16', '식물박사', '안녕하세요 플랜티 그린메이트입니다.', 1);
 
 INSERT INTO user_info(user_id, user_name, email, `password`, shipping_address, photo)
-VALUES ('gardener1','초보 가드너1', 'sunflower1@gmail.com', "1q2w3e4r!!", "광주 광산구 하남산단6번로 107", "https://github.com/ycjeon0129/algorithm-problem-solving/assets/79627716/80325b49-8d30-4a49-b13b-dd0261b89a88"),
-('develop1', '초보 개발자1', 'gardener1@naver.com', "1q2w3e4r!!","서울 강남구 테헤란로 212", "https://github.com/ycjeon0129/algorithm-problem-solving/assets/79627716/7cecbbae-739e-428a-a8c7-632dc5c8b97e");
+VALUES ('gardener1','초보 가드너', 'sunflower1@gmail.com', "1q2w3e4r!!", "광주 광산구 하남산단6번로 107", "https://github.com/ycjeon0129/algorithm-problem-solving/assets/79627716/80325b49-8d30-4a49-b13b-dd0261b89a88"),
+('develop1', '초보 개발자', 'gardener1@naver.com', "1q2w3e4r!!","서울 강남구 테헤란로 212", "https://github.com/ycjeon0129/algorithm-problem-solving/assets/79627716/7cecbbae-739e-428a-a8c7-632dc5c8b97e");
 
 INSERT INTO user_info(user_id, user_name, email, `password`)
 VALUES ('gardener2','김씨네 아빠', 'sunflower2@gmail.com', "1q2w3e4r!!"), ('develop2', '수완동 보안관', 'gardener2@naver.com', "1q2w3e4r!!"),
