@@ -53,7 +53,7 @@ public class GmBookingServiceImpl implements GmBookingService {
             if (isSpid && item.getSid().getSpid().getSpid() != spid) {
                 continue;
             }
-            if (TimeUtil.isFuture(now, item.getDate(), item.getTimeIdx().getIdx())) continue;
+            if (!TimeUtil.isFuture(now, item.getDate(), item.getTimeIdx().getIdx())) continue;
             GmBookingResponse booking = GmBookingResponse.builder()
                     .sid(item.getSid().getSid())
                     .cid(item.getCid())
