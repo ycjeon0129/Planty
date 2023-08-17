@@ -81,7 +81,18 @@ function ConsultingInfo({ subscribe }: { subscribe: ISubscribeDetail }) {
 						}}
 					/>
 				)}
-				{subscribe.state === 'wait' && <Button isActive text="예약하기" handleClick={toBooking} />}
+				{subscribe.state === 'wait' &&
+					(subscribe.consultingRemainCnt === 0 ? (
+						<Button
+							isActive={false}
+							text="컨설팅 종료"
+							handleClick={() => {
+								toast.error('컨설팅 횟수를 모두 소진하였습니다.');
+							}}
+						/>
+					) : (
+						<Button isActive={false} text="예약하기" handleClick={toBooking} />
+					))}
 			</>
 
 			<Button
