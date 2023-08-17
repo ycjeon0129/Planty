@@ -8,7 +8,7 @@ function ErrorPage() {
 		<ErrorPageLayout>
 			<Plant />
 			<h3>잘못된 페이지 요청입니다</h3>
-			<Link to="/dashboard">대시보드로 돌아가기</Link>
+			<Link to="/admin/dashboard">대시보드로 돌아가기</Link>
 		</ErrorPageLayout>
 	);
 }
