@@ -1,7 +1,9 @@
 package com.planty.common.util;
 
 import lombok.extern.slf4j.Slf4j;
+import org.apache.logging.log4j.message.SimpleMessage;
 
+import java.sql.Time;
 import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -75,5 +77,16 @@ public class TimeUtil {
         int diff = (int) duration.toMinutes();
 
         return diff;
+    }
+
+    public static boolean isFuture(String now, String date, Integer time) throws ParseException {
+        StringBuilder bookingDate = new StringBuilder(date).append(" ");
+        String baseTime = "10:00";
+        Date bookingTime = new SimpleDateFormat("HH:mm").parse(baseTime);
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(bookingTime);
+        cal.add(Calendar.MINUTE, time * 30);
+        bookingDate.append(new SimpleDateFormat("HH:mm:ss").format(cal.getTime()).toString());
+        return bookingDate.toString().compareTo(now) > 0;
     }
 }

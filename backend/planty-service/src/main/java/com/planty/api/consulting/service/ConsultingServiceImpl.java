@@ -6,6 +6,7 @@ import com.planty.api.consulting.response.UserConsultingResponse;
 import com.planty.common.exception.handler.CustomException;
 import com.planty.common.util.OpenViduUtil;
 import com.planty.common.util.SecurityUtil;
+import com.planty.common.util.TimeUtil;
 import com.planty.db.entity.*;
 import com.planty.db.repository.*;
 import io.openvidu.java.client.*;
@@ -17,6 +18,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.text.ParseException;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.util.*;
@@ -40,20 +42,18 @@ public class ConsultingServiceImpl implements ConsultingService {
     @Autowired
     private OpenViduUtil openViduUtil;
     @Override // 사용자 컨설팅 조회
-    public List<UserConsultingResponse> getUserConsultingUid() {
+    public List<UserConsultingResponse> getUserConsultingUid() throws ParseException {
         log.info(logCurrent(getClassName(), getMethodName(), START));
         String email = SecurityUtil.getCurrentUserEmail();
         UserInfo user = userInfoRepository.findByUserEmail(email)
                 .orElseThrow(() -> new CustomException(USER_NOT_FOUND));
 
-        ZoneId zoneId = ZoneId.of("Asia/Seoul");
-        ZonedDateTime zonedDateTime = ZonedDateTime.now( zoneId );
-        String nowDate = zonedDateTime.toString().split("T")[0];
+        String now = TimeUtil.findCurrentTimestamp();
 
         List<UserConsultingResponse> consultingList = new ArrayList<>();
-        List<ViewUserConsulting> list = viewUserConsultingRepository.findByUid(user.getUid(), Sort.by(desc("date"),desc("time")));
+        List<ViewUserConsulting> list = viewUserConsultingRepository.findByUidAndCancelFalse(user.getUid(), Sort.by(desc("date"),desc("time")));
         for(ViewUserConsulting item : list) {
-            if(item.getDate().compareTo(nowDate) >= 0) continue;
+            if (TimeUtil.isFuture(now, item.getDate(), item.getTime())) continue;
             UserConsultingResponse consult = UserConsultingResponse.builder()
                     .cid(item.getCid())
                     .sid(item.getSid())
@@ -75,7 +75,7 @@ public class ConsultingServiceImpl implements ConsultingService {
     }
 
     @Override // 사용자 컨설팅 상세 조회
-    public List<UserConsultingResponse> getUserConsultingDetail(Long sid) {
+    public List<UserConsultingResponse> getUserConsultingDetail(Long sid) throws ParseException {
         log.info(logCurrent(getClassName(), getMethodName(), START));
         String email = SecurityUtil.getCurrentUserEmail();
         UserInfo user = userInfoRepository.findByUserEmail(email)
@@ -85,14 +85,12 @@ public class ConsultingServiceImpl implements ConsultingService {
                 .orElseThrow(() -> new CustomException(USER_SID_NOT_FOUND));
 
         List<UserConsultingResponse> consultingListDetail = new ArrayList<>();
-        List<ViewUserConsulting> list = viewUserConsultingRepository.findByUidAndSid(user.getUid(), sid, Sort.by(desc("date"),desc("time")));
+        List<ViewUserConsulting> list = viewUserConsultingRepository.findBySid(sid, Sort.by(desc("date"),desc("time")));
 
-        ZoneId zoneId = ZoneId.of("Asia/Seoul");
-        ZonedDateTime zonedDateTime = ZonedDateTime.now( zoneId );
-        String nowDate = zonedDateTime.toString().split("T")[0];
+        String now = TimeUtil.findCurrentTimestamp();
 
         for(ViewUserConsulting item : list) {
-            if(item.getDate().compareTo(nowDate) >= 0) continue;
+            if (TimeUtil.isFuture(now, item.getDate(), item.getTime())) continue;
             UserConsultingResponse consult = UserConsultingResponse.builder()
                     .cid(item.getCid())
                     .sid(sid)
