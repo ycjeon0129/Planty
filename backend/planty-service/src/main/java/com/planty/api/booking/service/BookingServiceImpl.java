@@ -73,6 +73,7 @@ public class BookingServiceImpl implements BookingService {
             return bookingDateList;
         }
         for(ConsultingBooking item : bookingDate) {
+            if(item.getCancel()) continue;
             bookingDateList[item.getTimeIdx().getIdx()-1] = true;
         }
         log.info(logCurrent(getClassName(), getMethodName(), END));
