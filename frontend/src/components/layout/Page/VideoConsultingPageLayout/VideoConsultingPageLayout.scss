@@ -53,7 +53,8 @@
 	#chart-display-container {
 		background-color: var.$white;
 		position: absolute;
-		top: 50%;
+		width: 95%;
+		top: calc(50% - 32px);
 		left: 50%;
 		transform: translate(-50%, -50%);
 		border-radius: 4px;
