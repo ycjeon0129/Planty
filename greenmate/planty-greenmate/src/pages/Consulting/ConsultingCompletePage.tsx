@@ -13,6 +13,7 @@ import moment from 'moment';
 function ConsultingCompletePage() {
 	const { movePage } = useMovePage();
 	const { idx, webRTCType } = useLocation().state;
+	const [name, setName] = useState('');
 	const [content, setContent] = useState('');
 	const [startDate, setStartDate] = useState('');
 	const [endDate, setEndDate] = useState('');
@@ -47,7 +48,7 @@ function ConsultingCompletePage() {
 				}
 				// 응급실 컨설팅에 대한 일지작성
 				else if (webRTCType === 1) {
-					const response = await saveEmergencyAdviceApi(idx, 'plant', content);
+					const response = await saveEmergencyAdviceApi(idx, name, content);
 					if (response.status === 200) {
 						returnDashboard();
 					}
@@ -73,17 +74,20 @@ function ConsultingCompletePage() {
 			<h2>컨설팅 세션이 종료되었습니다.</h2>
 			<h4>가드너에게 조언을 남겨주세요.</h4>
 			<div>
-				<AreaTitle title="가드너에게 한마디" url="#" />
-				<textarea value={content} onChange={(e) => setContent(e.target.value)} />
 				{webRTCType === 0 ? (
-					<>
+					<div className="advice-option">
 						<AreaTitle title="다음 권장 상담일" url="#" />
 						<input type="date" value={startDate} onChange={(e) => setStartDate(e.target.value)} />
 						부터 <input type="date" value={endDate} onChange={(e) => setEndDate(e.target.value)} /> 사이에 예약하세요!
-					</>
+					</div>
 				) : (
-					<div />
+					<div className="advice-option">
+						<AreaTitle title="가드너의 식물명" url="#" />
+						<input type="text" id="plant-name" value={name} onChange={(e) => setName(e.target.value)} />
+					</div>
 				)}
+				<AreaTitle title="가드너에게 한마디" url="#" />
+				<textarea value={content} onChange={(e) => setContent(e.target.value)} />
 			</div>
 			<Button text="가드너에게 전달하기" handleClick={saveAdvice} isActive />
 		</ConsultingCompletePageLayout>
