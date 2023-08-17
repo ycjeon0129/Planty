@@ -82,7 +82,7 @@ function VideoSessionPage({ open, handleClose }: { open: boolean; handleClose: (
 		const webRTCType = consultingSession?.webRTCType; // 결과페이지로 넘겨줄 idx (cid or eid)
 		setConsultingSession(null);
 		toast.success('상대방이 컨설팅을 종료했습니다.');
-		movePage('/consulting/complete', { idx, webRTCType });
+		movePage('/admin/consulting/complete', { idx, webRTCType });
 	};
 
 	// ####################컨설팅 세션 종료#############################
@@ -103,7 +103,7 @@ function VideoSessionPage({ open, handleClose }: { open: boolean; handleClose: (
 				const webRTCType = consultingSession?.webRTCType; // 결과페이지로 넘겨줄 idx (cid or eid)
 				setConsultingSession(null);
 				toast.success('컨설팅을 종료합니다.');
-				movePage('/consulting/complete', { idx, webRTCType });
+				movePage('/admin/consulting/complete', { idx, webRTCType });
 			}
 		};
 

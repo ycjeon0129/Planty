@@ -22,7 +22,7 @@ function ConsultingCompletePage() {
 	 */
 	const returnDashboard = () => {
 		toast.success('당신의 한마디가 가드너에게 전달되었습니다.\n대시보드로 이동합니다.');
-		movePage('/', null);
+		movePage('/admin', null);
 	};
 
 	/**
