@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.text.ParseException;
 import java.util.List;
 
 import static com.planty.common.util.LogCurrent.*;
@@ -30,7 +31,7 @@ public class GmBookingController {
     @GetMapping // 그린메이트 예약 조회
     public ResponseEntity<List<GmBookingResponse>> getUserBooking(
             @RequestParam(value = "spid", required = false) Long spid
-    ) {
+    ) throws ParseException {
         log.info(logCurrent(getClassName(), getMethodName(), START));
         List<GmBookingResponse> bookingList = gmBookingServiceImpl.getGmBooking(spid);
 

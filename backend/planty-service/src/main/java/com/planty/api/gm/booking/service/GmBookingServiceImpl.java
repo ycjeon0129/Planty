@@ -4,6 +4,7 @@ import com.planty.api.booking.response.BookingResponse;
 import com.planty.api.gm.booking.response.GmBookingResponse;
 import com.planty.common.exception.handler.CustomException;
 import com.planty.common.util.SecurityUtil;
+import com.planty.common.util.TimeUtil;
 import com.planty.db.entity.ConsultingBooking;
 import com.planty.db.entity.GmInfo;
 import com.planty.db.entity.ViewUserConsulting;
@@ -12,6 +13,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,7 +31,7 @@ public class GmBookingServiceImpl implements GmBookingService {
     private final SubscribeProductRepository subscribeProductRepository;
 
     @Override // 그린메이트 예약 조회
-    public List<GmBookingResponse> getGmBooking(Long spid) {
+    public List<GmBookingResponse> getGmBooking(Long spid) throws ParseException {
         log.info(logCurrent(getClassName(), getMethodName(), START));
         Long gid = SecurityUtil.getCurrentGid();
         GmInfo gm = gmInfoRepository.findByGid(gid)
@@ -45,15 +47,13 @@ public class GmBookingServiceImpl implements GmBookingService {
 
         List<GmBookingResponse> bookingList = new ArrayList<>();
         List<ConsultingBooking> list = consultingBookingRepository.findByGidAndActiveAndCancel(gm, false, false);
-//        if (spid == null) {
-//            list = consultingBookingRepository.findByGid(gm);
-//        } else {
-//            list = consultingBookingRepository.findByGid(gm);
-//        }
+
+        String now = TimeUtil.findCurrentTimestamp();
         for (ConsultingBooking item : list) {
             if (isSpid && item.getSid().getSpid().getSpid() != spid) {
                 continue;
             }
+            if (TimeUtil.isFuture(now, item.getDate(), item.getTimeIdx().getIdx())) continue;
             GmBookingResponse booking = GmBookingResponse.builder()
                     .sid(item.getSid().getSid())
                     .cid(item.getCid())
