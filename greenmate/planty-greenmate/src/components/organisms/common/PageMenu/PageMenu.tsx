@@ -17,7 +17,7 @@ function PageMenu({ menu }: { menu: IMenuItem[] }) {
 	};
 
 	useEffect(() => {
-		const pathname = location.pathname.split('/')[3];
+		const pathname = location.pathname.split('/')[4];
 		if (pathname === 'list' || pathname === 'emergency') setNowMenu(0);
 		else if (pathname === 'calendar' || pathname === 'consulting') setNowMenu(1);
 	}, [location]);
