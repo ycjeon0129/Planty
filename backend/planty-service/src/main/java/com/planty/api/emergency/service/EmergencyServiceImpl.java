@@ -17,6 +17,7 @@ import io.openvidu.java.client.OpenViduJavaClientException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -29,6 +30,7 @@ import java.util.Map;
 import static com.planty.common.exception.handler.ErrorCode.*;
 import static com.planty.common.util.LogCurrent.*;
 import static com.planty.common.util.LogCurrent.START;
+import static org.springframework.data.domain.Sort.Order.desc;
 
 @Slf4j
 @Service
@@ -52,7 +54,7 @@ public class EmergencyServiceImpl implements EmergencyService {
                 .orElseThrow(() -> new CustomException(USER_NOT_FOUND));
 
         List<EmergencyResponse> emergencyList = new ArrayList<>();
-        List<EmergencyLog> list = emergencyLogRepository.findByUidAndStartTimeIsNotNull(userInfo);
+        List<EmergencyLog> list = emergencyLogRepository.findByUidAndEndTimeIsNotNull(userInfo, Sort.by(desc("startTime")));
 
         for(EmergencyLog item : list) {
             String timeTaken = TimeUtil.findTimeDiff(item.getStartTime(), item.getEndTime());
