@@ -7,6 +7,7 @@ import { OpenVidu, Publisher, Session, StreamEvent, Subscriber } from 'openvidu-
 import ConsultingLoadingPageLayout from 'components/layout/Page/ConsultingLoadingPageLayout/ConsultingLoadingPageLayout';
 import { ReactComponent as CamOffIcon } from 'assets/icons/consultingMenu/VideoOff.svg';
 import { ReactComponent as MicOffIcon } from 'assets/icons/consultingMenu/MicOff.svg';
+import { ReactComponent as SwitchCamera } from 'assets/icons/SwitchCamera.svg';
 import useMovePage from 'hooks/common/useMovePage';
 import { useRecoilState } from 'recoil';
 import consultingSessionState from 'recoil/consultingSession';
@@ -18,6 +19,7 @@ import { findEmbeddedInfoByCidApi } from 'utils/api/consulting';
 import { IEmbeddedInfo } from 'types/domain/subscribe';
 import PlantChart from 'components/organisms/subscribe/PlantChart/PlantChart';
 import LocalStorage from 'constants/storage/LocalStorage';
+import useToggle from 'hooks/common/useToggle';
 
 function VideoConsultingPage() {
 	// common
@@ -31,6 +33,8 @@ function VideoConsultingPage() {
 	const [publisher, setPublisher] = useState<Publisher | undefined>(undefined);
 	const [webcamEnabled, setWebcamEnabled] = useState<boolean>(true);
 	const [microphoneEnabled, setMicrophoneEnabled] = useState<boolean>(true);
+	const [camToggle, setCamToggle] = useToggle(false);
+
 	// 구독 컨설팅 (임베디드)
 	const [chartDisplayOn, setChartDisplayOn] = useState<boolean>(false);
 	const [embeddedInfo, setEmbeddedInfo] = useState<IEmbeddedInfo[]>([]);
@@ -128,10 +132,20 @@ function VideoConsultingPage() {
 
 		const { token } = consultingSession as IConsultingSession;
 		await newSession.connect(token, { clientData: user?.userName });
+		let videoSource;
+
+		// 카메라
+		OV.getDevices().then((devices) => {
+			const videoDevices = devices.filter((device) => device.kind === 'videoinput');
+
+			if (videoDevices && videoDevices.length > 1) {
+				videoSource = camToggle ? videoDevices[1].deviceId : videoDevices[0].deviceId;
+			}
+		});
 
 		const initPublisher = await OV.initPublisherAsync(undefined, {
 			audioSource: undefined, // The source of audio. If undefined default microphone
-			videoSource: undefined, // The source of video. If undefined default webcam
+			videoSource, // The source of video. If undefined default webcam
 			publishAudio: microphoneEnabled, // Whether you want to start publishing with your audio unmuted or not
 			publishVideo: webcamEnabled, // Whether you want to start publishing with your video enabled or not
 			frameRate: 30, // The frame rate of your video
@@ -198,7 +212,12 @@ function VideoConsultingPage() {
 			{subscriber && <OpenViduVideo streamManager={subscriber} />}
 			<>
 				{publisher && webcamEnabled ? <OpenViduVideo streamManager={publisher} /> : <CamOffIcon />}
-				{!microphoneEnabled && <MicOffIcon />}
+				<div id="device-menu">
+					<div id="mic">{!microphoneEnabled && <MicOffIcon />}</div>
+					<button id="cam" type="button" onClick={setCamToggle}>
+						{webcamEnabled && <SwitchCamera />}
+					</button>
+				</div>
 			</>
 			<VideoConsultingMenu
 				toggleWebcam={toggleWebcam}
