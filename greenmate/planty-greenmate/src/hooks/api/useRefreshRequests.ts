@@ -17,7 +17,6 @@ const useRefreshRequests = () => {
 				}
 				setRequests(response.data);
 			}
-			toast.success('컨설팅 요청 목록 업데이트 😀');
 		} catch (error) {
 			toast.error('컨설팅 요청 목록 업데이트 실패 😥\n잠시 후 다시 시도하세요.');
 			console.error(error);
