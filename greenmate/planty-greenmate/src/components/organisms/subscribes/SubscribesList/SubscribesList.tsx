@@ -8,13 +8,13 @@ import { useLocation } from 'react-router-dom';
 function SubscribesList() {
 	const subscribes = useAllSubscribe();
 	const { movePage } = useMovePage();
-	const pathname = useLocation().pathname.split('/')[1];
+	const pathname = useLocation().pathname.split('/')[2];
 
 	const handleClick = (spid: number) => {
 		if (pathname === 'history') {
-			return movePage(`/history/consulting/${spid}`, null);
+			return movePage(`/admin/history/consulting/${spid}`, null);
 		}
-		return movePage(`/subscribes/list/${spid}`, null);
+		return movePage(`/admin/subscribes/list/${spid}`, null);
 	};
 
 	if (subscribes.length) {
