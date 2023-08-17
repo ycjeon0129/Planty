@@ -42,10 +42,13 @@ public class SubscribeServiceImpl implements SubscribeService {
         UserInfo user = userInfoRepository.findByUserEmail(email)
                 .orElseThrow(() -> new CustomException(USER_NOT_FOUND));
 
+        // 정렬 -> cb null 먼저 찾고 나중에 정렬하기
+        List<UserSubscribeResponse> cbNotNullsubscribeList = new ArrayList<>();
         List<UserSubscribeResponse> subscribeList = new ArrayList<>();
-
         Sort sort = Sort.by(
                 Sort.Order.asc("endDate"),
+                Sort.Order.desc("cbActive"),
+                Sort.Order.desc("cbCancel"),
                 Sort.Order.asc("cbDate"),
                 Sort.Order.asc("cbTime")
         );
@@ -61,7 +64,9 @@ public class SubscribeServiceImpl implements SubscribeService {
         for(ViewUserSubscribe item : list) {
             boolean end = item.getEndDate() != null;
             String endDate = end? item.getEndDate() : TimeUtil.findEndDate(item.getStartDate(), item.getPeriod());
-            NearConsultingResponse nearConsultingInfo = new NearConsultingResponse(item.getCid(), item.getCbDate(), item.getCbCancel(), item.getCbActive(), item.getCbTime());
+            NearConsultingResponse nearConsultingInfo = new NearConsultingResponse();
+            if(item.getCid() != null && !item.getCbCancel() && !item.getCbActive())
+                nearConsultingInfo = new NearConsultingResponse(item.getCid(), item.getCbDate(), item.getCbCancel(), item.getCbActive(), item.getCbTime());
             UserSubscribeResponse sub = UserSubscribeResponse.builder()
                     .sid(item.getSid())
                     .startDate(item.getStartDate())
@@ -74,8 +79,12 @@ public class SubscribeServiceImpl implements SubscribeService {
                     .greenmate(item.getGMNickname())
                     .nearConsulting(nearConsultingInfo)
                     .build();
-            subscribeList.add(sub);
+            if(item.getCid() == null)
+                subscribeList.add(sub);
+            else
+                cbNotNullsubscribeList.add(sub);
         }
+        subscribeList.addAll(cbNotNullsubscribeList);
         log.info(logCurrent(getClassName(), getMethodName(), END));
         return subscribeList;
     }
@@ -103,11 +112,14 @@ public class SubscribeServiceImpl implements SubscribeService {
             embeddedList.add(embedded);
         }
 
-        NearConsultingResponse nearConsultingInfo = new NearConsultingResponse(sub.getCid(), sub.getCbDate(), sub.getCbCancel(), sub.getCbActive(), sub.getCbTime());
 
         boolean end = sub.getEndDate() != null;
         String endDate = end? sub.getEndDate() : TimeUtil.findEndDate(sub.getStartDate(), sub.getPeriod());
 
+        NearConsultingResponse nearConsultingInfo = new NearConsultingResponse();
+        if(sub.getCid() != null && !sub.getCbCancel() && !sub.getCbActive()) {
+            nearConsultingInfo = new NearConsultingResponse(sub.getCid(), sub.getCbDate(), sub.getCbCancel(), sub.getCbActive(), sub.getCbTime());
+        }
         log.info(logCurrent(getClassName(), getMethodName(), END));
         return UserSubscribeDetailResponse.builder()
                 .sid(sub.getSid())

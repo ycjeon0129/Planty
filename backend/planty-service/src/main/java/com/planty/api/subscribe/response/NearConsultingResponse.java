@@ -7,6 +7,7 @@ import lombok.*;
 @Builder
 @ToString
 @AllArgsConstructor
+@NoArgsConstructor
 public class NearConsultingResponse {
 
     private Long cid;   // 컨설팅 예약 식별키

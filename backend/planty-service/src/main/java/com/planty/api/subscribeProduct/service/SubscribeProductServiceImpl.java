@@ -41,7 +41,7 @@ public class SubscribeProductServiceImpl implements SubscribeProductService {
 
             SubscribeProductResponse product = SubscribeProductResponse.builder()
                     .spid(item.getSpid())
-                    //.imgUrl
+                    .imgUrl(item.getThumbnail())
                     .name(item.getName())
                     .period(item.getPeriod())
                     .plantName(item.getPlantInfoIdx().getName())
@@ -64,7 +64,7 @@ public class SubscribeProductServiceImpl implements SubscribeProductService {
         log.info(logCurrent(getClassName(), getMethodName(), END));
         return SubscribeProductDetailResponse.builder()
                 .spid(item.getSpid())
-                //.imgUrl
+                .imgUrl(item.getThumbnail())
                 .name(item.getName())
                 .period(item.getPeriod())
                 .plantName(item.getPlantInfoIdx().getName())

@@ -17,6 +17,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.*;
 
 import static com.planty.common.exception.handler.ErrorCode.*;
@@ -44,9 +46,14 @@ public class ConsultingServiceImpl implements ConsultingService {
         UserInfo user = userInfoRepository.findByUserEmail(email)
                 .orElseThrow(() -> new CustomException(USER_NOT_FOUND));
 
+        ZoneId zoneId = ZoneId.of("Asia/Seoul");
+        ZonedDateTime zonedDateTime = ZonedDateTime.now( zoneId );
+        String nowDate = zonedDateTime.toString().split("T")[0];
+
         List<UserConsultingResponse> consultingList = new ArrayList<>();
         List<ViewUserConsulting> list = viewUserConsultingRepository.findByUid(user.getUid(), Sort.by(desc("date"),desc("time")));
         for(ViewUserConsulting item : list) {
+            if(item.getDate().compareTo(nowDate) >= 0) continue;
             UserConsultingResponse consult = UserConsultingResponse.builder()
                     .cid(item.getCid())
                     .sid(item.getSid())
@@ -79,8 +86,13 @@ public class ConsultingServiceImpl implements ConsultingService {
 
         List<UserConsultingResponse> consultingListDetail = new ArrayList<>();
         List<ViewUserConsulting> list = viewUserConsultingRepository.findByUidAndSid(user.getUid(), sid, Sort.by(desc("date"),desc("time")));
-        //todo : list 없을때 -> 204 , 유저의 sid 가 없을때 -> null 처리 (500) 바꿔야됨
+
+        ZoneId zoneId = ZoneId.of("Asia/Seoul");
+        ZonedDateTime zonedDateTime = ZonedDateTime.now( zoneId );
+        String nowDate = zonedDateTime.toString().split("T")[0];
+
         for(ViewUserConsulting item : list) {
+            if(item.getDate().compareTo(nowDate) >= 0) continue;
             UserConsultingResponse consult = UserConsultingResponse.builder()
                     .cid(item.getCid())
                     .sid(sid)
