@@ -85,21 +85,21 @@ function AppRouter() {
 
 					{/* 로그인이 필요한 경로 */}
 					<Route path="/admin" element={<PrivateRoute />}>
-						<Route path="/admin/dashboard" element={<DashBoardPage />} />
-						<Route path="/admin/consulting" element={<Outlet />}>
+						<Route path="dashboard" element={<DashBoardPage />} />
+						<Route path="consulting" element={<Outlet />}>
 							<Route path="" element={<Navigate to="error" />} />
 							<Route path="loading" element={<LoadingPage />} />
 							<Route path="chatting" element={<ChattingPage />} />
 							<Route path="complete" element={<ConsultingCompletePage />} />
 						</Route>
-						<Route path="/admin/subscribes" element={<SubscribesPage />}>
+						<Route path="subscribes" element={<SubscribesPage />}>
 							<Route path="" element={<Navigate to="/admin/subscribes/list" />} />
 							<Route path="list" element={<ListPage />}>
 								<Route path=":sid" element={<SubscribesDetailPage />} />
 							</Route>
 							<Route path="calendar" element={<CalendarPage />} />
 						</Route>
-						<Route path="/admin/history" element={<HistoryPage />}>
+						<Route path="history" element={<HistoryPage />}>
 							<Route path="" element={<Navigate to="/admin/history/emergency" />} />
 							<Route path="emergency" element={<EmergencyPage />}>
 								<Route path=":eid" element={<EmergencyDetail />} />
@@ -108,7 +108,7 @@ function AppRouter() {
 								<Route path=":cid" element={<ConsultingList />} />
 							</Route>
 						</Route>
-						<Route path="/admin/settings" element={<SettingPage />} />
+						<Route path="settings" element={<SettingPage />} />
 					</Route>
 
 					{/* 에러페이지 처리 */}
