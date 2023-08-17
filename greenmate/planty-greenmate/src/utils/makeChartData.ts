@@ -8,7 +8,7 @@ import { IEmbeddedInfo } from 'types/subscribe';
  * @param hudi 습도 버튼 true/false
  * @returns 온도/습도 차트 데이터 (IChartData)
  */
-const makeChartData = (plantDatas: IEmbeddedInfo[], temp: boolean, hudi: boolean): IChartData => {
+const makeChartData = (plantDatas: IEmbeddedInfo[], temp: boolean, hudi: boolean, soil: boolean): IChartData => {
 	const charData: IChartData = {
 		labels: plantDatas?.map((d) => d.date),
 		datasets: [],
@@ -32,6 +32,15 @@ const makeChartData = (plantDatas: IEmbeddedInfo[], temp: boolean, hudi: boolean
 		pointRadius: 8,
 	};
 
+	const soilDataset: IPlantDataset = {
+		label: '토양 습도',
+		fill: false,
+		tension: 0.1,
+		data: plantDatas?.map((d) => d.soil),
+		borderColor: '#FFC75A',
+		pointRadius: 8,
+	};
+
 	if (temp) {
 		charData.datasets.push(tempDataset);
 	}
@@ -40,6 +49,9 @@ const makeChartData = (plantDatas: IEmbeddedInfo[], temp: boolean, hudi: boolean
 		charData.datasets.push(hudiDataset);
 	}
 
+	if (soil) {
+		charData.datasets.push(soilDataset);
+	}
 	return charData;
 };
 
