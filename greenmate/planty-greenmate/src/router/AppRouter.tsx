@@ -24,7 +24,7 @@ import { Toaster } from 'react-hot-toast';
 import { useRecoilState } from 'recoil';
 import { activityState, authState, consultingSessionState, modalControlState } from 'recoil/store';
 import LocalStorage from 'constants/storage/LocalStorage';
-import VideoSessionPage from 'pages/Consulting/VideoSessionModalPage';
+import VideoSessionPage from 'pages/Consulting/VideoSessionModalPage/VideoSessionModalPage';
 import ConsultingCompletePage from 'pages/Consulting/ConsultingCompletePage';
 import useRefreshRequests from 'hooks/api/useRefreshRequests';
 import PrivateRoute from './PrivateRoute';

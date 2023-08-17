@@ -17,7 +17,8 @@ import Button from 'components/atoms/common/Button/Button';
 import { findEmbeddedInfoByCidApi } from 'utils/api/consulting';
 import { IEmbeddedInfo } from 'types/subscribe';
 import PlantChart from 'components/organisms/consulting/PlantChart/PlantChart';
-import LoadingPage from './LoadingPage';
+import LoadingPage from '../LoadingPage';
+import './VideoSessionModalPage.scss';
 
 function VideoSessionPage({ open, handleClose }: { open: boolean; handleClose: () => void }) {
 	// common
@@ -52,6 +53,7 @@ function VideoSessionPage({ open, handleClose }: { open: boolean; handleClose: (
 	};
 
 	const toggleChartDisplay = () => {
+		console.log(chartDisplayOn);
 		setChartDisplayOn(!chartDisplayOn);
 	};
 
@@ -169,9 +171,9 @@ function VideoSessionPage({ open, handleClose }: { open: boolean; handleClose: (
 	 * sid를 이용해 해당 구독의 식물 차트 정보를 가져옴.
 	 * @param reqSid 구독의 sid
 	 */
-	const fetchEmbeddedInfo = async (reqSid: number) => {
+	const fetchEmbeddedInfo = async (reqCid: number) => {
 		try {
-			const response = await findEmbeddedInfoByCidApi(reqSid);
+			const response = await findEmbeddedInfoByCidApi(reqCid);
 			if (response.status === 200) {
 				setEmbeddedInfo(response.data);
 			}
@@ -181,6 +183,7 @@ function VideoSessionPage({ open, handleClose }: { open: boolean; handleClose: (
 	};
 	// sid 가 존재할 때에만 embedded정보를 fetch 해온다.
 	useEffect(() => {
+		setChartDisplayOn(false);
 		if (consultingSession?.webRTCType === 0) fetchEmbeddedInfo(consultingSession?.idx);
 	}, [consultingSession]);
 
@@ -188,7 +191,7 @@ function VideoSessionPage({ open, handleClose }: { open: boolean; handleClose: (
 	if (consultingSession) {
 		return (
 			<Modal open={open} onClose={handleClose}>
-				<div>
+				<div id="video-consulting-page-layout-container">
 					{!consultingSession || isLoading || !publisher || !subscriber ? (
 						<LoadingPage />
 					) : (
@@ -196,7 +199,14 @@ function VideoSessionPage({ open, handleClose }: { open: boolean; handleClose: (
 							{/* header */}
 							<>
 								<Header />
-								<Button text="컨설팅 화면 최소화" isActive handleClick={handleClose} />
+								<Button
+									text="컨설팅 화면 최소화"
+									isActive
+									handleClick={() => {
+										handleClose();
+										setChartDisplayOn(false);
+									}}
+								/>
 							</>
 							{/* user-video */}
 							{subscriber && <OpenViduVideo streamManager={subscriber} />}
@@ -212,12 +222,14 @@ function VideoSessionPage({ open, handleClose }: { open: boolean; handleClose: (
 								toggleChartDisplay={toggleChartDisplay}
 								exitConsulting={exitConsulting}
 							/>
-							{chartDisplayOn && (
-								<div className="chart-display-wrap">
-									<h3>온습도 정보</h3>
-									<PlantChart embeddedInfo={embeddedInfo} />
-								</div>
-							)}
+							<div id="chart-display-container">
+								{chartDisplayOn && (
+									<div id="chart-display-wrap">
+										<h3>온습도 정보</h3>
+										<PlantChart embeddedInfo={embeddedInfo} />
+									</div>
+								)}
+							</div>
 						</VideoPageLayout>
 					)}
 				</div>
