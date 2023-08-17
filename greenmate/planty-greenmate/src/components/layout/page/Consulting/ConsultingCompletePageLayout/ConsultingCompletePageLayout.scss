@@ -23,12 +23,19 @@
     #advice-input {
         font-size: 1.5em;
 
+        .advice-option {
+            margin-bottom: 20px;
+        }
+
+        #plant-name {
+            width: 33vw;
+            text-align: start;
+        }
+
         textarea {
             resize: none;
             width: 33vw;
             height: 20vh;
-            margin-bottom: 10px;
-
         }
 
         input {
