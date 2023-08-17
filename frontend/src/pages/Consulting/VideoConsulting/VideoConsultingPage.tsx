@@ -139,7 +139,7 @@ function VideoConsultingPage() {
 			const videoDevices = devices.filter((device) => device.kind === 'videoinput');
 			console.log('비디오 장치 목록', videoDevices);
 			if (videoDevices && videoDevices.length > 1) {
-				videoSource = camToggle ? videoDevices[0].deviceId : videoDevices[1].deviceId;
+				videoSource = camToggle ? videoDevices[0].deviceId : videoDevices[videoDevices.length - 1].deviceId;
 			}
 		});
 
