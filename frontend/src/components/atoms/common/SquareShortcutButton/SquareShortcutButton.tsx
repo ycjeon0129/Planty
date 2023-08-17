@@ -1,7 +1,6 @@
 import React from 'react';
 import './SquareShortcutButton.scss';
 import classNames from 'classnames';
-import CalendarImg from 'components/atoms/common/CalendarImg/CalendarImg';
 
 /**
  * 정사각형의 메뉴 바로가기 버튼
@@ -15,7 +14,6 @@ function SquareShortcutButton({ type, text, handleClick }: { type: string; text:
 	return (
 		<button type="button" className={buttonClasses} onClick={handleClick}>
 			<h3>{text}</h3>
-			<CalendarImg />
 		</button>
 	);
 }
