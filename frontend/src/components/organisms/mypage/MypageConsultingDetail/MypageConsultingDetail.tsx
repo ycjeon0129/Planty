@@ -29,7 +29,7 @@ function MypageConsultingDetail({ data }: { data: IConsulting }) {
 	};
 
 	return (
-		<li className="detail-container">
+		<li className="mypage-counsulting-detail-container">
 			<div className="title">
 				<div className="flexgrow1">{data.subscribeProductName}</div>
 				<div className="flexgrow2">
