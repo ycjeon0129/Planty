@@ -39,12 +39,14 @@ function EmergencyDetail({ data }: { data: IEmergencyHistory }) {
 						<span className="h3">컨설팅 상세정보</span>
 						<div className="dates">
 							<div className="leftdate">
-								<div>시작 시간</div>
+								<div>식물명</div>
+								<div className="mt-5">시작 시간</div>
 								<div className="mt-5">종료 시간</div>
 								<div className="mt-5">상담 시간</div>
 							</div>
 							<div className="rightdate">
-								<div>{data.startTime ?? '-'}</div>
+								<div>{data.plantName}</div>
+								<div className="mt-5">{data.startTime ?? '-'}</div>
 								<div className="mt-5">{data.endTime ?? '-'}</div>
 								<div className="mt-5">총 {minutes[0]}분</div>
 							</div>
