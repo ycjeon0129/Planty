@@ -1,22 +1,21 @@
 @use 'styles/base/variable' as var;
 @import 'styles/mixins/common';
 
-.user-profile-photo-container{
-    text-align: center;
-    img{
-        min-width: var.$img-size-sm;
-        border-radius: var.$rd-sm;
-        @include border-gray;
-    }
+.user-profile-photo-container {
+	text-align: center;
+	img {
+		width: 120px;
+		min-width: var.$img-size-sm;
+		border-radius: var.$rd-sm;
+		@include border-gray;
+	}
 
-    .default {
-        background-color: #8CDBA9;
-        border-radius: var.$rd-sm;
-        @include border-gray;
-    }
-    .default path{ 
-        fill : #33AB5F;
-    }
-
-   
+	.default {
+		background-color: #8cdba9;
+		border-radius: var.$rd-sm;
+		@include border-gray;
+	}
+	.default path {
+		fill: #33ab5f;
+	}
 }

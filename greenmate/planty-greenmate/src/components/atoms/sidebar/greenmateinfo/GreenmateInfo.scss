@@ -1,0 +1,29 @@
+@import 'styles/base/_variable.scss';
+
+
+.greenmate-img-box {
+	padding: 10px;
+	font-size: 1.5em;
+	background-color: $white;
+	display: flex;
+	align-items: center;
+	gap: 10px;
+
+	img {
+		width: 50px;
+		height: 50px;
+	}
+
+	&:hover {
+		cursor: pointer;
+		background-color: $black-100;
+	}
+}
+
+.planty-logo-box {
+	margin-bottom: 20px;
+}
+
+.gray-text {
+	color: $black-300;
+}

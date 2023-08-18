@@ -13,7 +13,7 @@ function Level({ level }: { level: number }) {
 	));
 
 	const grayLeaves = Array.from({ length: 5 - level }, (_, index) => (
-		<img key={`gray-${index}`} src={LeafGray} alt="" width="26" height="26" />
+		<img key={`gray-${index}`} src={LeafGray} alt="" />
 	));
 
 	return (

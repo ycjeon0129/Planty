@@ -6,8 +6,13 @@ import AreaTitle from 'components/atoms/common/AreaTitle/AreaTitle';
 import SquareShortcutButton from 'components/atoms/common/SquareShortcutButton/SquareShortcutButton';
 import CurrentGreenmateCount from 'components/atoms/emergency/CurrentGreenmateCount/CurrentGreenmateCount';
 import TicketInfo from 'components/organisms/emergency/TicketInfo/TicketInfo';
+import useMovePage from 'hooks/common/useMovePage';
+import { toast } from 'react-hot-toast';
+// import useUser from 'hooks/common/useUser';
 
 function EmergencyPage() {
+	const { movePage } = useMovePage();
+	// const [user] = useUser();
 	return (
 		<EmergencyPageLayout>
 			{/* 페이지 헤더 */}
@@ -22,11 +27,23 @@ function EmergencyPage() {
 
 			{/* 응급실 이용하기 */}
 			<AreaTitle title="응급실 이용하기" url="#" />
-			<SquareShortcutButton type="consulting-chat" text="채팅 응급실" handleClick={() => {}} />
-			<SquareShortcutButton type="consulting-video" text="화상 응급실" handleClick={() => {}} />
-
-			{/* 응급실 이용 내역 */}
-			<AreaTitle title="응급실 이용 내역" url="#" />
+			<SquareShortcutButton
+				type="consulting-chat"
+				text="채팅 응급실"
+				handleClick={() => {
+					// movePage('/emergency/participate/0', null);
+					toast('준비 중인 서비스입니다!', {
+						icon: '🛠️',
+					});
+				}}
+			/>
+			<SquareShortcutButton
+				type="consulting-video"
+				text="화상 응급실"
+				handleClick={() => {
+					movePage('/emergency/participate/1', null);
+				}}
+			/>
 		</EmergencyPageLayout>
 	);
 }

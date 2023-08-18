@@ -52,3 +52,45 @@ h6 {
 	background-color: var.$white;
 	box-shadow: rgb(219, 219, 219) 0px 0px 10px;
 }
+
+
+// 스크롤 바
+::-webkit-scrollbar {
+	display: none;
+}
+
+// react-simple-dialog
+#simple-dialog-container  {
+
+	.rsd-text-sm { 
+		line-height: normal!important;
+	}
+
+	.rsd-max-w-md { 
+		width: 30vw!important;
+		min-width: 450px!important;
+		max-width: 30vw!important;
+	}
+
+	.rsd-bg-sky-700 {
+		background-color: var.$primary!important;
+	}
+
+	& > div > div {
+		transform: translateY(40vh) translateZ(0px)!important;
+		div{
+			font-size: 1.4em!important;
+			.rsd-text-sm {
+				white-space: pre-line!important;
+			}
+		}
+	}
+
+	button {
+		padding: 20px;
+		font-size: 1.3em!important;
+	}
+
+	
+
+}

@@ -1,0 +1,22 @@
+@import 'styles/base/variable';
+@import 'styles/mixins/common';
+@import 'styles/mixins/flex';
+
+#participate-btn {
+	display: flex;
+	justify-content: center;
+}
+
+#area-title {
+	display: flex;
+	justify-content: center;
+}
+
+#lottie {
+	div {
+		width: 400px!important;
+		height: 400px!important;
+	}
+}
+#participate-detail-box {
+}

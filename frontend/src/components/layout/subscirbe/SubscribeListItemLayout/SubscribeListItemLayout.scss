@@ -12,12 +12,14 @@
 	#top {
 		@include flex-row(5px);
 		@include flex-align(between, center);
+		flex-wrap: wrap;
 		margin-bottom: 10px;
 	}
 
 	#bottom {
 		display: flex;
-
+		gap: 15px;
+		margin-bottom: 10px;
 		img {
 			border-radius: var.$rd-sm;
 			min-width: var.$img-size-xs;
@@ -28,7 +30,6 @@
 
 		#right {
 			@include flex-column;
-			padding: 0 var.$pd-lg;
 			width: 100%;
 			justify-content: space-between;
 

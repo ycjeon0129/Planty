@@ -1,0 +1,37 @@
+@import 'styles/base/_variable.scss';
+
+.request-outer-box {
+	border-radius: $rd-md;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	height: 70px;
+	margin: 5px;
+	box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+}
+
+.request-left-box {
+	display: flex;
+	gap: 10px;
+	margin: 10px;
+}
+
+.right-end {
+	display: flex;
+	justify-content: flex-end;
+}
+
+.request-right-box {
+	display: flex;
+	flex-direction: column;
+	gap: 30px;
+	margin-right: 10px;
+}
+
+.green-text {
+	color: $primary;
+}
+
+.bold-text {
+	font-weight: bold;
+}

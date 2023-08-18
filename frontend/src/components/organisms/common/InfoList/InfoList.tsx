@@ -6,10 +6,8 @@ import Level from 'components/organisms/shop/Level/Level';
  * @param info 정보들을 담고 있는 객체
  */
 function InfoList({ info, labels }: { info: object; labels: string[] }) {
-	const keys = Object.keys(info);
+	// const keys = Object.keys(info);
 	const values = Object.values(info);
-	console.log(keys);
-	// console.log(labels);
 
 	return (
 		<div className="info-list-container">
@@ -23,6 +21,8 @@ function InfoList({ info, labels }: { info: object; labels: string[] }) {
 						content = <span>{value} 개월</span>;
 					} else if (title === '가격') {
 						content = <span>{value.toLocaleString()} 원</span>;
+					} else if (title === '컨설팅 횟수') {
+						content = <span>{value} 회</span>;
 					} else {
 						content = <span>{values[idx]}</span>;
 					}

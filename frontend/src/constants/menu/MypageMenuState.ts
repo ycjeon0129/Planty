@@ -45,11 +45,11 @@ export const SUB_MENU_DETAIL_LIST: ISubMenuDetailList = {
 	[SUB_MENU_LIST[0]]: [
 		{
 			text: '응급실 이용 내역',
-			url: '/develop',
+			url: '/mypage/service-history/emergencies',
 		},
 		{
 			text: '구독 컨설팅 이용 내역',
-			url: '/develop',
+			url: '/mypage/service-history/consultings',
 		},
 	],
 	[SUB_MENU_LIST[1]]: [

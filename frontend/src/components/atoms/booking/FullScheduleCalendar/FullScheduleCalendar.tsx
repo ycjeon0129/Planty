@@ -2,12 +2,11 @@ import './FullScheduleCalendar.scss';
 import React from 'react';
 import moment from 'moment';
 import Calendar from 'react-calendar';
-import { Value } from 'types/global';
-import useBookingList from 'hooks/useBookingList';
-import { IConsulting } from 'types/dummy';
-import { dummyBookings } from 'dummy';
-import isSameDate from 'utils/isSameDate';
+import { Value } from 'types/common/global';
 import { yesterdayDateTime } from 'constants/common/Date';
+import isSameDate from 'utils/date/isSameDate';
+import { IBooking } from 'types/domain/booking';
+import useAllBooking from 'hooks/api/useAllBooking';
 
 interface ICustomCaledarProps {
 	selectedDate: Value;
@@ -19,19 +18,14 @@ interface ICustomCaledarProps {
  * @param bookings 전체 예약(컨설팅) 목록
  * @param date 현재 선택된 날짜
  */
-const getTileContent = (bookings: IConsulting[], date: Date) => {
+const checkTile = (bookings: IBooking[], date: Date) => {
 	const dot = <div className="booking-dot-container" />;
-	return dummyBookings.find((el) => isSameDate(date, el.date)) ? dot : null;
+
+	return bookings.find((el) => isSameDate(date, el.date) && !el.cancel) ? dot : null;
 };
 
 function FullScheduleCalendar({ selectedDate, setSelectedDate }: ICustomCaledarProps) {
-	const bookings = useBookingList();
-
-	// TODOS : API 나오면 이걸로 교체.
-	// const getTileContent = (date: Date) => {
-	// 	const dot = <div className="booking-dot-container" />;
-	// 	return bookings.find((el) => isSameDate(date, el.date)) ? dot : null;
-	// };
+	const bookings = useAllBooking();
 
 	return (
 		<div className="custom-calendar-container">
@@ -44,7 +38,7 @@ function FullScheduleCalendar({ selectedDate, setSelectedDate }: ICustomCaledarP
 				showNeighboringMonth={false}
 				tileClassName={({ date }) => (date.getTime() < yesterdayDateTime ? 'before-days-color-gray' : null)}
 				formatDay={(_, date) => moment(date).format('DD')}
-				tileContent={({ date }) => getTileContent(bookings, date)}
+				tileContent={({ date }) => checkTile(bookings, date)}
 			/>
 		</div>
 	);

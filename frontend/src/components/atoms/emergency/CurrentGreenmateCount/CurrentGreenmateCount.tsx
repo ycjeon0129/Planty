@@ -1,7 +1,7 @@
 import React from 'react';
 import './CurrentGreenmateCount.scss';
-import useGreenmateCount from 'hooks/useGreenmateCount';
 import classNames from 'classnames';
+import useGreenmateCount from 'hooks/api/useGreenmateCount';
 
 /**
  * 현재 활동중인 그린메이트의 수를 표시.
@@ -12,7 +12,7 @@ function CurrentGreenmateCount() {
 
 	return (
 		<div className={className}>
-			<h4>현재 활동중인 그린메이트 {greenmateCount}명</h4>
+			<h4>현재 활동 중인 그린메이트 {greenmateCount}명</h4>
 		</div>
 	);
 }

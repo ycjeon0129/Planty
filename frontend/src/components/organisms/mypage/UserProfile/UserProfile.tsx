@@ -1,7 +1,7 @@
 import UserProfilePhoto from 'components/atoms/user/UserProfilePhoto/UserProfilePhoto';
-import useUser from 'hooks/useUser';
 import React from 'react';
 import './UserProfile.scss';
+import useUser from 'hooks/common/useUser';
 
 function UserProfile() {
 	const [user] = useUser();
@@ -9,7 +9,7 @@ function UserProfile() {
 	return (
 		<div className="user-profile-container">
 			<UserProfilePhoto />
-			<span>{user?.nickname}</span>
+			<span>{user?.userName}</span>
 		</div>
 	);
 }

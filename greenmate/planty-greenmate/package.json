@@ -3,71 +3,83 @@
     "version": "0.1.0",
     "private": true,
     "dependencies": {
-      "@testing-library/jest-dom": "^5.17.0",
-      "@testing-library/react": "^13.4.0",
-      "@testing-library/user-event": "^13.5.0",
-      "@types/jest": "^27.5.2",
-      "@types/node": "^16.18.38",
-      "@types/react": "^18.2.15",
-      "@types/react-dom": "^18.2.7",
-      "axios": "1.4.0",
-      "chart.js": "4.3.3",
-      "jwt-decode": "3.1.2",
-      "moment": "^2.29.4",
-      "openvidu-browser": "^2.28.0",
-      "react": "^18.2.0",
-      "react-calendar": "^4.6.0",
-      "react-chartjs-2": "5.2.0",
-      "react-dom": "^18.2.0",
-      "react-router-dom": "6.14.2",
-      "react-scripts": "5.0.1",
-      "react-slick": "^0.29.0",
-      "react-spinners": "^0.13.8",
-      "react-uuid": "2.0.0",
-      "recoil": "^0.7.7",
-      "sass": "^1.64.1",
-      "slick-carousel": "^1.8.1",
-      "swiper": "^6.8.4",
-      "typescript": "^4.9.5",
-      "web-vitals": "^2.1.4"
+        "@emotion/react": "^11.11.1",
+        "@emotion/styled": "^11.11.0",
+        "@mui/icons-material": "^5.14.3",
+        "@mui/material": "^5.14.3",
+        "@testing-library/jest-dom": "^5.17.0",
+        "@testing-library/react": "^13.4.0",
+        "@testing-library/user-event": "^13.5.0",
+        "@types/jest": "^27.5.2",
+        "@types/node": "^16.18.38",
+        "@types/react": "^18.2.15",
+        "@types/react-dom": "^18.2.7",
+        "axios": "1.4.0",
+        "chart.js": "4.3.3",
+        "jwt-decode": "3.1.2",
+        "moment": "^2.29.4",
+        "openvidu-browser": "^2.28.0",
+        "react": "^18.2.0",
+        "react-calendar": "^4.6.0",
+        "react-chartjs-2": "5.2.0",
+        "react-confirm-alert": "3.0.6",
+        "react-dom": "^18.2.0",
+        "react-hot-toast": "2.4.1",
+        "react-lottie": "^1.2.3",
+        "react-router-dom": "6.14.2",
+        "react-scripts": "5.0.1",
+        "react-slick": "^0.29.0",
+        "react-spinners": "^0.13.8",
+        "react-uuid": "2.0.0",
+        "recoil": "^0.7.7",
+        "sass": "^1.64.1",
+        "slick-carousel": "^1.8.1",
+        "swiper": "^6.8.4",
+        "typescript": "^4.9.5",
+        "web-vitals": "^2.1.4"
     },
     "scripts": {
-      "start": "react-scripts start",
-      "build": "react-scripts build",
-      "test": "react-scripts test",
-      "eject": "react-scripts eject",
-      "lint": "eslint src/**/*.{js,jsx,ts,tsx,json}",
-      "lint:fix": "eslint --fix 'src/**/*.{js,jsx,ts,tsx,json}'",
-      "prettier": "prettier --write --config ./.prettierrc './src/**/*.{ts,tsx}'"
+        "start": "set PORT=3001 && react-scripts start",
+        "build": "react-scripts build",
+        "test": "react-scripts test",
+        "eject": "react-scripts eject",
+        "lint": "eslint src/**/*.{js,jsx,ts,tsx,json}",
+        "lint:fix": "eslint --fix 'src/**/*.{js,jsx,ts,tsx,json}'",
+        "prettier": "prettier --write --config ./.prettierrc './src/**/*.{ts,tsx}'"
     },
     "browserslist": {
-      "production": [
-        ">0.2%",
-        "not dead",
-        "not op_mini all"
-      ],
-      "development": [
-        "last 1 chrome version",
-        "last 1 firefox version",
-        "last 1 safari version"
-      ]
+        "production": [
+            ">0.2%",
+            "not dead",
+            "not op_mini all"
+        ],
+        "development": [
+            "last 1 chrome version",
+            "last 1 firefox version",
+            "last 1 safari version"
+        ]
     },
     "devDependencies": {
-      "@types/react-slick": "^0.23.10",
-      "@types/swiper": "^6.0.0",
-      "@typescript-eslint/eslint-plugin": "6.1.0",
-      "@typescript-eslint/parser": "6.1.0",
-      "classnames": "^2.3.2",
-      "eslint": "8.45.0",
-      "eslint-config-airbnb": "19.0.4",
-      "eslint-config-airbnb-typescript": "17.1.0",
-      "eslint-config-prettier": "8.8.0",
-      "eslint-plugin-hooks": "0.4.3",
-      "eslint-plugin-import": "2.27.5",
-      "eslint-plugin-jsx-a11y": "6.7.1",
-      "eslint-plugin-prettier": "5.0.0",
-      "eslint-plugin-react": "7.33.0",
-      "prettier": "3.0.0"
+        "@types/react-lottie": "^1.2.6",
+        "@types/react-slick": "^0.23.10",
+        "@types/swiper": "^6.0.0",
+        "@typescript-eslint/eslint-plugin": "6.1.0",
+        "@typescript-eslint/parser": "6.1.0",
+        "classnames": "^2.3.2",
+        "eslint": "8.45.0",
+        "eslint-config-airbnb": "19.0.4",
+        "eslint-config-airbnb-typescript": "17.1.0",
+        "eslint-config-prettier": "8.8.0",
+        "eslint-plugin-hooks": "0.4.3",
+        "eslint-plugin-import": "2.27.5",
+        "eslint-plugin-jsx-a11y": "6.7.1",
+        "eslint-plugin-prettier": "5.0.0",
+        "eslint-plugin-react": "7.33.0",
+        "prettier": "3.0.0"
+    },
+    "overrides": {
+        "react-lottie": {
+            "react": "^0.14.7 || ^15.0.0 || ^16.0.0 || ^17.0.0 || ^18.0.0"
+        }
     }
-  }
-  
+}

@@ -1,0 +1,14 @@
+.info-row {
+    font-size: 1.4em;
+    display: flex;
+    flex-direction: row;
+
+    .info-title {
+        font-weight: bold;
+        flex-basis: 30%;
+    }
+
+    .info-content {
+        flex-basis: 70%;
+    }
+}

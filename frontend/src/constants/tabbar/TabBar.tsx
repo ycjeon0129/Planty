@@ -39,6 +39,13 @@ export const NOT_ARROWED_PATH = [
 	/\/subscribe\/\d+\/booking/,
 	/\/subscribe\/\d+\/consulting/,
 	'/consulting/video',
+	'/consulting/complete',
 	'/error',
 	'/consultingloading',
+	'/video',
+	'/consulting/participate',
+	'/emergency/participate',
+	/\/shop\/pay\/\d+/,
+	/\/payment\/.*/,
+	/\/payment\/success\/\d+/,
 ];

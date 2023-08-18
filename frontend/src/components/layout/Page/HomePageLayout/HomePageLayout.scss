@@ -7,18 +7,19 @@
 
 	#banner {
 		flex-basis: 60px;
+		margin-bottom: 10px;
 	}
 
 	#my-subcribe {
 		font-weight: bold;
-		padding-bottom: 155px;
+		padding-bottom: 200px;
 		position: relative;
 
 		#bottom {
 			#right {
 				.info-list-item {
 					span {
-						font-size: 1rem;
+						font-size: 1.1rem;
 					}
 				}
 			}
@@ -33,6 +34,7 @@
 		#booking {
 			@include border-gray;
 			flex-basis: 50%;
+			border-radius: var.$rd-sm;
 		}
 
 		#emergency {
@@ -43,6 +45,7 @@
 
 			div {
 				@include border-gray;
+				border-radius: var.$rd-sm;
 			}
 		}
 	}

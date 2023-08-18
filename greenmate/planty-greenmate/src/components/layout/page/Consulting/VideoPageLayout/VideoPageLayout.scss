@@ -1,0 +1,71 @@
+@use 'styles/base/variable' as var;
+@import 'styles/mixins/flex';
+@import 'styles/mixins/grid';
+
+#header {
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    button {
+        padding: 10px 20px;
+    }
+
+}
+
+#video-page-layout-container {
+    position: relative;
+    flex-grow: 1;
+    @include grid(20px);
+
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+
+
+
+    #greenmate-video,
+    #user-video {
+        @include flex-column;
+        @include flex-align(center, center);
+        justify-content: center;
+        align-items: center;
+
+        svg {
+            width: 60px;
+            height: 60px;
+            fill: var.$black-300;
+        }
+    }
+
+
+    #greenmate-video {
+        position: absolute;
+        bottom: 80px;
+        right: 12px;
+        width: 25%;
+        height: 25vh;
+        border-radius: 4px;
+        background-color: var.$black-800;
+
+        svg:nth-child(2) {
+            position: absolute;
+            bottom: 4px;
+            left: 4px;
+            width: 25px;
+            height: 25px;
+        }
+    }
+
+    #user-video {
+        height: calc(100vh - 68px);
+        background-color: var.$black-100;
+    }
+
+    #video-consulting-menu {
+        position: absolute;
+        width: 100%;
+        bottom: 0;
+    }
+
+}

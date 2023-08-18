@@ -12,7 +12,7 @@ function SubscribeDetailItemLayout({ children }: { children: ReactNode[] }) {
 
 			<div id="bottom">
 				{/* 이미지 */}
-				{children[2]}
+				<div id="img-container">{children[2]}</div>
 
 				<div id="right">
 					{/* 작물명 */}

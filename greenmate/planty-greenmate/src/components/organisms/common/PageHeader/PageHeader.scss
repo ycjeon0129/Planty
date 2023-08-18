@@ -1,0 +1,6 @@
+@use 'styles/base/variable' as var;
+
+.pageheader-layout {
+    font-weight: bold;
+    padding: var.$pd-lg 0;
+}
