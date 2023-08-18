@@ -1,5 +1,5 @@
 ![Planty 대표 사진](./frontend/src/assets/images/Planty.png)
-# :four_leaf_clover:PLANTY:four_leaf_clover:
+# :four_leaf_clover: PLANTY :four_leaf_clover:
 #### 실시간 화상 채팅을 통한 홈가드닝 컨설팅 서비스
 <br />
 <br />
