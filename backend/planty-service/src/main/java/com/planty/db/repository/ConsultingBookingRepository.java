@@ -16,6 +16,7 @@ public interface ConsultingBookingRepository extends JpaRepository<ConsultingBoo
     Optional<ConsultingBooking> findByCid(Long cid);
     List<ConsultingBooking> findAllByCidLessThanAndSidAndCancelFalse(Long cid, UserSubscribe sid);
     List<ConsultingBooking> findByGidAndActiveAndCancel(GmInfo gmInfo, boolean active, boolean cancel);
+    List<ConsultingBooking> findByGidAndActiveAndCancel(GmInfo gmInfo, boolean active, boolean cancel, Sort sort);
     List<ConsultingBooking> findByUid(UserInfo uid, Sort sort);
     List<ConsultingBooking> findByGidAndDateOrderByTimeIdx(GmInfo gid, String date);
     List<ConsultingBooking> findByGidAndConnectionNotNullAndActiveFalse(GmInfo gid);
