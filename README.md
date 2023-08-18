@@ -255,10 +255,10 @@
 
 | | | |
 |:---:|:---:|:---:|
-| <img src="./frontend/src/assets/TeamImg/Yeon.jpg" alt="전윤철's Image" width="100" height="100"> | <img src="./frontend/src/assets/TeamImg/Hoon.png" alt="김정훈's Image" width="100" height="100"> | <img src="./frontend/src/assets/TeamImg/Hass.png" alt="임희선's Image" width="100" height="100"> |
+| <img src="./frontend/src/assets/teamImg/Yeon.jpg" alt="전윤철's Image" width="100" height="100"> | <img src="./frontend/src/assets/teamImg/Hoon.png" alt="김정훈's Image" width="100" height="100"> | <img src="./frontend/src/assets/teamImg/Hass.png" alt="임희선's Image" width="100" height="100"> |
 | **[전윤철](https://github.com/ycjeon0129)**<br>**Backend** | **[김정훈](https://github.com/jeonghun98)**<br>**Backend** | **[임희선](https://github.com/Im-hass)**<br>**Frontend** |
 | | | |
-| <img src="./frontend/src/assets/TeamImg/Gyu.png" alt="이금규's Image" width="100" height="100"> | <img src="./frontend/src/assets/TeamImg/Yang.png" alt="양시온's Image" width="100" height="100"> | <img src="./frontend/src/assets/TeamImg/Heok.jpg" alt="전인혁's Image" width="100" height="100"> |
+| <img src="./frontend/src/assets/teamImg/Gyu.png" alt="이금규's Image" width="100" height="100"> | <img src="./frontend/src/assets/teamImg/Yang.png" alt="양시온's Image" width="100" height="100"> | <img src="./frontend/src/assets/teamImg/Heok.jpg" alt="전인혁's Image" width="100" height="100"> |
 | **[이금규](https://github.com/Gold-Gyu)**<br>**Frontend** | **[양시온](https://github.com/sionyy)**<br>**Frontend** | **[전인혁](https://github.com/wjs5025)**<br>**Frontend** |
 
 ```
