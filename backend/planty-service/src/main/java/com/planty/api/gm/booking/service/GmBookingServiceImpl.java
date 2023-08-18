@@ -11,6 +11,7 @@ import com.planty.db.entity.ViewUserConsulting;
 import com.planty.db.repository.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.text.ParseException;
@@ -20,6 +21,8 @@ import java.util.List;
 import static com.planty.common.exception.handler.ErrorCode.*;
 import static com.planty.common.util.LogCurrent.*;
 import static com.planty.common.util.LogCurrent.START;
+import static org.springframework.data.domain.Sort.Order.asc;
+import static org.springframework.data.domain.Sort.Order.desc;
 
 @Slf4j
 @Service
@@ -46,7 +49,8 @@ public class GmBookingServiceImpl implements GmBookingService {
         }
 
         List<GmBookingResponse> bookingList = new ArrayList<>();
-        List<ConsultingBooking> list = consultingBookingRepository.findByGidAndActiveAndCancel(gm, false, false);
+        List<ConsultingBooking> list = consultingBookingRepository.findByGidAndActiveAndCancel(gm, false, false, Sort.by(asc("date"),asc("timeIdx")));
+//        List<ViewUserConsulting> list = viewUserConsultingRepository.findByUidAndCancelFalse(user.getUid(), Sort.by(desc("date"),desc("time")));
 
         String now = TimeUtil.findCurrentTimestamp();
         for (ConsultingBooking item : list) {
