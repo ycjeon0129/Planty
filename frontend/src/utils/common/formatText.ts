@@ -1,4 +1,4 @@
-const MAX_TITLE_LENGTH = 16;
+const MAX_TITLE_LENGTH = 13;
 
 const sliceText = (text: string) => {
 	let displayedTitle = text;

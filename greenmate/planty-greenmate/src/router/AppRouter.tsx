@@ -24,7 +24,7 @@ import { Toaster } from 'react-hot-toast';
 import { useRecoilState } from 'recoil';
 import { activityState, authState, consultingSessionState, modalControlState } from 'recoil/store';
 import LocalStorage from 'constants/storage/LocalStorage';
-import VideoSessionPage from 'pages/Consulting/VideoSessionModalPage';
+import VideoSessionPage from 'pages/Consulting/VideoSessionModalPage/VideoSessionModalPage';
 import ConsultingCompletePage from 'pages/Consulting/ConsultingCompletePage';
 import useRefreshRequests from 'hooks/api/useRefreshRequests';
 import PrivateRoute from './PrivateRoute';
@@ -74,32 +74,33 @@ function AppRouter() {
 
 	return (
 		<div className="container">
-			<BrowserRouter basename="/admin">
+			<BrowserRouter>
 				<VideoSessionPage open={open} handleClose={handleClose} />
-				<SideBar />
+				{auth && <SideBar />}
 				<Routes>
 					{/* 로그인이 필요하지 않은 경로 */}
-					<Route path="/" element={<Navigate replace to={auth ? '/dashboard' : '/login'} />} />
-					<Route path="/login" element={<LoginPage />} />
+					<Route path="/" element={<Navigate replace to={auth ? '/admin/dashboard' : '/admin/login'} />} />
+					<Route path="/admin" element={<Navigate replace to={auth ? '/admin/dashboard' : '/admin/login'} />} />
+					<Route path="/admin/login" element={<LoginPage />} />
 
 					{/* 로그인이 필요한 경로 */}
-					<Route path="/" element={<PrivateRoute />}>
-						<Route path="/dashboard" element={<DashBoardPage />} />
-						<Route path="/consulting" element={<Outlet />}>
+					<Route path="/admin" element={<PrivateRoute />}>
+						<Route path="dashboard" element={<DashBoardPage />} />
+						<Route path="consulting" element={<Outlet />}>
 							<Route path="" element={<Navigate to="error" />} />
 							<Route path="loading" element={<LoadingPage />} />
 							<Route path="chatting" element={<ChattingPage />} />
 							<Route path="complete" element={<ConsultingCompletePage />} />
 						</Route>
-						<Route path="/subscribes" element={<SubscribesPage />}>
-							<Route path="" element={<Navigate to="list" />} />
+						<Route path="subscribes" element={<SubscribesPage />}>
+							<Route path="" element={<Navigate to="/admin/subscribes/list" />} />
 							<Route path="list" element={<ListPage />}>
 								<Route path=":sid" element={<SubscribesDetailPage />} />
 							</Route>
 							<Route path="calendar" element={<CalendarPage />} />
 						</Route>
-						<Route path="/history" element={<HistoryPage />}>
-							<Route path="" element={<Navigate to="emergency" />} />
+						<Route path="history" element={<HistoryPage />}>
+							<Route path="" element={<Navigate to="/admin/history/emergency" />} />
 							<Route path="emergency" element={<EmergencyPage />}>
 								<Route path=":eid" element={<EmergencyDetail />} />
 							</Route>
@@ -107,14 +108,14 @@ function AppRouter() {
 								<Route path=":cid" element={<ConsultingList />} />
 							</Route>
 						</Route>
-						<Route path="/settings" element={<SettingPage />} />
+						<Route path="settings" element={<SettingPage />} />
 					</Route>
 
 					{/* 에러페이지 처리 */}
-					<Route path="/*" element={<Navigate replace to="error" />} />
-					<Route path="/error" element={<ErrorPage />} />
+					<Route path="/admin/*" element={<Navigate replace to="error" />} />
+					<Route path="/admin/error" element={<ErrorPage />} />
 
-					<Route path="/develop" element={<Develop />} />
+					<Route path="/admin/develop" element={<Develop />} />
 				</Routes>
 				<ScrollToTop />
 				<Toaster

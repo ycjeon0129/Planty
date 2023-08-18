@@ -4,7 +4,7 @@ import useLocationIdx from 'hooks/common/useSid';
 import React from 'react';
 
 function SubscribeBookingList() {
-	const spid = useLocationIdx(3);
+	const spid = useLocationIdx(4);
 	const bookings = useAllBookingBySpid(spid);
 
 	if (bookings.length)
