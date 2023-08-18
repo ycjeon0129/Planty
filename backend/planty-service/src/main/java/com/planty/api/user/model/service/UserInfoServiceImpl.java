@@ -5,7 +5,6 @@ package com.planty.api.user.model.service;
 import com.planty.api.user.model.request.UserJoinRequest;
 import com.planty.api.user.model.response.*;
 import com.planty.common.exception.handler.CustomException;
-import com.planty.common.handler.NotFoundException;
 import com.planty.common.jwt.JwtTokenProvider;
 import com.planty.common.util.SecurityUtil;
 import com.planty.db.entity.UserInfo;
