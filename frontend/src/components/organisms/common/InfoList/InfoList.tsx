@@ -18,7 +18,7 @@ function InfoList({ info, labels }: { info: object; labels: string[] }) {
 				} else {
 					const value = parseInt(values[idx], 10);
 					if (title === '구독기간') {
-						content = <span>{value} 개월</span>;
+						content = <span>{value} 주</span>;
 					} else if (title === '가격') {
 						content = <span>{value.toLocaleString()} 원</span>;
 					} else if (title === '컨설팅 횟수') {
