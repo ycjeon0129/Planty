@@ -1,4 +1,4 @@
-![Planty 대표 사진](./frontend/src/assets/images/Planty.png)
+![Planty 대표 사진](./pictures/images/Planty.png)
 # :four_leaf_clover:PLANTY:four_leaf_clover:
 #### 실시간 화상 채팅을 통한 홈가드닝 컨설팅 서비스
 <br />
@@ -65,7 +65,7 @@
 # 사용자 화면
 
 ## 컨설팅 예약 및 예약 취소
-<img src="./frontend/src/assets/gif/reserve.gif" alt="GIF 이미지" width="200">
+<img src="./pictures/gif/reserve.gif" alt="GIF 이미지" width="200">
 
 - 내 구독 상품 중 예약대기 상태라면 예약할 수 있어요.
 - 컨설팅 날짜와 시간을 선택해서 예약할 수 있어요.
@@ -76,7 +76,7 @@
 <br>
 
 ## 내 구독 상품 상세정보 
-<img src="./frontend/src/assets/gif/mysubscribe.gif" alt="GIF 이미지" width="200">
+<img src="./pictures/gif/mysubscribe.gif" alt="GIF 이미지" width="200">
 
 - 내가 구독한 상품 목록을 확인할 수 있어요.
 - 예약완료 상태면 컨설팅을 이용할 수 있어요
@@ -88,7 +88,7 @@
 <br>
 
 ## 구독샵 
-<img src="./frontend/src/assets/gif/shopdetail.gif" alt="GIF 이미지" width="200">
+<img src="./pictures/gif/shopdetail.gif" alt="GIF 이미지" width="200">
 
 - 전체 구독 상품 조회할 수 있어요
 - 각 구독 상품의 구독기간, 난이도, 가격를 확인할 수 있어요
@@ -100,7 +100,7 @@
 
 ## 응급실 이용
 
-<img src="./frontend/src/assets/gif/Emergency.gif" alt="GIF 이미지" width="200">
+<img src="./pictures/gif/Emergency.gif" alt="GIF 이미지" width="200">
 
 - 응급실 이용권을 구매할 수 있어요.
 - 이용권 통해서 응급실 참여할 수 있어요.
@@ -110,7 +110,7 @@
 <br>
 
 ## 마이페이지
-<img src="./frontend/src/assets/gif/mypage.gif" alt="GIF 이미지" width="200">
+<img src="./pictures/gif/mypage.gif" alt="GIF 이미지" width="200">
 
 - 내 구독 상품 목록을 전체적으로 볼 수 있어요.
 - 내 예약 정보를 확인할 수 있어요
@@ -121,7 +121,7 @@
 
 # 그린메이트 화면
 ## Dashboard
-<img src="./frontend/src/assets/gif/greenDashboard.gif" alt="GIF 이미지" width="200">
+<img src="./pictures/gif/greenDashboard.gif" alt="GIF 이미지" width="200">
 
 - 그린메이트 활동 상태(활동, 비활동) 설정할 수 있습니다.
 - 다가오는 컨설팅 스케줄 확인을 통해 사용자와의 약속을 지킬 수 있습니다.
@@ -131,7 +131,7 @@
 <br>
 
 ## 구독관리
-<img src="./frontend/src/assets/gif/greensub.gif" alt="GIF 이미지" width="200">
+<img src="./pictures/gif/greensub.gif" alt="GIF 이미지" width="200">
 
 - 구독 상품 상세 정보
 - 예약된 컨설팅 목록
@@ -140,7 +140,7 @@
 <br>
 
 ## 컨설팅 컨설팅 내역
-<img src="./frontend/src/assets/gif/greenConsultHis.gif" alt="GIF 이미지" width="200">
+<img src="./pictures/gif/greenConsultHis.gif" alt="GIF 이미지" width="200">
 
 - 지난 컨설팅 내역 조회
 - 지난 응급실 내역 조회
@@ -245,7 +245,7 @@
 ### 2. [요구명세서](https://docs.google.com/spreadsheets/d/1_Gy2Y3Tx_QFfyERrT5L37eBdzQt_IQdYllJr635F9aY/edit#gid=1053749451)
 ### 3. [API명세서](https://docs.google.com/spreadsheets/d/1_Gy2Y3Tx_QFfyERrT5L37eBdzQt_IQdYllJr635F9aY/edit#gid=1155766931)
 ### 4. ERD
-<img src="./frontend/src/assets/document/planty_erd.png" alt="GIF 이미지" width="700">
+<img src="./pictures/document/planty_erd.png" alt="GIF 이미지" width="700">
 
 <br />
 <br />
@@ -255,10 +255,10 @@
 
 | | | |
 |:---:|:---:|:---:|
-| <img src="./frontend/src/assets/TeamImg/Yeon.jpg" alt="전윤철's Image" width="100" height="100"> | <img src="./frontend/src/assets/TeamImg/Hoon.png" alt="김정훈's Image" width="100" height="100"> | <img src="./frontend/src/assets/TeamImg/Hass.png" alt="임희선's Image" width="100" height="100"> |
+| <img src="./pictures/TeamImg/Yeon.jpg" alt="전윤철's Image" width="100" height="100"> | <img src="./pictures/TeamImg/Hoon.png" alt="김정훈's Image" width="100" height="100"> | <img src="./pictures/TeamImg/Hass.png" alt="임희선's Image" width="100" height="100"> |
 | **[전윤철](https://github.com/ycjeon0129)**<br>**Backend** | **[김정훈](https://github.com/jeonghun98)**<br>**Backend** | **[임희선](https://github.com/Im-hass)**<br>**Frontend** |
 | | | |
-| <img src="./frontend/src/assets/TeamImg/Gyu.png" alt="이금규's Image" width="100" height="100"> | <img src="./frontend/src/assets/TeamImg/Yang.png" alt="양시온's Image" width="100" height="100"> | <img src="./frontend/src/assets/TeamImg/Heok.jpg" alt="전인혁's Image" width="100" height="100"> |
+| <img src="./pictures/TeamImg/Gyu.png" alt="이금규's Image" width="100" height="100"> | <img src="./pictures/TeamImg/Yang.png" alt="양시온's Image" width="100" height="100"> | <img src="./pictures/TeamImg/Heok.jpg" alt="전인혁's Image" width="100" height="100"> |
 | **[이금규](https://github.com/Gold-Gyu)**<br>**Frontend** | **[양시온](https://github.com/sionyy)**<br>**Frontend** | **[전인혁](https://github.com/wjs5025)**<br>**Frontend** |
 
 ```
