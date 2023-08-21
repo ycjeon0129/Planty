@@ -7,7 +7,9 @@ function LoginPage() {
 	return (
 		<LoginPageLayout>
 			<img src={Logo} alt="" />
-			<SocialLoginButton />
+			<div id="social-login">
+				<SocialLoginButton />
+			</div>
 		</LoginPageLayout>
 	);
 }
