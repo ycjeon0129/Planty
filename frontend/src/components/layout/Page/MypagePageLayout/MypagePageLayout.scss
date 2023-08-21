@@ -3,7 +3,7 @@
 @import 'styles/mixins/flex';
 
 .mypage-page-layout-container {
-	@include flex-column;
+	@include flex-column(10px);
 	@include flex-align(center, center);
 	text-align: center;
 

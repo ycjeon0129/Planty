@@ -1,9 +1,10 @@
 import React from 'react';
 import { Navigate, Outlet } from 'react-router-dom';
+import { useRecoilState } from 'recoil';
+import userState from 'recoil/user';
 
 function PrivateRoute() {
-	// const auth = useAuth();
-	const auth = { name: '전인혁' };
-	return auth ? <Outlet /> : <Navigate to="/login" />;
+	const [user] = useRecoilState(userState);
+	return user ? <Outlet /> : <Navigate to="/login" />;
 }
 export default PrivateRoute;

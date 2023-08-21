@@ -1,21 +1,48 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './DetailMenuItem.scss';
 import { ReactComponent as NextIcon } from 'assets/icons/Next.svg';
 import { IDetail } from 'constants/menu/MypageMenuState';
 import { Link, useNavigate } from 'react-router-dom';
+import { toast } from 'react-hot-toast';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import IOSSwitch from 'components/atoms/common/ToggleButton/ToggleButton';
 
 function DetailMenuItem({ text, url = '', isToggle = false }: IDetail) {
 	const navigator = useNavigate();
+	const [isActive, SetIsActive] = useState<boolean>(false);
+	const onClick = () => {
+		SetIsActive(!isActive);
+		toast('준비 중인 서비스입니다!', {
+			icon: '🛠️',
+		});
+	};
 
 	if (isToggle) {
 		return (
 			<li className="detail-menu-item-container">
 				<p>{text}</p>
-				<div>토글</div>
+				<FormControlLabel control={<IOSSwitch sx={{ m: 1 }} />} label="" onClick={onClick} />
 			</li>
 		);
 	}
 
+	if (url === '/') {
+		return (
+			<li className="detail-menu-item-container">
+				<div className="menu-text-font">{text}</div>
+				<button
+					type="button"
+					onClick={() => {
+						toast('준비 중인 서비스입니다!', {
+							icon: '🛠️',
+						});
+					}}
+				>
+					<NextIcon />
+				</button>
+			</li>
+		);
+	}
 	return (
 		<li className="detail-menu-item-container">
 			<Link to={url}>{text}</Link>

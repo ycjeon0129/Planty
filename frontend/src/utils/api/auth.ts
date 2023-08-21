@@ -1,18 +1,22 @@
 import LocalStorage from 'constants/storage/LocalStorage';
-import jwt_decode from 'jwt-decode';
-import { AccessToken, LoginBody, SetUserBody } from 'types/auth';
+// import jwt_decode from 'jwt-decode';
+import { LoginBody, SetUserBody } from 'types/domain/user';
 import SessionStorage from 'constants/storage/SessionStorage';
-import instance from './instance';
+import { CredentialResponse } from '@react-oauth/google';
+import { instance } from './instance';
 
 /**
  * JWT AccessToken을 해석하여, uid를 추출하는 함수.
  * @returns 현재 로그인된 사용자의 uid
  */
-const getUidFromAccessToken = (): number => {
-	const token = LocalStorage.getItem('accessToken') as string;
-	const decoded: AccessToken = jwt_decode(token);
+const getUidFromAccessToken = (): number | null => {
+	const token = LocalStorage.getItem('AccessToken') as string;
+	// const decoded: AccessToken = jwt_decode(token);
 
-	return decoded.uid;
+	// TODO : 임시 uid
+	if (token) return 1;
+	return null;
+	// return decoded.uid;
 };
 
 /**
@@ -21,9 +25,8 @@ const getUidFromAccessToken = (): number => {
  */
 export const findUserApi = async () => {
 	const uid = getUidFromAccessToken();
-	const response = await instance.get(`/user/${uid}`);
-
-	return response;
+	if (uid) return instance.get(`/users/${uid}`);
+	return null;
 };
 
 /**
@@ -70,5 +73,13 @@ export const logoutApi = async (body: LoginBody) => {
 		}
 	});
 
+	return response;
+};
+
+export const socialLoginApi = async (res: CredentialResponse) => {
+	const body = {
+		profileObj: res,
+	};
+	const response = await instance.post('/oauth/jwt/google', JSON.stringify(body));
 	return response;
 };

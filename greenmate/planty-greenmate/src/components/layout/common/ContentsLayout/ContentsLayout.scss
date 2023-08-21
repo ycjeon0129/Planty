@@ -1,0 +1,12 @@
+@use 'styles/base/variable' as var;
+
+.contents-layout-container {
+	display: flex;
+
+	flex-direction: column;
+	flex-grow: 1;
+	padding: var.$pd-xl;
+	background-color: var.$white;
+	border-radius: var.$rd-sm;
+	width: 100%;
+}

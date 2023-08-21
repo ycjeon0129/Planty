@@ -1,0 +1,28 @@
+@import 'styles/mixins/flex';
+
+.consulting-complete-page-layout-container{
+    @include flex-column(10px);
+    @include flex-align(center, center);
+    padding-bottom: 0;
+    height: 100vh;
+
+    #lottie {
+        div {
+            width: 400px!important;
+            height: 400px!important;
+        }
+    }
+
+    #message{
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 50px;
+    }
+    
+    #return-button {
+        button {
+            padding: 10px;
+        }
+    }
+}

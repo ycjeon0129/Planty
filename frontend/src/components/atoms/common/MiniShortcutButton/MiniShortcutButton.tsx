@@ -1,7 +1,7 @@
 import React, { ReactNode, useCallback, useEffect, useState } from 'react';
 import './MiniShortcutButton.scss';
-import SubscribeListIcon from 'assets/icons/Bookmark.svg';
-import BookingIcon from 'assets/icons/Calendar.svg';
+import BookmarkIcon from 'assets/icons/Bookmark.svg';
+import CalendarRedIcon from 'assets/icons/CalendarRed.svg';
 
 /**
  * 작은 사각형의 메뉴 바로가기 버튼
@@ -15,10 +15,10 @@ function MiniShortcutButton({ type, text, handleClick }: { type: string; text: s
 	const setIcon = useCallback(() => {
 		switch (type) {
 			case 'subscribeList':
-				setIconElement(<img src={SubscribeListIcon} alt="구독목록 바로가기 아이콘" />);
+				setIconElement(<img src={BookmarkIcon} alt="구독목록 바로가기 아이콘" />);
 				break;
 			case 'booking':
-				setIconElement(<img src={BookingIcon} alt="예약관리 바로가기 아이콘" />);
+				setIconElement(<img src={CalendarRedIcon} alt="예약관리 바로가기 아이콘" />);
 				break;
 			default:
 				break;

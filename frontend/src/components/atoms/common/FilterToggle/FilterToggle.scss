@@ -8,14 +8,15 @@
 	@include flex-row($pd-lg);
 	@include flex-align($jc: center, $ai: center);
 	background-color: white;
-	border-radius: $rd-sm;
-	font-size: $h5;
-	padding-right: $pd-md;
-	padding-left: $pd-md;
+	border-radius: $rd-lg;
+	font-size: $h4;
+	padding: $pd-sm $pd-lg;
 	font-weight: normal;
 }
 
 .filter-button {
+	margin-right: 7px;
+
 	&.primary {
 		@include buttonColor($primary);
 	}

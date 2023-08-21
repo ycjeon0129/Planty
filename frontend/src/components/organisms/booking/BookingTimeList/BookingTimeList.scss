@@ -1,0 +1,15 @@
+// 스타일 설정
+$grid-columns: 4; // 4개의 열로 구성
+$grid-gutter: 10px; // 열 간격
+
+// 그리드 스타일 정의
+@mixin grid-container {
+	display: grid;
+	grid-template-columns: repeat($grid-columns, 1fr);
+	grid-gap: $grid-gutter;
+}
+
+// 그리드 컨테이너 스타일 적용
+.grid-container {
+	@include grid-container;
+}

@@ -4,15 +4,19 @@
 .login-page-layout-container {
 	@include flex-column;
 	@include flex-align(center, center);
-
 	position: relative;
 	height: 100vh;
 
 	#logo {
+		position: absolute;
 		text-align: center;
 
 		img {
 			width: 150px;
 		}
+	}
+	#social-login {
+		display: flex;
+		margin-top: 70vh;
 	}
 }

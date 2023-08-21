@@ -1,0 +1,54 @@
+@import 'styles/mixins/flex';
+@import 'styles/base/common';
+@import 'styles/base/variable';
+
+.profile-box {
+    @include flex-row(30px);
+    justify-content: center;
+    align-items: center;
+    // padding: 50%;
+}
+
+.profile-left-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    img {
+        width: 130px;
+        height: 130px;
+    }
+}
+
+.profile-right-box {
+    @include flex-column(20px);
+    justify-content: center;
+}
+
+.nickname-button-box {
+    @include flex-row(0px);
+    align-items: center;
+}
+
+.intro-button-box {
+    @include flex-row(0px);
+    align-items: center;
+}
+
+.greenmate-intro-box {
+    @include flex-column(0px);
+}
+
+.navy-text {
+    color: $navy;
+    &.nickname {
+        font-size: $h2;
+    }
+    &.introduce {
+        font-size: $h3;
+        width: 500px;
+    }
+    &.introduceInput {
+        font-size: $h3;
+        width: 500px;
+    }
+}

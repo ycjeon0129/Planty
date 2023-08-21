@@ -3,30 +3,30 @@
 @import 'styles/mixins/flex';
 
 .infolist-box {
-  display: grid; /* Use grid layout instead of flex */
-  justify-content: flex-start; /* Align the flex items to the left */
-  align-items: center;
-  gap: 2px; /* Add a gap between grid items */
-  @include border-gray;
-  width: 100%;
-  height: 120px;
-  border-radius: var.$rd-sm;
-  
-  .price-box {
-    display: flex; /* Use flex inside the grid items */
-    margin-left: 20px;
-    span {
-      font-size: 1.2rem;
-      margin-bottom: 0.5rem;
-    }
+	@include border-gray;
+	border-radius: var.$rd-sm;
 
-    span:nth-child(1) {
-      min-width: 200px; /* Adjust the width as needed */
-      color: #333;
-    }
+	.text-box {
+		@include flex-column(2px);
+		margin: 0;
+		padding: 14px;
 
-    span:nth-child(2) {
-      color: #666;
-    }
-  }
+		.price-box {
+			@include flex-row(20px);
+			@include flex-align(start, start);
+
+			span {
+				font-size: 1.25rem;
+			}
+
+			span:nth-child(1) {
+				min-width: 120px;
+				color: #333;
+			}
+
+			span:nth-child(2) {
+				color: #666;
+			}
+		}
+	}
 }

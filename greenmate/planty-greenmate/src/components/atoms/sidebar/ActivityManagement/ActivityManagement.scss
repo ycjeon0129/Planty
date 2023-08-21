@@ -1,0 +1,49 @@
+@import 'styles/base/_variable.scss';
+
+.active-management {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: $border-100;
+
+    .flex {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 3px;
+
+        button {
+            svg path {
+                transition: all 0.2s
+            }
+        }
+
+        button:hover {
+            svg path {
+                transform: translateY(-3px);
+                fill: $primary
+            }
+        }
+    }
+
+    .bold-text {
+        font-weight: bold;
+        font-size: $h5;
+        color: $black-500;
+    }
+}
+
+.check-online-box {
+    padding-left: 20px;
+}
+
+.check-online-outer-box {
+    margin-top: 50px;
+}
+
+
+
+.gray-text {
+    color: $black-300;
+    white-space: pre-wrap;
+}

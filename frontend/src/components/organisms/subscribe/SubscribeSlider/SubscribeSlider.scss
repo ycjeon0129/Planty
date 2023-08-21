@@ -1,7 +1,17 @@
 @use 'styles/base/variable' as var;
 
-.subscribe-slider {
-	.swiper-slide {
-		width: 90%;
+.slider-container {
+	position: absolute;
+	top: 37px;
+	left: -10px;
+	width: calc(100% + 20px);
+
+	.subscribe-slider {
+		padding-left: 10px;
+		padding-right: 10px;
+
+		.swiper-slide {
+			width: 90%;
+		}
 	}
 }

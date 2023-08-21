@@ -1,0 +1,77 @@
+@use 'styles/base/variable' as var;
+@import 'styles/mixins/flex';
+
+.consulting-complete-page-layout-container {
+    @include flex-column(10px);
+    @include flex-align(normal, center);
+    padding-bottom: 0;
+    height: 100vh;
+
+    #lottie {
+        div {
+            width: 30vw !important;
+            height: 30vh !important;
+        }
+    }
+
+    #message {
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 20px;
+    }
+
+    #advice-input {
+        font-size: 1.5em;
+
+        .advice-option {
+            margin-bottom: 20px;
+        }
+
+        #plant-name {
+            width: 33vw;
+            text-align: start;
+        }
+
+        textarea {
+            resize: none;
+            width: 33vw;
+            height: 20vh;
+        }
+
+        input {
+            width: 150px;
+            height: 40px;
+            font-size: 1em;
+            text-align: center;
+        }
+
+        margin-bottom: 30px;
+    }
+
+    #return-button {
+        button {
+            width: 33vw;
+            padding: 10px;
+        }
+    }
+
+    #chart-display-container {
+        background-color: var.$white;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        border-radius: 4px;
+
+        .chart-display-wrap {
+            // padding: 15px;
+            margin: 15px;
+
+            h3 {
+                text-align: center;
+                margin-bottom: 10px;
+            }
+        }
+    }
+}

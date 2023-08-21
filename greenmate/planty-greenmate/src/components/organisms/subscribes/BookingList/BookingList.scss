@@ -1,0 +1,29 @@
+@use 'styles/base/variable' as var;
+
+.booking-list-container {
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    max-height: 75vh;
+    text-align: center;
+    flex-grow: 1;
+    overflow-y: scroll;
+
+    &.no-content {
+        color: var.$black-300;
+        justify-content: center;
+    }
+
+    &h2 {
+        display: flex;
+        flex-grow: 1;
+    }
+
+    &>div {
+        box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+
+        .css-1elwnq4-MuiPaper-root-MuiAccordion-root:before {
+            height: 0;
+        }
+    }
+}

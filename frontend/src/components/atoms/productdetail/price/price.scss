@@ -1,0 +1,23 @@
+@use 'styles/base/variable' as var;
+@import 'styles/mixins/common';
+@import 'styles/mixins/flex';
+
+.price-final-box {
+	width: 95%;
+	height: 50px;
+	margin: 0 auto;
+	padding: 0 10px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+	border-radius: var.$rd-sm var.$rd-sm;
+	background-color: var.$white;
+	position: sticky;
+	bottom: 0;
+}
+
+.price {
+	font-size: var.$h2;
+	margin-left: var.$mr-lg;
+}

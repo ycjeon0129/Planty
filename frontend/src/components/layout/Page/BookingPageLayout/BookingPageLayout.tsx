@@ -9,17 +9,21 @@ function BookingPageLayout({ children }: { children: ReactNode[] }) {
 		<PageLayout>
 			{/* 페이지 헤더 */}
 			<NavigationLayout>{children[0]}</NavigationLayout>
-			<div className="booking-management-page-layout">
-				{/* 전체 예약 일정 */}
+			<div className="booking-page-layout">
+				{/* 날짜 선택  */}
 				<ContentsLayout id="calendar">
 					{children[1]}
 					{children[2]}
 				</ContentsLayout>
-				{children[3]}
-				<ContentsLayout id="booking-list">
+
+				{/* 시간 선택 */}
+				<ContentsLayout id="time">
+					{children[3]}
 					{children[4]}
-					{children[5]}
 				</ContentsLayout>
+
+				{/* 예약하기 버튼 */}
+				<div id="btn-container">{children[5]}</div>
 			</div>
 		</PageLayout>
 	);

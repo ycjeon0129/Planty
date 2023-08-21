@@ -1,14 +1,15 @@
 import React from 'react';
 import BadgeDescriptionLayout from 'components/layout/common/StatusDescriptionLayout/StatusDescriptionLayout';
+import SubscribeStateBadge from 'components/atoms/subscribe/SubscribeStateBadge/SubscribeStateBadge';
 
 function BadgeDescription({
 	title,
 	descriptionList,
-	badgeList,
+	stateKeyList,
 }: {
 	title: string;
 	descriptionList: string[];
-	badgeList: JSX.Element[];
+	stateKeyList: string[];
 }) {
 	return (
 		<BadgeDescriptionLayout>
@@ -18,14 +19,16 @@ function BadgeDescription({
 			{/* 설명 */}
 			<ul>
 				{descriptionList.map((v) => (
-					<li>{v}</li>
+					<li key={v}>{v}</li>
 				))}
 			</ul>
 
 			{/* 뱃지 목록 */}
 			<ul>
-				{badgeList.map((v) => (
-					<li>{v}</li>
+				{stateKeyList.map((v) => (
+					<li key={v}>
+						<SubscribeStateBadge stateKey={v} />
+					</li>
 				))}
 			</ul>
 		</BadgeDescriptionLayout>

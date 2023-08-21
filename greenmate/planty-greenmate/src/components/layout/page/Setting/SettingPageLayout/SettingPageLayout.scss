@@ -1,0 +1,35 @@
+@use 'styles/base/variable' as var;
+@import 'styles/mixins/grid';
+
+.setting-page-layout-container {
+    // display: flex;
+    // flex-direction: column;
+    // flex-grow: 1;
+    gap: 20px;
+    // position: absolute;
+
+    @include grid(20px);
+    grid-template-columns: 1fr;
+
+    #left {
+        @include grid(20px);
+        grid-template-rows: 3fr 7fr;
+        width: 100%;
+    }
+
+    #center {
+        @include grid(20px);
+        grid-template-rows: 1fr 2fr;
+    }
+
+    #right {
+        @include grid(20px);
+        grid-template-rows: 1fr;
+    }
+
+    #settings-box {
+        align-items: center;
+    }
+
+    
+}

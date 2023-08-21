@@ -10,7 +10,7 @@ function IconText({ imgUrl, text }: { imgUrl: string; text: string }) {
 	return (
 		<div className="icon-text-container">
 			<div className="img-wrap">
-				<img src={imgUrl} alt={text} height={14} width={14} />
+				<img src={imgUrl} alt={text} height={16} width={16} />
 			</div>
 			<p className="text">{text}</p>
 		</div>

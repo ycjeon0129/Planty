@@ -2,7 +2,15 @@
 @import 'styles/mixins/flex';
 
 .booking-page-layout {
-	#booking-list {
-		@include flex-column(var.$mb-content-sm);
+	.icon-text-container {
+		margin-bottom: var.$mb-content-sm;
+	}
+
+	#btn-container {
+		button {
+			font-size: var.$p3;
+			width: 100%;
+			height: 45px;
+		}
 	}
 }

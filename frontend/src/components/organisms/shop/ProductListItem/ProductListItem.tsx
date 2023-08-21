@@ -1,25 +1,31 @@
+/* eslint-disable global-require */
 import React from 'react';
 import ProductListItemLayout from 'components/layout/shop/ProductListItemLayout/ProductListItemLayout';
 import ListItemTitle from 'components/atoms/common/ListItemTitle/ListItemTitle';
 import Button from 'components/atoms/common/Button/Button';
 import InfoList from 'components/organisms/common/InfoList/InfoList';
-import { IProduct } from 'types/dummy';
+import { PRODUCT_LIST_ITEM_LABELS } from 'constants/common/Labels';
+import { IProduct, IProductInfo } from 'types/domain/product';
+import useMovePage from 'hooks/common/useMovePage';
 
 /**
  * 구독샵 상품 목록 아이템의 모음
  * @param product 상품 정보들을 담고 있는 객체
  */
 function ProductListItem({ product }: { product: IProduct }) {
-	const testFunc = () => {
-		alert('클릭');
+	const { movePage } = useMovePage();
+	const info: IProductInfo = { period: product.period, level: product.level, price: product.price };
+
+	const handleClick = () => {
+		movePage(`/shop/detail/${product.spid}`, null);
 	};
 
 	return (
 		<ProductListItemLayout>
-			<ListItemTitle title={product.title} url={`detail/${product.pid}`} />
-			<img src={product.thumbnail} alt="" />
-			<InfoList info={product.info} />
-			<Button isActive={false} text="구매하기" handleClick={testFunc} />
+			<ListItemTitle title={product.name} isFull url={`detail/${product.spid}`} />
+			<img src={product.imgUrl} alt={product.plantName} />
+			<InfoList info={info} labels={PRODUCT_LIST_ITEM_LABELS} />
+			<Button isActive text="자세히 보기" handleClick={handleClick} />
 		</ProductListItemLayout>
 	);
 }

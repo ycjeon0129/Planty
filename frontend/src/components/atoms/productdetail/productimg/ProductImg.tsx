@@ -9,6 +9,7 @@ import 'swiper/components/navigation/navigation.min.css';
 
 // import required modules
 import SwiperCore, { Pagination, Navigation } from 'swiper';
+import uuid from 'react-uuid';
 
 SwiperCore.use([Pagination, Navigation]);
 
@@ -23,7 +24,7 @@ export default function ProductImg({ imgUrls }: { imgUrls: string[] }) {
 				className="mySwiper"
 			>
 				{imgUrls.map((url) => (
-					<SwiperSlide key={url}>
+					<SwiperSlide key={uuid()}>
 						<img src={url} alt="사진" style={{ height: '300px', width: '100%' }} />
 					</SwiperSlide>
 				))}

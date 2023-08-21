@@ -15,7 +15,7 @@ function HomePageLayout({ children }: { children: ReactNode[] }) {
 
 			<div className="home-page-layout-container">
 				{/* 배너 */}
-				<ContentsLayout id="banner">{children[1]}</ContentsLayout>
+				<div id="banner">{children[1]}</div>
 				{/* 내 구독정보 */}
 				<ContentsLayout id="my-subcribe">
 					{children[2]}
@@ -29,11 +29,6 @@ function HomePageLayout({ children }: { children: ReactNode[] }) {
 						<div>{children[6]}</div>
 						<div>{children[7]}</div>
 					</div>
-				</ContentsLayout>
-				{/* 추천 구독 상품 */}
-				{children[8]}
-				<ContentsLayout id="shop">
-					<div />
 				</ContentsLayout>
 			</div>
 		</PageLayout>

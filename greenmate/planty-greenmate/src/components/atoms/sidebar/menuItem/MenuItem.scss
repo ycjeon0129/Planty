@@ -1,0 +1,35 @@
+@import 'styles/base/_variable.scss';
+
+.menu-bar-outer-box {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  border-radius: $rd-md;
+  gap: 10px;
+  margin: 5px;
+  padding: 15px;
+
+  &.active {
+    background-color: $light-500;
+
+    div {
+      color: $green;
+    }
+  }
+
+  &.isIng {
+    background-color: $primary;
+
+    div {
+      color: $white;
+    }
+  }
+
+
+}
+
+.menu-list {
+  font-size: $h4;
+  color: $black-300;
+  font-weight: bold;
+}

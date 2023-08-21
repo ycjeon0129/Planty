@@ -1,0 +1,38 @@
+@use 'styles/base/variable' as var;
+@import 'styles/mixins/flex';
+@import 'styles/mixins/common';
+
+.loading-page-layout {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 90%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+
+	.text {
+		margin-bottom: 70px;
+		text-align: center;
+		font-size: var.$h2;
+		color: var.$black-400;
+	}
+	.consulting-loading-footer {
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		gap: 6px;
+		color: var.$black-200;
+		font-size: 15px;
+		position: absolute;
+		// bottom: 30%;
+		bottom: 10%;
+		left: 50%;
+		transform: translateX(-50%);
+	}
+}
+
+
+
