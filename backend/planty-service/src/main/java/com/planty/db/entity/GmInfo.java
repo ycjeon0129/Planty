@@ -1,6 +1,8 @@
 package com.planty.db.entity;
 
 import javax.persistence.*;
+
+import com.planty.common.enums.Role;
 import lombok.*;
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.DynamicInsert;

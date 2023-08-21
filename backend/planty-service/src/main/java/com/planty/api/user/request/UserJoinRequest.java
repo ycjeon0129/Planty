@@ -1,4 +1,4 @@
-package com.planty.api.user.model.request;
+package com.planty.api.user.request;
 
 import com.planty.common.enums.UserType;
 import lombok.AllArgsConstructor;

@@ -4,7 +4,7 @@ package com.planty.config;
 import java.util.Arrays;
 import java.util.List;
 
-import com.planty.common.interceptor.AuthenticationInterceptor;
+//import com.planty.common.interceptor.AuthenticationInterceptor;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
@@ -22,7 +22,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class WebMvcConfig implements WebMvcConfigurer {
 
-    private final AuthenticationInterceptor confirmInterceptor;
+//    private final AuthenticationInterceptor confirmInterceptor;
 //    private final ScheduleInterceptor scheduleInterceptor;
     private final List<String> patterns = Arrays.asList("/api/**", "/mypage", "/search", "/schedule", "/hotplace");
 
