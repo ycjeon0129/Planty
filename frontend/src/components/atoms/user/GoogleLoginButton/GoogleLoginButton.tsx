@@ -3,6 +3,7 @@ import React from 'react';
 // import { ReactComponent as GoogleIcon } from 'assets/icons/Google.svg';
 // import LocalStorage from 'constants/storage/LocalStorage';
 import { CredentialResponse, GoogleLogin } from '@react-oauth/google';
+import { socialLoginApi } from 'utils/api/auth';
 
 // function GoogleLoginButton() {
 // 	const login = useGoogleLogin({
@@ -25,9 +26,15 @@ import { CredentialResponse, GoogleLogin } from '@react-oauth/google';
 // }
 
 function GoogleLoginButton() {
-	const onSuccess = (res: CredentialResponse) => {
-		console.log(res);
+	const onSuccess = async (res: CredentialResponse) => {
+		try {
+			const response = await socialLoginApi(res);
+			console.log(response);
+		} catch (error) {
+			console.error(error);
+		}
 	};
+
 	const onError = () => {
 		console.log('error');
 	};
