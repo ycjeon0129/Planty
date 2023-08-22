@@ -14,7 +14,7 @@ public class UserResponse {
 
     private Long uid;
     private String userId;
-    private String userName;
+    private String username;
     private String userEmail;
     private Integer emergencyCount;
     private String shippingAddress;

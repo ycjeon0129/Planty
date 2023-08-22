@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @Getter
 public class UserInfoDetailResponse {
     private String userId;
-    private String userName;
+    private String username;
     private String email;
     private String photo;
     private String joinDate;

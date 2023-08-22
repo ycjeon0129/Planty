@@ -1,7 +1,12 @@
 package com.planty.common.oauth.provider;
 
+import lombok.Getter;
+import lombok.ToString;
+
 import java.util.Map;
 
+@Getter
+@ToString
 public class GoogleUser implements OAuthUserInfo{
 
     private Map<String, Object> attribute;
@@ -10,9 +15,11 @@ public class GoogleUser implements OAuthUserInfo{
         this.attribute = attribute;
     }
 
+//    public String getCredential() { return (String) attribute.get("credential"); }
+
     @Override
     public String getProviderId() {
-        return (String)attribute.get("googleId");
+        return (String)attribute.get("sub");
     }
 
     @Override

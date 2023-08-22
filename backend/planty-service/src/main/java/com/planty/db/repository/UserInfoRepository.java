@@ -13,7 +13,7 @@ public interface UserInfoRepository extends JpaRepository<UserInfo, Long> {
     /* OAuth */
     Optional<UserInfo> findByUserEmail(String userEmail);
     Optional<UserInfo> findByUid(Long uid);
-    Optional<UserInfo> findByUserId(String userId);
-    UserInfo findByUserName(String userName);
+//    Optional<UserInfo> findByUserId(String userId);
+    UserInfo findByUsername(String username);
 
 }

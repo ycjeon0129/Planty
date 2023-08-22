@@ -70,7 +70,7 @@ public class EmergencyServiceImpl implements EmergencyService {
                             .timeTaken(timeTaken)
                             .content(item.getContent())
                             .gm(item.getGid().getNickname())
-                            .user(item.getUid().getUserName())
+                            .user(item.getUid().getUsername())
                             .build()
             );
         }

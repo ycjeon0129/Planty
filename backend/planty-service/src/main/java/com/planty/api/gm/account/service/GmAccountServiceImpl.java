@@ -116,7 +116,7 @@ public class GmAccountServiceImpl implements GmAccountService {
             list.add(GmWebRTCResponse.builder()
                     .webRTCType(0)
                     .idx(consulting.getCid())
-                    .username(consulting.getUid().getUserName())
+                    .username(consulting.getUid().getUsername())
                     .build());
         }
         for (EmergencyLog emergency : emergencyLogList) {
@@ -126,7 +126,7 @@ public class GmAccountServiceImpl implements GmAccountService {
                     .idx(emergency.getEid())
                     .emergencyType(emergency.getType())
                     .minutesAgo(minutesAgo)
-                    .username(emergency.getUid().getUserName())
+                    .username(emergency.getUid().getUsername())
                     .build());
         }
 

@@ -32,11 +32,11 @@ public class UserInfo extends BaseEntity {
     @Column(name = "uid")
     private Long uid;
 
-    @Column(name = "user_id", length = 32, nullable = false)
-    private String userId;
+    @Column(name = "nickname", length = 128, nullable = false)
+    private String nickname;
 
-    @Column(name = "user_name", length = 32, nullable = false)
-    private String userName;
+    @Column(name = "username", length = 128, nullable = false)
+    private String username;
 
     @Column(name = "password", length = 128, nullable = false)
     private String password;
@@ -73,7 +73,7 @@ public class UserInfo extends BaseEntity {
 
 //    @Builder(builderClassName = "OAuth2Register", builderMethodName = "oauth2Register")
 //    public UserInfo(String username, String password, String email, String role, String provider, String providerId) {
-//        this.userName = username;
+//        this.username = username;
 //        this.password = password;
 //        this.userEmail = email;
 //        this.role = role;

@@ -6,11 +6,19 @@ package com.planty.api.user.controller;
 //import com.planty.api.user.model.request.TokenRefreshRequest;
 //import com.planty.api.user.model.response.*;
 //import com.planty.api.user.model.service.CustomOAuth2UserService;
+import com.auth0.jwt.JWT;
+import com.auth0.jwt.algorithms.Algorithm;
+//import com.planty.api.user.request.GoogleLoginRequest;
 import com.planty.api.user.response.UserInfoDetailResponse;
 import com.planty.api.user.response.UserLoginResponse;
 import com.planty.api.user.service.UserInfoServiceImpl;
 import com.planty.common.auth.PrincipalDetails;
+import com.planty.common.jwt.JwtProperties;
+import com.planty.common.oauth.provider.GoogleUser;
+import com.planty.common.oauth.provider.OAuthUserInfo;
 import com.planty.common.util.RestExceptionUtil;
+import com.planty.db.entity.UserInfo;
+import com.planty.db.repository.UserInfoRepository;
 import io.swagger.annotations.Api;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -20,30 +28,78 @@ import org.springframework.http.ResponseEntity;
 //import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.web.bind.annotation.*;
 
 //import javax.validation.Valid;
 
+import java.util.Date;
 import java.util.Map;
+import java.util.UUID;
 
 @Slf4j
 @RestController
-@RequestMapping(value = "/api/users")
+//@RequestMapping(value = "/api/users")
+@RequestMapping(value = "/")
 @RequiredArgsConstructor
 @Api
 //@CrossOrigin("http://localhost:3000")
 public class UserInfoController {
 
     private final UserInfoServiceImpl userService;
-
-//    @GetMapping("/oauth/loginInfo")
+    private final UserInfoRepository userRepository;
+    private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @PostMapping("/oauth/jwt/google")
     public ResponseEntity<UserLoginResponse> jwtCreate(@RequestBody Map<String, Object> data) {
-        UserLoginResponse loginInfo = userService.jwtCreate(data);
+        UserLoginResponse token = userService.jwtCreate(data);
+//        log.info("jwtCreate 실행됨");
+////        log.info(data.get("profileObj").toString());
+//        System.out.println(data);
+//        OAuthUserInfo googleUser =
+//                new GoogleUser((Map<String, Object>)data.get("profileObj"));
+////        System.out.println( ( (Map<String, Object>) data.get("profileObj") ).toString() );
+////        System.out.println(data.get("profileObj").toString());
+//
+//        UserInfo userEntity =
+//                userRepository.findByUsername(googleUser.getProvider()+"_"+googleUser.getProviderId());
+//
+//        if(userEntity == null) {
+//
+//            System.out.println(googleUser.getProvider());
+//            System.out.println(googleUser.getProviderId());
+//            System.out.println(googleUser.getEmail());
+//            System.out.println(googleUser.getName());
+//            String providerId = googleUser.getProviderId();
+//            if (providerId == null) {
+//                providerId = UUID.randomUUID().toString().substring(0, 6);
+//            }
+//            UserInfo userRequest = UserInfo.builder()
+//                    .username(googleUser.getProvider()+"_"+providerId)
+//                    .password(bCryptPasswordEncoder.encode("planty202secret"))
+//                    .userEmail(googleUser.getEmail())
+//                    .userType(googleUser.getProvider())
+//                    .userId(providerId)
+//                    .role("ROLE_USER")
+//                    .build();
+//
+//            userEntity = userRepository.save(userRequest);
+//        }
+//
+//        String jwtToken = JWT.create()
+//                .withSubject(userEntity.getUsername())
+//                .withExpiresAt(new Date(System.currentTimeMillis()+ JwtProperties.EXPIRATION_TIME))
+//                .withClaim("uid", userEntity.getUid())
+//                .withClaim("email", userEntity.getUserEmail())
+//                .withClaim("emergencyCount", userEntity.getEmergencyCount())
+//                .sign(Algorithm.HMAC512(JwtProperties.SECRET));
+//
+//        UserLoginResponse token = UserLoginResponse.builder()
+//                .jwtToken(jwtToken)
+//                .build();
 
-        return ResponseEntity.status(200).body(loginInfo);
+        return ResponseEntity.status(200).body(token);
     }
 
 
@@ -90,7 +146,7 @@ public class UserInfoController {
 //        log.info("UserInfoController::regUser() ->");
 //        UserJoinRequest userJoinRequest = UserJoinRequest.builder()
 //                .userId(id)
-//                .userName(name)
+//                .username(name)
 //                .userEmail(email)
 //                .build();
 //        UserJoinResponse userJoinResponse = userService.joinUser(userJoinRequest);

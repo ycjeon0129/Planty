@@ -46,7 +46,7 @@ public class BookingServiceImpl implements BookingService {
                     .date(item.getDate())
                     .time(item.getTimeIdx().getIdx())
                     .greenmate(item.getGid().getNickname())
-                    .user(item.getUid().getUserName())
+                    .user(item.getUid().getUsername())
                     .active(item.getActive())
                     .cancel(item.getCancel())
                     .build();

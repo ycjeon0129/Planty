@@ -4,6 +4,8 @@ package com.planty.api.user.service;
 //import com.planty.api.user.model.request.TokenRefreshRequest;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
+//import com.planty.api.user.request.GoogleLoginRequest;
+import com.google.gson.Gson;
 import com.planty.api.user.response.TokenInfoResponse;
 import com.planty.api.user.response.UserInfoDetailResponse;
 import com.planty.api.user.response.UserLoginResponse;
@@ -25,8 +27,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Date;
-import java.util.Map;
+import java.util.*;
 
 import static com.planty.common.exception.handler.ErrorCode.*;
 
@@ -44,22 +45,28 @@ public class UserInfoServiceImpl implements UserInfoService {
 //    @Value("${jwt.secret}")
 //    private String password;
 
+    @Override
     public UserLoginResponse jwtCreate(Map<String, Object> data) {
         log.info("jwtCreate 실행됨");
-        log.info(data.get("profileObj").toString());
-        OAuthUserInfo googleUser =
-                new GoogleUser((Map<String, Object>)data.get("profileObj"));
+        HashMap<String, String> googleInfo = mapping(data);
+//        OAuthUserInfo googleUser =
+//                new GoogleUser((Map<String, Object>)data.get("profileObj"));
+        String provider = "google";
 
         UserInfo userEntity =
-                userRepository.findByUserName(googleUser.getProvider()+"_"+googleUser.getProviderId());
+                userRepository.findByUsername(provider+"_"+googleInfo.get("sub"));
 
         if(userEntity == null) {
+
+//            if (providerId == null) {
+//                providerId = UUID.randomUUID().toString().substring(0, 6);
+//            }
             UserInfo userRequest = UserInfo.builder()
-                    .userName(googleUser.getProvider()+"_"+googleUser.getProviderId())
+					.username(provider+"_"+googleInfo.get("sub"))
                     .password(bCryptPasswordEncoder.encode("planty202secret"))
-                    .userEmail(googleUser.getEmail())
-                    .userType(googleUser.getProvider())
-                    .userId(googleUser.getProviderId())
+                    .userEmail(googleInfo.get("email"))
+                    .userType(provider)
+                    .nickname(googleInfo.get("name"))
                     .role("ROLE_USER")
                     .build();
 
@@ -67,7 +74,7 @@ public class UserInfoServiceImpl implements UserInfoService {
         }
 
         String jwtToken = JWT.create()
-                .withSubject(userEntity.getUserName())
+                .withSubject(userEntity.getUsername())
                 .withExpiresAt(new Date(System.currentTimeMillis()+ JwtProperties.EXPIRATION_TIME))
                 .withClaim("uid", userEntity.getUid())
                 .withClaim("email", userEntity.getUserEmail())
@@ -78,9 +85,31 @@ public class UserInfoServiceImpl implements UserInfoService {
                 .jwtToken(jwtToken)
                 .build();
         return token;
+//        return null;
     }
 
+    public HashMap<String, String> mapping(Map<String, Object> data) {
+        HashMap<String, String> accountInfo = new HashMap<>();
 
+                String origin = (String) ((Map<String, Object>) data.get("profileObj")).get("credential");
+////        System.out.println(origin);
+        Base64.Decoder decoder = Base64.getDecoder();
+        String[] credential = origin.split("\\.");
+        String jsonData = new String (decoder.decode(credential[1].replace('-', '+').replace('_', '/')));
+
+        accountInfo = new Gson().fromJson(jsonData, HashMap.class);
+//        System.out.println(val);
+
+//        String[] lines = credential.split("_");
+//        for (String line : lines) {
+//            System.out.println(new String(decoder.decode(line)));
+//        }
+//        String payload = new String(decoder.decode(origin));
+//        System.out.println(payload);
+
+
+        return accountInfo;
+    }
 
 
 
@@ -97,7 +126,7 @@ public class UserInfoServiceImpl implements UserInfoService {
 //                    UserJoinRequest.builder()
 //                            .userId(socialUserResponse.getId())
 //                            .userEmail(socialUserResponse.getEmail())
-//                            .userName(socialUserResponse.getName())
+//                            .username(socialUserResponse.getName())
 //                            .userType(request.getUserType())
 //                            .build()
 //            );
@@ -118,7 +147,7 @@ public class UserInfoServiceImpl implements UserInfoService {
 //                        .userId(userJoinRequest.getUserId())
 //                        .userType(userJoinRequest.getUserType())
 //                        .userEmail(userJoinRequest.getUserEmail())
-//                        .userName(userJoinRequest.getUserName())
+//                        .username(userJoinRequest.getUsername())
 //                        .build()
 //        );
 //
@@ -175,7 +204,7 @@ public class UserInfoServiceImpl implements UserInfoService {
 //        return UserResponse.builder()
 //                .uid(user.getUid())
 //                .userId(user.getUserId())
-//                .userName(user.getUserName())
+//                .username(user.getUsername())
 //                .userEmail(user.getUserEmail())
 //                .emergencyCount(user.getEmergencyCount())
 //                .shippingAddress(user.getShippingAddress())
@@ -247,8 +276,8 @@ public class UserInfoServiceImpl implements UserInfoService {
                 .orElseThrow(() -> new CustomException(USER_NOT_FOUND));
         String joinDate = userInfo.getJoinDate().toLocalDate().toString();
         return UserInfoDetailResponse.builder()
-                .userId(userInfo.getUserId())
-                .userName(userInfo.getUserName())
+                .userId(userInfo.getNickname())
+                .username(userInfo.getUsername())
                 .email(userInfo.getUserEmail())
                 .photo(userInfo.getPhoto())
                 .joinDate(joinDate)
@@ -278,7 +307,7 @@ public class UserInfoServiceImpl implements UserInfoService {
 //                .id(user.getUid())
 //                .userId(user.getUserId())
 //                .userEmail(user.getUserEmail())
-//                .userName(user.getUserName())
+//                .username(user.getUsername())
 //                .build();
 //    }
 
