@@ -1,5 +1,7 @@
 package com.planty.common.util;
 
+import com.planty.db.entity.UserInfo;
+import org.apache.catalina.User;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
@@ -12,11 +14,16 @@ public class SecurityUtil {
 
     // 현재 토큰을 통해 로그인 된 멤버 아이디 리턴
     public static String getCurrentUserEmail() {
-//        final Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        final Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication == null || authentication.getPrincipal() == null) {
+            throw new RuntimeException("No authentication information.");
+        }
+        UserInfo userInfo = (UserInfo) authentication.getPrincipal();
+        return userInfo.getUserEmail();
 //        if (authentication == null || authentication.getName() == null) {
-////            throw new RuntimeException("No authentication information.");
+//            throw new RuntimeException("No authentication information.");
 //        }
-        return "sunflower1@gmail.com";
+////        return "sunflower1@gmail.com";
 //        return authentication.getName();
     }
 

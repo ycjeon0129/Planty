@@ -22,11 +22,11 @@ VALUES('greenmate1', 'greenmate1', '식물왕 전식물', '안녕하세요. 당�
 ('greenmate15', 'greenmate15', '식물의달', '안녕하세요 플랜티 그린메이트입니다.', 1),
 ('greenmate16', 'greenmate16', '식물박사', '안녕하세요 플랜티 그린메이트입니다.', 1);
 
-INSERT INTO user_info(user_id, user_name, email, `password`, shipping_address, photo)
+INSERT INTO user_info(nickname, username, email, `password`, shipping_address, photo)
 VALUES ('gardener1','초보 가드너', 'sunflower1@gmail.com', "1q2w3e4r!!", "광주 광산구 하남산단6번로 107", "https://github.com/ycjeon0129/algorithm-problem-solving/assets/79627716/80325b49-8d30-4a49-b13b-dd0261b89a88"),
 ('develop1', '초보 개발자', 'gardener1@naver.com', "1q2w3e4r!!","서울 강남구 테헤란로 212", "https://github.com/ycjeon0129/algorithm-problem-solving/assets/79627716/7cecbbae-739e-428a-a8c7-632dc5c8b97e");
 
-INSERT INTO user_info(user_id, user_name, email, `password`)
+INSERT INTO user_info(nickname, username, email, `password`)
 VALUES ('gardener2','김씨네 아빠', 'sunflower2@gmail.com', "1q2w3e4r!!"), ('develop2', '수완동 보안관', 'gardener2@naver.com', "1q2w3e4r!!"),
 ('gardener3','초보 가드너3', 'sunflower3@gmail.com', "1q2w3e4r!!"), ('develop3', '초보 개발자3', 'gardener3@naver.com', "1q2w3e4r!!"),
 ('gardener4','초보 가드너4', 'sunflower4@gmail.com', "1q2w3e4r!!"), ('develop4', '초보 개발자4', 'gardener4@naver.com', "1q2w3e4r!!"),
@@ -87,10 +87,7 @@ VALUES(1,"2023-06-11", "2023-06-18", 1, '전반적으로 잘 시작하셨어요.
 INSERT INTO emergency_log(USER_INFO_uid, GM_INFO_gid, name, type, content, request_time, start_time, end_time, connection)
 VALUES(1, 1, "다육이", 1, '놔두면 잘 큽니다', '2023-08-01 10:30:04', '2023-08-01 10:32:12', '2023-08-01 10:58:34', null),
       (2, 1, "동충하초", 1, '여름되면 잘 자랍니다', '2023-08-03 10:03:42', '2023-08-03 10:04:43', '2023-08-03 10:29:23', null),
-      (1, 1, "소나무", 1, '햇빛을 더 신경써주세요', '2023-08-13 10:36:21', '2023-08-13 10:36:45', '2023-08-13 10:54:23', null),
-      (2, null, null, 1, null, '2023-08-18 12:36:21', null, null, 'ses'),
-      (3, null, null, 1, null, '2023-08-18 13:23:21', null, null, 'ses'),
-      (4, null, null, 1, null, '2023-08-18 13:36:21', null, null, 'ses');
+      (1, 1, "소나무", 1, '햇빛을 더 신경써주세요', '2023-08-13 10:36:21', '2023-08-13 10:36:45', '2023-08-13 10:54:23', null);
   
 INSERT INTO plant_data(arduino_id, date, time, temp, humidity, soil)
 VALUES (101, '2023-08-01','12:00:00', 24.0,45.0,32.0),

@@ -1,5 +1,5 @@
 ![Planty 대표 사진](./pictures/images/Planty.png)
-# :four_leaf_clover:PLANTY:four_leaf_clover:
+# :four_leaf_clover: PLANTY :four_leaf_clover:
 #### 실시간 화상 채팅을 통한 홈가드닝 컨설팅 서비스
 <br />
 <br />
@@ -171,7 +171,7 @@
 <br>
 <br>
 
-# 부가기능
+# 부가 기능
 
 - 예약 시스템
   - 날짜별, 30분 간격의 시간대별로 컨설팅을 예약 할 수 있어요.
@@ -179,9 +179,10 @@
   - 컨설팅 날이 지나지 않았다면 취소할 수 있어요.
 <br>
 <br>
-- 온습도 데이터 
-  - 실시간으로 대기 온습도와 흙 온습도를 확인할 수 있어요.
-  - 차트를 통해 사용자가 데이터를 쉽게 파악할 수 있어요.
+
+  - 온습도 데이터 
+    - 실시간으로 대기 온습도와 흙 온습도를 확인할 수 있어요.
+    - 차트를 통해 사용자가 데이터를 쉽게 파악할 수 있어요.
 <br>
 <br>
 <br>
@@ -255,10 +256,10 @@
 
 | | | |
 |:---:|:---:|:---:|
-| <img src="./pictures/TeamImg/Yeon.jpg" alt="전윤철's Image" width="100" height="100"> | <img src="./pictures/TeamImg/Hoon.png" alt="김정훈's Image" width="100" height="100"> | <img src="./pictures/TeamImg/Hass.png" alt="임희선's Image" width="100" height="100"> |
+| <img src="./pictures/teamimg/Yeon.jpg" alt="전윤철's Image" width="100" height="100"> | <img src="./pictures/teamimg/Hoon.png" alt="김정훈's Image" width="100" height="100"> | <img src="./pictures/teamimg/Hass.png" alt="임희선's Image" width="100" height="100"> |
 | **[전윤철](https://github.com/ycjeon0129)**<br>**Backend** | **[김정훈](https://github.com/jeonghun98)**<br>**Backend** | **[임희선](https://github.com/Im-hass)**<br>**Frontend** |
 | | | |
-| <img src="./pictures/TeamImg/Gyu.png" alt="이금규's Image" width="100" height="100"> | <img src="./pictures/TeamImg/Yang.png" alt="양시온's Image" width="100" height="100"> | <img src="./pictures/TeamImg/Heok.jpg" alt="전인혁's Image" width="100" height="100"> |
+| <img src="./pictures/teamimg/Gyu.png" alt="이금규's Image" width="100" height="100"> | <img src="./pictures/teamimg/Yang.png" alt="양시온's Image" width="100" height="100"> | <img src="./pictures/teamimg/Heok.jpg" alt="전인혁's Image" width="100" height="100"> |
 | **[이금규](https://github.com/Gold-Gyu)**<br>**Frontend** | **[양시온](https://github.com/sionyy)**<br>**Frontend** | **[전인혁](https://github.com/wjs5025)**<br>**Frontend** |
 
 ```

@@ -2,6 +2,7 @@ import LocalStorage from 'constants/storage/LocalStorage';
 // import jwt_decode from 'jwt-decode';
 import { LoginBody, SetUserBody } from 'types/domain/user';
 import SessionStorage from 'constants/storage/SessionStorage';
+import { CredentialResponse } from '@react-oauth/google';
 import { instance } from './instance';
 
 /**
@@ -72,5 +73,13 @@ export const logoutApi = async (body: LoginBody) => {
 		}
 	});
 
+	return response;
+};
+
+export const socialLoginApi = async (res: CredentialResponse) => {
+	const body = {
+		profileObj: res,
+	};
+	const response = await instance.post('/oauth/jwt/google', JSON.stringify(body));
 	return response;
 };

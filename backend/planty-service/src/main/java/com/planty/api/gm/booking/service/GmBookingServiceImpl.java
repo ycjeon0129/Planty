@@ -65,7 +65,7 @@ public class GmBookingServiceImpl implements GmBookingService {
                     .date(item.getDate())
                     .time(item.getTimeIdx().getIdx())
                     .greenmate(item.getGid().getNickname())
-                    .user(item.getUid().getUserName())
+                    .user(item.getUid().getUsername())
                     .build();
             bookingList.add(booking);
         }
