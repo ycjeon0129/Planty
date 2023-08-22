@@ -67,7 +67,7 @@ public class GmEmergencyServiceImpl implements GmEmergencyService {
                             .timeTaken(timeTaken)
                             .content(item.getContent())
                             .gm(gm.getNickname())
-                            .user(item.getUid().getUserName())
+                            .user(item.getUid().getUsername())
                             .build()
             );
         }

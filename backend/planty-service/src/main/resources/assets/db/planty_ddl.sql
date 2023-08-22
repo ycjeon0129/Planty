@@ -59,9 +59,9 @@ DROP TABLE IF EXISTS `planty`.`user_info` ;
 
 CREATE TABLE IF NOT EXISTS `planty`.`user_info` (
   `uid` INT UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '사용자 식별키',
-  `user_id` VARCHAR(32) NOT NULL COMMENT '사용자 id',
-  `user_name` VARCHAR(32) NOT NULL COMMENT '사용자 이름',
-  `password` VARCHAR(32) NOT NULL COMMENT '비밀번호',
+  `nickname` VARCHAR(128) NOT NULL COMMENT '사용자 nickname',
+  `username` VARCHAR(128) NOT NULL COMMENT '사용자 이름',
+  `password` VARCHAR(128) NOT NULL COMMENT '비밀번호',
   `email` VARCHAR(64) NOT NULL COMMENT '사용자 이메일',
   `token` VARCHAR(1024) NULL DEFAULT NULL COMMENT '사용자 인증 토큰',
   `photo` VARCHAR(256) NULL DEFAULT NULL COMMENT '사용자 프로필 사진',
@@ -70,6 +70,7 @@ CREATE TABLE IF NOT EXISTS `planty`.`user_info` (
   `emergency_count` INT UNSIGNED NOT NULL DEFAULT '1' COMMENT '사용자 응급실 이용권 개수. 최초 가입 시 1개 제공',
   `shipping_address` VARCHAR(256) NULL DEFAULT NULL COMMENT '사용자 배송지 정보',
   `user_type` VARCHAR(32) NULL DEFAULT 'NORMAL' COMMENT '사용자 소셜 로그인 타입',
+  `role` VARCHAR(32) NULL DEFAULT 'ROLE_USER' COMMENT '사용자 권한',
   PRIMARY KEY (`uid`),
   UNIQUE INDEX `email` (`email` ASC) VISIBLE)
 ENGINE = InnoDB
@@ -391,7 +392,7 @@ AS select `el`.`eid` AS `eid`,
           `el`.`end_time` AS `end_date`,
           `el`.`content` AS `advice`,
           `gm`.`nickname` AS `greenmate`,
-          `ui`.`user_name` AS `user` from
+          `ui`.`username` AS `user` from
 			   ((`planty`.`emergency_log` `el` join `planty`.`gm_info` `gm` on (`gm`.`gid` = `el`.`GM_INFO_gid`))
 					join `planty`.`user_info` `ui` on(`ui`.`uid` = `el`.`USER_INFO_uid`));
 

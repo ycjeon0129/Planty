@@ -1,5 +1,6 @@
 package com.planty.db.entity;
 
+import com.planty.common.enums.Role;
 import com.planty.common.enums.UserType;
 import com.planty.db.entity.common.BaseEntity;
 import javax.persistence.*;
@@ -11,6 +12,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
@@ -30,13 +32,13 @@ public class UserInfo extends BaseEntity {
     @Column(name = "uid")
     private Long uid;
 
-    @Column(name = "user_id", length = 32, nullable = false)
-    private String userId;
+    @Column(name = "nickname", length = 128, nullable = false)
+    private String nickname;
 
-    @Column(name = "user_name", length = 32, nullable = false)
-    private String userName;
+    @Column(name = "username", length = 128, nullable = false)
+    private String username;
 
-    @Column(name = "password", length = 32, nullable = false)
+    @Column(name = "password", length = 128, nullable = false)
     private String password;
 
     @Column(name = "email", length = 64, unique = true, nullable = false)
@@ -55,10 +57,29 @@ public class UserInfo extends BaseEntity {
     @Column(name = "shipping_address", length = 256, nullable = true)
     private String shippingAddress;
 
-    @Column(columnDefinition = "ENUM('KAKAO', 'NAVER', 'FACEBOOK', 'GOOGLE', 'PAYCO', 'NORMAL') DEFAULT 'NORMAL'")
-    @Enumerated(EnumType.STRING)
-    private UserType userType;
+    @Column(name = "user_type", length = 32, nullable = true)
+    private String userType;
 
+    @Column(name = "role", length = 256, nullable = true)
+    private String role;
+
+    // ENUM으로 안하고 ,로 해서 구분해서 ROLE을 입력 -> 그걸 파싱!!
+    public List<String> getRoleList(){
+        if(this.role.length() > 0){
+            return Arrays.asList(this.role.split(","));
+        }
+        return new ArrayList<>();
+    }
+
+//    @Builder(builderClassName = "OAuth2Register", builderMethodName = "oauth2Register")
+//    public UserInfo(String username, String password, String email, String role, String provider, String providerId) {
+//        this.username = username;
+//        this.password = password;
+//        this.userEmail = email;
+//        this.role = role;
+//        this.userType = provider;
+//        this.userId = providerId;
+//    }
 
 //    public UserInfo update(OAuth2UserInfo oAuth2UserInfo) {
 //        this.nickname = oAuth2UserInfo.getNickname();

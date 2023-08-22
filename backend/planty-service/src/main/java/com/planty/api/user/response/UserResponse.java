@@ -1,4 +1,4 @@
-package com.planty.api.user.model.request;
+package com.planty.api.user.response;
 
 import com.planty.common.enums.UserType;
 import lombok.AllArgsConstructor;
@@ -10,9 +10,14 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
-public class UserJoinRequest {
+public class UserResponse {
+
+    private Long uid;
     private String userId;
-    private String userName;
-    private UserType userType;
+    private String username;
     private String userEmail;
+    private Integer emergencyCount;
+    private String shippingAddress;
+    private UserType userType;
+
 }

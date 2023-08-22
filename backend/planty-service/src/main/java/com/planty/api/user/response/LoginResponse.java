@@ -1,4 +1,4 @@
-package com.planty.api.user.model.response;
+package com.planty.api.user.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,9 +9,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
-public class UserLoginResponse {
-
-    private Long uid;
-    private String userEmail;
-
+public class LoginResponse {
+    private Long id;
 }
