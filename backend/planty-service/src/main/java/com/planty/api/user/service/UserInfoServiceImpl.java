@@ -42,8 +42,8 @@ public class UserInfoServiceImpl implements UserInfoService {
 //    private final JwtTokenProvider jwtTokenProvider;
     private final AuthenticationManagerBuilder authenticationManagerBuilder;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
-//    @Value("${jwt.secret}")
-//    private String password;
+    @Value("${jwt.secret}")
+    private String jwtSecret;
 
     @Override
     public UserLoginResponse jwtCreate(Map<String, Object> data) {
@@ -79,7 +79,8 @@ public class UserInfoServiceImpl implements UserInfoService {
                 .withClaim("uid", userEntity.getUid())
                 .withClaim("email", userEntity.getUserEmail())
                 .withClaim("emergencyCount", userEntity.getEmergencyCount())
-                .sign(Algorithm.HMAC512(JwtProperties.SECRET));
+//                .sign(Algorithm.HMAC512(JwtProperties.SECRET));
+                .sign(Algorithm.HMAC512(jwtSecret));
 
         UserLoginResponse token = UserLoginResponse.builder()
                 .jwtToken(jwtToken)

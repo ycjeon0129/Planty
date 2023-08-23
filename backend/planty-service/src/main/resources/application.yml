@@ -2,7 +2,6 @@ spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/planty?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Seoul&zeroDateTimeBehavior=convertToNull&rewriteBatchedStatements=true
-#    url: jdbc:mysql://i9c202.p.ssafy.io:3306/planty?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Seoul&zeroDateTimeBehavior=convertToNull&rewriteBatchedStatements=true
     hikari:
       idle-timeout: '600000'
       maximum-pool-size: '50'
@@ -57,41 +56,3 @@ springfox:
     swagger:
       use-model-v3: 'false'
 ---
-#management:
-#  health:
-#    diskspace:
-#      enabled: 'true'
-#    default:
-#      enabled: 'true'
-#    db:
-#      enabled: 'true'
-#  servlet:
-#    context-path: /manage
-#spring:
-#  web:
-#    resources:
-#      static-locations: classpath:/dist/
-#      add-mappings: 'false'
-#  jpa:
-#    hibernate:
-#      naming:
-#        implicit-strategy: org.springframework.boot.orm.jpa.hibernate.SpringImplicitNamingStrategy
-#        physical-strategy: org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy
-#      ddl-auto: update
-#    properties:
-#      hibernate:
-#        dialect: org.hibernate.dialect.MySQL57Dialect
-#  datasource:
-#    driver-class-name: com.mysql.cj.jdbc.Driver
-#    url: jdbc:mysql://localhost:3306/ssafy_web_db?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Seoul&zeroDateTimeBehavior=convertToNull&rewriteBatchedStatements=true
-#  data:
-#    web:
-#      pageable:
-#        one-indexed-parameters: 'true'
-#  mvc:
-#    throw-exception-if-no-handler-found: 'true'
-#spa:
-#  default-file: /dist/index.html
-#jwt:
-#  expiration: '1296000000'
-#  secret: dyAeHubOOc8KaOfYB6XEQoEj1QzRlVgtjNL8PYs1A1tymZvvqkcEU7L1imkKHeDa
