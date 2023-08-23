@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.planty.api.user.request.UserLoginRequest;
 import com.planty.common.auth.PrincipalDetails;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -30,6 +31,8 @@ import lombok.RequiredArgsConstructor;
 public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilter{
 
     private final AuthenticationManager authenticationManager;
+    @Value("${jwt.secret}")
+    private String jwtSecret;
 
     // Authentication 객체 만들어서 리턴 => 의존 : AuthenticationManager
     // 인증 요청시에 실행되는 함수 => /login
@@ -88,7 +91,8 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
                 .withClaim("uid", principalDetailis.getUser().getUid())
                 .withClaim("email", principalDetailis.getUser().getUserEmail())
                 .withClaim("emergencyCount", principalDetailis.getUser().getEmergencyCount())
-                .sign(Algorithm.HMAC512(JwtProperties.SECRET));
+//                .sign(Algorithm.HMAC512(JwtProperties.SECRET));
+                .sign(Algorithm.HMAC512(jwtSecret));
 
         response.addHeader(JwtProperties.HEADER_STRING, JwtProperties.TOKEN_PREFIX+jwtToken);
     }
