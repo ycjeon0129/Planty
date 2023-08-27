@@ -285,5 +285,3 @@
 | <img src="./pictures/teamimg/Gyu.png" alt="이금규's Image" width="100" height="100"> | <img src="./pictures/teamimg/Yang.png" alt="양시온's Image" width="100" height="100"> | <img src="./pictures/teamimg/Heok.jpg" alt="전인혁's Image" width="100" height="100"> |
 | **[이금규](https://github.com/Gold-Gyu)**<br>**Frontend** | **[양시온](https://github.com/sionyy)**<br>**Frontend** | **[전인혁](https://github.com/wjs5025)**<br>**Frontend** |
 
-```
-"# S09P12C202" 
